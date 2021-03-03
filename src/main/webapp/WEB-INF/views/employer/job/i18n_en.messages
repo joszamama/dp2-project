@@ -1,0 +1,41 @@
+# i18n_en.messages
+#
+# Copyright (c) 2012-2021 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+employer.job.list.title = Job Offers
+employer.job.list.label.reference = Reference
+employer.job.list.label.deadline = Deadline
+employer.job.list.label.title = Title
+
+employer.job.form.title.show = Job offer
+employer.job.form.title.create = Create job offer 
+employer.job.form.title.update = Update job offer
+employer.job.form.title.delete = Delete job offer
+
+employer.job.form.title.list-all = All of the job offers
+employer.job.form.title.list-mine = My job offers
+employer.job.form.title.publish = Publish a job offer
+
+employer.job.form.label.reference = Reference: 
+employer.job.form.label.title = Title:
+employer.job.form.label.deadline = Deadline:
+employer.job.form.label.salary = Salary:
+employer.job.form.label.score = Score:
+employer.job.form.label.moreInfo = More info: (Optional)
+employer.job.form.label.description = Description:
+		
+employer.job.form.button.update = Update
+employer.job.form.button.delete = Delete
+employer.job.form.button.publish = Publish
+employer.job.form.button.create = Create
+employer.job.form.button.return = Return
+
+employer.job.form.error.duplicated = This reference is taken
+employer.job.form.error.too-close = Deadline must be at least one week ahead
+employer.job.form.error.spam = Your job seems to contain spam

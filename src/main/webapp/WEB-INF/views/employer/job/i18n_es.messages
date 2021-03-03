@@ -1,0 +1,41 @@
+# i18n_es.messages
+#
+# Copyright (c) 2012-2021 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+employer.job.list.title = Ofertas de trabajo
+employer.job.list.label.reference = Referencia
+employer.job.list.label.deadline = Fecha límite
+employer.job.list.label.title = Título
+
+employer.job.form.title.show = Oferta de empleo
+employer.job.form.title.create = Crear oferta 
+employer.job.form.title.update = Actualizar oferta
+employer.job.form.title.delete = Borrar oferta
+
+employer.job.form.title.list-all = Todas las ofertas
+employer.job.form.title.list-mine = Mis ofertas
+employer.job.form.title.publish = Publicar oferta
+
+employer.job.form.label.reference = Referencia: 
+employer.job.form.label.title = Título:
+employer.job.form.label.deadline = Fecha límite:
+employer.job.form.label.salary = Salario:
+employer.job.form.label.score = Score:
+employer.job.form.label.moreInfo = Más información: (Opcional)
+employer.job.form.label.description = Descripción:
+		
+employer.job.form.button.update = Actualizar
+employer.job.form.button.delete = Borrar
+employer.job.form.button.publish = Publicar
+employer.job.form.button.create = Crear
+employer.job.form.button.return = Volver
+
+employer.job.form.error.duplicated = Esta referencia no está libre
+employer.job.form.error.too-close = La fecha límite debe ser en una semana como mínimo
+employer.job.form.error.spam = Su trabajo parece contener spam
