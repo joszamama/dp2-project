@@ -9,5 +9,6 @@
 # they accept any liabilities with respect to them.
 
 - Rafael Corchuelo (corchu@us.es)
-- Esteban Cabezas (felg@gmail.com)
+- Esteban Cabezas Díaz (felg@gmail.com)
 - Carlos Núñez Arenas (carnuare@gmail.com / carnunare@alum.us.es)
+- José Antonio Zamudio Amaya (joszamama@alum.us.es)
