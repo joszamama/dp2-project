@@ -11,4 +11,5 @@
 - Rafael Corchuelo (corchu@us.es)
 - Esteban Cabezas Díaz (felg@gmail.com)
 - Carlos Núñez Arenas (carnuare@gmail.com / carnunare@alum.us.es)
+- Javier Centeno Vega (jacenve@telefonica.net / javcenveg@alum.us.es)
 - José Antonio Zamudio Amaya (joszamama@alum.us.es)
