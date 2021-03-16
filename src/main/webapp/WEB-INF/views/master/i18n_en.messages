@@ -10,14 +10,15 @@
 
 # master.banner.welcome #######################################################
 
-master.banner.background = #FFE97F 
+#master.banner.background = #FFE97F
 
+#master.banner.background = #ade4f9 
+
+master.banner.background = #3ec1ff
 # master.welcome ##############################################################
 
 master.welcome.title = Welcome!
-master.welcome.text = \
-	Welcome to Starter Project! Never before has it bee easier to get your \
-	project up and running!
+master.welcome.text = Welcome to our first DP project! Acme One!
 
 # master.menu #################################################################
 
@@ -80,13 +81,13 @@ master.footer.label.spanish = Spanish
 
 master.company.title = La compañía
 master.company.text = \
-	Starter Project, Inc. is a fictitious fictitious company that provides a \
-	starter project for the students of the Design and Testing subject of the \
+	Acme one is our first project that provides a \
+	first version of a project of the Design and Testing subject of the \
 	Software Engineering Curriculum of the University of Sevilla.
-master.company.name = Starter Project, Inc.
-master.company.address = Number Street, City, State, Country
-master.company.phone = +000 123 456
-master.company.email = contact@acme.com
+master.company.name = Acme One S.L.
+master.company.address = s/n Avenida Reina Mercedes, Seville, Seville, Spain
+master.company.phone = +34 600 000 000
+master.company.email = mailto@acme-one.com
 
 # master.license ##############################################################
 
@@ -94,7 +95,7 @@ master.license.title = License
 master.license.text = \
 	You may use this system free of charge, as long as you carefully observe the \
 	existing applicable laws.  Please, note that we do not share any information \
-	about you with any other company.  We only use three cookies, namely: \
+	, this is a offline web-app.  We only use three cookies, namely: \
 	"JSESSIONID" to identify your work session, "remember" to let you authenticate \
 	automatically for a maximum of 31 days, and "language" to store your language \
 	preferences. Additionally, we store an item called "returnStack" in your browser's \
