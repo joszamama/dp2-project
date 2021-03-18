@@ -3,7 +3,7 @@
 <!-- 
   - pom.xml 
   -   
-  - Copyright (c) 2012-2021 Rafael Corchuelo. 
+  - Copyright (C) 2012-2021 Rafael Corchuelo. 
   -
   - In keeping with the traditional purpose of furthering education and research, it is 
   - the policy of the copyright owner to permit non-commercial use and redistribution of 
@@ -18,10 +18,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	
-	<name>Acme One</name>
-	<description>This is our first project in Design &amp; Testing.</description>
+	<name>Starter Project</name>
+	<description>This is the Starter Project for the students of Design &amp; Testing.</description>
 
-	<artifactId>Acme-One</artifactId>
+	<artifactId>Starter-Project</artifactId>
+	<version>21.2</version>
 	<packaging>war</packaging>
 
 	<parent>

@@ -1,7 +1,7 @@
 <%--
 - menu.jsp
 -
-- Copyright (c) 2012-2021 Rafael Corchuelo.
+- Copyright (C) 2012-2021 Rafael Corchuelo.
 -
 - In keeping with the traditional purpose of furthering education and research, it is
 - the policy of the copyright owner to permit non-commercial use and redistribution of
@@ -19,12 +19,7 @@
 <acme:menu-bar code="master.menu.home">
 	<acme:menu-left>
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
-		<acme:menu-suboption code="master.menu.anonymous.favourite-link-buiza" action="https://youtu.be/DPyOhP1GTRQ"/>
-		<acme:menu-suboption code="master.menu.anonymous.favourite-link-cabezas" action="https://www.sevillafc.es"/>
-		<acme:menu-suboption code="master.menu.anonymous.favourite-link-centeno" action="https://github.com/JavierCenteno"/>
-		<acme:menu-suboption code="master.menu.anonymous.favourite-link-delasheras" action="https://www.youtube.com/watch?v=sOnqjkJTMaA"/>
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link-nunez" action="https://www.youtube.com/watch?v=wEGR_PHKK9g&t=726s"/>
-			<acme:menu-suboption code="master.menu.anonymous.favourite-link-zamudio" action="https://www.youtube.com/watch?v=Ot6pSrKT1oc"/>
+			<acme:menu-suboption code="master.menu.anonymous.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
