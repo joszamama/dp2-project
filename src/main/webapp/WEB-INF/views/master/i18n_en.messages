@@ -1,6 +1,6 @@
 # i18n_en.messages
 #
-# Copyright (c) 2012-2021 Rafael Corchuelo.
+# Copyright (C) 2012-2021 Rafael Corchuelo.
 #
 # In keeping with the traditional purpose of furthering education and research, it is
 # the policy of the copyright owner to permit non-commercial use and redistribution of
@@ -10,15 +10,14 @@
 
 # master.banner.welcome #######################################################
 
-#master.banner.background = #FFE97F
+master.banner.background = #FFE97F 
 
-#master.banner.background = #ade4f9 
-
-master.banner.background = #3ec1ff
 # master.welcome ##############################################################
 
 master.welcome.title = Welcome!
-master.welcome.text = Welcome to our first DP project! Acme One!
+master.welcome.text = \
+	Welcome to Starter Project! Never before has it bee easier to get your \
+	project up and running!
 
 # master.menu #################################################################
 
@@ -30,12 +29,7 @@ master.menu.sign-out = Sign out
 # master.menu.anonymous #######################################################
 
 master.menu.anonymous = Anonymous
-master.menu.anonymous.favourite-link-buiza = Buiza's Link
-master.menu.anonymous.favourite-link-cabezas = Cabezas's Link
-master.menu.anonymous.favourite-link-centeno = Centeno's Link
-master.menu.anonymous.favourite-link-delasheras = De Las Heras's Link
-master.menu.anonymous.favourite-link-nunez = Nuñez's Link
-master.menu.anonymous.favourite-link-zamudio = Zamudio's Link
+master.menu.anonymous.favourite-link = Favourite link
 
 # master.menu.administrator ###################################################
 
@@ -79,15 +73,15 @@ master.footer.label.spanish = Spanish
 
 # master.company ##############################################################
 
-master.company.title = La compañía
+master.company.title = The company
 master.company.text = \
-	Acme one is our first project that provides a \
-	first version of a project of the Design and Testing subject of the \
+	Starter Project, Inc. is a fictitious fictitious company that provides a \
+	starter project for the students of the Design and Testing subject of the \
 	Software Engineering Curriculum of the University of Sevilla.
-master.company.name = Acme One S.L.
-master.company.address = s/n Avenida Reina Mercedes, Seville, Seville, Spain
-master.company.phone = +34 600 000 000
-master.company.email = mailto@acme-one.com
+master.company.name = Starter Project, Inc.
+master.company.address = Number Street, City, State, Country
+master.company.phone = +000 123 456
+master.company.email = contact@acme.com
 
 # master.license ##############################################################
 
@@ -95,7 +89,7 @@ master.license.title = License
 master.license.text = \
 	You may use this system free of charge, as long as you carefully observe the \
 	existing applicable laws.  Please, note that we do not share any information \
-	, this is a offline web-app.  We only use three cookies, namely: \
+	about you with any other company.  We only use three cookies, namely: \
 	"JSESSIONID" to identify your work session, "remember" to let you authenticate \
 	automatically for a maximum of 31 days, and "language" to store your language \
 	preferences. Additionally, we store an item called "returnStack" in your browser's \
