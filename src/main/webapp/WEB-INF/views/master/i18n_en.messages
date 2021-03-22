@@ -10,14 +10,13 @@
 
 # master.banner.welcome #######################################################
 
-master.banner.background = #FFE97F 
+master.banner.background = #3ec1ff
 
 # master.welcome ##############################################################
 
 master.welcome.title = Welcome!
 master.welcome.text = \
-	Welcome to Starter Project! Never before has it bee easier to get your \
-	project up and running!
+	Welcome to Acme Plannar! June#02 Group.
 
 # master.menu #################################################################
 
@@ -75,13 +74,13 @@ master.footer.label.spanish = Spanish
 
 master.company.title = The company
 master.company.text = \
-	Starter Project, Inc. is a fictitious fictitious company that provides a \
-	starter project for the students of the Design and Testing subject of the \
+	Acme Plannar is a fictitious company that Group \
+	June#02 have created for the Design and Testing subject of the \
 	Software Engineering Curriculum of the University of Sevilla.
-master.company.name = Starter Project, Inc.
-master.company.address = Number Street, City, State, Country
-master.company.phone = +000 123 456
-master.company.email = contact@acme.com
+master.company.name = Acme Plannar
+master.company.address = Escuela Técnica Superior de Ingeniería Informática, Universidad de Sevilla, 41012 Sevilla
+master.company.phone = 954 55 68 17
+master.company.email = secretaria-eii@listas.us.es
 
 # master.license ##############################################################
 

@@ -18,10 +18,10 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	
-	<name>Starter Project</name>
-	<description>This is the Starter Project for the students of Design &amp; Testing.</description>
+	<name>Acme Plannar</name>
+	<description>This is the Starter Project for the Group June#02 of Design &amp; Testing. D02</description>
 
-	<artifactId>Starter-Project</artifactId>
+	<artifactId>Acme-Plannar</artifactId>
 	<version>21.2</version>
 	<packaging>war</packaging>
 
