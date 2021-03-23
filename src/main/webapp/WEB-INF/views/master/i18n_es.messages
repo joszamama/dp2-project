@@ -16,7 +16,7 @@ master.banner.background = #3ec1ff
 
 master.welcome.title = ¡Bienvenidos!
 master.welcome.text = \
-	Bienvenidos a Acme Plannar! Grupo June#02.
+	Bienvenidos a Acme Planner! Grupo June#02.
 
 # master.menu #################################################################
 
@@ -74,10 +74,10 @@ master.footer.label.spanish = Español
 
 master.company.title = La compañía
 master.company.text = \
-	Acme Plannar es una compañía ficticia que el grupo \
+	Acme Planner es una compañía ficticia que el grupo \
 	June#02 ha creado para la asignatura Diseño y Pruebas, en el Grado \
 	en Ingeniería del Software de la Universidad de Sevilla.
-master.company.name = Starter Project, Inc.
+master.company.name = Acme Planner
 master.company.address = Escuela Técnica Superior de Ingeniería Informática, Universidad de Sevilla, 41012 Sevilla
 master.company.phone = 954 55 68 17
 master.company.email = secretaria-eii@listas.us.es

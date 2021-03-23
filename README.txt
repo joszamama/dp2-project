@@ -8,4 +8,4 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-This is Acme Plannar, our D02 project in D&T.
+This is Acme Planner, our D02 project in D&T.
