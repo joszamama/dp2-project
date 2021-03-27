@@ -8,4 +8,5 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-This is Acme Planner, our D02 project in D&T.
+This is Acme Planner, our D02 project in Design & Testing II.
+The link to our GitHub repositoryur is: https://github.com/joszamama/dp2-project
