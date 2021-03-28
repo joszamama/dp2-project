@@ -4,6 +4,7 @@ package acme.framework.entities;
 import java.time.Duration;
 import java.time.Instant;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -11,6 +12,12 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
 public class Task extends DomainEntity {
 	// Serialisation identifier -----------------------------------------------
 
@@ -28,7 +35,7 @@ public class Task extends DomainEntity {
 	protected Instant			executionEnd;
 
 	@NotBlank
-	// NO SÉ A QUE SE REFIERE CON "obviously, the workload must fit within the execution period".
+	// Duration.between(this.executionStart, this.executionEnd);
 	protected Duration			workload;
 
 	@NotEmpty
@@ -42,8 +49,4 @@ public class Task extends DomainEntity {
 
 	// Object interface -------------------------------------------------------
 
-
-	public void setWorkload() {
-		this.workload = Duration.between(this.executionStart, this.executionEnd);
-	}
 }
