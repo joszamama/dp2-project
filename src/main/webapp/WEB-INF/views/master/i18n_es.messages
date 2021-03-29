@@ -87,7 +87,8 @@ master.company.email = secretaria-eii@listas.us.es
 master.license.title = Licencia
 master.license.text = \
 	Puede usar este sistema de forma completamente gratuita respetando las leyes \
-	que sean aplicables.  No compartimos ninguna información sobre Ud. con ninguna \
+	que sean aplicables y contactando con los creadores de Acme Planner. \
+	No compartimos ninguna información sobre Ud. con ninguna \
 	otra empresa.  Tan sólo usamos tres cookies, a saber: "JSESSIONID" para identificar \
 	su sesión de trabajo, "remember" para mantener su información de autentificación \
 	durante un máximo de 31 días y "language" para almacenar sus preferencias de \
