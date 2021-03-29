@@ -19,7 +19,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<name>Acme Planner</name>
-	<description>This is the Starter Project for the Group June#02 of Design &amp; Testing. D02</description>
+	<description>This is Acme Planner for the Group June#02 of Design &amp; Testing. D02</description>
 
 	<artifactId>Acme-Planner</artifactId>
 	<version>21.2</version>
