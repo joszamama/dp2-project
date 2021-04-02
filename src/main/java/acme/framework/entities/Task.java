@@ -1,12 +1,10 @@
 
 package acme.framework.entities;
 
-import java.time.Duration;
-import java.time.Instant;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -29,14 +27,12 @@ public class Task extends DomainEntity {
 	protected String			title;
 
 	@Future
-	protected Instant			executionStart;
+	protected Date			executionStart;
 
 	@Future
-	protected Instant			executionEnd;
+	protected Date			executionEnd;
 
-	@NotBlank
-	// Duration.between(this.executionStart, this.executionEnd);
-	protected Duration			workload;
+	protected Integer			workload;
 
 	@NotEmpty
 	@Length(max = 500)
