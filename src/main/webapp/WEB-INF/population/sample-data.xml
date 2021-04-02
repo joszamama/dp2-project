@@ -44,4 +44,47 @@
 		<property name="moment" value="2021/02/02 12:30" />
 		<property name="info" value="http://www.sample-app.com" />
 	</bean>
+
+	<!-- Tasks -->
+	
+	<bean id="task01" class="acme.framework.entities.Task">
+		<property name="title" value="Task number one" />
+		<property name="description" value="A public task which is the first one" />
+		<property name="link" value="http://first.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/02/02 10:00" />
+		<property name="executionEnd" value="2022/10/02 12:00" />
+		<property name="workload"><null /></property>
+	</bean>
+
+	<bean id="task02" class="acme.framework.entities.Task">
+		<property name="title" value="Task number two" />
+		<property name="description" value="A private task which is the second one" />
+		<property name="link" value="http://second.task" />
+		<property name="isPrivate" value="true" />
+		<property name="executionStart" value="2022/04/02 10:00" />
+		<property name="executionEnd" value="2022/12/02 12:00" />
+		<property name="workload"><null /></property>
+	</bean>
+
+	<bean id="task03" class="acme.framework.entities.Task">
+		<property name="title" value="Task number three" />
+		<property name="description" value="A public task which is the third one" />
+		<property name="link" value="http://third.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/02/02 10:00" />
+		<property name="executionEnd" value="2022/10/02 12:00" />
+		<property name="workload"><null /></property>
+	</bean>
+
+	<bean id="task04" class="acme.framework.entities.Task">
+		<property name="title" value="Task number four" />
+		<property name="description" value="A private task which is the fourth one" />
+		<property name="link" value="http://fourth.task" />
+		<property name="isPrivate" value="true" />
+		<property name="executionStart" value="2022/04/02 10:00" />
+		<property name="executionEnd" value="2022/12/02 12:00" />
+		<property name="workload"><null /></property>
+	</bean>
+
 </beans>
