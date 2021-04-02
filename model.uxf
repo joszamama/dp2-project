@@ -314,7 +314,7 @@ Task
 + title: String {NotBlank}
 + executionInitial: Instant {NotNull, Temporal(TIMESTAMP), Future}
 + executionFinal: Instant {NotNull, Temporal(TIMESTAMP), Future} 
-+ workLoad: LocalTime {NotBlank}
++ workLoad: LocalTime {NotNull}
 + description: String {NotBlank, Leght(5,500)}
 + link: String {URL}
 + isPublic: Boolean

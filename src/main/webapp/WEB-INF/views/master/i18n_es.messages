@@ -24,6 +24,8 @@ master.menu.home = Inicio
 master.menu.sign-up = Registrarse
 master.menu.sign-in = Entrar
 master.menu.sign-out = Salir
+master.menu.tasksPNF = Tareas Publicas
+master.menu.shout = Gritos
 
 # master.menu.anonymous #######################################################
 

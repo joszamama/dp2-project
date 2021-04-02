@@ -31,8 +31,9 @@ public class Task extends DomainEntity {
 
 	@Future
 	protected Date			executionEnd;
-
-	protected Integer			workload;
+	
+	@NotNull
+	protected Integer			workload; // hours 
 
 	@NotEmpty
 	@Length(max = 500)
