@@ -1,0 +1,10 @@
+anonymous.task.show.label.title = Título
+anonymous.task.show.label.description = Descripción
+anonymous.task.show.label.link = Enlace
+anonymous.task.show.label.executionStart = Comienzo de ejecución
+anonymous.task.show.label.executionEnd = Fin de ejecución
+anonymous.task.show.label.workload = Carga de trabajo
+
+anonymous.task.list.label.title = Título
+anonymous.task.list.label.executionStart = Comienzo de ejecución
+anonymous.task.list.label.executionEnd = Fin de ejecución
