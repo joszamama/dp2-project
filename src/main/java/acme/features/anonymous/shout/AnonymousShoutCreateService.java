@@ -94,7 +94,27 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
-		this.repository.save(entity);
+		final boolean isSpam = this.isSpam(entity.getText());
+		if(isSpam == false) {
+			this.repository.save(entity);
+		}else {
+			System.out.println("SPAM: " + entity.getText());
+			System.out.println("Mensaje borrado");
+		}
+		System.out.println(isSpam);
+		
+		
+	}
+	
+	public boolean isSpam(final String mensaje) {
+		boolean res;
+		if(mensaje.toLowerCase().matches("(.*)(s+e+x+o+|s+e+x+|h+a+r+d+ c+o+r+e+|e+x+t+r+e+m+o+|v+i+a+g+r+a+|c+i+a+l+i+s+|n+i+g+e+r+i+a|y+o+u+'+v+e+ w+o+n+|h+a+s+ g+a+n+a+d+o+|m+i+l+l+i+o+n+ d+o+l+l+a+r+|m+i+l+l+ó+n+ d+e+ d+o+l+a+r+e+s+)(.*)")) {
+			res = true;
+		}else {
+			res = false;
+		}
+		
+		return res;
 	}
 
 }
