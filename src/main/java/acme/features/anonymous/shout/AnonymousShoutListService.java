@@ -14,6 +14,7 @@ package acme.features.anonymous.shout;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,8 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 	@Autowired
 	protected AnonymousShoutRepository repository;
 
-
 	// AbstractListService<Administrator, Shout> interface --------------
+
 
 	@Override
 	public boolean authorise(final Request<Shout> request) {
@@ -55,11 +56,16 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 	public Collection<Shout> findMany(final Request<Shout> request) {
 		assert request != null;
 
-		Collection<Shout> result;
-		final Date dateOneMonthAgo = new Date(System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000);
-		final Date dateNow = new Date(System.currentTimeMillis());
+		Collection<Shout> dbData;
+		final Date dateNow = new Date(System.currentTimeMillis() - 1);
 
-		result = this.repository.findManyInTimeRange(dateOneMonthAgo, dateNow);
+		dbData = this.repository.findMany();
+		final Collection<Shout> result = new HashSet<Shout>();
+		for (final Shout s : dbData) {
+			if (((dateNow.getTime() - s.getMoment().getTime()) / (1000 * 60 * 60 * 24)) <= 30) {
+				result.add(s);
+			}
+		}
 
 		return result;
 	}
