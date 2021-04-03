@@ -13,6 +13,7 @@
 package acme.features.anonymous.shout;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,8 @@ public interface AnonymousShoutRepository extends AbstractRepository {
 
 	@Query("select s from Shout s")
 	Collection<Shout> findMany();
+
+	@Query("select s from Shout s where s.moment between ?1 and ?2")
+	Collection<Shout> findManyInTimeRange(Date start, Date end);
 
 }

@@ -13,6 +13,7 @@
 package acme.features.anonymous.shout;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,8 +56,10 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 		assert request != null;
 
 		Collection<Shout> result;
+		final Date dateOneMonthAgo = new Date(System.currentTimeMillis() - 30 * 24 * 60 * 60 * 1000);
+		final Date dateNow = new Date(System.currentTimeMillis());
 
-		result = this.repository.findMany();
+		result = this.repository.findManyInTimeRange(dateOneMonthAgo, dateNow);
 
 		return result;
 	}
