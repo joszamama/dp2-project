@@ -8,3 +8,4 @@ anonymous.task.form.label.workload = Carga de trabajo
 anonymous.task.list.label.title = Título
 anonymous.task.list.label.executionStart = Comienzo de ejecución
 anonymous.task.list.label.executionEnd = Fin de ejecución
+anonymous.task.list.label.workload = Carga de trabajo

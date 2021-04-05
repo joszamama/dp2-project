@@ -8,3 +8,4 @@ anonymous.task.form.label.workload = Workload
 anonymous.task.list.label.title = Title
 anonymous.task.list.label.executionStart = Start of execution
 anonymous.task.list.label.executionEnd = End of execution
+anonymous.task.list.label.workload = Workload
