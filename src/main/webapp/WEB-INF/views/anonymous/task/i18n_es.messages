@@ -4,6 +4,7 @@ anonymous.task.form.label.link = Enlace
 anonymous.task.form.label.executionStart = Comienzo de ejecución
 anonymous.task.form.label.executionEnd = Fin de ejecución
 anonymous.task.form.label.workload = Carga de trabajo
+anonymous.task.form.button.return = Volver
 
 anonymous.task.list.label.title = Título
 anonymous.task.list.label.executionStart = Comienzo de ejecución
