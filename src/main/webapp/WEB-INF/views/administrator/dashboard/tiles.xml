@@ -18,14 +18,8 @@
 
 <tiles-definitions>
 
-	<definition name="administrator/user-account/list" extends="master">		
-		<put-attribute name="body" type="template" value="../administrator/user-account/list.jsp" />
+	<definition name="administrator/dashboard/list" extends="master">		
+		<put-attribute name="body" type="template" value="../administrator/dashboard/list.jsp" />
 	</definition>
 	
-	<definition name="administrator/user-account/form" extends="master">
-		<put-attribute name="body" type="template" value="../administrator/user-account/form.jsp" />
-	</definition>
-	
-	
-
 </tiles-definitions>

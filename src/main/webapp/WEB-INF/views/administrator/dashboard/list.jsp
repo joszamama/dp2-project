@@ -16,8 +16,14 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
+
+
 <acme:list>
-	<acme:list-column code="administrator.user-account.list.label.username" path="username" width="20%"/>
-	<acme:list-column code="administrator.user-account.list.label.name" path="identity.name" width="40%"/>
-	<acme:list-column code="administrator.user-account.list.label.surname" path="identity.surname" width="40%"/>		
+	<acme:list-column code="administrator.dashboard.list.label.task" path="workload" width="20%"/>
+	<acme:list-column code="administrator.dashboard.list.label.task.public" path="public" width="20%"/>
+	<acme:list-column code="administrator.dashboard.list.label.task.private" path="private" width="20%"/>		
+	<acme:list-column code="administrator.dashboard.list.label.task.finished" path="finished" width="20%"/>
+	<acme:list-column code="administrator.dashboard.list.label.task.unfinished" path="notFinished" width="20%"/>
 </acme:list>
+
+

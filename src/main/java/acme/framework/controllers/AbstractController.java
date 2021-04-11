@@ -112,12 +112,12 @@ public abstract class AbstractController<R extends UserRole, E> {
 
 	// Command Management -----------------------------------------------------
 
-	public void addBasicCommand(final BasicCommand basicCommand, final AbstractService<R, E> service) {
+	public void addBasicCommand(final BasicCommand basicCommand, final AbstractService<R, E> listService) {
 		assert basicCommand != null;
 		assert !this.commandManager.isRegistered(basicCommand);
-		assert service != null;
+		assert listService != null;
 
-		this.commandManager.addBasicCommand(basicCommand, service);
+		this.commandManager.addBasicCommand(basicCommand, listService);
 	}
 
 	public void addCustomCommand(final CustomCommand customCommand, final BasicCommand baseCommand, final AbstractService<R, E> service) {
