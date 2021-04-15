@@ -27,13 +27,13 @@ public class Task extends DomainEntity {
 	protected String			title;
 
 	@Future
-	protected Date			executionStart;
+	protected Date				executionStart;
 
 	@Future
-	protected Date			executionEnd;
-	
+	protected Date				executionEnd;
+
 	@NotNull
-	protected Integer			workload; // hours 
+	protected Double			workload; // hours 
 
 	@NotEmpty
 	@Length(max = 500)

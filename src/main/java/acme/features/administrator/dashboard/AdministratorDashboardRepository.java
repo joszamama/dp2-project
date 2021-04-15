@@ -44,9 +44,9 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double deviationWorkloads();
 	
 	@Query("select min(t.workload) from Task t")
-	Integer minimumWorkloads();
+	Double minimumWorkloads();
 	
 	@Query("select max(t.workload) from Task t")
-	Integer maximumWorkloads();
+	Double maximumWorkloads();
 
 }

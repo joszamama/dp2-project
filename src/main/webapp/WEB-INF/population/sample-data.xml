@@ -54,7 +54,7 @@
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/02 10:00" />
 		<property name="executionEnd" value="2022/10/02 12:00" />
-		<property name="workload" value="1" />
+		<property name="workload" value="1.5" />
 	</bean>
 
 	<bean id="task02" class="acme.framework.entities.Task">
@@ -64,7 +64,7 @@
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/02 10:00" />
 		<property name="executionEnd" value="2022/12/02 12:00" />
-		<property name="workload" value="1" />
+		<property name="workload" value="2.8" />
 	</bean>
 
 	<bean id="task03" class="acme.framework.entities.Task">
@@ -74,7 +74,7 @@
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/02 10:00" />
 		<property name="executionEnd" value="2022/10/02 12:00" />
-		<property name="workload" value="1" />
+		<property name="workload" value="3.4" />
 	</bean>
 
 	<bean id="task04" class="acme.framework.entities.Task">
@@ -84,7 +84,7 @@
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/02 10:00" />
 		<property name="executionEnd" value="2022/12/02 12:00" />
-		<property name="workload" value="6" />
+		<property name="workload" value="4.2" />
 	</bean>
 
 </beans>

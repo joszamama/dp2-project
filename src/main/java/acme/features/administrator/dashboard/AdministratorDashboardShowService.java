@@ -65,8 +65,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		final Double averageWorkloads = this.repository.averageWorkloads();
 		final Double deviationWorkloads = this.repository.deviationWorkloads();
-		final Integer minimumWorkloads = this.repository.minimumWorkloads();
-		final Integer maximumWorkloads = this.repository.maximumWorkloads();
+		final Double minimumWorkloads = this.repository.minimumWorkloads();
+		final Double maximumWorkloads = this.repository.maximumWorkloads();
 
 		final Double averageExecutionPeriods = this.repository.averageExecutionPeriods();
 		final Double deviationExecutionPeriods = this.repository.deviationExecutionPeriods();
