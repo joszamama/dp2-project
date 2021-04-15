@@ -76,7 +76,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-minimum-execution-periods"/>
 		</th>
 		<td>
-			<acme:print value="${maximumExecutionPeriods}"/>
+			<acme:print value="${minimumExecutionPeriods}"/>
 		</td>
 	</tr>
 	<tr>
@@ -84,7 +84,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-maximum-execution-periods"/>
 		</th>
 		<td>
-			<acme:print value="${minimumExecutionPeriods}"/>
+			<acme:print value="${maximumExecutionPeriods}"/>
 		</td>
 	</tr>	
 </table>

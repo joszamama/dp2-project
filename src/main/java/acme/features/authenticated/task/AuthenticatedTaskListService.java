@@ -35,7 +35,7 @@ public class AuthenticatedTaskListService implements AbstractListService<Authent
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd");
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workload");
 	}
 
 	@Override

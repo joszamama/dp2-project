@@ -52,8 +52,8 @@
 		<property name="description" value="A public task which is the first one" />
 		<property name="link" value="http://first.task" />
 		<property name="isPrivate" value="false" />
-		<property name="executionStart" value="2022/02/02 10:00" />
-		<property name="executionEnd" value="2022/10/02 12:00" />
+		<property name="executionStart" value="2022/02/01 14:00" />
+		<property name="executionEnd" value="2022/03/25 17:30" />
 		<property name="workload" value="1.5" />
 	</bean>
 
@@ -62,9 +62,9 @@
 		<property name="description" value="A private task which is the second one" />
 		<property name="link" value="http://second.task" />
 		<property name="isPrivate" value="true" />
-		<property name="executionStart" value="2022/04/02 10:00" />
-		<property name="executionEnd" value="2022/12/02 12:00" />
-		<property name="workload" value="2.8" />
+		<property name="executionStart" value="2021/04/20 11:00" />
+		<property name="executionEnd" value="2021/12/02 20:00" />
+		<property name="workload" value="8.3" />
 	</bean>
 
 	<bean id="task03" class="acme.framework.entities.Task">
@@ -72,9 +72,9 @@
 		<property name="description" value="A public task which is the third one" />
 		<property name="link" value="http://third.task" />
 		<property name="isPrivate" value="false" />
-		<property name="executionStart" value="2022/02/02 10:00" />
-		<property name="executionEnd" value="2022/10/02 12:00" />
-		<property name="workload" value="3.4" />
+		<property name="executionStart" value="2021/09/20 10:00" />
+		<property name="executionEnd" value="2021/11/02 12:00" />
+		<property name="workload" value="1.9" />
 	</bean>
 
 	<bean id="task04" class="acme.framework.entities.Task">
@@ -82,9 +82,9 @@
 		<property name="description" value="A private task which is the fourth one" />
 		<property name="link" value="http://fourth.task" />
 		<property name="isPrivate" value="true" />
-		<property name="executionStart" value="2022/04/02 10:00" />
-		<property name="executionEnd" value="2022/12/02 12:00" />
-		<property name="workload" value="4.2" />
+		<property name="executionStart" value="2022/04/09 10:00" />
+		<property name="executionEnd" value="2022/12/23 18:00" />
+		<property name="workload" value="8.8" />
 	</bean>
 
 </beans>

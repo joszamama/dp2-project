@@ -12,8 +12,6 @@
 
 package acme.features.administrator.dashboard;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,7 +48,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		request.unbind(entity, model, //
 			"countNotFinishedTasks", // 
 			"countFinishedTasks", "countPublicTasks", //
-			"countPrivateTasks", "averageWorkloads", "deviationWorkloads", "minimumWorkloads", "maximumWorkloads");
+			"countPrivateTasks", "averageWorkloads", "deviationWorkloads", "minimumWorkloads", "maximumWorkloads", "averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods");
 	}
 
 	@Override
@@ -70,8 +68,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		final Double averageExecutionPeriods = this.repository.averageExecutionPeriods();
 		final Double deviationExecutionPeriods = this.repository.deviationExecutionPeriods();
-		final Date minimumExecutionPeriods = this.repository.minimumExecutionPeriods();
-		final Date maximumExecutionPeriods = this.repository.maximumExecutionPeriods();
+		final Double minimumExecutionPeriods = this.repository.minimumExecutionPeriods();
+		final Double maximumExecutionPeriods = this.repository.maximumExecutionPeriods();
 
 		result.setCountFinishedTasks(countFinishedTasks);
 		result.setCountNotFinishedTasks(countNotFinishedTasks);
@@ -82,7 +80,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setDeviationWorkloads(deviationWorkloads);
 		result.setMinimumWorkloads(minimumWorkloads);
 		result.setMaximumWorkloads(maximumWorkloads);
-		
+
 		result.setAverageExecutionPeriods(averageExecutionPeriods);
 		result.setDeviationExecutionPeriods(deviationExecutionPeriods);
 		result.setMinimumExecutionPeriods(minimumExecutionPeriods);
