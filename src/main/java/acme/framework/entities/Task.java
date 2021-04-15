@@ -43,7 +43,6 @@ public class Task extends DomainEntity {
 
 	@NotNull
 	protected Boolean			isPrivate;
-
 	// Object interface -------------------------------------------------------
 
 }

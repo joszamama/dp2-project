@@ -84,7 +84,7 @@
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/02 10:00" />
 		<property name="executionEnd" value="2022/12/02 12:00" />
-		<property name="workload" value="1" />
+		<property name="workload" value="6" />
 	</bean>
 
 </beans>
