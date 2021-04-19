@@ -27,7 +27,11 @@
 		</acme:menu-option>
 		
 		<!-- Botoncito para las tasks publicas y no terminadas PNF(Publicas No Finalizaas) -->
-		<acme:menu-option code="master.menu.tasksPNF" action="/anonymous/task/list">
+		<acme:menu-option code="master.menu.tasksPNF" action="/anonymous/task/list" access="isAnonymous()">
+		</acme:menu-option>
+
+		<!-- Botoncito para las tasks publicas y terminadas PNF(Publicas Finalizaas) -->
+		<acme:menu-option code="master.menu.tasksPF" action="/authenticated/task/list" access="!isAnonymous()">
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
