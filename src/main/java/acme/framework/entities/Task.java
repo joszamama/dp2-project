@@ -5,10 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.validation.constraints.Future;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,23 +23,26 @@ public class Task extends DomainEntity {
 	protected static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	@NotEmpty
+	@NotBlank
 	@Length(max = 80)
 	protected String			title;
 
 	@Future
+	@NotNull
 	protected Date				executionStart;
 
 	@Future
+	@NotNull
 	protected Date				executionEnd;
 
 	@NotNull
 	protected Double			workload; // hours 
 
-	@NotEmpty
+	@NotBlank
 	@Length(max = 500)
 	protected String			description;
-
+	
+	@URL
 	protected String			link;
 
 	@NotNull
