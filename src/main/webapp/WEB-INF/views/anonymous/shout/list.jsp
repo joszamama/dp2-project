@@ -28,10 +28,11 @@
 	<tr>
 		<td>
 			<form action="anonymous/shout/create">
-				<input type="submit" value="Create Shout!" />
+				<input type="submit">
 			</form>
 		</td>
 	</tr>
 </table>
+
 
 
