@@ -15,13 +15,13 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
-<acme:form>
-	<acme:form-textbox code="authenticated.task.form.label.title" path="title"readonly="true"/>
-	<acme:form-textarea code="authenticated.task.form.label.description" path="description"readonly="true"/>
-	<acme:form-textbox code="authenticated.task.form.label.link" path="link"readonly="true"/>
-	<acme:form-textbox code="authenticated.task.form.label.executionStart" path="executionStart"readonly="true"/>
-	<acme:form-textbox code="authenticated.task.form.label.executionEnd" path="executionEnd"readonly="true"/>
-	<acme:form-textbox code="authenticated.task.form.label.workload" path="workload"readonly="true"/>
+<acme:form readonly="true">
+	<acme:form-textbox code="authenticated.task.form.label.title" path="title"/>
+	<acme:form-textarea code="authenticated.task.form.label.description" path="description"/>
+	<acme:form-textbox code="authenticated.task.form.label.link" path="link"/>
+	<acme:form-textbox code="authenticated.task.form.label.executionStart" path="executionStart"/>
+	<acme:form-textbox code="authenticated.task.form.label.executionEnd" path="executionEnd"/>
+	<acme:form-textbox code="authenticated.task.form.label.workload" path="workload"/>
 	
 	<acme:form-return code="authenticated.task.form.button.return"/>
 </acme:form>

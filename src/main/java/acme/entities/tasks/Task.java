@@ -4,7 +4,6 @@ package acme.entities.tasks;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -28,11 +27,13 @@ public class Task extends DomainEntity {
 	@Length(max = 80)
 	protected String			title;
 
-	@Future
+	//Commented out to create finished tasks in the database
+	//@Future
 	@NotNull
 	protected Date				executionStart;
 
-	@Future
+	//Commented out to create finished tasks in the database
+	//@Future
 	@NotNull
 	protected Date				executionEnd;
 
