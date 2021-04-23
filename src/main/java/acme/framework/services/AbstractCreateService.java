@@ -46,7 +46,7 @@ public interface AbstractCreateService<R extends UserRole, E> extends //
 	void validate(final Request<E> request, final E entity, Errors errors);
 
 	@Override
-	void create(final Request<E> request, final E entity);
+	void create(final Request<E> request, final E entity) throws Exception;
 
 	@Override
 	default void onSuccess(final Request<E> request, final Response<E> response) {

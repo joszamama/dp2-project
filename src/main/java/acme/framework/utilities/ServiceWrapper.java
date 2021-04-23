@@ -154,7 +154,7 @@ public class ServiceWrapper<R extends UserRole, E> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void create(final Request<E> request, final E entity) {
+	public void create(final Request<E> request, final E entity) throws Exception {
 		assert request != null;
 		assert entity != null;
 		assert ReflectionHelper.supports(this.service, CreateMethod.class);

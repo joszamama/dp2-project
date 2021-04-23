@@ -349,7 +349,7 @@ public abstract class AbstractController<R extends UserRole, E> {
 	}
 
 	@Transactional(TxType.MANDATORY)
-	public Response<E> doPost(final Request<E> request, final ServiceWrapper<R, E> service) {
+	public Response<E> doPost(final Request<E> request, final ServiceWrapper<R, E> service) throws Exception {
 		assert request != null;
 		assert service != null;
 
