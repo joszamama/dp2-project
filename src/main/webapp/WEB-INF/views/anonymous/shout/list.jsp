@@ -28,10 +28,8 @@
 	<tr>
 		<td>
 			<form action="anonymous/shout/create">
-				<input type="submit" value="Create Shout!" />
+				<input type="submit" value="<acme:message code="anonymous.shout.form.button.create"/>">
 			</form>
 		</td>
 	</tr>
 </table>
-
-
