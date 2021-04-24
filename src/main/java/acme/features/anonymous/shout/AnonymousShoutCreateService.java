@@ -13,6 +13,8 @@
 package acme.features.anonymous.shout;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,11 +84,19 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final Boolean isSpam = this.isSpam((entity.getAuthor()+ " " + entity.getText()).toLowerCase());
+		
+		//LevenshteinDistance levenshteinDistance = new LevenshteinDistance(10);
+		//System.out.println("Porcentaje similaridad: " + new JaroWinklerSimilarity().apply(entity.getText(), entity.getAuthor()));
+		//final Double diff =  1.0 - new JaroWinklerSimilarity().apply(entity.getText(), entity.getAuthor());
+		//System.out.println("Porcentaje que difiere (100 - lo de arriba): " + diff);
+		
+		errors.state(request, !isSpam, "*", "manager.task.form.error.spam-detected");
 
 	}
 
 	@Override
-	public void create(final Request<Shout> request, final Shout entity) {
+	public void create(final Request<Shout> request, final Shout entity) throws Exception {
 		assert request != null;
 		assert entity != null;
 
@@ -94,27 +104,73 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
-		final boolean isSpam = this.isSpam(entity.getText());
+		final boolean isSpam = this.isSpam((entity.getAuthor()+ " " + entity.getText()).toLowerCase());
 		if(isSpam == false) {
 			this.repository.save(entity);
 		}else {
 			System.out.println("SPAM: " + entity.getText());
 			System.out.println("Mensaje borrado");
 		}
-		System.out.println(isSpam);
 		
 		
 	}
 	
-	public boolean isSpam(final String mensaje) {
+	public boolean isSpam(final String message) {
+		boolean res = false;
+		 final Pattern p = Pattern.compile("(s+e+x+o+|s+e+x+|h+a+r+d+ c+o+r+e+|e+x+t+r+e+m+o+|v+i+a+g+r+a+|c+i+a+l+i+s+|n+i+g+e+r+i+a|y+o+u+'+v+e+ w+o+n+|h+a+s+ g+a+n+a+d+o+|m+i+l+l+i+o+n+ d+o+l+l+a+r+|m+i+l+l+ó+n+ d+e+ d+o+l+a+r+e+s+)");
+	     final Matcher m = p.matcher(message);
+	     double numSpamWords = 0.0;
+	     while(m.find()) {
+	         System.out.println(m.group());
+	         numSpamWords++;
+	     }
+	     System.out.println("Numero de palabras spam: "+ numSpamWords);
+	     if(numSpamWords !=0 ) {
+	    	 final int numTotalWords = message.trim().split("\\s+").length;
+	    	 System.out.println("Numero de palabras total: " + numTotalWords);
+	    	 final Double similarity = numSpamWords / numTotalWords;
+	    	 System.out.println("Similaridad: " + similarity);
+	    	 
+	    	 if(similarity >= 0.1) {
+	    		 res = true;
+	    		 System.out.println("ES SPAM");
+	    	 }else {
+	    		 System.out.println("Hay spam pero no lo suficiente");
+	    	 }
+	     }else {
+	    	 System.out.println("No spam detectado");
+	     }
+	     return res;
+	}
+	
+	//public boolean isSpam(final String message) {
+		/*
 		boolean res;
 		if(mensaje.toLowerCase().matches("(.*)(s+e+x+o+|s+e+x+|h+a+r+d+ c+o+r+e+|e+x+t+r+e+m+o+|v+i+a+g+r+a+|c+i+a+l+i+s+|n+i+g+e+r+i+a|y+o+u+'+v+e+ w+o+n+|h+a+s+ g+a+n+a+d+o+|m+i+l+l+i+o+n+ d+o+l+l+a+r+|m+i+l+l+ó+n+ d+e+ d+o+l+a+r+e+s+)(.*)")) {
 			res = true;
 		}else {
 			res = false;
 		}
+		*/
+	
+	/*
+		final boolean res;
+		double acum = 0.0;
+		final List<String> list = Arrays.asList("sexo", "sex", "hard core", "extremo", "viagra", "cialis", "nigeria", "you've won", "has ganado", "million dollar", "millón de dólares");
+		for(final String word: list) {
+			acum += new JaroWinklerSimilarity().apply(word, message);
+		}
+		System.out.println("Similaridad acumulada: " + acum);
+		System.out.println("Diff: " + (1.0 - acum));
+		if(acum  <= 0.1) {
+            res = true;
+        }else {
+        	res = false;
+        }
 		
 		return res;
 	}
+	
+	*/
 
 }

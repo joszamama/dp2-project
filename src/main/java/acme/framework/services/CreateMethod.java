@@ -21,6 +21,6 @@ import acme.framework.entities.UserRole;
 @Transactional(TxType.MANDATORY)
 public interface CreateMethod<R extends UserRole, E> {
 
-	void create(final Request<E> request, final E entity);
+	void create(final Request<E> request, final E entity) throws Exception;
 
 }

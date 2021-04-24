@@ -73,4 +73,9 @@
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
 	
+	<bean id="spam01" class="acme.entities.spam.Spam">
+		<property name="wordList" value="sexo" />
+		<property name="threshold" value="0.1" />
+	</bean>
+	
 </beans>

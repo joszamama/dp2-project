@@ -30,5 +30,9 @@ mvnw
 
 mvnw\.cmd
 /bin/
+<<<<<<< HEAD
 
 acme-planner.log
+=======
+/acme-planner.log
+>>>>>>> develop
