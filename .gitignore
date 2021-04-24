@@ -30,3 +30,5 @@ mvnw
 
 mvnw\.cmd
 /bin/
+
+acme-planner.log
