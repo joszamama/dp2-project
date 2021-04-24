@@ -37,13 +37,16 @@
 		<link rel="stylesheet" href="libraries/fontawesome/5.2.0/css/all.min.css"/>
 		<link rel="stylesheet" href="libraries/bootstrap/4.1.3/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="libraries/datatables/1.10.18/css/datatables.min.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
 		
 		<script type="text/javascript" src="libraries/jquery/3.3.1/js/jquery.min.js"></script>
 	 	<script type="text/javascript" src="libraries/popper.js/1.14.4/js/popper.min.js"></script>
 		<script type="text/javascript" src="libraries/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="libraries/datatables/1.10.18/js/datatables.min.js"></script> 
 	 	<script type="text/javascript" src="libraries/chart.js/2.7.2/js/chart.bundle.min.js"></script>
-	 		
+	 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>	
+	 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+		
 		<!-- Custom libraries and styles -->
 		
 		<link rel="stylesheet" href="libraries/acme/css/acme.css"/>

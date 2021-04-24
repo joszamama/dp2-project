@@ -42,7 +42,8 @@ public class ManagerTaskListMineService implements AbstractListService<Manager, 
 		Principal principal;
 
 		principal = request.getPrincipal();
-		result = this.repository.findByOwner(principal.getAccountId());
+		final Manager manager = this.repository.findManagerByUserAccountId(principal.getAccountId());
+		result = this.repository.findByOwner(manager.getId());
 
 		return result;
 	}

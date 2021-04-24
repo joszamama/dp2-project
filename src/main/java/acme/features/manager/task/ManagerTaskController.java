@@ -34,6 +34,7 @@ public class ManagerTaskController extends AbstractController<Manager, Task> {
 
 	@PostConstruct
 	protected void initialise() {
+		super.addBasicCommand(BasicCommand.SHOW, this.updateService);
 		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);

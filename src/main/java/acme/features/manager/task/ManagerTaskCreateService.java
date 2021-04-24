@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.tasks.Task;
-import acme.features.manager.common.ManagerRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
-import acme.framework.entities.Principal;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -19,26 +17,12 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 
 	@Autowired
 	private ManagerTaskRepository repository;
-	@Autowired
-	private ManagerRepository managerRepo;
 	
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
 
-		boolean result;
-		int taskId;
-		Task task;
-		Manager manager;
-		Principal principal;
-
-		taskId = request.getModel().getInteger("id");
-		task = this.repository.findOne(taskId);
-		manager = task.getOwner();
-		principal = request.getPrincipal();
-		result = manager.getUserAccount().getId() == principal.getAccountId();
-
-		return result;
+		return true;
 	}
 
 	@Override
@@ -56,8 +40,8 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workload","description","link","isPrivate");		
-		
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workload");
+		request.unbind(entity, model, "owner","description","link","isPrivate");		 	
 	}
 
 	@Override
@@ -67,9 +51,10 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		Task result;
 		Manager manager;
 
-		manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+		manager = this.repository.findManagerById(request.getPrincipal().getActiveRoleId());
 		result = new Task();
 		result.setOwner(manager);
+		result.setIsPrivate(true);
 
 		return result;
 	}
@@ -83,12 +68,12 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		if (!errors.hasErrors("executionStart")) {
 			//executionStart in the past
 			final Date now = new Date();
-			errors.state(request, now.after(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
+			errors.state(request, !now.after(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
 			
 		}
 		if (!errors.hasErrors("executionEnd")) {
 			//executionEnd before start
-			errors.state(request, entity.getExecutionEnd().before(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
+			errors.state(request, !entity.getExecutionEnd().before(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
 		}
 	}
 
@@ -96,6 +81,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 	public void create(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
+		
 
 		this.repository.save(entity);
 	}

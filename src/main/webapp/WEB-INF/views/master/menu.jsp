@@ -37,10 +37,12 @@
 		<!-- Botoncito para las tasks publicas y terminadas PNF(Publicas Finalizaas) -->
 		<acme:menu-option code="master.menu.tasksPF"
 			action="/authenticated/task/list" access="isAuthenticated()">
-			<acme:menu-suboption code="master.menu.tasksPF"
-				action="/manager/task/list-mine" access="hasRole('Manager')"/>
+			<acme:menu-suboption code="master.menu.task.listmine"
+				action="/manager/task/list-mine" access="hasRole('Manager')" />
+			<acme:menu-suboption code="master.menu.task.create"
+				action="/manager/task/create" access="hasRole('Manager')" />
 		</acme:menu-option>
-		
+
 
 		<acme:menu-option code="master.menu.administrator"
 			access="hasRole('Administrator')">
