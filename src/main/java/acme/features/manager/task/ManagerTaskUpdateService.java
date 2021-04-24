@@ -74,16 +74,16 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		
+		//TODO: MANAGER
 		if (!errors.hasErrors("executionStart")) {
 			//executionStart in the past
 			final Date now = new Date();
-			errors.state(request, now.after(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
+			errors.state(request, !now.after(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
 			
 		}
 		if (!errors.hasErrors("executionEnd")) {
 			//executionEnd before start
-			errors.state(request, entity.getExecutionEnd().before(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
+			errors.state(request, !entity.getExecutionEnd().before(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
 		}
 
 	}

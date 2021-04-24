@@ -3,7 +3,6 @@ package acme.entities.tasks;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -29,7 +28,7 @@ public class Task extends DomainEntity {
 	protected static final long	serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@NotNull
 	protected Manager owner;
 	
