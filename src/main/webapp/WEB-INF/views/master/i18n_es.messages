@@ -27,6 +27,7 @@ master.menu.sign-out = Salir
 master.menu.tasksPNF = Tareas Publicas (no finalizadas)
 master.menu.tasksPF = Tareas Publicas (finalizadas)
 master.menu.shout = Gritos
+master.menu.administrator.spam = Parámetros de Spam
 
 # master.menu.anonymous #######################################################
 
