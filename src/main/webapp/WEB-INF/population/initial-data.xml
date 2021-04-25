@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-- initial-data.xml
--
-- Copyright (C) 2012-2021 Rafael Corchuelo.
--
-- In keeping with the traditional purpose of furthering education and research, it is
-- the policy of the copyright owner to permit non-commercial use and redistribution of
-- this software. It has been tested carefully, but it is not guaranteed for any particular
-- purposes.  The copyright owner does not offer any warranties or representations, nor do
-- they accept any liabilities with respect to them.
--->
+<!-- - initial-data.xml - - Copyright (C) 2012-2021 Rafael Corchuelo. - - 
+	In keeping with the traditional purpose of furthering education and research, 
+	it is - the policy of the copyright owner to permit non-commercial use and 
+	redistribution of - this software. It has been tested carefully, but it is 
+	not guaranteed for any particular - purposes. The copyright owner does not 
+	offer any warranties or representations, nor do - they accept any liabilities 
+	with respect to them. -->
 
-<beans 
-	xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
->
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<import resource="classpath:/WEB-INF/population/conversion-service.xml"/>
-	
+	<import
+		resource="classpath:/WEB-INF/population/conversion-service.xml" />
+
 	<!-- Anonymous user -->
 
-	<bean name="anonymousUserAccount" class="acme.framework.entities.UserAccount">
+	<bean name="anonymousUserAccount"
+		class="acme.framework.entities.UserAccount">
 		<property name="username" value="anonymous" />
 		<property name="password" value="anonymous" />
 		<property name="enabled" value="false" />
@@ -40,13 +36,15 @@
 		</property>
 	</bean>
 
-	<bean name="anonymousAnonymous" class="acme.framework.entities.Anonymous">
+	<bean name="anonymousAnonymous"
+		class="acme.framework.entities.Anonymous">
 		<property name="userAccount" ref="anonymousUserAccount" />
 	</bean>
 
 	<!-- Administrators -->
-	
-	<bean name="administratorUserAccount" class="acme.framework.entities.UserAccount">
+
+	<bean name="administratorUserAccount"
+		class="acme.framework.entities.UserAccount">
 		<property name="username" value="administrator" />
 		<property name="password" value="administrator" />
 		<property name="enabled" value="true" />
@@ -65,17 +63,84 @@
 		</property>
 	</bean>
 
-	<bean name="administratorAdministrator" class="acme.framework.entities.Administrator">
+	<bean name="administratorAdministrator"
+		class="acme.framework.entities.Administrator">
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
-	
-	<bean name="administratorAuthenticated" class="acme.framework.entities.Authenticated">
+
+	<bean name="administratorAuthenticated"
+		class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
+
+	<!-- Managers -->
 	
-	<bean id="spam01" class="acme.entities.spam.Spam">
-		<property name="wordList" value="sexo" />
-		<property name="threshold" value="0.1" />
+	<bean name="managerUserAccount1"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager1" />
+		<property name="password" value="manager1" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager1" />
+				<property name="surname" value="manager1" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager1" />
+				<ref bean="managerAuthenticated1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager1"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount1" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated1"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount1" />
 	</bean>
 	
+	
+	
+	
+	
+	<bean name="managerUserAccount2"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager2" />
+		<property name="password" value="manager2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager2" />
+				<property name="surname" value="manager2" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager2" />
+				<ref bean="managerAuthenticated2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager2"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount2" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated2"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount2" />
+	</bean>
+
 </beans>

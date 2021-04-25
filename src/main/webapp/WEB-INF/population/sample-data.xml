@@ -16,12 +16,14 @@
 		resource="classpath:/WEB-INF/population/conversion-service.xml" />
 
 	<!-- Shouts -->
-	
+
 	<bean id="shout01" class="acme.entities.shouts.Shout">
 		<property name="moment" value="2021/02/02 19:39" />
 		<property name="author" value="John Doe" />
 		<property name="text" value="I'm happy!" />
-		<property name="info"><null /></property>
+		<property name="info">
+			<null />
+		</property>
 	</bean>
 
 	<bean id="shout02" class="acme.entities.shouts.Shout">
@@ -49,7 +51,8 @@
 
 	<bean id="task01" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number one" />
-		<property name="description" value="A public task which is the first one" />
+		<property name="description"
+			value="A public task which is the first one" />
 		<property name="link" value="http://first.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/01 14:00" />
@@ -59,7 +62,8 @@
 
 	<bean id="task02" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number two" />
-		<property name="description" value="A public task which is the second one" />
+		<property name="description"
+			value="A public task which is the second one" />
 		<property name="link" value="http://second.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/04/20 11:00" />
@@ -69,7 +73,8 @@
 
 	<bean id="task03" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number three" />
-		<property name="description" value="A public task which is the third one" />
+		<property name="description"
+			value="A public task which is the third one" />
 		<property name="link" value="http://third.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/09/20 10:00" />
@@ -79,7 +84,8 @@
 
 	<bean id="task04" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number four" />
-		<property name="description" value="A public task which is the fourth one" />
+		<property name="description"
+			value="A public task which is the fourth one" />
 		<property name="link" value="http://fourth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
@@ -89,7 +95,8 @@
 
 	<bean id="task05" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number five" />
-		<property name="description" value="A public task which is the fifth one" />
+		<property name="description"
+			value="A public task which is the fifth one" />
 		<property name="link" value="http://fifth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/01 14:00" />
@@ -99,7 +106,8 @@
 
 	<bean id="task06" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number six" />
-		<property name="description" value="A public task which is the sixth one" />
+		<property name="description"
+			value="A public task which is the sixth one" />
 		<property name="link" value="http://sixth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/04/20 11:00" />
@@ -109,7 +117,8 @@
 
 	<bean id="task07" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number seven" />
-		<property name="description" value="A public task which is the seventh one" />
+		<property name="description"
+			value="A public task which is the seventh one" />
 		<property name="link" value="http://seventh.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/09/20 10:00" />
@@ -119,7 +128,8 @@
 
 	<bean id="task08" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number eight" />
-		<property name="description" value="A public task which is the eigth one" />
+		<property name="description"
+			value="A public task which is the eigth one" />
 		<property name="link" value="http://eigth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
@@ -129,7 +139,8 @@
 
 	<bean id="task09" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number nine" />
-		<property name="description" value="A public task which is the ninth one" />
+		<property name="description"
+			value="A public task which is the ninth one" />
 		<property name="link" value="http://ninth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/01 14:00" />
@@ -139,7 +150,8 @@
 
 	<bean id="task10" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number ten" />
-		<property name="description" value="A public task which is the tenth one" />
+		<property name="description"
+			value="A public task which is the tenth one" />
 		<property name="link" value="http://tenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/04/20 11:00" />
@@ -149,7 +161,8 @@
 
 	<bean id="task11" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number eleven" />
-		<property name="description" value="A public task which is the eleventh one" />
+		<property name="description"
+			value="A public task which is the eleventh one" />
 		<property name="link" value="http://eleventh.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2021/09/20 10:00" />
@@ -159,7 +172,8 @@
 
 	<bean id="task12" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twelve" />
-		<property name="description" value="A public task which is the twelvth one" />
+		<property name="description"
+			value="A public task which is the twelvth one" />
 		<property name="link" value="http://twelvth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
@@ -169,7 +183,8 @@
 
 	<bean id="task13" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number thirteen" />
-		<property name="description" value="A public task which is the thirteenth one" />
+		<property name="description"
+			value="A public task which is the thirteenth one" />
 		<property name="link" value="http://thirteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/02/01 14:00" />
@@ -179,7 +194,8 @@
 
 	<bean id="task14" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number fourteen" />
-		<property name="description" value="A public task which is the fourteenth one" />
+		<property name="description"
+			value="A public task which is the fourteenth one" />
 		<property name="link" value="http://fourteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/04/20 11:00" />
@@ -189,7 +205,8 @@
 
 	<bean id="task15" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number fifteen" />
-		<property name="description" value="A public task which is the fifteenth one" />
+		<property name="description"
+			value="A public task which is the fifteenth one" />
 		<property name="link" value="http://fifteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/09/20 10:00" />
@@ -199,7 +216,8 @@
 
 	<bean id="task16" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number sixteen" />
-		<property name="description" value="A public task which is the sixteenth one" />
+		<property name="description"
+			value="A public task which is the sixteenth one" />
 		<property name="link" value="http://sixteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/09 10:00" />
@@ -209,7 +227,8 @@
 
 	<bean id="task17" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number seventeen" />
-		<property name="description" value="A public task which is the seventeenth one" />
+		<property name="description"
+			value="A public task which is the seventeenth one" />
 		<property name="link" value="http://seventeenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/02/01 14:00" />
@@ -219,7 +238,8 @@
 
 	<bean id="task18" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number eighteen" />
-		<property name="description" value="A public task which is the eighteenth one" />
+		<property name="description"
+			value="A public task which is the eighteenth one" />
 		<property name="link" value="http://eighteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/04/20 11:00" />
@@ -229,7 +249,8 @@
 
 	<bean id="task19" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number nineteen" />
-		<property name="description" value="A public task which is the nineteenth one" />
+		<property name="description"
+			value="A public task which is the nineteenth one" />
 		<property name="link" value="http://nineteenth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/09/20 10:00" />
@@ -239,7 +260,8 @@
 
 	<bean id="task20" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twenty" />
-		<property name="description" value="A public task which is the twentieth one" />
+		<property name="description"
+			value="A public task which is the twentieth one" />
 		<property name="link" value="http://twentieth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/09 10:00" />
@@ -249,7 +271,8 @@
 
 	<bean id="task21" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twenty one" />
-		<property name="description" value="A public task which is the twenty first one" />
+		<property name="description"
+			value="A public task which is the twenty first one" />
 		<property name="link" value="http://twenty.first.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/02/01 14:00" />
@@ -259,7 +282,8 @@
 
 	<bean id="task22" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twenty two" />
-		<property name="description" value="A public task which is the twenty second one" />
+		<property name="description"
+			value="A public task which is the twenty second one" />
 		<property name="link" value="http://twenty.second.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/04/20 11:00" />
@@ -269,7 +293,8 @@
 
 	<bean id="task23" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twenty three" />
-		<property name="description" value="A public task which is the twenty third one" />
+		<property name="description"
+			value="A public task which is the twenty third one" />
 		<property name="link" value="http://twenty.third.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2011/09/20 10:00" />
@@ -279,7 +304,8 @@
 
 	<bean id="task24" class="acme.entities.tasks.Task">
 		<property name="title" value="Task number twenty four" />
-		<property name="description" value="A public task which is the twenty fourth one" />
+		<property name="description"
+			value="A public task which is the twenty fourth one" />
 		<property name="link" value="http://twenty.fourth.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/09 10:00" />
@@ -287,4 +313,9 @@
 		<property name="workload" value="8.8" />
 	</bean>
 
+	<!-- Spam -->
+	<bean id="spam01" class="acme.entities.spam.Spam">
+		<property name="wordList" value="sexo" />
+		<property name="threshold" value="0.1" />
+	</bean>
 </beans>
