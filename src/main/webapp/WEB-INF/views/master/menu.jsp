@@ -39,9 +39,12 @@
 			action="/authenticated/task/list" access="isAuthenticated()">
 		</acme:menu-option>
 
-		<!-- Botoncito para las tasks privadas M(Manager) -->
-		<acme:menu-option code="master.menu.tasksM"
-			action="/manager/task/list" access="hasRole('Manager')">
+		<!-- Menu para las tasks de manager -->
+		<acme:menu-option code="master.menu.manager.myTasks" access="hasRole('Manager')">
+			<acme:menu-suboption code="master.menu.manager.listTasks"
+				action="/manager/task/list" />
+			<acme:menu-suboption code="master.menu.manager.createTask"
+				action="/manager/task/create" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator"

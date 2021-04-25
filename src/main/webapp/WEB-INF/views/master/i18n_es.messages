@@ -45,7 +45,9 @@ master.menu.administrator.shutdown = Parar el sistema
 
 # master.menu.manager ########################################################
 
-master.menu.tasksM = Mis tareas
+master.menu.manager.myTasks = Mis tareas
+master.menu.manager.listTasks = Listar tareas
+master.menu.manager.createTask = Crear tarea
 
 # master.menu.provider ########################################################
 
