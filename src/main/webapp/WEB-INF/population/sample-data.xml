@@ -15,6 +15,72 @@
 	<import
 		resource="classpath:/WEB-INF/population/conversion-service.xml" />
 
+	<!-- Managers -->
+	
+	<bean name="managerUserAccount1"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager1" />
+		<property name="password" value="manager1" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager1" />
+				<property name="surname" value="manager1" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager1" />
+				<ref bean="managerAuthenticated1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager1"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount1" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated1"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount1" />
+	</bean>
+
+	<bean name="managerUserAccount2"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager2" />
+		<property name="password" value="manager2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager2" />
+				<property name="surname" value="manager2" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager2" />
+				<ref bean="managerAuthenticated2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager2"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount2" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated2"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount2" />
+	</bean>
+	
 	<!-- Shouts -->
 
 	<bean id="shout01" class="acme.entities.shouts.Shout">
@@ -98,6 +164,7 @@
 	<!-- Tasks -->
 
 	<bean id="task01" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number one" />
 		<property name="description"
 			value="A public task which is the first one" />
@@ -109,6 +176,7 @@
 	</bean>
 
 	<bean id="task02" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number two" />
 		<property name="description"
 			value="A public task which is the second one" />
@@ -120,6 +188,7 @@
 	</bean>
 
 	<bean id="task03" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number three" />
 		<property name="description"
 			value="A public task which is the third one" />
@@ -131,6 +200,7 @@
 	</bean>
 
 	<bean id="task04" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number four" />
 		<property name="description"
 			value="A public task which is the fourth one" />
@@ -142,6 +212,7 @@
 	</bean>
 
 	<bean id="task05" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number five" />
 		<property name="description"
 			value="A public task which is the fifth one" />
@@ -153,6 +224,7 @@
 	</bean>
 
 	<bean id="task06" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number six" />
 		<property name="description"
 			value="A public task which is the sixth one" />
@@ -164,6 +236,7 @@
 	</bean>
 
 	<bean id="task07" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number seven" />
 		<property name="description"
 			value="A public task which is the seventh one" />
@@ -175,6 +248,7 @@
 	</bean>
 
 	<bean id="task08" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number eight" />
 		<property name="description"
 			value="A public task which is the eigth one" />
@@ -186,6 +260,7 @@
 	</bean>
 
 	<bean id="task09" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number nine" />
 		<property name="description"
 			value="A public task which is the ninth one" />
@@ -197,6 +272,7 @@
 	</bean>
 
 	<bean id="task10" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number ten" />
 		<property name="description"
 			value="A public task which is the tenth one" />
@@ -208,6 +284,7 @@
 	</bean>
 
 	<bean id="task11" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number eleven" />
 		<property name="description"
 			value="A public task which is the eleventh one" />
@@ -219,6 +296,7 @@
 	</bean>
 
 	<bean id="task12" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twelve" />
 		<property name="description"
 			value="A public task which is the twelvth one" />
@@ -230,6 +308,7 @@
 	</bean>
 
 	<bean id="task13" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number thirteen" />
 		<property name="description"
 			value="A public task which is the thirteenth one" />
@@ -241,6 +320,7 @@
 	</bean>
 
 	<bean id="task14" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number fourteen" />
 		<property name="description"
 			value="A public task which is the fourteenth one" />
@@ -252,6 +332,7 @@
 	</bean>
 
 	<bean id="task15" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number fifteen" />
 		<property name="description"
 			value="A public task which is the fifteenth one" />
@@ -263,6 +344,7 @@
 	</bean>
 
 	<bean id="task16" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number sixteen" />
 		<property name="description"
 			value="A public task which is the sixteenth one" />
@@ -274,6 +356,7 @@
 	</bean>
 
 	<bean id="task17" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number seventeen" />
 		<property name="description"
 			value="A public task which is the seventeenth one" />
@@ -285,6 +368,7 @@
 	</bean>
 
 	<bean id="task18" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number eighteen" />
 		<property name="description"
 			value="A public task which is the eighteenth one" />
@@ -296,6 +380,7 @@
 	</bean>
 
 	<bean id="task19" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number nineteen" />
 		<property name="description"
 			value="A public task which is the nineteenth one" />
@@ -307,6 +392,7 @@
 	</bean>
 
 	<bean id="task20" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twenty" />
 		<property name="description"
 			value="A public task which is the twentieth one" />
@@ -318,6 +404,7 @@
 	</bean>
 
 	<bean id="task21" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twenty one" />
 		<property name="description"
 			value="A public task which is the twenty first one" />
@@ -329,6 +416,7 @@
 	</bean>
 
 	<bean id="task22" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twenty two" />
 		<property name="description"
 			value="A public task which is the twenty second one" />
@@ -340,6 +428,7 @@
 	</bean>
 
 	<bean id="task23" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twenty three" />
 		<property name="description"
 			value="A public task which is the twenty third one" />
@@ -351,6 +440,7 @@
 	</bean>
 
 	<bean id="task24" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
 		<property name="title" value="Task number twenty four" />
 		<property name="description"
 			value="A public task which is the twenty fourth one" />
