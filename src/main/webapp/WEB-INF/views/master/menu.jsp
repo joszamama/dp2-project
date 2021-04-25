@@ -36,7 +36,12 @@
 
 		<!-- Botoncito para las tasks publicas y terminadas PNF(Publicas Finalizaas) -->
 		<acme:menu-option code="master.menu.tasksPF"
-			action="/authenticated/task/list" access="!isAnonymous()">
+			action="/authenticated/task/list" access="isAuthenticated()">
+		</acme:menu-option>
+
+		<!-- Botoncito para las tasks privadas M(Manager) -->
+		<acme:menu-option code="master.menu.tasksM"
+			action="/manager/task/list" access="hasRole('Manager')">
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator"
