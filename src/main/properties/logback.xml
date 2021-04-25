@@ -36,11 +36,6 @@
         <appender-ref ref="File" />
     </root>
     
-    <root level="debug">
-        <appender-ref ref="Console" />
-        <appender-ref ref="File" />
-    </root>
-    
     <root level="warn">
         <appender-ref ref="Console" />
         <appender-ref ref="File" />
