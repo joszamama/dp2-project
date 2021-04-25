@@ -18,7 +18,7 @@
 	<!-- Shouts -->
 
 	<bean id="shout01" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/02/02 19:39" />
+		<property name="moment" value="2021/04/08 19:39" />
 		<property name="author" value="John Doe" />
 		<property name="text" value="I'm happy!" />
 		<property name="info">
@@ -27,26 +27,74 @@
 	</bean>
 
 	<bean id="shout02" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/02/02 15:55" />
+		<property name="moment" value="2021/04/02 15:55" />
 		<property name="author" value="Jane Doe" />
 		<property name="text" value="I'm the master of my room!" />
 		<property name="info" value="http://www.example.org" />
 	</bean>
 
 	<bean id="shout03" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/02/02 00:00" />
+		<property name="moment" value="2021/04/02 00:00" />
 		<property name="author" value="Foo Bar" />
 		<property name="text" value="Just turning 50!" />
 		<property name="info" value="http://happybirthday.com" />
 	</bean>
 
 	<bean id="shout04" class="acme.entities.shouts.Shout">
-		<property name="author" value="Leslie Design-Testing" />
-		<property name="text" value="Woa! This app's so cool!" />
-		<property name="moment" value="2021/02/02 12:30" />
+		<property name="author" value="The manager" />
+		<property name="text" value="Leslies should be erradicated" />
+		<property name="moment" value="2021/04/02 12:30" />
 		<property name="info" value="http://www.sample-app.com" />
 	</bean>
 
+	<bean id="shout05" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie buuu!- a leslie hater." />
+		<property name="text" value="This app is not cool!!! :(" />
+		<property name="moment" value="2021/04/18 11:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout06" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie Design-Testing" />
+		<property name="text" value="In fact, its quite cool!" />
+		<property name="moment" value="2021/04/20 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout07" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie Secondary Account" />
+		<property name="text" value="Just kidding, it isnt." />
+		<property name="moment" value="2021/04/02 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout08" class="acme.entities.shouts.Shout">
+		<property name="author" value="The analist" />
+		<property name="text" value="Making analist things!" />
+		<property name="moment" value="2021/04/02 00:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+	<bean id="shout09" class="acme.entities.shouts.Shout">
+		<property name="author" value="The tester" />
+		<property name="text"
+			value="The manager watches us, but who whatches the manager?" />
+		<property name="moment" value="2021/04/25 21:00" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout10" class="acme.entities.shouts.Shout">
+		<property name="author" value="LSI" />
+		<property name="text" value="This is the 10 shout!" />
+		<property name="moment" value="2021/04/19 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout11" class="acme.entities.shouts.Shout">
+		<property name="author" value="Sampler guy" />
+		<property name="text" value="Final sampling!" />
+		<property name="moment" value="2021/04/25 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
 	<!-- Tasks -->
 
 	<bean id="task01" class="acme.entities.tasks.Task">
