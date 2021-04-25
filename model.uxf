@@ -389,7 +389,7 @@ contains ^
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>686</x>
+      <x>693</x>
       <y>294</y>
       <w>140</w>
       <h>63</h>
@@ -407,11 +407,11 @@ Manager
     <coordinates>
       <x>595</x>
       <y>203</y>
-      <w>175</w>
+      <w>182</w>
       <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -539,5 +539,46 @@ considered Spam, separated by a "coma"
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;110.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>861</x>
+      <y>294</y>
+      <w>140</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Role&gt;&gt;
+Authenticated
+--
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>203</y>
+      <w>308</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;200.0;70.0;200.0;100.0;420.0;110.0;420.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>861</x>
+      <y>350</y>
+      <w>126</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;
+
+lists (finished) v
+</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;170.0</additional_attributes>
   </element>
 </diagram>
