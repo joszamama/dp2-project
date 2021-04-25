@@ -33,11 +33,6 @@ master.menu.shout = Gritos
 master.menu.anonymous = Anónimo
 master.menu.anonymous.favourite-link = Enlace favorito
 
-# master.menu.manager ###################################################
-
-master.menu.task.listmine = Mis tareas
-master.menu.task.create = Crear tarea
-
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrador

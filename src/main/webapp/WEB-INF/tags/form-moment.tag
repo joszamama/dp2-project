@@ -22,8 +22,6 @@
 <%@attribute name="placeholder" required="false" type="java.lang.String"%>
 <%@attribute name="readonly" required="false" type="java.lang.Boolean"%>
 
-
-
 <jstl:if test="${placeholder == null}">
 	<jstl:set var="placeholder" value="${MessageHelper.getMessage('default.placeholder.moment')}"/>	
 </jstl:if>
@@ -32,7 +30,7 @@
 	<jstl:set var="readonly" value="false"/>
 </jstl:if>
 
-<div class="form-group" >
+<div class="form-group">
 	<label for="${path}">
 		<acme:message code="${code}"/>
 	</label>
@@ -45,20 +43,7 @@
 		placeHolder="${placeholder}"
 		<jstl:if test="${readonly}">
        		readonly
-       	</jstl:if>     	
+       	</jstl:if>
 	/>
+	<acme:form-errors path="${path}"/>
 </div>
-
-<script>
-    $(document).ready(function(){
-      var date_input=$('#${path}'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'mm/dd/yyyy',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
-    })
-</script>
