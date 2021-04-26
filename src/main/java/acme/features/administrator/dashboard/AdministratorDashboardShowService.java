@@ -79,16 +79,16 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setCountPrivateTasks(countPrivateTasks);
 		result.setCountPublicTasks(countPublicTasks);
 
-		result.setAverageWorkloadsHours((int) (averageWorkloads / 60));
-		result.setDeviationWorkloadsHours((int) (deviationWorkloads / 60));
-		result.setMinimumWorkloadsHours((int) (minimumWorkloads / 60));
-		result.setMaximumWorkloadsHours((int) (maximumWorkloads / 60));
+		result.setAverageWorkloadsHours(Long.toString(averageWorkloads));
+		result.setDeviationWorkloadsHours(Long.toString(deviationWorkloads));
+		result.setMinimumWorkloadsHours(Long.toString(minimumWorkloads));
+		result.setMaximumWorkloadsHours(Long.toString(maximumWorkloads));
 
-		result.setAverageWorkloadsMinutes((int) (averageWorkloads % 60));
-		result.setDeviationWorkloadsMinutes((int) (deviationWorkloads % 60));
-		result.setMinimumWorkloadsMinutes((int) (minimumWorkloads % 60));
-		result.setMaximumWorkloadsMinutes((int) (maximumWorkloads % 60));
-		
+		result.setAverageWorkloadsMinutes(String.format("%02d", (averageWorkloads % 60)));
+		result.setDeviationWorkloadsMinutes(String.format("%02d", (deviationWorkloads % 60)));
+		result.setMinimumWorkloadsMinutes(String.format("%02d", (minimumWorkloads % 60)));
+		result.setMaximumWorkloadsMinutes(String.format("%02d", (maximumWorkloads % 60)));
+
 		result.setAverageExecutionPeriods(averageExecutionPeriods);
 		result.setDeviationExecutionPeriods(deviationExecutionPeriods);
 		result.setMinimumExecutionPeriods(minimumExecutionPeriods);
