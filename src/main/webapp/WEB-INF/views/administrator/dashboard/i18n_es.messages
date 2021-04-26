@@ -21,7 +21,7 @@ administrator.dashboard.form.label.number-deviation-execution-periods = Desviaci
 administrator.dashboard.form.label.number-minimum-execution-periods = Período mínimo de ejecución de tareas
 administrator.dashboard.form.label.number-maximum-execution-periods = Período máximo de ejecución de tareas
 
-administrator.dashboard.form.label.number-average-workloads = Promedio de las cargas de trabajo de las tareas
-administrator.dashboard.form.label.number-deviation-workloads = Desviación de las cargas de trabajo de las tareas
-administrator.dashboard.form.label.number-minimum-workloads = Carga de trabajo mínima de una tarea
-administrator.dashboard.form.label.number-maximum-workloads = Carga de trabajo máxima de una tarea
+administrator.dashboard.form.label.number-average-workloads = Promedio de las cargas de trabajo de las tareas (minutos)
+administrator.dashboard.form.label.number-deviation-workloads = Desviación de las cargas de trabajo de las tareas (minutos)
+administrator.dashboard.form.label.number-minimum-workloads = Carga de trabajo mínima de una tarea (minutos)
+administrator.dashboard.form.label.number-maximum-workloads = Carga de trabajo máxima de una tarea (minutos)

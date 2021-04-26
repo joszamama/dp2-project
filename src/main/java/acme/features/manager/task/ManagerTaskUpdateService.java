@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamFilterService;
 import acme.entities.tasks.Task;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -18,6 +19,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 
 	@Autowired
 	private ManagerTaskRepository repository;
+
+	@Autowired
+	protected SpamFilterService			spamFilterService;
 
 
 	@Override
@@ -54,7 +58,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workload", "description", "link", "isPrivate");
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "description", "link", "isPrivate");
 	}
 
 	@Override
@@ -86,6 +90,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 			//executionEnd before start
 			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
 		}
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
+		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
+		
 
 	}
 
@@ -94,7 +101,13 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert request != null;
 		assert entity != null;
 
-		this.repository.save(entity);
+		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
+		if (isSpam == false) {
+			this.repository.save(entity);
+		} else {
+			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription());
+			System.out.println("Mensaje borrado");
+		}
 	}
 
 }

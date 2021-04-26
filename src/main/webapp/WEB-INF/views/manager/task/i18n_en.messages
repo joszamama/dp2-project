@@ -1,11 +1,12 @@
-authenticated.task.form.label.title = Title
-authenticated.task.form.label.description = Description
-authenticated.task.form.label.link = Link
-authenticated.task.form.label.executionStart = Start of execution
-authenticated.task.form.label.executionEnd = End of execution
-authenticated.task.form.label.workload = Workload
-authenticated.task.form.label.isPrivate = Is it private?
-authenticated.task.form.button.return = Return
+manager.task.form.label.title = Title
+manager.task.form.label.description = Description
+manager.task.form.label.link = Link
+manager.task.form.label.executionStart = Start of execution
+manager.task.form.label.executionEnd = End of execution
+manager.task.form.label.workloadHours = Workload (hours)
+manager.task.form.label.workloadMinutes = Workload (minutes)
+manager.task.form.label.isPrivate = Is it private?
+manager.task.form.button.return = Return
 
 manager.task.form.button.create = Create
 manager.task.form.button.update = Update
@@ -13,9 +14,11 @@ manager.task.form.button.delete = Delete
 
 manager.task.form.error.start = Cannot create task with this start date
 manager.task.form.error.end = Cannot create task with this end date
+manager.task.form.error.tooMuchWorkload = Cannot create task with a bigger workload than the time between execution times
 manager.task.form.error.spamDetected = Cannot create task with spam
 
-authenticated.task.list.label.title = Title
-authenticated.task.list.label.executionStart = Start of execution
-authenticated.task.list.label.executionEnd = End of execution
-authenticated.task.list.label.workload = Workload
+manager.task.list.label.title = Title
+manager.task.list.label.executionStart = Start of execution
+manager.task.list.label.executionEnd = End of execution
+manager.task.list.label.workloadHours = Workload (hours)
+manager.task.list.label.workloadMinutes = Workload (minutes)
