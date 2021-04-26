@@ -114,7 +114,7 @@
 	</bean>
 
 	<bean id="shout05" class="acme.entities.shouts.Shout">
-		<property name="author" value="Leslie buuu!- a leslie hater." />
+		<property name="author" value="A leslie hater" />
 		<property name="text" value="This app is not cool!!! :(" />
 		<property name="moment" value="2021/04/18 11:30" />
 		<property name="info" value="http://www.sample-app.com" />
@@ -149,7 +149,7 @@
 	</bean>
 
 	<bean id="shout10" class="acme.entities.shouts.Shout">
-		<property name="author" value="LSI" />
+		<property name="author" value="LSI author" />
 		<property name="text" value="This is the 10 shout!" />
 		<property name="moment" value="2021/04/19 12:30" />
 		<property name="info" value="http://www.sample-app.com" />
