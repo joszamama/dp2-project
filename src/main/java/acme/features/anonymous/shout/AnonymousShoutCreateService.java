@@ -17,8 +17,8 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamFilterService;
 import acme.entities.shouts.Shout;
-import acme.features.administrator.parameters.AdministratorConfigurationCreateService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -31,12 +31,13 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousShoutRepository repository;
-	
+	protected AnonymousShoutRepository	repository;
+
 	@Autowired
-	protected AdministratorConfigurationCreateService spamService;
+	protected SpamFilterService			spamFilterService;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
+
 
 	@Override
 	public boolean authorise(final Request<Shout> request) {
@@ -86,7 +87,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		final Boolean isSpam = this.spamService.isSpam((entity.getAuthor()+ " " + entity.getText()).toLowerCase());
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getAuthor(), entity.getText());
 
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spam-detected");
 
@@ -101,14 +102,14 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
-		final boolean isSpam = this.spamService.isSpam((entity.getAuthor()+ " " + entity.getText()).toLowerCase());
-		if(isSpam == false) {
+		final boolean isSpam = this.spamFilterService.isSpam(entity.getAuthor(), entity.getText());
+		if (isSpam == false) {
 			this.repository.save(entity);
-		}else {
+		} else {
 			System.out.println("SPAM: " + entity.getText());
 			System.out.println("Mensaje borrado");
 		}
-		
+
 	}
 
 }
