@@ -37,10 +37,15 @@ public class Dashboard implements Serializable {
 	Double						minimumExecutionPeriods;
 	Double						maximumExecutionPeriods;
 
-	Double						averageWorkloads;
-	Double						deviationWorkloads;
-	Double						minimumWorkloads;
-	Double						maximumWorkloads;
+	Integer						averageWorkloadsHours;
+	Integer						deviationWorkloadsHours;
+	Integer						minimumWorkloadsHours;
+	Integer						maximumWorkloadsHours;
+
+	Integer						averageWorkloadsMinutes;
+	Integer						deviationWorkloadsMinutes;
+	Integer						minimumWorkloadsMinutes;
+	Integer						maximumWorkloadsMinutes;
 
 	// Derived attributes -----------------------------------------------------
 

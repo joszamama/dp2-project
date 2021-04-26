@@ -48,7 +48,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		request.unbind(entity, model, //
 			"countNotFinishedTasks", // 
 			"countFinishedTasks", "countPublicTasks", //
-			"countPrivateTasks", "averageWorkloads", "deviationWorkloads", "minimumWorkloads", "maximumWorkloads", "averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods");
+			"countPrivateTasks", //
+			"averageWorkloadsHours", "deviationWorkloadsHours", "minimumWorkloadsHours", "maximumWorkloadsHours", //
+			"averageWorkloadsMinutes", "deviationWorkloadsMinutes", "minimumWorkloadsMinutes", "maximumWorkloadsMinutes", //
+			"averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods");
 	}
 
 	@Override
@@ -61,10 +64,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		final Integer countPublicTasks = this.repository.countPublicTasks();
 		final Integer countPrivateTasks = this.repository.countPrivateTasks();
 
-		final Double averageWorkloads = this.repository.averageWorkloads();
-		final Double deviationWorkloads = this.repository.deviationWorkloads();
-		final Double minimumWorkloads = this.repository.minimumWorkloads();
-		final Double maximumWorkloads = this.repository.maximumWorkloads();
+		final Long averageWorkloads = Math.round(this.repository.averageWorkloads());
+		final Long deviationWorkloads = Math.round(this.repository.deviationWorkloads());
+		final Long minimumWorkloads = Math.round(this.repository.minimumWorkloads());
+		final Long maximumWorkloads = Math.round(this.repository.maximumWorkloads());
 
 		final Double averageExecutionPeriods = this.repository.averageExecutionPeriods();
 		final Double deviationExecutionPeriods = this.repository.deviationExecutionPeriods();
@@ -76,11 +79,16 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setCountPrivateTasks(countPrivateTasks);
 		result.setCountPublicTasks(countPublicTasks);
 
-		result.setAverageWorkloads(averageWorkloads);
-		result.setDeviationWorkloads(deviationWorkloads);
-		result.setMinimumWorkloads(minimumWorkloads);
-		result.setMaximumWorkloads(maximumWorkloads);
+		result.setAverageWorkloadsHours((int) (averageWorkloads / 60));
+		result.setDeviationWorkloadsHours((int) (deviationWorkloads / 60));
+		result.setMinimumWorkloadsHours((int) (minimumWorkloads / 60));
+		result.setMaximumWorkloadsHours((int) (maximumWorkloads / 60));
 
+		result.setAverageWorkloadsMinutes((int) (averageWorkloads % 60));
+		result.setDeviationWorkloadsMinutes((int) (deviationWorkloads % 60));
+		result.setMinimumWorkloadsMinutes((int) (minimumWorkloads % 60));
+		result.setMaximumWorkloadsMinutes((int) (maximumWorkloads % 60));
+		
 		result.setAverageExecutionPeriods(averageExecutionPeriods);
 		result.setDeviationExecutionPeriods(deviationExecutionPeriods);
 		result.setMinimumExecutionPeriods(minimumExecutionPeriods);
