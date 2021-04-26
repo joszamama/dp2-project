@@ -82,7 +82,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 			// executionEnd must be after executionStart
 			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
 		}
-		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription(), entity.getLink());
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
 		
 	}
@@ -92,11 +92,11 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		
-		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription(), entity.getLink());
+		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		if (isSpam == false) {
 			this.repository.save(entity);
 		} else {
-			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription() + " " + entity.getLink());
+			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription());
 			System.out.println("Mensaje borrado");
 		}
 	}
