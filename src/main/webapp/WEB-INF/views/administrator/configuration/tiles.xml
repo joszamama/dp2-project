@@ -18,8 +18,8 @@
 
 <tiles-definitions>
 	
-	<definition name="administrator/spam/form" extends="master">
-		<put-attribute name="body" type="template" value="../administrator/spam/form.jsp" />
+	<definition name="administrator/configuration/form" extends="master">
+		<put-attribute name="body" type="template" value="../administrator/configuration/form.jsp" />
 	</definition>
 
 </tiles-definitions>

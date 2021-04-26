@@ -1,5 +1,6 @@
 
-package acme.entities.spam;
+package acme.entities.configuration;
+
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Spam extends DomainEntity {
+public class Configuration extends DomainEntity {
 
 	// Serialisation identifier -----------------------------------------------
 
@@ -19,7 +20,7 @@ public class Spam extends DomainEntity {
 	// Attributes -------------------------------------------------------------
 
 	//@ElementCollection(targetClass=String.class)
-	protected String		wordList;
+	protected String			wordList;
 
 	@NotNull
 	protected Double			threshold;

@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.shouts.Shout;
-import acme.features.administrator.parameters.AdministratorParametersCreateService;
+import acme.features.administrator.parameters.AdministratorConfigurationCreateService;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -34,7 +34,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	protected AnonymousShoutRepository repository;
 	
 	@Autowired
-	protected AdministratorParametersCreateService spamService;
+	protected AdministratorConfigurationCreateService spamService;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
 
@@ -109,10 +109,6 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 			System.out.println("Mensaje borrado");
 		}
 		
-		
 	}
-	
-	
-
 
 }

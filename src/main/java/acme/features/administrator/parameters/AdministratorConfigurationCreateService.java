@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.spam.Spam;
+import acme.entities.configuration.Configuration;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -26,32 +26,32 @@ import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AdministratorParametersCreateService implements AbstractCreateService<Administrator, Spam> {
+public class AdministratorConfigurationCreateService implements AbstractCreateService<Administrator, Configuration> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AdministratorParametersRepository repository;
+	protected AdministratorConfigurationRepository repository;
 
 	// AbstractCreateService<Administrator, Shout> interface --------------
 
 	@Override
-	public boolean authorise(final Request<Spam> request) {
+	public boolean authorise(final Request<Configuration> request) {
 		assert request != null;
 		
 		boolean result;
-		Spam spam;
-		final int spamId;
+		Configuration configuration;
+		final int configurationId;
 
 		
-		spam = this.repository.findSpamParameters().iterator().next();
-		result = spam != null;
+		configuration = this.repository.findConfiguration().iterator().next();
+		result = configuration != null;
 
 		return true;
 	}
 
 	@Override
-	public void bind(final Request<Spam> request, final Spam entity, final Errors errors) {
+	public void bind(final Request<Configuration> request, final Configuration entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -60,28 +60,28 @@ public class AdministratorParametersCreateService implements AbstractCreateServi
 	}
 
 	@Override
-	public void unbind(final Request<Spam> request, final Spam entity, final Model model) {
+	public void unbind(final Request<Configuration> request, final Configuration entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
 		request.unbind(entity, model, "wordList", "threshold");
-		model.setAttribute("spamId", entity.getId());
+		model.setAttribute("configurationId", entity.getId());
 	}
 	
 	
 	@Override
-	public Spam instantiate(final Request<Spam> request) {
+	public Configuration instantiate(final Request<Configuration> request) {
 		assert request != null;
 
-		final Spam result = this.repository.findSpamParameters().iterator().next();
+		final Configuration result = this.repository.findConfiguration().iterator().next();
 
 		return result;
 	}
 	
 
 	@Override
-	public void validate(final Request<Spam> request, final Spam entity, final Errors errors) {
+	public void validate(final Request<Configuration> request, final Configuration entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
@@ -89,7 +89,7 @@ public class AdministratorParametersCreateService implements AbstractCreateServi
 	}
 
 	@Override
-	public void create(final Request<Spam> request, final Spam entity) throws Exception {
+	public void create(final Request<Configuration> request, final Configuration entity) throws Exception {
 		assert request != null;
 		assert entity != null;
 		this.repository.save(entity);
@@ -132,7 +132,7 @@ public class AdministratorParametersCreateService implements AbstractCreateServi
 	
 	public boolean isSpam(final String message) {
 		boolean res = false;
-		final Spam parameters = this.repository.findSpamParameters().iterator().next();
+		final Configuration parameters = this.repository.findConfiguration().iterator().next();
 		 final Pattern p = Pattern.compile(this.regexCompilator(parameters.getWordList()));
 	     final Matcher m = p.matcher(message);
 	     double numSpamWords = 0.0;
