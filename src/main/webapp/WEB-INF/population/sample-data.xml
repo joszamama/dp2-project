@@ -1,22 +1,454 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-- sample-data.xml
--
-- Copyright (C) 2012-2021 Rafael Corchuelo.
--
-- In keeping with the traditional purpose of furthering education and research, it is
-- the policy of the copyright owner to permit non-commercial use and redistribution of
-- this software. It has been tested carefully, but it is not guaranteed for any particular
-- purposes.  The copyright owner does not offer any warranties or representations, nor do
-- they accept any liabilities with respect to them.
--->
+<!-- - sample-data.xml - - Copyright (C) 2012-2021 Rafael Corchuelo. - - 
+	In keeping with the traditional purpose of furthering education and research, 
+	it is - the policy of the copyright owner to permit non-commercial use and 
+	redistribution of - this software. It has been tested carefully, but it is 
+	not guaranteed for any particular - purposes. The copyright owner does not 
+	offer any warranties or representations, nor do - they accept any liabilities 
+	with respect to them. -->
 
-<beans 
-	xmlns="http://www.springframework.org/schema/beans" 
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<import resource="classpath:/WEB-INF/population/conversion-service.xml"/>	
+	<import
+		resource="classpath:/WEB-INF/population/conversion-service.xml" />
+
+	<!-- Managers -->
+	
+	<bean name="managerUserAccount1"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager1" />
+		<property name="password" value="manager1" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager1" />
+				<property name="surname" value="manager1" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager1" />
+				<ref bean="managerAuthenticated1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager1"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount1" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated1"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount1" />
+	</bean>
+
+	<bean name="managerUserAccount2"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager2" />
+		<property name="password" value="manager2" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager2" />
+				<property name="surname" value="manager2" />
+				<property name="email" value="manager1@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager2" />
+				<ref bean="managerAuthenticated2" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager2"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount2" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated2"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount2" />
+	</bean>
+	
+	<!-- Shouts -->
+
+	<bean id="shout01" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2021/04/08 19:39" />
+		<property name="author" value="John Doe" />
+		<property name="text" value="I'm happy!" />
+		<property name="info">
+			<null />
+		</property>
+	</bean>
+
+	<bean id="shout02" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2021/04/02 15:55" />
+		<property name="author" value="Jane Doe" />
+		<property name="text" value="I'm the master of my room!" />
+		<property name="info" value="http://www.example.org" />
+	</bean>
+
+	<bean id="shout03" class="acme.entities.shouts.Shout">
+		<property name="moment" value="2021/04/02 00:00" />
+		<property name="author" value="Foo Bar" />
+		<property name="text" value="Just turning 50!" />
+		<property name="info" value="http://happybirthday.com" />
+	</bean>
+
+	<bean id="shout04" class="acme.entities.shouts.Shout">
+		<property name="author" value="The manager" />
+		<property name="text" value="Leslies should be erradicated" />
+		<property name="moment" value="2021/04/02 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout05" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie buuu!- a leslie hater." />
+		<property name="text" value="This app is not cool!!! :(" />
+		<property name="moment" value="2021/04/18 11:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout06" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie Design-Testing" />
+		<property name="text" value="In fact, its quite cool!" />
+		<property name="moment" value="2021/04/20 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout07" class="acme.entities.shouts.Shout">
+		<property name="author" value="Leslie Secondary Account" />
+		<property name="text" value="Just kidding, it isnt." />
+		<property name="moment" value="2021/04/02 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout08" class="acme.entities.shouts.Shout">
+		<property name="author" value="The analist" />
+		<property name="text" value="Making analist things!" />
+		<property name="moment" value="2021/04/02 00:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+	<bean id="shout09" class="acme.entities.shouts.Shout">
+		<property name="author" value="The tester" />
+		<property name="text"
+			value="The manager watches us, but who whatches the manager?" />
+		<property name="moment" value="2021/04/25 21:00" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout10" class="acme.entities.shouts.Shout">
+		<property name="author" value="LSI" />
+		<property name="text" value="This is the 10 shout!" />
+		<property name="moment" value="2021/04/19 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+
+	<bean id="shout11" class="acme.entities.shouts.Shout">
+		<property name="author" value="Sampler guy" />
+		<property name="text" value="Final sampling!" />
+		<property name="moment" value="2021/04/25 12:30" />
+		<property name="info" value="http://www.sample-app.com" />
+	</bean>
+	<!-- Tasks -->
+
+	<bean id="task01" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number one" />
+		<property name="description"
+			value="A public task which is the first one" />
+		<property name="link" value="http://first.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/02/01 14:00" />
+		<property name="executionEnd" value="2022/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task02" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number two" />
+		<property name="description"
+			value="A public task which is the second one" />
+		<property name="link" value="http://second.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/04/20 11:00" />
+		<property name="executionEnd" value="2021/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task03" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number three" />
+		<property name="description"
+			value="A public task which is the third one" />
+		<property name="link" value="http://third.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/09/20 10:00" />
+		<property name="executionEnd" value="2021/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task04" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number four" />
+		<property name="description"
+			value="A public task which is the fourth one" />
+		<property name="link" value="http://fourth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/04/09 10:00" />
+		<property name="executionEnd" value="2022/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
+
+	<bean id="task05" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number five" />
+		<property name="description"
+			value="A public task which is the fifth one" />
+		<property name="link" value="http://fifth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/02/01 14:00" />
+		<property name="executionEnd" value="2022/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task06" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number six" />
+		<property name="description"
+			value="A public task which is the sixth one" />
+		<property name="link" value="http://sixth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/04/20 11:00" />
+		<property name="executionEnd" value="2021/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task07" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number seven" />
+		<property name="description"
+			value="A public task which is the seventh one" />
+		<property name="link" value="http://seventh.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/09/20 10:00" />
+		<property name="executionEnd" value="2021/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task08" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number eight" />
+		<property name="description"
+			value="A public task which is the eigth one" />
+		<property name="link" value="http://eigth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/04/09 10:00" />
+		<property name="executionEnd" value="2022/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
+
+	<bean id="task09" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number nine" />
+		<property name="description"
+			value="A public task which is the ninth one" />
+		<property name="link" value="http://ninth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/02/01 14:00" />
+		<property name="executionEnd" value="2022/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task10" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number ten" />
+		<property name="description"
+			value="A public task which is the tenth one" />
+		<property name="link" value="http://tenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/04/20 11:00" />
+		<property name="executionEnd" value="2021/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task11" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number eleven" />
+		<property name="description"
+			value="A public task which is the eleventh one" />
+		<property name="link" value="http://eleventh.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2021/09/20 10:00" />
+		<property name="executionEnd" value="2021/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task12" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twelve" />
+		<property name="description"
+			value="A public task which is the twelvth one" />
+		<property name="link" value="http://twelvth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/04/09 10:00" />
+		<property name="executionEnd" value="2022/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
+
+	<bean id="task13" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number thirteen" />
+		<property name="description"
+			value="A public task which is the thirteenth one" />
+		<property name="link" value="http://thirteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/02/01 14:00" />
+		<property name="executionEnd" value="2012/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task14" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number fourteen" />
+		<property name="description"
+			value="A public task which is the fourteenth one" />
+		<property name="link" value="http://fourteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/04/20 11:00" />
+		<property name="executionEnd" value="2011/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task15" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number fifteen" />
+		<property name="description"
+			value="A public task which is the fifteenth one" />
+		<property name="link" value="http://fifteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/09/20 10:00" />
+		<property name="executionEnd" value="2011/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task16" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number sixteen" />
+		<property name="description"
+			value="A public task which is the sixteenth one" />
+		<property name="link" value="http://sixteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/04/09 10:00" />
+		<property name="executionEnd" value="2012/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
+
+	<bean id="task17" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number seventeen" />
+		<property name="description"
+			value="A public task which is the seventeenth one" />
+		<property name="link" value="http://seventeenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/02/01 14:00" />
+		<property name="executionEnd" value="2012/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task18" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number eighteen" />
+		<property name="description"
+			value="A public task which is the eighteenth one" />
+		<property name="link" value="http://eighteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/04/20 11:00" />
+		<property name="executionEnd" value="2011/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task19" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number nineteen" />
+		<property name="description"
+			value="A public task which is the nineteenth one" />
+		<property name="link" value="http://nineteenth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/09/20 10:00" />
+		<property name="executionEnd" value="2011/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task20" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twenty" />
+		<property name="description"
+			value="A public task which is the twentieth one" />
+		<property name="link" value="http://twentieth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/04/09 10:00" />
+		<property name="executionEnd" value="2012/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
+
+	<bean id="task21" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twenty one" />
+		<property name="description"
+			value="A public task which is the twenty first one" />
+		<property name="link" value="http://twenty.first.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/02/01 14:00" />
+		<property name="executionEnd" value="2012/03/25 17:30" />
+		<property name="workload" value="1.5" />
+	</bean>
+
+	<bean id="task22" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twenty two" />
+		<property name="description"
+			value="A public task which is the twenty second one" />
+		<property name="link" value="http://twenty.second.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/04/20 11:00" />
+		<property name="executionEnd" value="2011/12/02 20:00" />
+		<property name="workload" value="8.3" />
+	</bean>
+
+	<bean id="task23" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twenty three" />
+		<property name="description"
+			value="A public task which is the twenty third one" />
+		<property name="link" value="http://twenty.third.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2011/09/20 10:00" />
+		<property name="executionEnd" value="2011/11/02 12:00" />
+		<property name="workload" value="1.9" />
+	</bean>
+
+	<bean id="task24" class="acme.entities.tasks.Task">
+		<property name="owner" ref="managerManager1" />
+		<property name="title" value="Task number twenty four" />
+		<property name="description"
+			value="A public task which is the twenty fourth one" />
+		<property name="link" value="http://twenty.fourth.task" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/04/09 10:00" />
+		<property name="executionEnd" value="2012/12/23 18:00" />
+		<property name="workload" value="8.8" />
+	</bean>
 
 </beans>

@@ -1,0 +1,9 @@
+authenticated.manager.manager.form.title.create = Become a worker
+authenticated.manager.manager.form.title.update = Update your worker data
+
+authenticated.manager.manager.form.label.company = Company
+authenticated.manager.manager.form.label.sector = Sector
+
+authenticated.manager.manager.form.button.create = Register
+authenticated.manager.manager.form.button.update = Update
+authenticated.manager.manager.form.button.return = Return

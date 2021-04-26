@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-- initial-data.xml
--
-- Copyright (C) 2012-2021 Rafael Corchuelo.
--
-- In keeping with the traditional purpose of furthering education and research, it is
-- the policy of the copyright owner to permit non-commercial use and redistribution of
-- this software. It has been tested carefully, but it is not guaranteed for any particular
-- purposes.  The copyright owner does not offer any warranties or representations, nor do
-- they accept any liabilities with respect to them.
--->
+<!-- - initial-data.xml - - Copyright (C) 2012-2021 Rafael Corchuelo. - - 
+	In keeping with the traditional purpose of furthering education and research, 
+	it is - the policy of the copyright owner to permit non-commercial use and 
+	redistribution of - this software. It has been tested carefully, but it is 
+	not guaranteed for any particular - purposes. The copyright owner does not 
+	offer any warranties or representations, nor do - they accept any liabilities 
+	with respect to them. -->
 
-<beans 
-	xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
->
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<import resource="classpath:/WEB-INF/population/conversion-service.xml"/>
-	
+	<import
+		resource="classpath:/WEB-INF/population/conversion-service.xml" />
+
 	<!-- Anonymous user -->
 
-	<bean name="anonymousUserAccount" class="acme.framework.entities.UserAccount">
+	<bean name="anonymousUserAccount"
+		class="acme.framework.entities.UserAccount">
 		<property name="username" value="anonymous" />
 		<property name="password" value="anonymous" />
 		<property name="enabled" value="false" />
@@ -40,13 +36,15 @@
 		</property>
 	</bean>
 
-	<bean name="anonymousAnonymous" class="acme.framework.entities.Anonymous">
+	<bean name="anonymousAnonymous"
+		class="acme.framework.entities.Anonymous">
 		<property name="userAccount" ref="anonymousUserAccount" />
 	</bean>
 
 	<!-- Administrators -->
-	
-	<bean name="administratorUserAccount" class="acme.framework.entities.UserAccount">
+
+	<bean name="administratorUserAccount"
+		class="acme.framework.entities.UserAccount">
 		<property name="username" value="administrator" />
 		<property name="password" value="administrator" />
 		<property name="enabled" value="true" />
@@ -65,12 +63,21 @@
 		</property>
 	</bean>
 
-	<bean name="administratorAdministrator" class="acme.framework.entities.Administrator">
+	<bean name="administratorAdministrator"
+		class="acme.framework.entities.Administrator">
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
-	
-	<bean name="administratorAuthenticated" class="acme.framework.entities.Authenticated">
+
+	<bean name="administratorAuthenticated"
+		class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
-	
+
+	<!-- Spam -->
+
+	<bean id="spam01" class="acme.entities.spam.Spam">
+		<property name="wordList" value="sex, sexo, hard core, extremo, viagra, cialis, nigeria, you've won, has ganado, million dollar, millón de dólares" />
+		<property name="threshold" value="0.1" />
+	</bean>
+
 </beans>
