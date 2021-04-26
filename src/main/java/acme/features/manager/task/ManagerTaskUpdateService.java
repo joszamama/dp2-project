@@ -92,8 +92,12 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
-		
-
+		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
+			// workload can't exceed the time between execution start and execution end
+			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
+			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
+			errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+		}
 	}
 
 	@Override

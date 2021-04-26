@@ -1,3 +1,4 @@
+
 package acme.features.manager.task;
 
 import java.util.Date;
@@ -23,7 +24,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 	private ManagerRepository		managerRepo;
 
 	@Autowired
-	protected SpamFilterService			spamFilterService;
+	protected SpamFilterService		spamFilterService;
 
 
 	@Override
@@ -84,14 +85,19 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
-		
+		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
+			// workload can't exceed the time between execution start and execution end
+			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
+			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
+			errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+		}
 	}
 
 	@Override
 	public void create(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		if (isSpam == false) {
 			this.repository.save(entity);
