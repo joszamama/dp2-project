@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.configuration.Configuration;
-import acme.features.administrator.parameters.AdministratorConfigurationRepository;
+import acme.features.administrator.configuration.AdministratorConfigurationRepository;
 
 @Service
 public class SpamFilterService {

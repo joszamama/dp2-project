@@ -1,4 +1,4 @@
-package acme.features.administrator.parameters;
+package acme.features.administrator.configuration;
 
 import java.util.Collection;
 

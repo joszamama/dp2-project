@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.parameters;
+package acme.features.administrator.configuration;
 
 import javax.annotation.PostConstruct;
 
