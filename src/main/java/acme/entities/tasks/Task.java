@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -34,18 +36,19 @@ public class Task extends DomainEntity {
 	@Length(max = 80)
 	protected String			title;
 
-	//Commented out to create finished tasks in the database
-	//@Future
 	@NotNull
 	protected Date				executionStart;
 
-	//Commented out to create finished tasks in the database
-	//@Future
 	@NotNull
 	protected Date				executionEnd;
 
+	@Min(0)
 	@NotNull
-	protected Double			workload; // hours 
+	protected Integer			workloadHours;
+
+	@Min(0)
+	@Max(60)
+	protected Integer			workloadMinutes;
 
 	@NotBlank
 	@Length(max = 500)

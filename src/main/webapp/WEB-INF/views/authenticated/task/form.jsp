@@ -21,7 +21,8 @@
 	<acme:form-textbox code="authenticated.task.form.label.link" path="link"/>
 	<acme:form-textbox code="authenticated.task.form.label.executionStart" path="executionStart"/>
 	<acme:form-textbox code="authenticated.task.form.label.executionEnd" path="executionEnd"/>
-	<acme:form-textbox code="authenticated.task.form.label.workload" path="workload"/>
+	<acme:form-textbox code="authenticated.task.form.label.workloadHours" path="workloadHours"/>
+	<acme:form-textbox code="authenticated.task.form.label.workloadMinutes" path="workloadMinutes"/>
 	
 	<acme:form-return code="authenticated.task.form.button.return"/>
 </acme:form>
