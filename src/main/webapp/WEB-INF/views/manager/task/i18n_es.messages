@@ -14,6 +14,7 @@ manager.task.form.button.delete = Eliminar
 
 manager.task.form.error.start = No se puede crear tarea con esta fecha de inicio
 manager.task.form.error.end = No se puede crear tarea con esta fecha de fin
+manager.task.form.error.tooMuchWorkload = No se puede crear tarea con una carga de trabajo mayor que el tiempo entre los tiempos de ejecución
 manager.task.form.error.spamDetected = No se puede crear tarea con spam
 
 manager.task.list.label.title = Título

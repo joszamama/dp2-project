@@ -14,6 +14,7 @@ manager.task.form.button.delete = Delete
 
 manager.task.form.error.start = Cannot create task with this start date
 manager.task.form.error.end = Cannot create task with this end date
+manager.task.form.error.tooMuchWorkload = Cannot create task with a bigger workload than the time between execution times
 manager.task.form.error.spamDetected = Cannot create task with spam
 
 manager.task.list.label.title = Title
