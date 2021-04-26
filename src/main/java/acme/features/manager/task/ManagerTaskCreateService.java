@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.components.SpamFilterService;
 import acme.entities.tasks.Task;
 import acme.features.manager.ManagerRepository;
 import acme.framework.components.Errors;
@@ -20,6 +21,9 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 	private ManagerTaskRepository	repository;
 	@Autowired
 	private ManagerRepository		managerRepo;
+
+	@Autowired
+	protected SpamFilterService			spamFilterService;
 
 
 	@Override
@@ -78,14 +82,23 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 			// executionEnd must be after executionStart
 			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
 		}
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription(), entity.getLink());
+		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
+		
 	}
 
 	@Override
 	public void create(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
-
-		this.repository.save(entity);
+		
+		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription(), entity.getLink());
+		if (isSpam == false) {
+			this.repository.save(entity);
+		} else {
+			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription() + " " + entity.getLink());
+			System.out.println("Mensaje borrado");
+		}
 	}
 
 }

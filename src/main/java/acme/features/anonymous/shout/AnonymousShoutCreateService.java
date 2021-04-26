@@ -89,7 +89,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert errors != null;
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getAuthor(), entity.getText());
 
-		errors.state(request, !isSpam, "*", "manager.task.form.error.spam-detected");
+		errors.state(request, !isSpam, "*", "anonymous.shout.form.error.spamDetected");
 
 	}
 

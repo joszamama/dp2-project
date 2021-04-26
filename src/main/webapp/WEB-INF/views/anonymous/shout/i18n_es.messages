@@ -13,6 +13,7 @@ anonymous.shout.form.label.text = Texto:
 anonymous.shout.form.label.text = Información:
 anonymous.shout.form.button.create = Gritar
 anonymous.shout.form.button.return = Volver
+anonymous.shout.form.error.spamDetected = No se puede crear grito con spam
  
 anonymous.shout.list.label.moment = Momento
 anonymous.shout.list.label.author = Autor

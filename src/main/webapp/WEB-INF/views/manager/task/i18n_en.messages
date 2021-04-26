@@ -12,7 +12,8 @@ manager.task.form.button.update = Update
 manager.task.form.button.delete = Delete
 
 manager.task.form.error.start = Cannot create task with this start date
-manager.task.form.error.end = Cannot create task with this end date 
+manager.task.form.error.end = Cannot create task with this end date
+manager.task.form.error.spamDetected = Cannot create task with spam
 
 authenticated.task.list.label.title = Title
 authenticated.task.list.label.executionStart = Start of execution
