@@ -17,11 +17,11 @@
 
 <acme:form readonly="true">
 	<acme:form-textbox code="anonymous.work-plan.form.label.title" path="title"/>
-	<acme:form-textbox code="anonymous.work-plan.form.label.tasks" path="tasks"/>
+	<acme:form-textbox code="anonymous.work-plan.form.label.tasks" path="tasks.title"/>
 	<acme:form-textbox code="anonymous.work-plan.form.label.executionStart" path="executionStart"/>
 	<acme:form-textbox code="anonymous.work-plan.form.label.executionEnd" path="executionEnd"/>
 	<acme:form-textbox code="anonymous.work-plan.form.label.workloadHours" path="workloadHours"/>
 	<acme:form-textbox code="anonymous.work-plan.form.label.workloadMinutes" path="workloadMinutes"/>
-	
+
 	<acme:form-return code="anonymous.work-plan.form.button.return"/>
 </acme:form>
