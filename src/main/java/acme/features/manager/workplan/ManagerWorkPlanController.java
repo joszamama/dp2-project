@@ -12,7 +12,7 @@ import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Manager;
 
 @Controller
-@RequestMapping("/manager/workplan/")
+@RequestMapping("/manager/work-plan/")
 public class ManagerWorkPlanController extends AbstractController<Manager, WorkPlan>{
 	
 	// Internal state ---------------------------------------------------------
@@ -35,9 +35,9 @@ public class ManagerWorkPlanController extends AbstractController<Manager, WorkP
 	@PostConstruct
 	protected void initialise() {
 		
-//		super.addBasicCommand(BasicCommand.SHOW, this.updateService);
-//		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
-//		super.addBasicCommand(BasicCommand.CREATE, this.createService);
+		super.addBasicCommand(BasicCommand.SHOW, this.updateService);
+		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
+		super.addBasicCommand(BasicCommand.CREATE, this.createService);
 //		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 		super.addBasicCommand(BasicCommand.LIST, this.workPlanService); 
 	}

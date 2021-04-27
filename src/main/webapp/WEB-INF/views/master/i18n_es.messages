@@ -48,8 +48,8 @@ master.menu.authenticated.task.list = Listar tareas públicas finalizadas
 master.menu.manager = Mánager
 master.menu.manager.task.list = Listar mis tareas
 master.menu.manager.task.create = Crear una tarea
-master.menu.manager.workplan.list = Listar mis planes de trabajo
-master.menu.manager.workplan.create = Crear un plan de trabajo
+master.menu.manager.work-plan.list = Listar mis planes de trabajo
+master.menu.manager.work-plan.create = Crear un plan de trabajo
 
 ################################################################################
 # master.menu.administrator
