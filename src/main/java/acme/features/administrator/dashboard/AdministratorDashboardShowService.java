@@ -79,10 +79,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setCountPrivateTasks(countPrivateTasks);
 		result.setCountPublicTasks(countPublicTasks);
 
-		result.setAverageWorkloadsHours(Long.toString(averageWorkloads));
-		result.setDeviationWorkloadsHours(Long.toString(deviationWorkloads));
-		result.setMinimumWorkloadsHours(Long.toString(minimumWorkloads));
-		result.setMaximumWorkloadsHours(Long.toString(maximumWorkloads));
+		result.setAverageWorkloadsHours(Long.toString(averageWorkloads / 60));
+		result.setDeviationWorkloadsHours(Long.toString(deviationWorkloads / 60));
+		result.setMinimumWorkloadsHours(Long.toString(minimumWorkloads / 60));
+		result.setMaximumWorkloadsHours(Long.toString(maximumWorkloads / 60));
 
 		result.setAverageWorkloadsMinutes(String.format("%02d", (averageWorkloads % 60)));
 		result.setDeviationWorkloadsMinutes(String.format("%02d", (deviationWorkloads % 60)));
