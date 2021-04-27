@@ -474,5 +474,28 @@
 		<property name="workloadHours" value="4" />
 		<property name="workloadMinutes" value="0" />
 	</bean>
+	
+	<!-- Work plans -->
+
+	<bean id="workPlan01" class="acme.entities.workPlans.WorkPlan">
+		<property name="title" value="Work plan number one" />
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2012/04/09 10:00" />
+		<property name="executionEnd" value="2012/12/23 18:00" />
+		<property name="workloadHours" value="4" />
+		<property name="workloadMinutes" value="0" />
+	</bean>
+	
+	<bean id="workPlan02" class="acme.entities.workPlans.WorkPlan">
+		<property name="title" value="Work plan number two"/>
+		<property name="tasks" ref="task09"/>
+		<property name="isPrivate" value="false" />
+		<property name="executionStart" value="2022/04/09 10:00" />
+		<property name="executionEnd" value="2022/12/23 18:00" />
+		<property name="workloadHours" value="4" />
+		<property name="workloadMinutes" value="0" />
+	</bean>
+	
+	
 
 </beans>

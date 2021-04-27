@@ -34,6 +34,7 @@ master.menu.sign-out = Sign out
 master.menu.anonymous = Anonymous
 master.menu.anonymous.shout.list = List shouts
 master.menu.anonymous.task.list = List unfinished public tasks
+master.menu.anonymous.work-plans.list = List unfinished public work plans
 
 ################################################################################
 # master.menu.authenticated

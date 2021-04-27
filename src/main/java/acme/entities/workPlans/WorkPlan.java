@@ -2,8 +2,11 @@
 package acme.entities.workPlans;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import acme.entities.tasks.Task;
 import acme.framework.entities.DomainEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +29,8 @@ public class WorkPlan extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-//	@OneToMany(cascade = CascadeType.ALL)
-//	protected List<Task>		tasks;
+	@OneToMany(cascade = CascadeType.ALL)
+	protected List<Task>		tasks;
 
 	@NotBlank
 	@Length(max = 80)
