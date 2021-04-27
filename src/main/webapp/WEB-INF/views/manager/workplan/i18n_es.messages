@@ -1,0 +1,25 @@
+manager.task.form.label.title = Título
+manager.task.form.label.description = Descripción
+manager.task.form.label.link = Enlace
+manager.task.form.label.executionStart = Comienzo de ejecución
+manager.task.form.label.executionEnd = Fin de ejecución
+manager.task.form.label.workloadHours = Carga de trabajo (horas)
+manager.task.form.label.workloadMinutes = Carga de trabajo (minutos)
+manager.task.form.label.isPrivate = ¿Es privada?
+manager.task.form.button.return = Volver
+
+manager.task.form.button.create = Crear
+manager.task.form.button.update = Actualizar
+manager.task.form.button.delete = Eliminar
+
+manager.task.form.error.start = No se puede crear tarea con esta fecha de inicio
+manager.task.form.error.end = No se puede crear tarea con esta fecha de fin
+manager.task.form.error.tooMuchWorkload = No se puede crear tarea con una carga de trabajo mayor que el tiempo entre los tiempos de ejecución
+manager.task.form.error.spamDetected = No se puede crear tarea con spam
+
+manager.task.list.label.title = Título
+manager.task.list.label.executionStart = Comienzo de ejecución
+manager.task.list.label.executionEnd = Fin de ejecución
+manager.task.list.label.workloadHours = Carga de trabajo (horas)
+manager.task.list.label.workloadMinutes = Carga de trabajo (minutos)
+manager.task.form.label.workloadParsed = Carga de trabajo (HH:mm)

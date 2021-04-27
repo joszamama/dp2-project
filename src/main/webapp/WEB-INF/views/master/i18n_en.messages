@@ -48,6 +48,8 @@ master.menu.authenticated.task.list = List finished public tasks
 master.menu.manager = Manager
 master.menu.manager.task.list = List my tasks
 master.menu.manager.task.create = Create a task
+master.menu.manager.workplan.list = List my workplans
+master.menu.manager.workplan.create = Create a workplan
 
 ################################################################################
 # master.menu.administrator
