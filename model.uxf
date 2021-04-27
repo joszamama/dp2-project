@@ -298,8 +298,9 @@ Task
 + title: String {NotBlank, Leght(1,80)}
 + executionStart: Date {NotNull}
 + executionFinal: Date {NotNull} 
-+ workLoadHours: Integer {NotNull, Min(0)}
-+ workLoadMinutes: Integer {Min(0),Max(60)}
++ workloadHours: Integer {NotNull, Min(0)}
++ workloadMinutes: Integer {Min(0),Max(60)}
++ workloadParsed: String 
 + description: String {NotBlank, Leght(1,500)}
 + link: String {URL}
 + isPrivate: Boolean {NotNull}
@@ -334,7 +335,7 @@ bg=yellow</panel_attributes>
       <w>259</w>
       <h>42</h>
     </coordinates>
-    <panel_attributes>Work load is the number of hours and (optional) minutes
+    <panel_attributes>Workload is the number of hours and (optional) minutes
 of the task
 </panel_attributes>
     <additional_attributes/>
@@ -354,7 +355,7 @@ of the task
     <id>UMLClass</id>
     <coordinates>
       <x>644</x>
-      <y>651</y>
+      <y>714</y>
       <w>266</w>
       <h>112</h>
     </coordinates>
@@ -378,14 +379,14 @@ bg=yellow</panel_attributes>
       <x>763</x>
       <y>581</y>
       <w>70</w>
-      <h>84</h>
+      <h>147</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;
+    <panel_attributes>lt=&lt;-
 m1=0..*
 m2=0..*
 contains ^
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;190.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -428,21 +429,6 @@ m2=0..*
 manages v
 </panel_attributes>
     <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>378</x>
-      <y>350</y>
-      <w>63</w>
-      <h>126</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;
-m1=1
-m2=0..*
-creates v
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>

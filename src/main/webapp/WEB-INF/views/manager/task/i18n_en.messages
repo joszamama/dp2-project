@@ -22,3 +22,4 @@ manager.task.list.label.executionStart = Start of execution
 manager.task.list.label.executionEnd = End of execution
 manager.task.list.label.workloadHours = Workload (hours)
 manager.task.list.label.workloadMinutes = Workload (minutes)
+manager.task.form.label.workloadParsed = Workload (HH:mm)

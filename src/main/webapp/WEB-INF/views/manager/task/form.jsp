@@ -9,8 +9,7 @@
 	<acme:form-textbox code="manager.task.form.label.link" path="link"/>
 	<acme:form-moment code="manager.task.form.label.executionStart" path="executionStart"/>
 	<acme:form-moment code="manager.task.form.label.executionEnd" path="executionEnd"/>
-	<acme:form-double code="manager.task.form.label.workloadHours" path="workloadHours"/>
-	<acme:form-double code="manager.task.form.label.workloadMinutes" path="workloadMinutes"/>
+	<acme:form-double code="manager.task.form.label.workloadParsed" path="workloadParsed"/>
 	<acme:form-checkbox code="manager.task.form.label.isPrivate" path="isPrivate"/>
 	
 	<acme:form-submit test="${command == 'show' }" code="manager.task.form.button.update" action="/manager/task/update"/>

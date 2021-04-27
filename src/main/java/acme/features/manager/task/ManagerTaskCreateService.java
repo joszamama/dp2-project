@@ -49,7 +49,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "description", "link", "isPrivate");
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed", "description", "link", "isPrivate");
 
 	}
 
@@ -63,6 +63,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 		result = new Task();
 		result.setOwner(manager);
+		result.setWorkloadParsed("01:00");
 
 		return result;
 	}
@@ -72,6 +73,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
 
 		if (!errors.hasErrors("executionStart")) {
 			// executionStart must be in the future
@@ -85,18 +87,23 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
+		
 		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
 			// workload can't exceed the time between execution start and execution end
 			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
 			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
 			errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
 		}
+		
 	}
 
 	@Override
 	public void create(final Request<Task> request, final Task entity) {
 		assert request != null;
 		assert entity != null;
+		System.out.println("Workload: "+ entity.getWorkloadParsed());
+		
+		entity.setWorkloadParsed(entity.getWorkloadParsed());
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		if (isSpam == false) {

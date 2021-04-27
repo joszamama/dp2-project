@@ -12,3 +12,4 @@ anonymous.task.list.label.executionStart = Comienzo de ejecución
 anonymous.task.list.label.executionEnd = Fin de ejecución
 anonymous.task.list.label.workloadHours = Carga de trabajo (horas)
 anonymous.task.list.label.workloadMinutes = Carga de trabajo (minutos)
+anonymous.task.form.label.workloadParsed = Carga de trabajo (HH:mm)
