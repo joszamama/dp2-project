@@ -488,7 +488,12 @@
 	
 	<bean id="workPlan02" class="acme.entities.workPlans.WorkPlan">
 		<property name="title" value="Work plan number two"/>
-		<property name="tasks" ref="task09"/>
+		<property name="tasks">
+			<list>
+				<ref bean="task01"/>
+				<ref bean="task09"/>
+			</list>
+		</property>
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
