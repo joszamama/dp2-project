@@ -7,24 +7,48 @@
 <acme:form>
 	<acme:form-textbox code="manager.work-plan.form.label.title" path="title"/>
 	
-	<jstl:if test="${command == 'create' }">
+	<jstl:if test="${command == 'show' }">
 		<div class="form-group">
 		<label for="tasks">
 			<acme:message code="manager.work-plan.form.label.tasks" />
 		</label>
+		
+<%-- 			<acme:form-select code="manager.work-plan.form.label.selectedTasks" path="workplan.tasks">
+			<jstl:forEach items="${workplan.tasks}" var="task">
+ 			<acme:form-option code="${task.title}" value="tasks"/> 
+			</jstl:forEach>
+			</acme:form-select> --%>
+			
 			<acme:form-select code="manager.work-plan.form.label.tasks" path="tasks">
-			<%-- <c:forEach items="${tasks}" var="task">
-				<option><c:out value="${task.title}"/></option>
-			</c:forEach> --%>
 			<jstl:forEach items="${tasks}" var="task">
-<%-- 			<acme:form-option code="" value="${task.title}"/> --%>
-				<option><jstl:out value="${task.title}"></jstl:out><option>
+ 			<acme:form-option code="${task.title}" value="tasks"/> 
 			</jstl:forEach>
 			</acme:form-select>
+			
 	</div>
 	</jstl:if>
 	<jstl:if test="${command == 'create'}">
-	
+		<label for="tasks">
+			<acme:message code="manager.work-plan.form.label.tasks" />
+		</label>
+		<acme:form-option code="manager.work-plan.form.label.tasks" value="tasks"/>
+		
+<%-- 	<acme:form-select code="manager.work-plan.form.label.tasks" path="tasks">
+			<jstl:forEach items="${tasks}" var="task">
+ 			<acme:form-option code="${task.title}" value="tasks"/> 
+				<option><jstl:out value="${task.title}"></jstl:out><option>
+			</jstl:forEach>
+		</acme:form-select> --%>
+
+<%-- 		<c:forEach items="${tasks}" var="task">
+			<option><c:out value="${task.title}" /></option>
+		</c:forEach> --%>
+
+		<select id="tasks" size="3" class="form-control" multiple>
+			<c:forEach items="${tasks}" var="task">
+				<acme:form-option code="${task.title}" value="workplan.tasks"/>
+			</c:forEach>
+			</select>
 	
 	
 	
