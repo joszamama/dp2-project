@@ -38,7 +38,7 @@ public class ManagerWorkPlanController extends AbstractController<Manager, WorkP
 		super.addBasicCommand(BasicCommand.SHOW, this.updateService);
 		super.addBasicCommand(BasicCommand.UPDATE, this.updateService);
 		super.addBasicCommand(BasicCommand.CREATE, this.createService);
-//		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
+		super.addBasicCommand(BasicCommand.DELETE, this.deleteService);
 		super.addBasicCommand(BasicCommand.LIST, this.workPlanService); 
 	}
 

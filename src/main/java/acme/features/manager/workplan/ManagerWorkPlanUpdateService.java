@@ -58,7 +58,7 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed", "description", "link", "isPrivate");
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "isPrivate");
 	}
 
 	@Override
@@ -84,21 +84,21 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		if (!errors.hasErrors("executionStart")) {
 			// executionStart must be in the future
 			final Date now = new Date();
-			errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.WorkPlan.form.error.start");
+			errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.work-plan.form.error.start");
 
 		}
 		if (!errors.hasErrors("executionEnd")) {
 			// executionEnd must be after executionStart
-			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.WorkPlan.form.error.end");
+			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.work-plan.form.error.end");
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
-		errors.state(request, !isSpam, "*", "manager.WorkPlan.form.error.spamDetected");
+		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 		
 		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
 			// workload can't exceed the time between execution start and execution end
 			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
 			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-			errors.state(request, !tooMuchWorkload, "*", "manager.WorkPlan.form.error.tooMuchWorkload");
+			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
 		}
 		
 	}

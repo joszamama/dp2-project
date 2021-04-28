@@ -55,7 +55,7 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "tasks", "isPrivate");
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "workloadHours", "workloadMinutes","workloadParsed", "isPrivate");
 
 	}
 
@@ -69,10 +69,11 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 
 		//manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		
 		result = new WorkPlan();
 		result.setTasks(tasks);
 //		result.setOwner(manager);
-//		result.setWorkloadParsed("01:00");
+		result.setWorkloadParsed("01:00");
 
 		return result;
 	}
@@ -97,12 +98,12 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 		
-//		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
-//			// workload can't exceed the time between execution start and execution end
-//			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
-//			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-//			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
-//		}
+		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
+			// workload can't exceed the time between execution start and execution end
+			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
+			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
+			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
+		}
 		
 	}
 
@@ -111,9 +112,9 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert request != null;
 		assert entity != null;
 		
-//		System.out.println("Workload: "+ entity.getWorkloadParsed());
-//		
-//		entity.setWorkloadParsed(entity.getWorkloadParsed());
+		System.out.println("Workload: "+ entity.getWorkloadParsed());
+		
+		entity.setWorkloadParsed(entity.getWorkloadParsed());
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		if (isSpam == false) {

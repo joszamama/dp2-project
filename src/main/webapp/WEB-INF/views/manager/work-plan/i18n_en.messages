@@ -6,6 +6,7 @@ manager.work-plan.form.label.executionEnd = End of execution
 manager.work-plan.form.label.workloadHours = Workload (hours)
 manager.work-plan.form.label.workloadMinutes = Workload (minutes)
 manager.work-plan.form.label.isPrivate = Is it private?
+manager.work-plan.form.label.workloadParsed = Workload (HH:mm)
 manager.work-plan.form.button.return = Return
 
 manager.work-plan.form.button.create = Create
@@ -22,6 +23,7 @@ manager.work-plan.list.label.executionStart = Start of execution
 manager.work-plan.list.label.executionEnd = End of execution
 manager.work-plan.list.label.workloadHours = Workload (hours)
 manager.work-plan.list.label.workloadMinutes = Workload (minutes)
-manager.work-plan.form.label.workloadParsed = Workload (HH:mm)
+manager.work-plan.list.label.workloadParsed = Workload (HH:mm)
+
 
 manager.work-plan.form.label.tasks = Tasks

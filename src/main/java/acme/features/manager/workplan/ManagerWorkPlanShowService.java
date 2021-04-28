@@ -41,8 +41,8 @@ public class ManagerWorkPlanShowService implements AbstractShowService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title","tasks","isPrivate", "executionStart", "executionEnd", "workloadHours", "workloadMinutes");
-//		request.unbind(entity, model, "owner","description","link","isPrivate");	
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed");
+		request.unbind(entity, model, "tasks","isPrivate");	
 //		request.unbind(entity, model, );
 	}
 
