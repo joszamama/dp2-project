@@ -7,5 +7,5 @@
 	<acme:list-column code="anonymous.task.list.label.title" path="title" width="40%"/>
 	<acme:list-column code="anonymous.task.list.label.executionStart" path="executionStart" sortable="true" width="20%"/>
 	<acme:list-column code="anonymous.task.list.label.executionEnd" path="executionEnd" sortable="true" width="20%"/>
-	<acme:list-column code="anonymous.task.list.label.workload" path="workload" sortable="true" width="20%"/>
+	<acme:list-column code="anonymous.task.list.label.workloadParsed" path="workloadParsed" sortable="true" width="10%"/>
 </acme:list>

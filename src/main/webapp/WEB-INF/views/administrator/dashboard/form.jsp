@@ -95,7 +95,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-average-workloads"/>
 		</th>
 		<td>
-			<acme:print value="${averageWorkloads}"/>
+			<acme:print value="${averageWorkloadsHours}"/>:<acme:print value="${averageWorkloadsMinutes}"/>
 		</td>
 	</tr>
 	<tr>
@@ -103,7 +103,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-deviation-workloads"/>
 		</th>
 		<td>
-			<acme:print value="${deviationWorkloads}"/>
+			<acme:print value="${deviationWorkloadsHours}"/>:<acme:print value="${deviationWorkloadsMinutes}"/>
 		</td>
 	</tr>
 	<tr>
@@ -111,7 +111,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-minimum-workloads"/>
 		</th>
 		<td>
-			<acme:print value="${minimumWorkloads}"/>
+			<acme:print value="${minimumWorkloadsHours}"/>:<acme:print value="${minimumWorkloadsMinutes}"/>
 		</td>
 	</tr>
 	<tr>
@@ -119,7 +119,7 @@
 			<acme:message code="administrator.dashboard.form.label.number-maximum-workloads"/>
 		</th>
 		<td>
-			<acme:print value="${maximumWorkloads}"/>
+			<acme:print value="${maximumWorkloadsHours}"/>:<acme:print value="${maximumWorkloadsMinutes}"/>
 		</td>
 	</tr>	
 </table>

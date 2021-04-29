@@ -10,7 +10,7 @@
  * they accept any liabilities with respect to them.
  */
 
-package acme.features.administrator.parameters;
+package acme.features.administrator.configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -18,22 +18,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.spam.Spam;
+import acme.entities.configuration.Configuration;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Administrator;
 
 @Controller
-@RequestMapping("/administrator/spam/")
-public class AdministratorParametersController extends AbstractController<Administrator, Spam> {
+@RequestMapping("/administrator/configuration/")
+public class AdministratorConfigurationController extends AbstractController<Administrator, Configuration> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AdministratorParametersShowService showService;
+	protected AdministratorConfigurationShowService showService;
 	
 	@Autowired
-	protected AdministratorParametersCreateService createService;
+	protected AdministratorConfigurationCreateService createService;
 
 	// Constructors -----------------------------------------------------------
 

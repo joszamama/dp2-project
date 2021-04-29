@@ -1,52 +1,53 @@
-package acme.features.anonymous.task;
+package acme.features.anonymous.workPlan;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.tasks.Task;
+import acme.entities.workPlans.WorkPlan;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Anonymous;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AnonymousTaskListService implements AbstractListService<Anonymous, Task> {
+public class AnonymousWorkPlanListService implements AbstractListService<Anonymous, WorkPlan> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousTaskRepository repository;
+	protected AnonymousWorkPlanRepository repository;
 
 
 	// AbstractListService<Administrator, Task> interface --------------
 
 	@Override
-	public boolean authorise(final Request<Task> request) {
+	public boolean authorise(final Request<WorkPlan> request) {
 		assert request != null;
 
 		return true;
 	}
 
 	@Override
-	public void unbind(final Request<Task> request, final Task entity, final Model model) {
+	public void unbind(final Request<WorkPlan> request, final WorkPlan entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed");
+		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes");
 	}
 
 	@Override
-	public Collection<Task> findMany(final Request<Task> request) {
+	public Collection<WorkPlan> findMany(final Request<WorkPlan> request) {
 		assert request != null;
 
-		Collection<Task> result;
+		Collection<WorkPlan> result;
 
 		result = this.repository.findManyPublicAndNotFinished();
 
 		return result;
 	}
+
 
 }

@@ -24,6 +24,7 @@
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.shout.list" action="/anonymous/shout/list" />
 			<acme:menu-suboption code="master.menu.anonymous.task.list" action="/anonymous/task/list" />
+			<acme:menu-suboption code="master.menu.anonymous.work-plans.list" action="/anonymous/work-plans/list" />
 		</acme:menu-option>
 
 		<!-- Authenticated options -->
@@ -41,7 +42,7 @@
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list" />
 			<acme:menu-suboption code="master.menu.administrator.dashboard" action="/administrator/dashboard/show" />
-			<acme:menu-suboption code="master.menu.administrator.spam" action="/administrator/spam/show" />
+			<acme:menu-suboption code="master.menu.administrator.configuration" action="/administrator/configuration/show" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.administrator.populate-initial" action="/master/populate-initial" />
 			<acme:menu-suboption code="master.menu.administrator.populate-sample" action="/master/populate-sample" />

@@ -46,6 +46,9 @@ public class Shout extends DomainEntity {
 	protected String			info;
 
 	// Derived attributes -----------------------------------------------------
+	public void setAuthor(final String author) {
+		this.author = author.trim();
+	}
 
 	// Relationships ----------------------------------------------------------
 }

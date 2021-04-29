@@ -21,7 +21,7 @@ administrator.dashboard.form.label.number-deviation-execution-periods = Deviatio
 administrator.dashboard.form.label.number-minimum-execution-periods = Minimum task execution periods
 administrator.dashboard.form.label.number-maximum-execution-periods = Maximum task execution periods
 
-administrator.dashboard.form.label.number-average-workloads = Average task workloads
-administrator.dashboard.form.label.number-deviation-workloads = Deviation task workloads
-administrator.dashboard.form.label.number-minimum-workloads = Minimum task workloads
-administrator.dashboard.form.label.number-maximum-workloads = Maximum task workloads
+administrator.dashboard.form.label.number-average-workloads = Average task workloads (hours:minutes)
+administrator.dashboard.form.label.number-deviation-workloads = Deviation task workloads (hours:minutes)
+administrator.dashboard.form.label.number-minimum-workloads = Minimum task workloads (hours:minutes)
+administrator.dashboard.form.label.number-maximum-workloads = Maximum task workloads (hours:minutes)

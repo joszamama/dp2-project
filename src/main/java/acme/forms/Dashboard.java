@@ -31,16 +31,21 @@ public class Dashboard implements Serializable {
 	Integer						countFinishedTasks;
 	Integer						countPublicTasks;
 	Integer						countPrivateTasks;
-	
+
 	Double						averageExecutionPeriods;
 	Double						deviationExecutionPeriods;
 	Double						minimumExecutionPeriods;
 	Double						maximumExecutionPeriods;
 
-	Double						averageWorkloads;
-	Double						deviationWorkloads;
-	Double						minimumWorkloads;
-	Double						maximumWorkloads;
+	String						averageWorkloadsHours;
+	String						deviationWorkloadsHours;
+	String						minimumWorkloadsHours;
+	String						maximumWorkloadsHours;
+
+	String						averageWorkloadsMinutes;
+	String						deviationWorkloadsMinutes;
+	String						minimumWorkloadsMinutes;
+	String						maximumWorkloadsMinutes;
 
 	// Derived attributes -----------------------------------------------------
 
