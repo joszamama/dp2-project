@@ -43,3 +43,4 @@ administrator.dashboard.form.label.number-deviation-workplan-workloads = Deviati
 administrator.dashboard.form.label.number-minimum-workplan-workloads = Minimum workplan workloads (hours:minutes)
 administrator.dashboard.form.label.number-maximum-workplan-workloads = Maximum workplan workloads (hours:minutes)
 
+administrator.dashboard.form.title.application-statuses = Chart

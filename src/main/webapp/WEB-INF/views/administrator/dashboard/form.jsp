@@ -180,3 +180,53 @@
 	</tr>
 </table>
 
+<h2>
+	<acme:message
+		code="administrator.dashboard.form.title.application-statuses" />
+</h2>
+
+<div>
+	<canvas id="canvas"></canvas>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		var data = {
+			labels : [
+					"Total number of work plans, irrespective of their publication statuses", "Total number of work plans that are published"
+			],
+			datasets : [
+				{
+					data : [
+							<jstl:out value="${countPublicWorkplan + countPrivateWorkplan}"/>, <jstl:out value="${countPublicWorkplan}"/>,
+					]
+				}
+			]
+		};
+		var options = {
+			scales : {
+				yAxes : [
+					{
+						ticks : {
+							suggestedMin : 0.0,
+							suggestedMax : 1.0
+						}
+					}
+				]
+			},
+			legend : {
+				display : false
+			}
+		};
+
+		var canvas, context;
+
+		canvas = document.getElementById("canvas");
+		context = canvas.getContext("2d");
+		new Chart(context, {
+			type : "bar",
+			data : data,
+			options : options
+		});
+	});
+</script>
