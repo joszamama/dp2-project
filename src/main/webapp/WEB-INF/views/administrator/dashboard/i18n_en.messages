@@ -1,4 +1,4 @@
-# i18n_en.messages
+#administrator.dashboard.form.label.number-maximum-workplan-execution-periods i18n_en.messages
 #
 # Copyright (c) 2012-2021 Rafael Corchuelo.
 #
@@ -25,3 +25,21 @@ administrator.dashboard.form.label.number-average-workloads = Average task workl
 administrator.dashboard.form.label.number-deviation-workloads = Deviation task workloads (hours:minutes)
 administrator.dashboard.form.label.number-minimum-workloads = Minimum task workloads (hours:minutes)
 administrator.dashboard.form.label.number-maximum-workloads = Maximum task workloads (hours:minutes)
+
+# Workplan messages
+
+administrator.dashboard.form.label.number-public-workplans = Total number of public workplans.
+administrator.dashboard.form.label.number-private-workplans = Total number of private workplans.
+administrator.dashboard.form.label.number-finished-workplans = Total number of finished workplans.
+administrator.dashboard.form.label.number-non-finished-workplans = Total number of non-finished workplans.
+
+administrator.dashboard.form.label.number-average-workplan-execution-periods =  Average execution workplan periods.
+administrator.dashboard.form.label.number-deviation-workplan-execution-periods = Deviation execution workplan periods.
+administrator.dashboard.form.label.number-minimum-workplan-execution-periods = Minimum execution workplan periods.
+administrator.dashboard.form.label.number-maximum-workplan-execution-periods = Maximum execution workplan periods.
+
+administrator.dashboard.form.label.number-average-workplan-workloads = Average workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-deviation-workplan-workloads = Deviation workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-minimum-workplan-workloads = Minimum workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-maximum-workplan-workloads = Maximum workplan workloads (hours:minutes)
+

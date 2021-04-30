@@ -45,19 +45,18 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, //
-			"countNotFinishedTasks", // 
-			"countFinishedTasks", "countPublicTasks", //
-			"countPrivateTasks", //
-			"averageWorkloadsHours", "deviationWorkloadsHours", "minimumWorkloadsHours", "maximumWorkloadsHours", //
-			"averageWorkloadsMinutes", "deviationWorkloadsMinutes", "minimumWorkloadsMinutes", "maximumWorkloadsMinutes", //
-			"averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods");
+		request.unbind(entity, model, "countNotFinishedTasks", "countFinishedTasks", "countPublicTasks", "countPrivateTasks", "averageWorkloadsHours", "deviationWorkloadsHours", "minimumWorkloadsHours", "maximumWorkloadsHours", "averageWorkloadsMinutes",
+			"deviationWorkloadsMinutes", "minimumWorkloadsMinutes", "maximumWorkloadsMinutes", "averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods", "countNotFinishedWorkplan",
+			"countFinishedWorkplan", "countPublicWorkplan", "countPrivateWorkplan", "averageWorkplanExecutionPeriods", "deviationWorkplanExecutionPeriods", "minimumWorkplanExecutionPeriods", "maximumWorkplanExecutionPeriods",
+			"averageWorkplanWorkloadsHours", "deviationWorkplanWorkloadsHours", "minimumWorkplanWorkloadsHours", "maximumWorkplanWorkloadsHours", "averageWorkplanWorkloadsMinutes", "deviationWorkplanWorkloadsMinutes", "minimumWorkplanWorkloadsMinutes",
+			"maximumWorkplanWorkloadsMinutes");
 	}
 
 	@Override
 	public Dashboard findOne(final Request<Dashboard> request) {
 		assert request != null;
 
+		// Task information
 		final Dashboard result = new Dashboard();
 		final Integer countNotFinishedTasks = this.repository.countNotFinishedTasks();
 		final Integer countFinishedTasks = this.repository.countFinishedTasks();
@@ -93,6 +92,43 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setDeviationExecutionPeriods(deviationExecutionPeriods);
 		result.setMinimumExecutionPeriods(minimumExecutionPeriods);
 		result.setMaximumExecutionPeriods(maximumExecutionPeriods);
+
+		// WorkPlan Information
+
+		final Integer countNotFinishedWorkplan = this.repository.countNotFinishedWorkplans();
+		final Integer countFinishedWorkplan = this.repository.countFinishedWorkplans();
+		final Integer countPublicWorkplan = this.repository.countPublicWorkplans();
+		final Integer countPrivateWorkplan = this.repository.countPrivateWorkplans();
+
+		final Long averageWorkplanWorkloads = Math.round(this.repository.averageWorkplanWorkloads());
+		final Long deviationWorkplanWorkloads = Math.round(this.repository.deviationWorkplanWorkloads());
+		final Long minimumWorkplanWorkloads = Math.round(this.repository.minimumWorkplanWorkloads());
+		final Long maximumWorkplanWorkloads = Math.round(this.repository.maximumWorkplanWorkloads());
+
+		final Double averageWorkplanExecutionPeriods = this.repository.averageWorkplanExecutionPeriods();
+		final Double deviationWorkplanExecutionPeriods = this.repository.deviationWorkplanExecutionPeriods();
+		final Double minimumWorkplanExecutionPeriods = this.repository.minimumWorkplanExecutionPeriods();
+		final Double maximumWorkplanExecutionPeriods = this.repository.maximumWorkplanExecutionPeriods();
+
+		result.setCountFinishedWorkplan(countFinishedWorkplan);
+		result.setCountNotFinishedWorkplan(countNotFinishedWorkplan);
+		result.setCountPrivateWorkplan(countPrivateWorkplan);
+		result.setCountPublicWorkplan(countPublicWorkplan);
+
+		result.setAverageWorkplanWorkloadsHours(Long.toString(averageWorkloads / 60));
+		result.setDeviationWorkplanWorkloadsHours(Long.toString(deviationWorkloads / 60));
+		result.setMinimumWorkplanWorkloadsHours(Long.toString(minimumWorkloads / 60));
+		result.setMaximumWorkplanWorkloadsHours(Long.toString(maximumWorkloads / 60));
+
+		result.setAverageWorkplanWorkloadsMinutes(String.format("%02d", (averageWorkplanWorkloads % 60)));
+		result.setDeviationWorkplanWorkloadsMinutes(String.format("%02d", (deviationWorkplanWorkloads % 60)));
+		result.setMinimumWorkplanWorkloadsMinutes(String.format("%02d", (minimumWorkplanWorkloads % 60)));
+		result.setMaximumWorkplanWorkloadsMinutes(String.format("%02d", (maximumWorkplanWorkloads % 60)));
+
+		result.setAverageWorkplanExecutionPeriods(averageWorkplanExecutionPeriods);
+		result.setDeviationWorkplanExecutionPeriods(deviationWorkplanExecutionPeriods);
+		result.setMinimumWorkplanExecutionPeriods(minimumWorkplanExecutionPeriods);
+		result.setMaximumWorkplanExecutionPeriods(maximumWorkplanExecutionPeriods);
 
 		return result;
 	}

@@ -25,3 +25,20 @@ administrator.dashboard.form.label.number-average-workloads = Promedio de las ca
 administrator.dashboard.form.label.number-deviation-workloads = Desviación de las cargas de trabajo de las tareas (horas:minutos)
 administrator.dashboard.form.label.number-minimum-workloads = Carga de trabajo mínima de una tarea (horas:minutos)
 administrator.dashboard.form.label.number-maximum-workloads = Carga de trabajo máxima de una tarea (horas:minutos)
+
+# Mensajes de los planes de trabajo
+
+administrator.dashboard.form.label.number-public-workplans = Número total de planes de trabajo públicos
+administrator.dashboard.form.label.number-private-workplans = Número total de planes de trabajo privados
+administrator.dashboard.form.label.number-finished-workplans = Número total de planes de terminados
+administrator.dashboard.form.label.number-non-finished-workplans = Número total planes de trabajo no terminados
+
+administrator.dashboard.form.label.number-average-workplan-execution-periods = Período promedio de ejecución de planes de trabajo
+administrator.dashboard.form.label.number-deviation-workplan-execution-periods = Desviación del período de ejecución de los planes de trabajo
+administrator.dashboard.form.label.number-minimum-workplan-execution-periods = Período mínimo de ejecución de los planes de trabajo
+administrator.dashboard.form.label.number-maximum-workplan-execution-periods = Período máximo de ejecución de los planes de trabajo
+
+administrator.dashboard.form.label.number-average-workplan-workloads = Promedio de las cargas de trabajo de los planes de trabajo (horas:minutos)
+administrator.dashboard.form.label.number-deviation-workplan-workloads = Desviación de las cargas de trabajo de los planes de trabajo (horas:minutos)
+administrator.dashboard.form.label.number-minimum-workplan-workloads = Carga de trabajo mínima de un plan de trabajo (horas:minutos)
+administrator.dashboard.form.label.number-maximum-workplan-workloads = Carga de trabajo máxima de un plan de trabajo (horas:minutos)
