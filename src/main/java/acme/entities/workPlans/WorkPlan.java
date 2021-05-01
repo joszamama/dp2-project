@@ -4,7 +4,6 @@ package acme.entities.workPlans;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -31,6 +30,7 @@ public class WorkPlan extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
+
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	protected List<Task>		tasks;
 
@@ -38,14 +38,7 @@ public class WorkPlan extends DomainEntity {
 	@Length(max = 80)
 	protected String			title;
 
-	@NotNull
-	protected Date				executionStart;
-
-	@NotNull
-	protected Date				executionEnd;
-
 	@Min(0)
-	@NotNull
 	protected Integer			workloadHours;
 
 	@Min(0)
@@ -55,30 +48,67 @@ public class WorkPlan extends DomainEntity {
 	@Transient
 	protected String 			workloadParsed;
 
+	@Transient
+	protected String			workloadParsed;
+
+	@NotNull
+	protected Date				executionStart;
+
+	@NotNull
+	protected Date				executionEnd;
+
 	@NotNull
 	protected Boolean			isPrivate;
+
 	// Object interface -------------------------------------------------------
 
-	
-	public String getWorkloadParsed() {
-		String res = "";
-		if(this.getWorkloadMinutes() != null) {
-			if(this.getWorkloadMinutes()>9) {
-				res = this.getWorkloadHours() + ":" + this.getWorkloadMinutes();
-			}else {
-				res = this.getWorkloadHours() + ":0" + this.getWorkloadMinutes();
-			}
-			
-		}else {
-			res = this.getWorkloadHours() + ":00";
-		}
-		return res;
-	}
-	
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
 		final String[] work = workload.split(":");
 		this.setWorkloadHours(Integer.valueOf(work[0]));
 		this.setWorkloadMinutes(Integer.valueOf(work[1]));
 	}
+
+	public void getExecutionPeriod() {
+		Date start = this.executionStart;
+		Date end = this.executionEnd;
+		for (final Task task : this.tasks) {
+			if (task.getExecutionStart().before(start)) {
+				start = task.getExecutionStart();
+			}
+			if (task.getExecutionEnd().after(end)) {
+				end = task.getExecutionEnd();
+			}
+		}
+		this.setExecutionEnd(end);
+		this.setExecutionStart(start);
+	}
+
+	public String getWorkloadParsed() {
+		Integer resH = 0;
+		Integer resM = 0;
+		for (final Task task : this.tasks) {
+			resH += task.getWorkloadHours();
+			resM += task.getWorkloadMinutes();
+		}
+		this.setWorkloadHours(resH);
+		this.setWorkloadMinutes(resM);
+
+		while (resM >= 60) {
+			resH += 1;
+			resM -= 60;
+		}
+		String res = "";
+		if (resM != null) {
+			if (resM > 9) {
+				res = resH + ":" + resM;
+			} else {
+				res = resH + ":0" + resM;
+			}
+
+		}
+		return res;
+
+	}
+
 }

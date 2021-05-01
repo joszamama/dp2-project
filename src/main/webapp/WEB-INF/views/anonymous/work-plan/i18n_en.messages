@@ -3,13 +3,11 @@ anonymous.work-plan.form.label.description = Description
 anonymous.work-plan.form.label.link = Link
 anonymous.work-plan.form.label.executionStart = Start of execution
 anonymous.work-plan.form.label.executionEnd = End of execution
-anonymous.work-plan.form.label.workloadHours = Workload (hours)
-anonymous.work-plan.form.label.workloadMinutes = Workload (minutes)
+anonymous.work-plan.form.label.workloadParsed = Workload (HH:mm)
 anonymous.work-plan.form.button.return = Return
 anonymous.work-plan.form.label.tasks = Tasks
 
 anonymous.work-plan.list.label.title = Title
 anonymous.work-plan.list.label.executionStart = Start of execution
 anonymous.work-plan.list.label.executionEnd = End of execution
-anonymous.work-plan.list.label.workloadHours = Workload (hours)
-anonymous.work-plan.list.label.workloadMinutes = Workload (minutes)
+anonymous.work-plan.list.label.workloadParsed = Workload (HH:mm)

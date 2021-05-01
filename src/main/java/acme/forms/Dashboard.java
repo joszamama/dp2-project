@@ -27,6 +27,7 @@ public class Dashboard implements Serializable {
 
 	// Attributes -------------------------------------------------------------
 
+	// Task information
 	Integer						countNotFinishedTasks;
 	Integer						countFinishedTasks;
 	Integer						countPublicTasks;
@@ -46,6 +47,29 @@ public class Dashboard implements Serializable {
 	String						deviationWorkloadsMinutes;
 	String						minimumWorkloadsMinutes;
 	String						maximumWorkloadsMinutes;
+
+	// WorkPlan information
+	Integer						countNotFinishedWorkplan;
+	Integer						countFinishedWorkplan;
+	Integer						countPublicWorkplan;
+	Integer						countPrivateWorkplan;
+
+	Double						averageWorkplanExecutionPeriods;
+	Double						deviationWorkplanExecutionPeriods;
+	Double						minimumWorkplanExecutionPeriods;
+	Double						maximumWorkplanExecutionPeriods;
+	
+	
+
+	String						averageWorkplanWorkloadsHours;
+	String						deviationWorkplanWorkloadsHours;
+	String						minimumWorkplanWorkloadsHours;
+	String						maximumWorkplanWorkloadsHours;
+
+	String						averageWorkplanWorkloadsMinutes;
+	String						deviationWorkplanWorkloadsMinutes;
+	String						minimumWorkplanWorkloadsMinutes;
+	String						maximumWorkplanWorkloadsMinutes;
 
 	// Derived attributes -----------------------------------------------------
 

@@ -7,3 +7,5 @@
 # this software. It has been tested carefully, but it is not guaranteed for any particular
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
+
+30/04/2021 - 21.3 Fixed some bugs that prevented the populator from working well when deployed to Clever Cloud.
