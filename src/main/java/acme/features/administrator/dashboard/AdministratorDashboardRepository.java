@@ -1,9 +1,12 @@
 
 package acme.features.administrator.dashboard;
 
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.workPlans.WorkPlan;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
@@ -82,4 +85,7 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 
 	@Query("select max(wp.workloadHours * 60 + wp.workloadMinutes) from WorkPlan wp")
 	Double maximumWorkplanWorkloads();
+	
+	@Query("select w from WorkPlan w ")
+	Set<WorkPlan> findAllWorkPlans ();
 }

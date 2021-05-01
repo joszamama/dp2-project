@@ -4,10 +4,11 @@ package acme.entities.workPlans;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
+import javax.validation.ValidationException;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -30,12 +31,22 @@ public class WorkPlan extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	protected List<Task>		tasks;
 
 	@NotBlank
 	@Length(max = 80)
 	protected String			title;
+
+	@Min(0)
+	protected Integer			workloadHours;
+
+	@Min(0)
+	@Max(60)
+	protected Integer			workloadMinutes;
+
+	@Transient
+	protected String			workloadParsed;
 
 	@NotNull
 	protected Date				executionStart;
@@ -43,16 +54,46 @@ public class WorkPlan extends DomainEntity {
 	@NotNull
 	protected Date				executionEnd;
 
-	@Min(0)
-	@NotNull
-	protected Integer			workloadHours;
 
-	@Min(0)
-	@Max(60)
-	protected Integer			workloadMinutes;
+	public void tasksMustBePublic() throws ValidationException {
+		if (this.isPrivate == false) {
+			for (final Task task : this.tasks) {
+				if (task.getIsPrivate()) {
+					throw new ValidationException("Un workplan público no puede contener tareas privadas.");
+				}
+			}
+		}
+	}
+	public String getWorkloadParsed() {
+		Integer resH = 0;
+		Integer resM = 0;
+		for (final Task task : this.tasks) {
+			resH += task.getWorkloadHours();
+			resM += task.getWorkloadMinutes();
+		}
+		this.setWorkloadHours(resH);
+		this.setWorkloadMinutes(resM);
+
+		while (resM >= 60) {
+			resH += 1;
+			resM -= 60;
+		}
+		String res = "";
+		if (resM != null) {
+			if (resM > 9) {
+				res = resH + ":" + resM;
+			} else {
+				res = resH + ":0" + resM;
+			}
+
+		}
+		return res;
+
+	}
+
 
 	@NotNull
-	protected Boolean			isPrivate;
+	protected Boolean isPrivate;
 	// Object interface -------------------------------------------------------
 
 }
