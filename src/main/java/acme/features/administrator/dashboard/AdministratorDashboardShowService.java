@@ -177,8 +177,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		result.setCountFinishedWorkplan(this.repository.countNotFinishedWorkplans());
 		result.setCountNotFinishedWorkplan(this.repository.countFinishedWorkplans());
-		result.setCountPrivateWorkplan(this.repository.countPublicWorkplans());
-		result.setCountPublicWorkplan(this.repository.countPrivateWorkplans());
+		result.setCountPrivateWorkplan(this.repository.countPrivateWorkplans());
+		result.setCountPublicWorkplan(this.repository.countPublicWorkplans());
 
 		result.setAverageWorkplanWorkloadsHours(Long.toString(this.getAverageWorkplanWorkloads(request) / 60));
 		result.setDeviationWorkplanWorkloadsHours(Integer.toString(this.getStdDevWorkplanWorkloads(request) / 60));
