@@ -504,10 +504,6 @@
 			<ref bean="task01"/>		
 			<ref bean="task09"/>	
 		</list>
-			<list>
-				<ref bean="task01"/>
-				<ref bean="task09"/>
-			</list>
 
 		</property>
 		<property name="isPrivate" value="false" />

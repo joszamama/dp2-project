@@ -4,6 +4,7 @@ package acme.entities.workPlans;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
@@ -47,9 +48,6 @@ public class WorkPlan extends DomainEntity {
 	
 	@Transient
 	protected String 			workloadParsed;
-
-	@Transient
-	protected String			workloadParsed;
 
 	@NotNull
 	protected Date				executionStart;
