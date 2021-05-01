@@ -117,8 +117,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			for (final Task task : workPlan.getTasks()) {
 				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
 			}
-			numArray.add(resH*1.);
-		}	
+			numArray.add(resH * 1.);
+		}
 		res = AdministratorDashboardShowService.calculateSD(numArray);
 		return res;
 	}
@@ -177,8 +177,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		result.setCountFinishedWorkplan(this.repository.countNotFinishedWorkplans());
 		result.setCountNotFinishedWorkplan(this.repository.countFinishedWorkplans());
-		result.setCountPrivateWorkplan(this.repository.countPublicWorkplans());
-		result.setCountPublicWorkplan(this.repository.countPrivateWorkplans());
+		result.setCountPrivateWorkplan(this.repository.countPrivateWorkplans());
+		result.setCountPublicWorkplan(this.repository.countPublicWorkplans());
 
 		result.setAverageWorkplanWorkloadsHours(Long.toString(this.getAverageWorkplanWorkloads(request) / 60));
 		result.setDeviationWorkplanWorkloadsHours(Integer.toString(this.getStdDevWorkplanWorkloads(request) / 60));
