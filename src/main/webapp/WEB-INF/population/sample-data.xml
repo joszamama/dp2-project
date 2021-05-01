@@ -171,7 +171,7 @@
 		<property name="link" value="http://first.task" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/02/01 14:00" />
-		<property name="executionEnd" value="2022/03/25 17:30" />
+		<property name="executionEnd" value="2024/03/25 17:30" />
 		<property name="workloadHours" value="1" />
 		<property name="workloadMinutes" value="30" />
 	</bean>

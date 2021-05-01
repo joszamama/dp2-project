@@ -4,8 +4,8 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:list>
-	<acme:list-column code="anonymous.work-plan.list.label.title" path="title" width="40%"/>
-	<acme:list-column code="anonymous.work-plan.list.label.executionStart" path="executionStart" sortable="true" width="20%"/>
-	<acme:list-column code="anonymous.work-plan.list.label.executionEnd" path="executionEnd" sortable="true" width="20%"/>
+	<acme:list-column code="anonymous.work-plan.list.label.title" path="title" width="30%"/>
+	<acme:list-column code="anonymous.work-plan.list.label.executionStart" path="executionStart" sortable="true" width="25%"/>
+	<acme:list-column code="anonymous.work-plan.list.label.executionEnd" path="executionEnd" sortable="true" width="25%"/>
 	<acme:list-column code="anonymous.work-plan.list.label.workloadParsed" path="workloadParsed" sortable="true" width="20%"/>
 </acme:list>

@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
-import javax.validation.ValidationException;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -54,16 +53,27 @@ public class WorkPlan extends DomainEntity {
 	@NotNull
 	protected Date				executionEnd;
 
+	@NotNull
+	protected Boolean			isPrivate;
 
-	public void tasksMustBePublic() throws ValidationException {
-		if (this.isPrivate == false) {
-			for (final Task task : this.tasks) {
-				if (task.getIsPrivate()) {
-					throw new ValidationException("Un workplan público no puede contener tareas privadas.");
-				}
+	// Object interface -------------------------------------------------------
+
+
+	public void getExecutionPeriod() {
+		Date start = this.executionStart;
+		Date end = this.executionEnd;
+		for (final Task task : this.tasks) {
+			if (task.getExecutionStart().before(start)) {
+				start = task.getExecutionStart();
+			}
+			if (task.getExecutionEnd().after(end)) {
+				end = task.getExecutionEnd();
 			}
 		}
+		this.setExecutionEnd(end);
+		this.setExecutionStart(start);
 	}
+
 	public String getWorkloadParsed() {
 		Integer resH = 0;
 		Integer resM = 0;
@@ -90,10 +100,5 @@ public class WorkPlan extends DomainEntity {
 		return res;
 
 	}
-
-
-	@NotNull
-	protected Boolean isPrivate;
-	// Object interface -------------------------------------------------------
 
 }
