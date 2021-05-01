@@ -56,8 +56,7 @@ public class Task extends DomainEntity {
 	protected Integer			workloadMinutes;
 	
 	@Transient
-	protected String 			workloadParsed;
-	
+	protected String 			workloadParsed;	
 
 	@NotBlank
 	@Length(max = 500)

@@ -30,7 +30,8 @@ public class WorkPlan extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	@ManyToMany(fetch = FetchType.EAGER)
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	protected List<Task>		tasks;
 
 	@NotBlank
@@ -43,6 +44,9 @@ public class WorkPlan extends DomainEntity {
 	@Min(0)
 	@Max(60)
 	protected Integer			workloadMinutes;
+	
+	@Transient
+	protected String 			workloadParsed;
 
 	@Transient
 	protected String			workloadParsed;
@@ -58,6 +62,12 @@ public class WorkPlan extends DomainEntity {
 
 	// Object interface -------------------------------------------------------
 
+	public void setWorkloadParsed(String workload) {
+		workload = workload.trim();
+		final String[] work = workload.split(":");
+		this.setWorkloadHours(Integer.valueOf(work[0]));
+		this.setWorkloadMinutes(Integer.valueOf(work[1]));
+	}
 
 	public void getExecutionPeriod() {
 		Date start = this.executionStart;
