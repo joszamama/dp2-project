@@ -54,6 +54,10 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		final List<Task> tasks;
+		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		
+		model.setAttribute("allTasks", tasks);
 
 		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "workloadHours", "workloadMinutes","workloadParsed", "isPrivate");
 
@@ -65,14 +69,14 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 
 		final WorkPlan result;
 		final Manager manager;
-		final List<Task> tasks;
+		
 
 		//manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
-		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		
 		
 		result = new WorkPlan();
-		result.setTasks(tasks);
-//		result.setOwner(manager);
+		//result.setTasks(tasks);
+		//result.setOwner(manager);
 		result.setWorkloadParsed("01:00");
 
 		return result;
@@ -111,6 +115,8 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 	public void create(final Request<WorkPlan> request, final WorkPlan entity) {
 		assert request != null;
 		assert entity != null;
+		
+		//carlos: Vamos a ver aquí habra que coger las TAreas seleccionadas en la vista y despues hacerle un set al workplan
 		
 		System.out.println("Workload: "+ entity.getWorkloadParsed());
 		

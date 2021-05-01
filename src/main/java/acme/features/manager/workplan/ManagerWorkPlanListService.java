@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.workPlans.WorkPlan;
+import acme.features.anonymous.workPlan.AnonymousWorkPlanRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
@@ -14,41 +15,39 @@ import acme.framework.services.AbstractListService;
 @Service
 public class ManagerWorkPlanListService implements AbstractListService<Manager, WorkPlan>{
 
-	@Autowired
-	private ManagerWorkPlanRepository	repository;
-	
-//	@Autowired
-//	private ManagerTaskRepository	taskRepository;
-//
-//	@Autowired
-//	private ManagerRepository		managerRepository;
+	// Internal state ---------------------------------------------------------
+
+		@Autowired
+		protected AnonymousWorkPlanRepository repository;
 
 
-	@Override
-	public boolean authorise(final Request<WorkPlan> request) {
-		assert request != null;
+		// AbstractListService<Administrator, Task> interface --------------
 
-		return true;
-	}
+		@Override
+		public boolean authorise(final Request<WorkPlan> request) {
+			assert request != null;
 
-	
-	@Override
-	public void unbind(final Request<WorkPlan> request, final WorkPlan entity, final Model model) {
-		assert request != null;
-		assert entity != null;
-		assert model != null;
+			return true;
+		}
 
-		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed");
-	}
+		@Override
+		public void unbind(final Request<WorkPlan> request, final WorkPlan entity, final Model model) {
+			assert request != null;
+			assert entity != null;
+			assert model != null;
 
-	@Override
-	public Collection<WorkPlan> findMany(final Request<WorkPlan> request) {
-		assert request != null;
+			request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadParsed");
+		}
 
-		Collection<WorkPlan> result;
+		@Override
+		public Collection<WorkPlan> findMany(final Request<WorkPlan> request) {
+			assert request != null;
 
-		result = this.repository.findMany();
+			Collection<WorkPlan> result;
 
-		return result;
-	}
+			result = this.repository.findManyPublicAndNotFinished();
+
+			return result;
+		}
+
 }
