@@ -111,7 +111,7 @@
 		if(languageCode.startsWith("es")) {
 			dateString += ("0" + date.getDate()).slice(-2);
 			dateString += "/";
-			dateString += ("0" + date.getMonth()).slice(-2);
+			dateString += ("0" + (date.getMonth() + 1)).slice(-2);
 			dateString += "/";
 			dateString += ("0000" + date.getFullYear()).slice(-4);
 			dateString += " ";
@@ -121,7 +121,7 @@
 		} else if(languageCode.startsWith("en")) {
 			dateString += ("0000" + date.getFullYear()).slice(-4);
 			dateString += "/";
-			dateString += ("0" + date.getMonth()).slice(-2);
+			dateString += ("0" + (date.getMonth() + 1)).slice(-2);
 			dateString += "/";
 			dateString += ("0" + date.getDate()).slice(-2);
 			dateString += " ";
