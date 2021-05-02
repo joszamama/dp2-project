@@ -15,7 +15,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <acme:form>
@@ -33,7 +33,11 @@
 			<div class="col">
 				<select id="allTasks" size="6" class="form-control">
 					<c:forEach items="${allTasks}" var="task">
-						<option value="${task.id}"><c:out value="${task.title}" /></option>
+						<option value="${task.id}"><c:out value="${task.title}" />
+							<fmt:formatDate pattern="dd/MM/yy HH:mm"
+								value="${task.executionStart}" />-
+							<fmt:formatDate pattern="dd/MM/yy HH:mm"
+								value="${task.executionEnd}" /></option>
 					</c:forEach>
 				</select>
 			</div>
@@ -59,12 +63,16 @@
 				</select>
 			</div>
 		</div>
+		<div class="row">
+			<acme:form-errors path="tasks"/>	
+		</div>
 	</div>
 	<acme:form-textbox code="anonymous.work-plan.form.label.executionStart"
 		path="executionStart" />
 	<acme:form-textbox code="anonymous.work-plan.form.label.executionEnd"
 		path="executionEnd" />
-	<acme:form-checkbox code="manager.work-plan.form.label.isPrivate" path="isPrivate"/>
+	<acme:form-checkbox code="manager.work-plan.form.label.isPrivate"
+		path="isPrivate" />
 
 
 	<acme:form-submit test="${command == 'show' }"
@@ -104,28 +112,26 @@
 		$("#selectedTasks option:selected").remove();
 		removeTask(id);
 	}
-	
-	function addTask(id){
+
+	function addTask(id) {
 		taskSelection.push(id);
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
 	}
-	
-	function removeTask(id){
-		taskSelection = taskSelection.filter(function(value){
+
+	function removeTask(id) {
+		taskSelection = taskSelection.filter(function(value) {
 			return value != id;
 		});
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
 	}
-	
-	$(document).on("click", "#task-add",function() {
-		addToSelected();
-    });
-	
-	$(document).on("click", "#task-remove",function() {
-		removeFromSelected();
-    });
-	
 
+	$(document).on("click", "#task-add", function() {
+		addToSelected();
+	});
+
+	$(document).on("click", "#task-remove", function() {
+		removeFromSelected();
+	});
 </script>

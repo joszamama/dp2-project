@@ -19,6 +19,7 @@ manager.work-plan.form.error.tooMuchWorkload = Cannot create work-plan with a bi
 manager.work-plan.form.error.spamDetected = Cannot create work-plan with spam
 manager.work-plan.form.error.executionStartTooLate = There cannot be tasks that start before the work-plan
 manager.work-plan.form.error.executionEndTooEarly = There cannot be tasks that finish after the work-plan
+manager.work-plan.form.error.noTasks = Cant create a workplan without tasks
 
 manager.work-plan.list.label.title = Title
 manager.work-plan.list.label.executionStart = Start of execution

@@ -105,24 +105,31 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		final List<Task> tasks = new ArrayList<>();
 		final String tasksParsed = entity.getTasksParsed();
 		final String[] tasksId = tasksParsed.split(",");
-		if (tasksId.length > 0) {
+		if (!tasksParsed.isEmpty()) {
 			for (int i = 0; i < tasksId.length; i++) {
 				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
 				tasks.add(task);
 			}
 		}
+		if (!errors.hasErrors("tasks") && tasks.isEmpty()) {
+			errors.state(request, false, "tasks", "manager.work-plan.form.error.noTasks");
+		}
 		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-		for (final Task t : tasks) {
-			if (t.getExecutionStart().before(entity.getExecutionStart())) {
-				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
-				break;
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionStart().before(entity.getExecutionStart())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
+					break;
+				}
 			}
 		}
 		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-		for (final Task t : tasks) {
-			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
-				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
-				break;
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
+					break;
+				}
 			}
 		}
 
