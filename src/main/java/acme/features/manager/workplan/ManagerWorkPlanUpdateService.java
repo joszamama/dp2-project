@@ -147,9 +147,19 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert request != null;
 		assert entity != null;
 		
-//		System.out.println("Workload: "+ entity.getWorkloadParsed());
-//		
-//		entity.setWorkloadParsed(entity.getWorkloadParsed());
+		final List<Task> tasks = new ArrayList<>();
+		final String tasksParsed = entity.getTasksParsed();
+		final String[] tasksId = tasksParsed.split(",");
+
+		if (tasksId.length > 0) {
+			for (int i = 0; i < tasksId.length; i++) {
+				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
+				tasks.add(task);
+			}
+		}
+		entity.setTasks(tasks);
+		final String workloadParsed = entity.getWorkloadParsed();
+		entity.setWorkloadParsed(workloadParsed);
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		if (isSpam == false) {

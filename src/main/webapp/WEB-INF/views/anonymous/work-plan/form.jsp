@@ -27,7 +27,7 @@
 		</label>
 		<div class="list-group">
 			<c:forEach items="${tasks}" var="task">
-				<a href="#"
+				<a href="${task.link}"
 					class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1">
@@ -41,7 +41,7 @@
 					<p class="mb-1">
 						<c:out value="${task.description}" />
 					</p> <small class="text-muted"><acme:message
-							code="anonymous.work-plan.list.label.workloadParsed" /> <c:out
+							code="anonymous.work-plan.list.label.workloadParsed" />: <c:out
 							value="${task.workloadParsed}" /></small>
 				</a>
 			</c:forEach>

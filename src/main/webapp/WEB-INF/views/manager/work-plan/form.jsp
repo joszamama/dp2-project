@@ -59,7 +59,11 @@
 						value="<acme:print value="${requestScope[tasksParsed]}"/>" /> <select
 						id="selectedTasks" size="6" class="form-control">
 						<c:forEach items="${tasks}" var="task">
-							<option value="${task.id}"><c:out value="${task.title}" /></option>
+							<option value="${task.id}"><c:out value="${task.title}" />(
+								<fmt:formatDate pattern="dd/MM/yy HH:mm"
+									value="${task.executionStart}" />-
+								<fmt:formatDate pattern="dd/MM/yy HH:mm"
+									value="${task.executionEnd}" />)</option>
 						</c:forEach>
 					</select>
 				</div>
