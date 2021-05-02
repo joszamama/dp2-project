@@ -44,3 +44,7 @@ administrator.dashboard.form.label.number-minimum-workplan-workloads = Minimum w
 administrator.dashboard.form.label.number-maximum-workplan-workloads = Maximum workplan workloads (hours:minutes)
 
 administrator.dashboard.form.title.application-statuses = Chart
+
+administrator.dashboard.form.title.total-workplan-number = Total number of work plans
+administrator.dashboard.form.title.public-workplan-number = Published work plans
+administrator.dashboard.form.title.private-workplan-number = Non-published work plans
