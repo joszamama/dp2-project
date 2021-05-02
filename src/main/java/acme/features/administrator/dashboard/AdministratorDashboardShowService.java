@@ -100,7 +100,6 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		for (final WorkPlan workPlan : workPlans) {
 			for (final Task task : workPlan.getTasks()) {
 				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
-				System.out.println(resH);
 			}
 			res = resH;
 		}

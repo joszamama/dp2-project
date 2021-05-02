@@ -16,10 +16,10 @@ administrator.dashboard.form.label.number-private-tasks =  Número total de tare
 administrator.dashboard.form.label.number-finished-tasks = Número total de tareas terminadas
 administrator.dashboard.form.label.number-non-finished-tasks = Número total de tareas no terminadas
 
-administrator.dashboard.form.label.number-average-execution-periods = Período promedio de ejecución de tareas
-administrator.dashboard.form.label.number-deviation-execution-periods = Desviación del período de ejecución de tareas
-administrator.dashboard.form.label.number-minimum-execution-periods = Período mínimo de ejecución de tareas
-administrator.dashboard.form.label.number-maximum-execution-periods = Período máximo de ejecución de tareas
+administrator.dashboard.form.label.number-average-execution-periods = Período promedio de ejecución de tareas (días)
+administrator.dashboard.form.label.number-deviation-execution-periods = Desviación del período de ejecución de tareas (días)
+administrator.dashboard.form.label.number-minimum-execution-periods = Período mínimo de ejecución de tareas (días)
+administrator.dashboard.form.label.number-maximum-execution-periods = Período máximo de ejecución de tareas (días)
 
 administrator.dashboard.form.label.number-average-workloads = Promedio de las cargas de trabajo de las tareas (horas:minutos)
 administrator.dashboard.form.label.number-deviation-workloads = Desviación de las cargas de trabajo de las tareas (horas:minutos)
@@ -33,10 +33,10 @@ administrator.dashboard.form.label.number-private-workplans = Número total de p
 administrator.dashboard.form.label.number-finished-workplans = Número total de planes de terminados
 administrator.dashboard.form.label.number-non-finished-workplans = Número total planes de trabajo no terminados
 
-administrator.dashboard.form.label.number-average-workplan-execution-periods = Período promedio de ejecución de planes de trabajo
-administrator.dashboard.form.label.number-deviation-workplan-execution-periods = Desviación del período de ejecución de los planes de trabajo
-administrator.dashboard.form.label.number-minimum-workplan-execution-periods = Período mínimo de ejecución de los planes de trabajo
-administrator.dashboard.form.label.number-maximum-workplan-execution-periods = Período máximo de ejecución de los planes de trabajo
+administrator.dashboard.form.label.number-average-workplan-execution-periods = Período promedio de ejecución de planes de trabajo (días)
+administrator.dashboard.form.label.number-deviation-workplan-execution-periods = Desviación del período de ejecución de los planes de trabajo (días)
+administrator.dashboard.form.label.number-minimum-workplan-execution-periods = Período mínimo de ejecución de los planes de trabajo (días)
+administrator.dashboard.form.label.number-maximum-workplan-execution-periods = Período máximo de ejecución de los planes de trabajo (días)
 
 administrator.dashboard.form.label.number-average-workplan-workloads = Promedio de las cargas de trabajo de los planes de trabajo (horas:minutos)
 administrator.dashboard.form.label.number-deviation-workplan-workloads = Desviación de las cargas de trabajo de los planes de trabajo (horas:minutos)

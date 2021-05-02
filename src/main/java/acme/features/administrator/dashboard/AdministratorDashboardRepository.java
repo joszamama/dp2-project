@@ -31,10 +31,10 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double deviationExecutionPeriods();
 
 	@Query("select min(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Double minimumExecutionPeriods();
+	Integer minimumExecutionPeriods();
 
 	@Query("select max(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Double maximumExecutionPeriods();
+	Integer maximumExecutionPeriods();
 
 	@Query("select avg(t.workloadHours * 60 + t.workloadMinutes) from Task t")
 	Double averageWorkloads();
@@ -69,10 +69,10 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double deviationWorkplanExecutionPeriods();
 
 	@Query("select min(to_days(wp.executionEnd)-to_days(wp.executionStart)) from WorkPlan wp")
-	Double minimumWorkplanExecutionPeriods();
+	Integer minimumWorkplanExecutionPeriods();
 
 	@Query("select max(to_days(wp.executionEnd)-to_days(wp.executionStart)) from WorkPlan wp")
-	Double maximumWorkplanExecutionPeriods();
+	Integer maximumWorkplanExecutionPeriods();
 
 	@Query("select avg(wp.workloadHours * 60 + wp.workloadMinutes) from WorkPlan wp")
 	Double averageWorkplanWorkloads();
