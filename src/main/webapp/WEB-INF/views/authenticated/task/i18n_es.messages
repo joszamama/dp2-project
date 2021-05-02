@@ -13,3 +13,4 @@ authenticated.task.list.label.executionEnd = Fin de ejecución
 authenticated.task.list.label.workloadHours = Carga de trabajo (horas)
 authenticated.task.list.label.workloadMinutes = Carga de trabajo (minutos)
 authenticated.task.list.label.workloadParsed = Carga de trabajo (HH:mm)
+authenticated.task.form.label.workloadParsed = Carga de trabajo (HH:mm)

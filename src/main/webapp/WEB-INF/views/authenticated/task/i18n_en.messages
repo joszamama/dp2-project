@@ -13,3 +13,4 @@ authenticated.task.list.label.executionEnd = End of execution
 authenticated.task.list.label.workloadHours = Workload (hours)
 authenticated.task.list.label.workloadMinutes = Workload (minutes)
 authenticated.task.list.label.workloadParsed = Workload (HH:mm)
+authenticated.task.form.label.workloadParsed = Workload (HH:mm)
