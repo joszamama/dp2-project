@@ -17,6 +17,8 @@ manager.work-plan.form.error.start = No se puede crear el plan de trabajo con es
 manager.work-plan.form.error.end = No se puede crear el plan de trabajo con esta fecha de fin
 manager.work-plan.form.error.tooMuchWorkload = No se puede crear el plan de trabajo con una carga de trabajo mayor que el tiempo entre los tiempos de ejecución
 manager.work-plan.form.error.spamDetected = No se puede crear el plan de trabajo con spam
+manager.work-plan.form.error.executionStartTooLate = No puede haber tareas que empiezan antes de el plan de trabajo
+manager.work-plan.form.error.executionEndTooEarly = No puede haber tareas que finalizan después de el plan de trabajo
 
 manager.work-plan.list.label.title = Título
 manager.work-plan.list.label.executionStart = Comienzo de ejecución

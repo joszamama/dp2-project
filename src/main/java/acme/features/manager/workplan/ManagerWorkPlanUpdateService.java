@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.components.SpamFilterService;
+import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -93,14 +94,22 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
-		
-		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
-			// workload can't exceed the time between execution start and execution end
-			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
-			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
+
+		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
+		for (final Task t : entity.getTasks()) {
+			if (t.getExecutionStart().before(entity.getExecutionStart())) {
+				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
+				break;
+			}
 		}
-		
+		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
+		for (final Task t : entity.getTasks()) {
+			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
+				break;
+			}
+		}
+
 	}
 
 	@Override

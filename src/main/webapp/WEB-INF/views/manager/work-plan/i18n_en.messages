@@ -17,6 +17,8 @@ manager.work-plan.form.error.start = Cannot create work-plan with this start dat
 manager.work-plan.form.error.end = Cannot create work-plan with this end date
 manager.work-plan.form.error.tooMuchWorkload = Cannot create work-plan with a bigger workload than the time between execution times
 manager.work-plan.form.error.spamDetected = Cannot create work-plan with spam
+manager.work-plan.form.error.executionStartTooLate = There cannot be tasks that start before the work-plan
+manager.work-plan.form.error.executionEndTooEarly = There cannot be tasks that finish after the work-plan
 
 manager.work-plan.list.label.title = Title
 manager.work-plan.list.label.executionStart = Start of execution

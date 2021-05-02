@@ -102,13 +102,20 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 
-		//AUTOCALC WORKLOAD FROM TASKS - level A info requirements
-		//		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
-		//			// workload can't exceed the time between execution start and execution end
-		//			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
-		//			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-		//			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
-		//		}
+		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
+		for (final Task t : entity.getTasks()) {
+			if (t.getExecutionStart().before(entity.getExecutionStart())) {
+				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
+				break;
+			}
+		}
+		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
+		for (final Task t : entity.getTasks()) {
+			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
+				break;
+			}
+		}
 
 	}
 
@@ -121,7 +128,7 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		final List<Task> tasks = new ArrayList<>();
 		final String tasksParsed = entity.getTasksParsed();
 		final String[] tasksId = tasksParsed.split(",");
-		
+
 		if (tasksId.length > 0) {
 			for (int i = 0; i < tasksId.length; i++) {
 				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
