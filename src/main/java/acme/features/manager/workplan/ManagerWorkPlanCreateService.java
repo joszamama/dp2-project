@@ -1,5 +1,7 @@
+
 package acme.features.manager.workplan;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,18 +21,18 @@ import acme.framework.entities.Manager;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class ManagerWorkPlanCreateService implements AbstractCreateService<Manager, WorkPlan>{
-	
+public class ManagerWorkPlanCreateService implements AbstractCreateService<Manager, WorkPlan> {
+
 	@Autowired
 	private ManagerWorkPlanRepository	repository;
 	@Autowired
-	private ManagerRepository		managerRepo;
-	
+	private ManagerRepository			managerRepo;
+
 	@Autowired
 	private ManagerTaskRepository		managerTaskRepo;
 
 	@Autowired
-	protected SpamFilterService		spamFilterService;
+	protected SpamFilterService			spamFilterService;
 
 
 	@Override
@@ -56,10 +58,9 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert model != null;
 		final List<Task> tasks;
 		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
-		
-		model.setAttribute("allTasks", tasks);
 
-		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "workloadHours", "workloadMinutes","workloadParsed", "isPrivate");
+		model.setAttribute("allTasks", tasks);
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
 
 	}
 
@@ -69,15 +70,13 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 
 		final WorkPlan result;
 		final Manager manager;
-		
 
-		//manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
-		
-		
+		manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+
 		result = new WorkPlan();
-		//result.setTasks(tasks);
-		//result.setOwner(manager);
-		result.setWorkloadParsed("01:00");
+		result.setOwner(manager);
+		result.setTasks(new ArrayList<Task>());
+		result.setOwner(manager);
 
 		return result;
 	}
@@ -87,7 +86,6 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
 
 		if (!errors.hasErrors("executionStart")) {
 			// executionStart must be in the future
@@ -99,28 +97,40 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 			// executionEnd must be after executionStart
 			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.work-plan.form.error.end");
 		}
-		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
+		//tasks not set yet
+		//ASSUME: tasks were already created and were tested for spam
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
-		
-		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
-			// workload can't exceed the time between execution start and execution end
-			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
-			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
-		}
-		
+
+		//AUTOCALC WORKLOAD FROM TASKS - level A info requirements
+		//		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
+		//			// workload can't exceed the time between execution start and execution end
+		//			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
+		//			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
+		//			errors.state(request, !tooMuchWorkload, "*", "manager.work-plan.form.error.tooMuchWorkload");
+		//		}
+
 	}
 
 	@Override
 	public void create(final Request<WorkPlan> request, final WorkPlan entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		//carlos: Vamos a ver aquí habra que coger las TAreas seleccionadas en la vista y despues hacerle un set al workplan
+		final List<Task> tasks = new ArrayList<>();
+		final String tasksParsed = entity.getTasksParsed();
+		final String[] tasksId = tasksParsed.split(",");
 		
-		System.out.println("Workload: "+ entity.getWorkloadParsed());
-		
-		entity.setWorkloadParsed(entity.getWorkloadParsed());
+		if (tasksId.length > 0) {
+			for (int i = 0; i < tasksId.length; i++) {
+				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
+				tasks.add(task);
+			}
+		}
+		entity.setTasks(tasks);
+		final String workloadParsed = entity.getWorkloadParsed();
+		entity.setWorkloadParsed(workloadParsed);
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		if (isSpam == false) {

@@ -478,6 +478,13 @@
 	<!-- Work plans -->
 
 	<bean id="workPlan01" class="acme.entities.workPlans.WorkPlan">
+		<property name="owner" ref="managerManager1"/>
+		<property name="tasks">
+			<list>
+				<ref bean="task22"/>
+				<ref bean="task23"/>
+			</list>
+		</property>
 		<property name="title" value="Work plan number one" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/09 10:00" />
@@ -487,6 +494,7 @@
 	</bean>
 
 	<bean id="workPlan02" class="acme.entities.workPlans.WorkPlan">
+		<property name="owner" ref="managerManager2"/>
 		<property name="title" value="Work plan number two"/>
 		<property name="tasks" ref="task09"/>
 		<property name="isPrivate" value="false" />

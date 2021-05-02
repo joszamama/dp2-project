@@ -4,10 +4,10 @@ package acme.entities.workPlans;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -18,6 +18,7 @@ import org.hibernate.validator.constraints.Length;
 
 import acme.entities.tasks.Task;
 import acme.framework.entities.DomainEntity;
+import acme.framework.entities.Manager;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,9 +32,14 @@ public class WorkPlan extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
+	@ManyToOne
+	protected Manager			owner;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.EAGER)
 	protected List<Task>		tasks;
+
+	@Transient
+	protected String			tasksParsed;
 
 	@NotBlank
 	@Length(max = 80)
@@ -45,9 +51,9 @@ public class WorkPlan extends DomainEntity {
 	@Min(0)
 	@Max(60)
 	protected Integer			workloadMinutes;
-	
+
 	@Transient
-	protected String 			workloadParsed;
+	protected String			workloadParsed;
 
 	@NotNull
 	protected Date				executionStart;
@@ -59,6 +65,19 @@ public class WorkPlan extends DomainEntity {
 	protected Boolean			isPrivate;
 
 	// Object interface -------------------------------------------------------
+
+//	public String getTasksParsed() {
+//		final StringBuilder bld = new StringBuilder();
+//		final List<Task> tasksList = this.getTasks();
+//		for(final Task t: tasksList ) {
+//			bld.append(Integer.toString(t.getId()));
+//			bld.append(",");
+//		}
+//		if(bld.length()>0) {
+//			bld.deleteCharAt(bld.length()-1);
+//		}
+//		return bld.toString();
+//	}
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();

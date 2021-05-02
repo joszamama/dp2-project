@@ -17,7 +17,7 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 
-<acme:form readonly="true">
+<acme:form>
 	<acme:form-textbox code="anonymous.work-plan.form.label.title" path="title"/>
 	<div class="form-group">
 		<label for="tasks">
