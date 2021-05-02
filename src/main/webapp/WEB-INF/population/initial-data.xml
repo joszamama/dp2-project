@@ -76,7 +76,7 @@
 	<!-- Configuration -->
 
 	<bean id="configuration" class="acme.entities.configuration.Configuration">
-		<property name="wordList" value="sex, sexo, hard core, viagra, cialis, nigeria, you've won, has ganado, million dollar, millón de dólares" />
+		<property name="wordList" value="sex, sexo, extremo, hard core, viagra, cialis, nigeria, you've won, has ganado, million dollar, millón de dólares" />
 		<property name="threshold" value="0.1" />
 	</bean>
 

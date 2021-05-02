@@ -169,7 +169,7 @@
 		<property name="description"
 			value="A public task which is the first one" />
 		<property name="link" value="http://first.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/02/01 14:00" />
 		<property name="executionEnd" value="2022/03/25 17:30" />
 		<property name="workloadHours" value="1" />
@@ -182,7 +182,7 @@
 		<property name="description"
 			value="A public task which is the second one" />
 		<property name="link" value="http://second.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2021/04/20 11:00" />
 		<property name="executionEnd" value="2021/12/02 20:00" />
 		<property name="workloadHours" value="8" />
@@ -195,7 +195,7 @@
 		<property name="description"
 			value="A public task which is the third one" />
 		<property name="link" value="http://third.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2021/09/20 10:00" />
 		<property name="executionEnd" value="2021/11/02 12:00" />
 		<property name="workloadHours" value="1" />
@@ -208,7 +208,7 @@
 		<property name="description"
 			value="A public task which is the fourth one" />
 		<property name="link" value="http://fourth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
 		<property name="workloadHours" value="8" />
@@ -221,7 +221,7 @@
 		<property name="description"
 			value="A public task which is the fifth one" />
 		<property name="link" value="http://fifth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/02/01 14:00" />
 		<property name="executionEnd" value="2022/03/25 17:30" />
 		<property name="workloadHours" value="1" />
@@ -234,7 +234,7 @@
 		<property name="description"
 			value="A public task which is the sixth one" />
 		<property name="link" value="http://sixth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2021/04/20 11:00" />
 		<property name="executionEnd" value="2021/12/02 20:00" />
 		<property name="workloadHours" value="2" />
@@ -247,7 +247,7 @@
 		<property name="description"
 			value="A public task which is the seventh one" />
 		<property name="link" value="http://seventh.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2021/09/20 10:00" />
 		<property name="executionEnd" value="2021/11/02 12:00" />
 		<property name="workloadHours" value="1" />
@@ -260,7 +260,7 @@
 		<property name="description"
 			value="A public task which is the eigth one" />
 		<property name="link" value="http://eigth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
 		<property name="workloadHours" value="8" />
@@ -273,7 +273,7 @@
 		<property name="description"
 			value="A public task which is the ninth one" />
 		<property name="link" value="http://ninth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/02/01 14:00" />
 		<property name="executionEnd" value="2022/03/25 17:30" />
 		<property name="workloadHours" value="1" />
@@ -286,7 +286,7 @@
 		<property name="description"
 			value="A public task which is the tenth one" />
 		<property name="link" value="http://tenth.task" />
-		<property name="isPrivate" value="false" />
+		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2021/04/20 11:00" />
 		<property name="executionEnd" value="2021/12/02 20:00" />
 		<property name="workloadHours" value="5" />
