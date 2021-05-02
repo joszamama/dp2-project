@@ -1,10 +1,14 @@
 
 package acme.features.anonymous.workPlan;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
+import acme.features.anonymous.task.AnonymousTaskRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Anonymous;
@@ -17,6 +21,8 @@ public class AnonymousWorkPlanShowService implements AbstractShowService<Anonymo
 
 	@Autowired
 	protected AnonymousWorkPlanRepository repository;
+	@Autowired
+	protected AnonymousTaskRepository taskRepository;
 
 	// AbstractListService<Administrator, Task> interface --------------
 
@@ -33,7 +39,10 @@ public class AnonymousWorkPlanShowService implements AbstractShowService<Anonymo
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title","tasks", "executionStart", "executionEnd", "workloadParsed");
+		final List<Task> tasks;
+
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
+
 	}
 
 	@Override

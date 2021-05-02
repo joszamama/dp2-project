@@ -49,7 +49,6 @@ public class ManagerWorkPlanShowService implements AbstractShowService<Manager, 
 
 		id = request.getModel().getInteger("id");
 		result = this.repository.findOne(id);
-
 		return result;
 	}
 	

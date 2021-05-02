@@ -78,6 +78,7 @@ public class WorkPlan extends DomainEntity {
 //		}
 //		return bld.toString();
 //	}
+	
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
