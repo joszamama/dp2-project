@@ -1,6 +1,8 @@
 package acme.features.manager.workplan;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 import acme.components.SpamFilterService;
 import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
+import acme.features.manager.task.ManagerTaskRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -21,6 +24,8 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 	@Autowired
 	private ManagerWorkPlanRepository repository;
 
+	@Autowired
+	private ManagerTaskRepository		managerTaskRepo;
 	@Autowired
 	protected SpamFilterService			spamFilterService;
 
@@ -95,15 +100,24 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 
+		final List<Task> tasks = new ArrayList<>();
+		final String tasksParsed = entity.getTasksParsed();
+		final String[] tasksId = tasksParsed.split(",");
+		if (tasksId.length > 0) {
+			for (int i = 0; i < tasksId.length; i++) {
+				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
+				tasks.add(task);
+			}
+		}
 		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-		for (final Task t : entity.getTasks()) {
+		for (final Task t : tasks) {
 			if (t.getExecutionStart().before(entity.getExecutionStart())) {
 				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
 				break;
 			}
 		}
 		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-		for (final Task t : entity.getTasks()) {
+		for (final Task t : tasks) {
 			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
 				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
 				break;

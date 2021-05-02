@@ -102,15 +102,24 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 
+		final List<Task> tasks = new ArrayList<>();
+		final String tasksParsed = entity.getTasksParsed();
+		final String[] tasksId = tasksParsed.split(",");
+		if (tasksId.length > 0) {
+			for (int i = 0; i < tasksId.length; i++) {
+				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
+				tasks.add(task);
+			}
+		}
 		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-		for (final Task t : entity.getTasks()) {
+		for (final Task t : tasks) {
 			if (t.getExecutionStart().before(entity.getExecutionStart())) {
 				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
 				break;
 			}
 		}
 		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-		for (final Task t : entity.getTasks()) {
+		for (final Task t : tasks) {
 			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
 				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
 				break;
