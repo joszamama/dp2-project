@@ -132,7 +132,10 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 				}
 			}
 		}
-
+		final List<Task> allTasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final Model model = request.getModel();
+		model.setAttribute("allTasks", allTasks);
+		request.setModel(model);
 	}
 
 	@Override
