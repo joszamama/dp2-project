@@ -1,9 +1,14 @@
 package acme.features.manager.workplan;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
+import acme.features.manager.task.ManagerTaskRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -16,7 +21,8 @@ public class ManagerWorkPlanDeleteService implements AbstractDeleteService<Manag
 
 	@Autowired
 	private ManagerWorkPlanRepository repository;
-
+	@Autowired
+	private ManagerTaskRepository		managerTaskRepo;
 
 	@Override
 	public boolean authorise(final Request<WorkPlan> request) {
@@ -30,9 +36,9 @@ public class ManagerWorkPlanDeleteService implements AbstractDeleteService<Manag
 
 		WorkPlanId = request.getModel().getInteger("id");
 		WorkPlan = this.repository.findOne(WorkPlanId);
-//		manager = WorkPlan.getOwner();
-//		principal = request.getPrincipal();
-//		result = manager.getUserAccount().getId() == principal.getAccountId();
+		manager = WorkPlan.getOwner();
+		principal = request.getPrincipal();
+		result = manager.getUserAccount().getId() == principal.getAccountId();
 
 		result = true;
 		return result;
@@ -52,8 +58,12 @@ public class ManagerWorkPlanDeleteService implements AbstractDeleteService<Manag
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		final List<Task> tasks;
+		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
 
-		request.unbind(entity, model, "title","tasks", "workloadParsed", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "isPrivate");
+		model.setAttribute("allTasks", tasks);
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
+
 	}
 
 	@Override
