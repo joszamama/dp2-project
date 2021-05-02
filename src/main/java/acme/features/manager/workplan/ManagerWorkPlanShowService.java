@@ -1,9 +1,14 @@
 package acme.features.manager.workplan;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
+import acme.features.manager.task.ManagerTaskRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
@@ -14,7 +19,8 @@ public class ManagerWorkPlanShowService implements AbstractShowService<Manager, 
 	
 	@Autowired
 	protected ManagerWorkPlanRepository repository;
-	
+	@Autowired
+	private ManagerTaskRepository		managerTaskRepo;
 	@Override
 	public boolean authorise(final Request<WorkPlan> request) {
 		assert request != null;
@@ -26,8 +32,12 @@ public class ManagerWorkPlanShowService implements AbstractShowService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		final List<Task> tasks;
+		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
 
-		request.unbind(entity, model, "title","tasks", "executionStart", "executionEnd", "workloadParsed");
+		model.setAttribute("allTasks", tasks);
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
+
 	}
 
 	@Override

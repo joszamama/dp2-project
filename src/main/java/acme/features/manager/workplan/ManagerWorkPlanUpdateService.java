@@ -3,6 +3,7 @@ package acme.features.manager.workplan;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,12 +41,12 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		final Manager manager;
 		final Principal principal;
 
-//		WorkPlanId = request.getModel().getInteger("id");
-//		WorkPlan = this.repository.findOne(WorkPlanId);
-//		manager = WorkPlan.getOwner();
-//		principal = request.getPrincipal();
-//		result = manager.getUserAccount().getId() == principal.getAccountId();
-		result = true;
+		WorkPlanId = request.getModel().getInteger("id");
+		WorkPlan = this.repository.findOne(WorkPlanId);
+		manager = WorkPlan.getOwner();
+		principal = request.getPrincipal();
+		result = manager.getUserAccount().getId() == principal.getAccountId();
+
 		return result;
 	}
 
@@ -63,8 +64,12 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert request != null;
 		assert entity != null;
 		assert model != null;
+		final List<Task> tasks;
+		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
 
-		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "isPrivate");
+		model.setAttribute("allTasks", tasks);
+		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
+
 	}
 
 	@Override
@@ -86,7 +91,6 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert entity != null;
 		assert errors != null;
 
-
 		if (!errors.hasErrors("executionStart")) {
 			// executionStart must be in the future
 			final Date now = new Date();
@@ -97,33 +101,45 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 			// executionEnd must be after executionStart
 			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.work-plan.form.error.end");
 		}
-		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getTasks().toString());
+		//tasks not set yet
+		//ASSUME: tasks were already created and were tested for spam
+		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle());
 		errors.state(request, !isSpam, "*", "manager.work-plan.form.error.spamDetected");
 
 		final List<Task> tasks = new ArrayList<>();
 		final String tasksParsed = entity.getTasksParsed();
 		final String[] tasksId = tasksParsed.split(",");
-		if (tasksId.length > 0) {
+		if (!tasksParsed.isEmpty()) {
 			for (int i = 0; i < tasksId.length; i++) {
 				final Task task = this.managerTaskRepo.findOne(Integer.parseInt(tasksId[i]));
 				tasks.add(task);
 			}
 		}
+		if (!errors.hasErrors("tasks") && tasks.isEmpty()) {
+			errors.state(request, false, "tasks", "manager.work-plan.form.error.noTasks");
+		}
 		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-		for (final Task t : tasks) {
-			if (t.getExecutionStart().before(entity.getExecutionStart())) {
-				errors.state(request, false, "*", "manager.work-plan.form.error.executionStartTooLate");
-				break;
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionStart().before(entity.getExecutionStart())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
+					break;
+				}
 			}
 		}
 		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-		for (final Task t : tasks) {
-			if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
-				errors.state(request, false, "*", "manager.work-plan.form.error.executionEndTooEarly");
-				break;
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
+					break;
+				}
 			}
 		}
-
+		final List<Task> allTasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final Model model = request.getModel();
+		model.setAttribute("allTasks", allTasks);
+		request.setModel(model);
 	}
 
 	@Override
