@@ -57,7 +57,8 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert entity != null;
 		assert model != null;
 		final List<Task> tasks;
-		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+		tasks = this.managerTaskRepo.findByOwnerAndNotStarted(manager.getId(), new Date()).stream().collect(Collectors.toList());
 
 		model.setAttribute("allTasks", tasks);
 		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
@@ -86,6 +87,7 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 
 		if (!errors.hasErrors("executionStart")) {
 			// executionStart must be in the future
@@ -147,7 +149,7 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		errors.state(request, !priv, "tasks", "manager.work-plan.form.error.private");
 		
 		
-		final List<Task> allTasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final List<Task> allTasks = this.managerTaskRepo.findByOwnerAndNotStarted(manager.getId(), new Date()).stream().collect(Collectors.toList());
 		final Model model = request.getModel();
 		model.setAttribute("allTasks", allTasks);
 		request.setModel(model);
