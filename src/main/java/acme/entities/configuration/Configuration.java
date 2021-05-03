@@ -19,7 +19,6 @@ public class Configuration extends DomainEntity {
 
 	// Attributes -------------------------------------------------------------
 
-	//@ElementCollection(targetClass=String.class)
 	protected String			wordList;
 
 	@NotNull

@@ -55,7 +55,9 @@ public class SpamFilterService {
 	public boolean isSpam(final String... messages) {
 		final Configuration configuration = this.repository.findConfiguration().iterator().next();
 		boolean res = false;
-		final String fullMessage = String.join(" ", messages).toLowerCase();
+		String fullMessage = String.join(" ", messages).toLowerCase();
+		fullMessage = fullMessage.replaceAll("( )+", " "); //normalize spaces
+		
 		final String wordList = configuration.getWordList().toLowerCase();
 		final Pattern p = Pattern.compile(this.regexCompilator(wordList));
 		final Matcher m = p.matcher(fullMessage);

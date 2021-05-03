@@ -1,9 +1,12 @@
 
 package acme.features.administrator.dashboard;
 
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import acme.entities.workPlans.WorkPlan;
 import acme.framework.repositories.AbstractRepository;
 
 @Repository
@@ -28,10 +31,10 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double deviationExecutionPeriods();
 
 	@Query("select min(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Double minimumExecutionPeriods();
+	Integer minimumExecutionPeriods();
 
 	@Query("select max(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Double maximumExecutionPeriods();
+	Integer maximumExecutionPeriods();
 
 	@Query("select avg(t.workloadHours * 60 + t.workloadMinutes) from Task t")
 	Double averageWorkloads();
@@ -66,10 +69,10 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	Double deviationWorkplanExecutionPeriods();
 
 	@Query("select min(to_days(wp.executionEnd)-to_days(wp.executionStart)) from WorkPlan wp")
-	Double minimumWorkplanExecutionPeriods();
+	Integer minimumWorkplanExecutionPeriods();
 
 	@Query("select max(to_days(wp.executionEnd)-to_days(wp.executionStart)) from WorkPlan wp")
-	Double maximumWorkplanExecutionPeriods();
+	Integer maximumWorkplanExecutionPeriods();
 
 	@Query("select avg(wp.workloadHours * 60 + wp.workloadMinutes) from WorkPlan wp")
 	Double averageWorkplanWorkloads();
@@ -82,4 +85,7 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 
 	@Query("select max(wp.workloadHours * 60 + wp.workloadMinutes) from WorkPlan wp")
 	Double maximumWorkplanWorkloads();
+	
+	@Query("select w from WorkPlan w ")
+	Set<WorkPlan> findAllWorkPlans ();
 }

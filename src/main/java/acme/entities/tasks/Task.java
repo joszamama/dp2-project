@@ -2,8 +2,11 @@
 package acme.entities.tasks;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
@@ -14,6 +17,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.URL;
 
+import acme.entities.workPlans.WorkPlan;
 import acme.framework.entities.DomainEntity;
 import acme.framework.entities.Manager;
 import lombok.Getter;
@@ -52,8 +56,7 @@ public class Task extends DomainEntity {
 	protected Integer			workloadMinutes;
 	
 	@Transient
-	protected String 			workloadParsed;
-	
+	protected String 			workloadParsed;	
 
 	@NotBlank
 	@Length(max = 500)
@@ -64,6 +67,9 @@ public class Task extends DomainEntity {
 
 	@NotNull
 	protected Boolean			isPrivate;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	protected List<WorkPlan> workPlans;
 	// Object interface -------------------------------------------------------
 	
 	public String getWorkloadParsed() {
