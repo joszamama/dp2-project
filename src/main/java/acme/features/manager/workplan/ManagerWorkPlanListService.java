@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.workPlans.WorkPlan;
-import acme.features.anonymous.workPlan.AnonymousWorkPlanRepository;
+import acme.features.manager.ManagerRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractListService;
 
 @Service
@@ -18,7 +19,10 @@ public class ManagerWorkPlanListService implements AbstractListService<Manager, 
 	// Internal state ---------------------------------------------------------
 
 		@Autowired
-		protected AnonymousWorkPlanRepository repository;
+		protected ManagerWorkPlanRepository repository;
+		
+		@Autowired
+		private ManagerRepository		managerRepository;
 
 
 		// AbstractListService<Administrator, Task> interface --------------
@@ -44,8 +48,10 @@ public class ManagerWorkPlanListService implements AbstractListService<Manager, 
 			assert request != null;
 
 			Collection<WorkPlan> result;
-
-			result = this.repository.findManyPublicAndNotFinished();
+			final Principal principal = request.getPrincipal();
+			final Manager manager = this.managerRepository.findManagerByUserAccountId(principal.getAccountId());
+			
+			result = this.repository.findByOwner(manager.getId());
 
 			return result;
 		}
