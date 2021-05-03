@@ -1,4 +1,4 @@
-package acme.features.anonymous.workPlan;
+package acme.features.authenticated.workPlan;
 
 import javax.annotation.PostConstruct;
 
@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import acme.entities.workPlans.WorkPlan;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Authenticated;
 
 @Controller
-@RequestMapping("/anonymous/work-plan/")
-public class AnonymousWorkPlanController extends AbstractController<Anonymous, WorkPlan> {
+@RequestMapping("/authenticated/work-plan/")
+public class AuthenticatedWorkPlanController extends AbstractController<Authenticated, WorkPlan> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousWorkPlanListService	listService;
+	protected AuthenticatedWorkPlanListService	listService;
 	
 	@Autowired
-	protected AnonymousWorkPlanShowService	showService;
+	protected AuthenticatedWorkPlanShowService	showService;
 
 	// Constructors -----------------------------------------------------------
 

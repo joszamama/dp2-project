@@ -41,6 +41,7 @@ master.menu.anonymous.work-plans.list = Listar planes de trabajo públicos no fi
 
 master.menu.authenticated = Autenticado
 master.menu.authenticated.task.list = Listar tareas públicas finalizadas
+master.menu.authenticated.work-plan.list = Listar work plans públicos
 
 ################################################################################
 # master.menu.manager
