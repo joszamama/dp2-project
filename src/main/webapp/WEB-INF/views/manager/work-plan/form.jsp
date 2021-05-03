@@ -217,6 +217,7 @@
 		taskSelection.push(id);
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
+		window.sessionStorage.setItem("workplanTaskList", taskSelectionParsed);
 		calculateSelectedTasksDates();
 	}
 	
@@ -226,9 +227,18 @@
 		});
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
+		window.sessionStorage.setItem("workplanTaskList", taskSelectionParsed);
 		calculateSelectedTasksDates();
 	}
-	
+
+	if(window.sessionStorage.getItem("workplanTaskList")) {
+		var selectedTaskIds = window.sessionStorage.getItem("workplanTaskList").split(",");
+		for(var i = 0; i < selectedTaskIds.length; ++i) {
+			$("#allTasks option[value=\""+selectedTaskIds[i]+"\"]").attr("selected", "selected");
+			addToSelected();
+		}
+	}
+
 	$(document).on("click", "#task-add",function() {
 		addToSelected();
     });
