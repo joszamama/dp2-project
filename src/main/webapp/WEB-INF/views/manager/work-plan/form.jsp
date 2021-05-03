@@ -127,6 +127,11 @@
 		</jstl:forEach>
 	};
 	var tasksSelectedEndDates = [];
+	var tasksArePrivate = {
+		<jstl:forEach items="${allTasks}" var="task">
+			<jstl:out value="${task.id}" />: <jstl:out value="${task.isPrivate}" />,
+		</jstl:forEach>
+	};
 
 	function getDateAsStringInternationalized(date) {
 		var languageCode = document.documentElement.lang;
@@ -239,13 +244,24 @@
 		}
 	}
 
-	$(document).on("click", "#task-add",function() {
+	$(document).on("click", "#task-add", function() {
 		addToSelected();
     });
 	
-	$(document).on("click", "#task-remove",function() {
+	$(document).on("click", "#task-remove", function() {
 		removeFromSelected();
     });
+	
+	var currentCheckboxValue = false;
+	
+	document.getElementById("isPrivate$proxy").addEventListener("change", (event) => {
+		currentCheckboxValue = !currentCheckboxValue;
+		if(!currentCheckboxValue) { // if it's public
+			// TODO: REMOVE ALL PRIVATE TASKS FROM THE LIST OF ALL TASKS AND THE LIST OF SELECTED TASKS
+		} else { // if it's private
+			// TODO: ADD ALL PUBLIC TASKS BACK
+		}
+	});
 	
 	$(document).ready(function(){
 		$("#selectedTasks option").each(function(){
