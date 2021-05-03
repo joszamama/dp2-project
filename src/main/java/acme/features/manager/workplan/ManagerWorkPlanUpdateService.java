@@ -1,3 +1,4 @@
+
 package acme.features.manager.workplan;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import acme.framework.services.AbstractUpdateService;
 public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manager, WorkPlan> {
 
 	@Autowired
-	private ManagerWorkPlanRepository repository;
+	private ManagerWorkPlanRepository	repository;
 
 	@Autowired
 	private ManagerTaskRepository		managerTaskRepo;
@@ -92,14 +93,31 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert errors != null;
 
 		if (!errors.hasErrors("executionStart")) {
-			// executionStart must be in the future
-			final Date now = new Date();
-			errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.work-plan.form.error.start");
-
+			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+				// executionStart must be in the future
+				final Date now = new Date();
+				errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.work-plan.form.error.start");
+			} else {
+				if (entity.getExecutionStart() == null) {
+					errors.state(request, true, "executionStart", "manager.task.form.error.start");
+				}
+				if (entity.getExecutionEnd() == null) {
+					errors.state(request, true, "executionEnd", "manager.task.form.error.end");
+				}
+			}
 		}
 		if (!errors.hasErrors("executionEnd")) {
-			// executionEnd must be after executionStart
-			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.work-plan.form.error.end");
+			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+				// executionEnd must be after executionStart
+				errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.work-plan.form.error.end");
+			} else {
+				if (entity.getExecutionStart() == null) {
+					errors.state(request, true, "executionStart", "manager.task.form.error.start");
+				}
+				if (entity.getExecutionEnd() == null) {
+					errors.state(request, true, "executionEnd", "manager.task.form.error.end");
+				}
+			}
 		}
 		//tasks not set yet
 		//ASSUME: tasks were already created and were tested for spam
@@ -118,21 +136,23 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		if (!errors.hasErrors("tasks") && tasks.isEmpty()) {
 			errors.state(request, false, "tasks", "manager.work-plan.form.error.noTasks");
 		}
-		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
-			for (final Task t : tasks) {
-				if (t.getExecutionStart().before(entity.getExecutionStart())) {
-					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
-					break;
+		if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+			// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
+			if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+				for (final Task t : tasks) {
+					if (t.getExecutionStart().before(entity.getExecutionStart())) {
+						errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
+						break;
+					}
 				}
 			}
-		}
-		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
-			for (final Task t : tasks) {
-				if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
-					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
-					break;
+			// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
+			if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+				for (final Task t : tasks) {
+					if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+						errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
+						break;
+					}
 				}
 			}
 		}
@@ -146,7 +166,7 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 	public void update(final Request<WorkPlan> request, final WorkPlan entity) {
 		assert request != null;
 		assert entity != null;
-		
+
 		final List<Task> tasks = new ArrayList<>();
 		final String tasksParsed = entity.getTasksParsed();
 		final String[] tasksId = tasksParsed.split(",");
@@ -171,4 +191,3 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 	}
 
 }
-
