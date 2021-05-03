@@ -89,8 +89,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 			} else {
 				if (entity.getExecutionStart() == null) {
 					errors.state(request, true, "executionStart", "manager.task.form.error.start");
-				} else {
-					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+				if (entity.getExecutionEnd() == null) {
+					errors.state(request, true, "executionEnd", "manager.task.form.error.end");
 				}
 			}
 		}
@@ -101,8 +102,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 			} else {
 				if (entity.getExecutionStart() == null) {
 					errors.state(request, true, "executionStart", "manager.task.form.error.start");
-				} else {
-					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+				if (entity.getExecutionEnd() == null) {
+					errors.state(request, true, "executionEnd", "manager.task.form.error.end");
 				}
 			}
 		}
@@ -118,8 +120,9 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 			} else {
 				if (entity.getExecutionStart() == null) {
 					errors.state(request, true, "executionStart", "manager.task.form.error.start");
-				} else {
-					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+				if (entity.getExecutionEnd() == null) {
+					errors.state(request, true, "executionEnd", "manager.task.form.error.end");
 				}
 			}
 		}
