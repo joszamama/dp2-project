@@ -1,3 +1,4 @@
+
 package acme.features.manager.task;
 
 import java.util.Date;
@@ -18,10 +19,10 @@ import acme.framework.services.AbstractUpdateService;
 public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, Task> {
 
 	@Autowired
-	private ManagerTaskRepository repository;
+	private ManagerTaskRepository	repository;
 
 	@Autowired
-	protected SpamFilterService			spamFilterService;
+	protected SpamFilterService		spamFilterService;
 
 
 	@Override
@@ -81,23 +82,48 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert errors != null;
 
 		if (!errors.hasErrors("executionStart")) {
-			//executionStart in the past
-			final Date now = new Date();
-			errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
-
+			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+				// executionStart must be in the future
+				final Date now = new Date();
+				errors.state(request, now.before(entity.getExecutionStart()), "executionStart", "manager.task.form.error.start");
+			} else {
+				if (entity.getExecutionStart() == null) {
+					errors.state(request, true, "executionStart", "manager.task.form.error.start");
+				} else {
+					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+			}
 		}
 		if (!errors.hasErrors("executionEnd")) {
-			//executionEnd before start
-			errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
+			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+				// executionEnd must be after executionStart
+				errors.state(request, entity.getExecutionEnd().after(entity.getExecutionStart()), "executionEnd", "manager.task.form.error.end");
+			} else {
+				if (entity.getExecutionStart() == null) {
+					errors.state(request, true, "executionStart", "manager.task.form.error.start");
+				} else {
+					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+			}
 		}
 		final Boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
 		errors.state(request, !isSpam, "*", "manager.task.form.error.spamDetected");
+
 		if (!errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd") && !errors.hasErrors("workloadHours") && !errors.hasErrors("workloadMinutes")) {
-			// workload can't exceed the time between execution start and execution end
-			final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
-			final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-			errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
+				// workload can't exceed the time between execution start and execution end
+				final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
+				final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
+				errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+			} else {
+				if (entity.getExecutionStart() == null) {
+					errors.state(request, true, "executionStart", "manager.task.form.error.start");
+				} else {
+					errors.state(request, true, "executionStart", "manager.task.form.error.end");
+				}
+			}
 		}
+
 	}
 
 	@Override
