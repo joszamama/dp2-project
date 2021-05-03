@@ -204,6 +204,10 @@
 
 	function addToSelected() {
 		var id = $("#allTasks option:selected").val();
+		// si ID es undefined, nulo o 0 (valores no válidos), salir
+		if(!id) {
+			return;
+		}
 		var value = $("#allTasks option:selected").text();
 		$("#selectedTasks").append("<option value='"+id+"'>" + value + "</option>");
 		$("#allTasks option:selected").remove();
@@ -212,6 +216,10 @@
 
 	function removeFromSelected() {
 		var id = $("#selectedTasks option:selected").val();
+		// si ID es undefined, nulo o 0 (valores no válidos), salir
+		if(!id) {
+			return;
+		}
 		var value = $("#selectedTasks option:selected").text();
 		$("#allTasks").append("<option value='"+id+"'>" + value + "</option>");
 		$("#selectedTasks option:selected").remove();
