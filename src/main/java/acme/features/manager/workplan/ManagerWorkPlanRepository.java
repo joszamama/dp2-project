@@ -29,5 +29,8 @@ public interface ManagerWorkPlanRepository extends AbstractRepository {
 	@Query("select t from WorkPlan t where t.isPrivate = false and t.executionEnd <= current_date")
 	Collection<WorkPlan> findManyPublicAndFinished();
 	
+	@Query("select t from WorkPlan t where t.owner.id = ?1")
+	Collection<WorkPlan> findByOwner(int id);
+	
 
 }
