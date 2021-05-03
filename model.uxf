@@ -314,10 +314,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>245</x>
-      <y>462</y>
+      <x>203</x>
+      <y>385</y>
       <w>266</w>
-      <h>84</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Shout
@@ -391,7 +391,7 @@ bg=yellow</panel_attributes>
       <w>70</w>
       <h>105</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;-&gt;
 m1=0..*
 m2=0..*
 contains ^
@@ -424,21 +424,6 @@ Manager
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>777</x>
-      <y>350</y>
-      <w>133</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>lt=-&gt;&gt;
-m1=1
-m2=0..*
-manages v
-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0;150.0;70.0;150.0;180.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -522,5 +507,19 @@ m2=0..*
 belongs ^
 </panel_attributes>
     <additional_attributes>10.0;10.0;10.0;470.0;180.0;470.0;180.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>805</x>
+      <y>350</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*
+manages v</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
