@@ -1,25 +1,25 @@
 
-package acme.features.anonymous.workPlan;
+package acme.features.authenticated.workPlan;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.workPlans.WorkPlan;
-import acme.features.anonymous.task.AnonymousTaskRepository;
+import acme.features.authenticated.task.AuthenticatedTaskRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.entities.Anonymous;
+import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class AnonymousWorkPlanShowService implements AbstractShowService<Anonymous, WorkPlan> {
+public class AuthenticatedWorkPlanShowService implements AbstractShowService<Authenticated, WorkPlan> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AnonymousWorkPlanRepository repository;
+	protected AuthenticatedWorkPlanRepository repository;
 	@Autowired
-	protected AnonymousTaskRepository taskRepository;
+	protected AuthenticatedTaskRepository taskRepository;
 
 	// AbstractListService<Administrator, Task> interface --------------
 
@@ -47,7 +47,7 @@ public class AnonymousWorkPlanShowService implements AbstractShowService<Anonymo
 		WorkPlan result;
 		int id;
 		id = request.getModel().getInteger("id");
-		result = this.repository.findOnePublicAndNotFinished(id);
+		result = this.repository.findOne(id);
 
 		return result;
 	}

@@ -41,6 +41,7 @@ master.menu.anonymous.work-plans.list = List unfinished public work plans
 
 master.menu.authenticated = Authenticated
 master.menu.authenticated.task.list = List finished public tasks
+master.menu.authenticated.work-plan.list = List public work plans
 
 ################################################################################
 # master.menu.manager

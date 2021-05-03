@@ -20,11 +20,11 @@
 
 <acme:form>
 
-	<acme:form-textbox code="anonymous.work-plan.form.label.title"
+	<acme:form-textbox code="authenticated.work-plan.form.label.title"
 		path="title" />
 			<div class="form-group">
 		<label for="tasks">
-			<acme:message code="anonymous.work-plan.form.label.tasks" />
+			<acme:message code="authenticated.work-plan.form.label.tasks" />
 		</label>
 		<select id="tasks" size="3" class="form-control">
 			<c:forEach items="${tasks}" var="task">
@@ -32,12 +32,12 @@
 			</c:forEach>
 		</select>
 	</div>
-	<acme:form-textbox code="anonymous.work-plan.form.label.executionStart"
+	<acme:form-textbox code="authenticated.work-plan.form.label.executionStart"
 		path="executionStart" />
-	<acme:form-textbox code="anonymous.work-plan.form.label.executionEnd"
+	<acme:form-textbox code="authenticated.work-plan.form.label.executionEnd"
 		path="executionEnd" />
-	<acme:form-textbox code="anonymous.work-plan.form.label.workloadParsed"
+	<acme:form-textbox code="authenticated.work-plan.form.label.workloadParsed"
 		path="workloadParsed" />
 
-	<acme:form-return code="anonymous.work-plan.form.button.return" />
+	<acme:form-return code="authenticated.work-plan.form.button.return" />
 </acme:form>

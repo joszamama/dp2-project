@@ -30,7 +30,15 @@
 				<div class="col">
 					<select id="allTasks" size="6" class="form-control">
 						<jstl:forEach items="${allTasks}" var="task">
-							<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+							<jstl:set var="contains" value="false" />
+							<jstl:forEach items="${tasks}" var="task2">
+								<jstl:if test="${task eq task2}">
+									<jstl:set var="contains" value="true" />
+								</jstl:if>
+							</jstl:forEach>
+							<jstl:if test="${not contains}">
+								<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+							</jstl:if>
 						</jstl:forEach>
 					</select>
 				</div>
@@ -217,6 +225,7 @@
 		taskSelection.push(id);
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
+		window.sessionStorage.setItem("workplanTaskList", taskSelectionParsed);
 		calculateSelectedTasksDates();
 	}
 	
@@ -226,9 +235,18 @@
 		});
 		taskSelectionParsed = taskSelection.toString();
 		$("#tasksParsed").val(taskSelectionParsed);
+		window.sessionStorage.setItem("workplanTaskList", taskSelectionParsed);
 		calculateSelectedTasksDates();
 	}
-	
+
+	if(window.sessionStorage.getItem("workplanTaskList")) {
+		var selectedTaskIds = window.sessionStorage.getItem("workplanTaskList").split(",");
+		for(var i = 0; i < selectedTaskIds.length; ++i) {
+			$("#allTasks option[value=\""+selectedTaskIds[i]+"\"]").attr("selected", "selected");
+			addToSelected();
+		}
+	}
+
 	$(document).on("click", "#task-add",function() {
 		addToSelected();
     });

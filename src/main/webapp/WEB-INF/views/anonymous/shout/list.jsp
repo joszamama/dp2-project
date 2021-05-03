@@ -21,7 +21,9 @@
 	<acme:list-column code="anonymous.shout.list.label.author"
 		path="author" width="20%" />
 	<acme:list-column code="anonymous.shout.list.label.text" path="text"
-		width="60%" />
+		width="20%" />
+	<acme:list-column code="anonymous.shout.list.label.info" path="info"
+		width="20%" />
 </acme:list>
 
 <table class="table-buttons">

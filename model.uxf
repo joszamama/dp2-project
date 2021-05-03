@@ -314,10 +314,19 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
+<<<<<<< HEAD
       <x>266</x>
       <y>462</y>
+=======
+      <x>203</x>
+      <y>385</y>
+>>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
       <w>266</w>
+<<<<<<< HEAD
       <h>98</h>
+=======
+      <h>140</h>
+>>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Shout
@@ -391,7 +400,7 @@ bg=yellow</panel_attributes>
       <w>70</w>
       <h>105</h>
     </coordinates>
-    <panel_attributes>lt=&lt;-
+    <panel_attributes>lt=&lt;-&gt;
 m1=0..*
 m2=0..*
 contains ^
@@ -426,6 +435,7 @@ Manager
     <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
   </element>
   <element>
+<<<<<<< HEAD
     <id>Relation</id>
     <coordinates>
       <x>798</x>
@@ -441,6 +451,8 @@ manages v
     <additional_attributes>10.0;10.0;10.0;70.0;150.0;70.0;150.0;180.0</additional_attributes>
   </element>
   <element>
+=======
+>>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
     <id>UMLClass</id>
     <coordinates>
       <x>357</x>
@@ -522,5 +534,19 @@ m2=0..*
 belongs ^
 </panel_attributes>
     <additional_attributes>10.0;10.0;10.0;470.0;180.0;470.0;180.0;530.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>805</x>
+      <y>350</y>
+      <w>70</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0..*
+manages v</panel_attributes>
+    <additional_attributes>10.0;180.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
