@@ -12,10 +12,8 @@
 
 <%@page language="java"%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <acme:form>
 
@@ -31,15 +29,9 @@
 			<div class="row">
 				<div class="col">
 					<select id="allTasks" size="6" class="form-control">
-						<c:forEach items="${allTasks}" var="task">
-							<option value="${task.id}"><c:out value="${task.title}" />
-								(
-								<fmt:formatDate pattern="dd/MM/yy HH:mm"
-									value="${task.executionStart}" />-
-								<fmt:formatDate pattern="dd/MM/yy HH:mm"
-									value="${task.executionEnd}" />)
-							</option>
-						</c:forEach>
+						<jstl:forEach items="${allTasks}" var="task">
+							<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+						</jstl:forEach>
 					</select>
 				</div>
 				<div class="col-1 align-self-center ">
@@ -58,13 +50,9 @@
 					<input type="hidden" id="tasksParsed" name="tasksParsed"
 						value="<acme:print value="${requestScope[tasksParsed]}"/>" /> <select
 						id="selectedTasks" size="6" class="form-control">
-						<c:forEach items="${tasks}" var="task">
-							<option value="${task.id}"><c:out value="${task.title}" />(
-								<fmt:formatDate pattern="dd/MM/yy HH:mm"
-									value="${task.executionStart}" />-
-								<fmt:formatDate pattern="dd/MM/yy HH:mm"
-									value="${task.executionEnd}" />)</option>
-						</c:forEach>
+						<jstl:forEach items="${tasks}" var="task">
+							<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+						</jstl:forEach>
 					</select>
 				</div>
 			</div>
@@ -75,25 +63,24 @@
 	</jstl:if>
 	<jstl:if test="${readonly}">
 		<div class="list-group">
-			<c:forEach items="${tasks}" var="task">
+			<jstl:forEach items="${tasks}" var="task">
 				<a href="#"
 					class="list-group-item list-group-item-action flex-column align-items-start">
 					<div class="d-flex w-100 justify-content-between">
 						<h5 class="mb-1">
-							<c:out value="${task.title}" />
+							<jstl:out value="${task.title}" />
 						</h5>
-						<small class="text-muted">( <fmt:formatDate
-								pattern="dd/MM/yy HH:mm" value="${task.executionStart}" />- <fmt:formatDate
-								pattern="dd/MM/yy HH:mm" value="${task.executionEnd}" />)
-						</small>
+						<small class="text-muted"></small>
 					</div>
 					<p class="mb-1">
-						<c:out value="${task.description}" />
-					</p> <small class="text-muted"><acme:message
-							code="anonymous.work-plan.list.label.workloadParsed" /> <c:out
-							value="${task.workloadParsed}" /></small>
+						<jstl:out value="${task.description}" />
+					</p>
+						<small class="text-muted">
+							<acme:message code="anonymous.work-plan.list.label.workloadParsed" />
+							<jstl:out value="${task.workloadParsed}" />
+						</small>
 				</a>
-			</c:forEach>
+			</jstl:forEach>
 		</div>
 	</jstl:if>
 
@@ -129,15 +116,15 @@
 	var taskSelection = [];
 	var taskSelectionParsed = "";
 	var tasksStartDates = {
-		<c:forEach items="${allTasks}" var="task">
-			<c:out value="${task.id}" />: new Date('<c:out value="${task.executionStart}" />'),
-		</c:forEach>
+		<jstl:forEach items="${allTasks}" var="task">
+			<jstl:out value="${task.id}" />: new Date('<jstl:out value="${task.executionStart}" />'),
+		</jstl:forEach>
 	};
 	var tasksSelectedStartDates = [];
 	var tasksEndDates = {
-		<c:forEach items="${allTasks}" var="task">
-			<c:out value="${task.id}" />: new Date('<c:out value="${task.executionEnd}" />'),
-		</c:forEach>
+		<jstl:forEach items="${allTasks}" var="task">
+			<jstl:out value="${task.id}" />: new Date('<jstl:out value="${task.executionEnd}" />'),
+		</jstl:forEach>
 	};
 	var tasksSelectedEndDates = [];
 
