@@ -30,7 +30,15 @@
 				<div class="col">
 					<select id="allTasks" size="6" class="form-control">
 						<jstl:forEach items="${allTasks}" var="task">
-							<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+							<jstl:set var="contains" value="false" />
+							<jstl:forEach items="${tasks}" var="task2">
+								<jstl:if test="${task eq task2}">
+									<jstl:set var="contains" value="true" />
+								</jstl:if>
+							</jstl:forEach>
+							<jstl:if test="${not contains}">
+								<option value="${task.id}"><jstl:out value="${task.title}" /></option>
+							</jstl:if>
 						</jstl:forEach>
 					</select>
 				</div>
