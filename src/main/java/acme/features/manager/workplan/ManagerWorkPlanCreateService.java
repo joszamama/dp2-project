@@ -132,6 +132,21 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 				}
 			}
 		}
+		
+		//No private task in public workplan
+		boolean priv = false;
+		if(entity.getIsPrivate() == false) {
+			for(final Task t: tasks) {  
+				if(t.getIsPrivate()) {
+					priv = true;
+				}
+			}
+		}
+		
+		
+		errors.state(request, !priv, "tasks", "manager.work-plan.form.error.private");
+		
+		
 		final List<Task> allTasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
 		final Model model = request.getModel();
 		model.setAttribute("allTasks", allTasks);
@@ -143,7 +158,7 @@ public class ManagerWorkPlanCreateService implements AbstractCreateService<Manag
 		assert request != null;
 		assert entity != null;
 
-		//carlos: Vamos a ver aquí habra que coger las TAreas seleccionadas en la vista y despues hacerle un set al workplan
+		
 		final List<Task> tasks = new ArrayList<>();
 		final String tasksParsed = entity.getTasksParsed();
 		final String[] tasksId = tasksParsed.split(",");

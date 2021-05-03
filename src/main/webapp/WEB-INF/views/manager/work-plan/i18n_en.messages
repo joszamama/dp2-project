@@ -20,6 +20,7 @@ manager.work-plan.form.error.spamDetected = Cannot create work-plan with spam
 manager.work-plan.form.error.executionStartTooLate = There cannot be tasks that start before the work-plan
 manager.work-plan.form.error.executionEndTooEarly = There cannot be tasks that finish after the work-plan
 manager.work-plan.form.error.noTasks = Cant create a workplan without tasks
+manager.work-plan.form.error.private = Cant create a public workplan with a private task
 
 manager.work-plan.list.label.title = Title
 manager.work-plan.list.label.executionStart = Start of execution
