@@ -96,6 +96,7 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 
 		if (!errors.hasErrors("executionStart")) {
 			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
@@ -142,26 +143,38 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 			errors.state(request, false, "tasks", "manager.work-plan.form.error.noTasks");
 		}
 		if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
-			// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
-			if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
-				for (final Task t : tasks) {
-					if (t.getExecutionStart().before(entity.getExecutionStart())) {
-						errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
-						break;
-					}
-				}
-			}
-			// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
-			if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
-				for (final Task t : tasks) {
-					if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
-						errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
-						break;
-					}
+		// WORKPLAN CAN'T START AFTER THE FIRST TASK HAS STARTED
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionStart().before(entity.getExecutionStart())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionStartTooLate");
+					break;
 				}
 			}
 		}
-		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+		// WORKPLAN CAN'T FINISH BEFORE THE LAST TASK HAS FINISHED
+		if (!errors.hasErrors("tasks") && !errors.hasErrors("executionStart") && !errors.hasErrors("executionEnd")) {
+			for (final Task t : tasks) {
+				if (t.getExecutionEnd().after(entity.getExecutionEnd())) {
+					errors.state(request, false, "tasks", "manager.work-plan.form.error.executionEndTooEarly");
+					break;
+				}
+			}
+		}
+		}
+
+		//No private task in public workplan
+		boolean priv = false;
+		if (entity.getIsPrivate() == false) {
+			for (final Task t : tasks) {
+				if (t.getIsPrivate()) {
+					priv = true;
+				}
+			}
+		}
+
+		errors.state(request, !priv, "tasks", "manager.work-plan.form.error.private");
+
 		final List<Task> allTasks = this.managerTaskRepo.findByOwnerAndNotStarted(manager.getId(), new Date()).stream().collect(Collectors.toList());
 		final Model model = request.getModel();
 		model.setAttribute("allTasks", allTasks);
