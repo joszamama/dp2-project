@@ -37,7 +37,7 @@ public class WorkPlan extends DomainEntity {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	protected List<Task>		tasks;
-	
+
 	@Transient
 	protected String			tasksParsed;
 
@@ -65,20 +65,9 @@ public class WorkPlan extends DomainEntity {
 	protected Boolean			isPrivate;
 
 	// Object interface -------------------------------------------------------
-	
-//	public String getTasksParsed() {
-//	final StringBuilder bld = new StringBuilder();
-//	final List<Task> tasksList = this.getTasks();
-//	for(final Task t: tasksList ) {
-//		bld.append(Integer.toString(t.getId()));
-//		bld.append(",");
-//	}
-//	if(bld.length()>0) {
-//		bld.deleteCharAt(bld.length()-1);
-//	}
-//	return bld.toString();
-//}
-	
+
+	// Derived attributes -----------------------------------------------------
+
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
