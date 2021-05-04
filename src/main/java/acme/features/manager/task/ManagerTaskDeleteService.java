@@ -34,6 +34,8 @@ public class ManagerTaskDeleteService implements AbstractDeleteService<Manager, 
 		principal = request.getPrincipal();
 		result = manager.getUserAccount().getId() == principal.getAccountId();
 
+		result = result && (this.repository.findWorkplansOfTask(taskId).isEmpty());
+
 		return result;
 	}
 
