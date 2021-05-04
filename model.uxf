@@ -314,19 +314,10 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-<<<<<<< HEAD
       <x>266</x>
       <y>462</y>
-=======
-      <x>203</x>
-      <y>385</y>
->>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
       <w>266</w>
-<<<<<<< HEAD
       <h>98</h>
-=======
-      <h>140</h>
->>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
     </coordinates>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Shout
@@ -435,7 +426,6 @@ Manager
     <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
   </element>
   <element>
-<<<<<<< HEAD
     <id>Relation</id>
     <coordinates>
       <x>798</x>
@@ -451,8 +441,6 @@ manages v
     <additional_attributes>10.0;10.0;10.0;70.0;150.0;70.0;150.0;180.0</additional_attributes>
   </element>
   <element>
-=======
->>>>>>> branch 'develop' of https://github.com/joszamama/dp2-project
     <id>UMLClass</id>
     <coordinates>
       <x>357</x>
