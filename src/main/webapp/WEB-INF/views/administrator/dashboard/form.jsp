@@ -232,16 +232,18 @@
 				});
 			});
 </script>
-<table class="table table-sm">
-	<tr>
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.total-workplan-number" />
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.public-workplan-number" />
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.private-workplan-number" />
-	</tr>
-</table>
+<h2>
+	<acme:print value="${countPublicWorkplan + countPrivateWorkplan}    " />
+	<acme:message
+		code="administrator.dashboard.form.title.total-workplan-number" />
+</h2>
+<h2>
+	<acme:print value="${countPublicWorkplan}    " />
+	<acme:message
+		code="administrator.dashboard.form.title.public-workplan-number" />
+</h2>
+<h2>
+	<acme:print value="${countPrivateWorkplan}    " />
+	<acme:message
+		code="administrator.dashboard.form.title.private-workplan-number" />
+</h2>

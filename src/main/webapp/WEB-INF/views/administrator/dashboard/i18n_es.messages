@@ -44,3 +44,7 @@ administrator.dashboard.form.label.number-minimum-workplan-workloads = Carga de 
 administrator.dashboard.form.label.number-maximum-workplan-workloads = Carga de trabajo máxima de un plan de trabajo (horas:minutos)
 
 administrator.dashboard.form.title.application-statuses =  Gráfico
+
+administrator.dashboard.form.title.total-workplan-number = planes de trabajo en total
+administrator.dashboard.form.title.public-workplan-number = planes de trabajo publicados
+administrator.dashboard.form.title.private-workplan-number = planes de trabajo no publicados
