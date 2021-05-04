@@ -14,6 +14,7 @@ import acme.features.manager.task.ManagerTaskRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Manager;
+import acme.framework.entities.Principal;
 import acme.framework.services.AbstractShowService;
 
 @Service
@@ -28,7 +29,20 @@ public class ManagerWorkPlanShowService implements AbstractShowService<Manager, 
 	@Override
 	public boolean authorise(final Request<WorkPlan> request) {
 		assert request != null;
-		return true;
+
+		boolean result;
+		final int workPlanId;
+		final WorkPlan workPlan;
+		final Manager manager;
+		final Principal principal;
+
+		workPlanId = request.getModel().getInteger("id");
+		workPlan = this.repository.findOne(workPlanId);
+		manager = workPlan.getOwner();
+		principal = request.getPrincipal();
+		result = manager.getUserAccount().getId() == principal.getAccountId();
+
+		return result;
 	}
 
 	@Override
