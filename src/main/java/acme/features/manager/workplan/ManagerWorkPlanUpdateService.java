@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import acme.components.SpamFilterService;
 import acme.entities.tasks.Task;
 import acme.entities.workPlans.WorkPlan;
+import acme.features.manager.ManagerRepository;
 import acme.features.manager.task.ManagerTaskRepository;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
@@ -25,6 +26,9 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 
 	@Autowired
 	private ManagerWorkPlanRepository	repository;
+	
+	@Autowired
+	private ManagerRepository			managerRepo;
 
 	@Autowired
 	private ManagerTaskRepository		managerTaskRepo;
@@ -37,14 +41,14 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert request != null;
 
 		boolean result;
-		final int WorkPlanId;
-		final WorkPlan WorkPlan;
+		final int workPlanId;
+		final WorkPlan workPlan;
 		final Manager manager;
 		final Principal principal;
 
-		WorkPlanId = request.getModel().getInteger("id");
-		WorkPlan = this.repository.findOne(WorkPlanId);
-		manager = WorkPlan.getOwner();
+		workPlanId = request.getModel().getInteger("id");
+		workPlan = this.repository.findOne(workPlanId);
+		manager = workPlan.getOwner();
 		principal = request.getPrincipal();
 		result = manager.getUserAccount().getId() == principal.getAccountId();
 
@@ -66,7 +70,8 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 		assert entity != null;
 		assert model != null;
 		final List<Task> tasks;
-		tasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+		tasks = this.managerTaskRepo.findByOwnerAndNotStarted(manager.getId(), new Date()).stream().collect(Collectors.toList());
 
 		model.setAttribute("allTasks", tasks);
 		request.unbind(entity, model, "title", "tasks", "executionStart", "executionEnd", "isPrivate", "tasksParsed");
@@ -156,7 +161,8 @@ public class ManagerWorkPlanUpdateService implements AbstractUpdateService<Manag
 				}
 			}
 		}
-		final List<Task> allTasks = this.managerTaskRepo.findMany().stream().collect(Collectors.toList());
+		final Manager manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
+		final List<Task> allTasks = this.managerTaskRepo.findByOwnerAndNotStarted(manager.getId(), new Date()).stream().collect(Collectors.toList());
 		final Model model = request.getModel();
 		model.setAttribute("allTasks", allTasks);
 		request.setModel(model);
