@@ -1,0 +1,9 @@
+authenticated.manager.manager.form.title.create = Hazte trabajador
+authenticated.manager.manager.form.title.update = Actualiza tus datos de trabajador
+
+authenticated.manager.manager.form.label.company = Compañía
+authenticated.manager.manager.form.label.sector = Sector
+
+authenticated.manager.manager.form.button.create = Registrar
+authenticated.manager.manager.form.button.update = Actualizar
+authenticated.manager.manager.form.button.return = Volver

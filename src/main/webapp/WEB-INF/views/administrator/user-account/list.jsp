@@ -21,5 +21,3 @@
 	<acme:list-column code="administrator.user-account.list.label.name" path="identity.name" width="40%"/>
 	<acme:list-column code="administrator.user-account.list.label.surname" path="identity.surname" width="40%"/>		
 </acme:list>
-
-

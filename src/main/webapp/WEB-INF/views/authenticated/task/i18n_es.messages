@@ -1,0 +1,16 @@
+authenticated.task.form.label.title = Título
+authenticated.task.form.label.description = Descripción
+authenticated.task.form.label.link = Enlace
+authenticated.task.form.label.executionStart = Comienzo de ejecución
+authenticated.task.form.label.executionEnd = Fin de ejecución
+authenticated.task.form.label.workloadHours = Carga de trabajo (horas)
+authenticated.task.form.label.workloadMinutes = Carga de trabajo (minutos)
+authenticated.task.form.button.return = Volver
+
+authenticated.task.list.label.title = Título
+authenticated.task.list.label.executionStart = Comienzo de ejecución
+authenticated.task.list.label.executionEnd = Fin de ejecución
+authenticated.task.list.label.workloadHours = Carga de trabajo (horas)
+authenticated.task.list.label.workloadMinutes = Carga de trabajo (minutos)
+authenticated.task.list.label.workloadParsed = Carga de trabajo (HH:mm)
+authenticated.task.form.label.workloadParsed = Carga de trabajo (HH:mm)

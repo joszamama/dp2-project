@@ -1,0 +1,12 @@
+anonymous.task.form.label.title = Título
+anonymous.task.form.label.description = Descripción
+anonymous.task.form.label.link = Enlace
+anonymous.task.form.label.executionStart = Comienzo de ejecución
+anonymous.task.form.label.executionEnd = Fin de ejecución
+anonymous.task.form.label.workloadParsed = Carga de trabajo (HH:mm)
+anonymous.task.form.button.return = Volver
+
+anonymous.task.list.label.title = Título
+anonymous.task.list.label.executionStart = Comienzo de ejecución
+anonymous.task.list.label.executionEnd = Fin de ejecución
+anonymous.task.list.label.workloadParsed = Carga de trabajo (HH:mm)

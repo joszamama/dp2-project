@@ -1,0 +1,13 @@
+authenticated.work-plan.form.label.title = Título
+authenticated.work-plan.form.label.description = Descripción
+authenticated.work-plan.form.label.link = Enlace
+authenticated.work-plan.form.label.executionStart = Comienzo de ejecución
+authenticated.work-plan.form.label.executionEnd = Fin de ejecución
+authenticated.work-plan.form.label.workloadParsed = Carga de trabajo (HH:mm)
+authenticated.work-plan.form.button.return = Volver
+authenticated.work-plan.form.label.tasks = Tareas
+
+authenticated.work-plan.list.label.title = Título
+authenticated.work-plan.list.label.executionStart = Comienzo de ejecución
+authenticated.work-plan.list.label.executionEnd = Fin de ejecución
+authenticated.work-plan.list.label.workloadParsed = Carga de trabajo (HH:mm)

@@ -8,29 +8,52 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-# master.banner.welcome #######################################################
+################################################################################
+# master.banner.welcome
 
 master.banner.background = #3ec1ff
 
-# master.welcome ##############################################################
+################################################################################
+# master.welcome
 
 master.welcome.title = Welcome!
 master.welcome.text = \
 	Welcome to Acme Planner! June#02 Group.
 
-# master.menu #################################################################
+################################################################################
+# master.menu
 
 master.menu.home = Home
 master.menu.sign-up = Sign up
 master.menu.sign-in = Sign in
 master.menu.sign-out = Sign out
 
-# master.menu.anonymous #######################################################
+################################################################################
+# master.menu.anonymous
 
 master.menu.anonymous = Anonymous
-master.menu.anonymous.favourite-link = Favourite link
+master.menu.anonymous.shout.list = List shouts
+master.menu.anonymous.task.list = List unfinished public tasks
+master.menu.anonymous.work-plans.list = List unfinished public work plans
 
-# master.menu.administrator ###################################################
+################################################################################
+# master.menu.authenticated
+
+master.menu.authenticated = Authenticated
+master.menu.authenticated.task.list = List finished public tasks
+master.menu.authenticated.work-plan.list = List public work plans
+
+################################################################################
+# master.menu.manager
+
+master.menu.manager = Manager
+master.menu.manager.task.list = List my tasks
+master.menu.manager.task.create = Create a task
+master.menu.manager.work-plan.list = List my workplans
+master.menu.manager.work-plan.create = Create a workplan
+
+################################################################################
+# master.menu.administrator
 
 master.menu.administrator = Administrator
 master.menu.administrator.dashboard = Dashboard
@@ -38,18 +61,22 @@ master.menu.administrator.user-accounts = User accounts
 master.menu.administrator.populate-initial = Populate DB (initial)
 master.menu.administrator.populate-sample = Populate DB (samples)
 master.menu.administrator.shutdown = Shut down
+master.menu.administrator.configuration = Configuration
 
-# master.menu.provider ########################################################
+################################################################################
+# master.menu.provider
 
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
 
-# master.menu.consumer ##########################################################
+################################################################################
+# master.menu.consumer
 
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
-# master.menu.user-account ####################################################
+################################################################################
+# master.menu.user-account
 
 master.menu.user-account = Account
 master.menu.user-account.general-data = General data
@@ -57,8 +84,11 @@ master.menu.user-account.provider = Provider data
 master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.consumer = Consumer data
 master.menu.user-account.become-consumer = Become a consumer
+master.menu.user-account.manager = Manager data
+master.menu.user-account.become-manager = Become a manager
 
-# master.footer ###############################################################
+################################################################################
+# master.footer
 
 master.footer.title.about = About us
 master.footer.label.company = Company
@@ -70,7 +100,8 @@ master.footer.title.languages = Languages
 master.footer.label.english = English
 master.footer.label.spanish = Spanish
 
-# master.company ##############################################################
+################################################################################
+# master.company
 
 master.company.title = The company
 master.company.text = \
@@ -82,19 +113,22 @@ master.company.address = Escuela Técnica Superior de Ingeniería Informática, 
 master.company.phone = 954 55 68 17
 master.company.email = secretaria-eii@listas.us.es
 
-# master.license ##############################################################
+################################################################################
+# master.license
 
 master.license.title = License
 master.license.text = \
 	You may use this system free of charge, as long as you carefully observe the \
-	existing applicable laws.  Please, note that we do not share any information \
+	existing applicable laws and contact the creators of Acme Planner. \
+	Please, note that we do not share any information \
 	about you with any other company.  We only use three cookies, namely: \
 	"JSESSIONID" to identify your work session, "remember" to let you authenticate \
 	automatically for a maximum of 31 days, and "language" to store your language \
 	preferences. Additionally, we store an item called "returnStack" in your browser's \
 	local storage to keep track of the document to which some buttons must return.
 
-# master.panic ################################################################
+################################################################################
+# master.panic
 
 master.panic.title = Unexpected error
 master.panic.text = \
@@ -104,4 +138,3 @@ master.panic.label.request = Request:
 master.panic.label.status = Status:
 master.panic.label.exceptions = Exceptions:
 master.panic.text.consult-log = Please, consult the log to see them full stack trace.
-

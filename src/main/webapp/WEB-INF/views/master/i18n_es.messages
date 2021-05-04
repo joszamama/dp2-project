@@ -8,29 +8,52 @@
 # purposes.  The copyright owner does not offer any warranties or representations, nor do
 # they accept any liabilities with respect to them.
 
-# master.banner.welcome #######################################################
+################################################################################
+# master.banner.welcome
 
 master.banner.background = #3ec1ff
 
-﻿# master.welcome ##############################################################
+################################################################################
+# master.welcome
 
 master.welcome.title = ¡Bienvenidos!
 master.welcome.text = \
 	Bienvenidos a Acme Planner! Grupo June#02.
 
-# master.menu #################################################################
+################################################################################
+# master.menu
 
 master.menu.home = Inicio
 master.menu.sign-up = Registrarse
 master.menu.sign-in = Entrar
 master.menu.sign-out = Salir
 
-# master.menu.anonymous #######################################################
+################################################################################
+# master.menu.anonymous
 
 master.menu.anonymous = Anónimo
-master.menu.anonymous.favourite-link = Enlace favorito
+master.menu.anonymous.shout.list = Listar gritos
+master.menu.anonymous.task.list = Listar tareas públicas no finalizadas
+master.menu.anonymous.work-plans.list = Listar planes de trabajo públicos no finalizados
 
-# master.menu.administrator ###################################################
+################################################################################
+# master.menu.authenticated
+
+master.menu.authenticated = Autenticado
+master.menu.authenticated.task.list = Listar tareas públicas finalizadas
+master.menu.authenticated.work-plan.list = Listar planes de trabajo públicos
+
+################################################################################
+# master.menu.manager
+
+master.menu.manager = Mánager
+master.menu.manager.task.list = Listar mis tareas
+master.menu.manager.task.create = Crear una tarea
+master.menu.manager.work-plan.list = Listar mis planes de trabajo
+master.menu.manager.work-plan.create = Crear un plan de trabajo
+
+################################################################################
+# master.menu.administrator
 
 master.menu.administrator = Administrador
 master.menu.administrator.dashboard = Panel de indicadores
@@ -38,18 +61,22 @@ master.menu.administrator.user-accounts = Cuentas de usuario
 master.menu.administrator.populate-initial = Poblar BD (inicial)
 master.menu.administrator.populate-sample = Poblar BD (ejemplos)
 master.menu.administrator.shutdown = Parar el sistema
+master.menu.administrator.configuration = Configuración
 
-# master.menu.provider ########################################################
+################################################################################
+# master.menu.provider
 
 master.menu.provider = Proveedor
 master.menu.provider.favourite-link = Enlace favorito
 
-# master.menu.consumer ##########################################################
+################################################################################
+# master.menu.consumer
 
 master.menu.consumer = Consumidor
 master.menu.consumer.favourite-link = Enlace favorito
 
-# master.menu.user-account ####################################################
+################################################################################
+# master.menu.user-account
 
 master.menu.user-account = Cuenta
 master.menu.user-account.general-data = Datos generales
@@ -57,8 +84,11 @@ master.menu.user-account.provider = Datos de proveedor
 master.menu.user-account.become-provider = Hazte proveedor
 master.menu.user-account.consumer = Datos de consumidor
 master.menu.user-account.become-consumer = Hazte consumidor
+master.menu.user-account.manager = Datos de mánager
+master.menu.user-account.become-manager = Hazte mánager
 
-﻿# master.footer ###############################################################
+################################################################################
+# master.footer
 
 master.footer.title.about = Nosotros
 master.footer.label.company = La empresa
@@ -70,7 +100,8 @@ master.footer.title.languages = Lenguajes
 master.footer.label.english = Inglés
 master.footer.label.spanish = Español
 
-# master.company ##############################################################
+################################################################################
+# master.company
 
 master.company.title = La compañía
 master.company.text = \
@@ -82,28 +113,29 @@ master.company.address = Escuela Técnica Superior de Ingeniería Informática, 
 master.company.phone = 954 55 68 17
 master.company.email = secretaria-eii@listas.us.es
 
-# master.license ##############################################################
+################################################################################
+# master.license
 
 master.license.title = Licencia
 master.license.text = \
 	Puede usar este sistema de forma completamente gratuita respetando las leyes \
-	que sean aplicables.  No compartimos ninguna información sobre Ud. con ninguna \
+	que sean aplicables y contactando con los creadores de Acme Planner. \
+	No compartimos ninguna información sobre Ud. con ninguna \
 	otra empresa.  Tan sólo usamos tres cookies, a saber: "JSESSIONID" para identificar \
 	su sesión de trabajo, "remember" para mantener su información de autentificación \
 	durante un máximo de 31 días y "language" para almacenar sus preferencias de \
 	lenguage.  Además, almacenamos un ítem llamado "returnStack" en el almacenamiento \
 	local de su navegador para saber dónde tienen que ir algunos botones.
 
-# master.panic ################################################################
+################################################################################
+# master.panic
 
 master.panic.title = Error inesperado
 master.panic.text = \
 	¡Lo sentimos! Se ha producido un error inesperado.  Si impide que pueda \
 	trabajar con nuestro sistema, por favor, póngase en contacto con nosotros \
 	y haremos lo posible por resolverlo cuanto antes.
-	the following information to them.
 master.panic.label.request = Petición:
 master.panic.label.status = Estado:
 master.panic.label.exceptions = Excepciones:
 master.panic.text.consult-log = Por favor, consulte el log para ver más detalles.
-

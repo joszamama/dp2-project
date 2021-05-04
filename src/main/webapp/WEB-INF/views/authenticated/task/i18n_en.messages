@@ -1,0 +1,16 @@
+authenticated.task.form.label.title = Title
+authenticated.task.form.label.description = Description
+authenticated.task.form.label.link = Link
+authenticated.task.form.label.executionStart = Start of execution
+authenticated.task.form.label.executionEnd = End of execution
+authenticated.task.form.label.workloadHours = Workload (hours)
+authenticated.task.form.label.workloadMinutes = Workload (minutes)
+authenticated.task.form.button.return = Return
+
+authenticated.task.list.label.title = Title
+authenticated.task.list.label.executionStart = Start of execution
+authenticated.task.list.label.executionEnd = End of execution
+authenticated.task.list.label.workloadHours = Workload (hours)
+authenticated.task.list.label.workloadMinutes = Workload (minutes)
+authenticated.task.list.label.workloadParsed = Workload (HH:mm)
+authenticated.task.form.label.workloadParsed = Workload (HH:mm)

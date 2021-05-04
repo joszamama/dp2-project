@@ -1,0 +1,13 @@
+anonymous.work-plan.form.label.title = Título
+anonymous.work-plan.form.label.description = Descripción
+anonymous.work-plan.form.label.link = Enlace
+anonymous.work-plan.form.label.executionStart = Comienzo de ejecución
+anonymous.work-plan.form.label.executionEnd = Fin de ejecución
+anonymous.work-plan.form.label.workloadParsed = Carga de trabajo (HH:mm)
+anonymous.work-plan.form.button.return = Volver
+anonymous.work-plan.form.label.tasks = Tareas
+
+anonymous.work-plan.list.label.title = Título
+anonymous.work-plan.list.label.executionStart = Comienzo de ejecución
+anonymous.work-plan.list.label.executionEnd = Fin de ejecución
+anonymous.work-plan.list.label.workloadParsed = Carga de trabajo (HH:mm)

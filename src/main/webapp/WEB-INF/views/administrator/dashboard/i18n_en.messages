@@ -1,0 +1,50 @@
+#administrator.dashboard.form.label.number-maximum-workplan-execution-periods i18n_en.messages
+#
+# Copyright (c) 2012-2021 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+administrator.dashboard.form.title.show = Dashboard
+
+administrator.dashboard.form.title.general-indicators = General indicators
+administrator.dashboard.form.label.number-public-tasks =  Total number of public tasks
+administrator.dashboard.form.label.number-private-tasks =  Total number of private tasks
+administrator.dashboard.form.label.number-finished-tasks = Total number of finished tasks
+administrator.dashboard.form.label.number-non-finished-tasks = Total number of non-finished tasks
+
+administrator.dashboard.form.label.number-average-execution-periods = Average task execution periods (in days)
+administrator.dashboard.form.label.number-deviation-execution-periods = Deviation task execution periods (in days)
+administrator.dashboard.form.label.number-minimum-execution-periods = Minimum task execution periods (in days)
+administrator.dashboard.form.label.number-maximum-execution-periods = Maximum task execution periods (in days)
+
+administrator.dashboard.form.label.number-average-workloads = Average task workloads (hours:minutes)
+administrator.dashboard.form.label.number-deviation-workloads = Deviation task workloads (hours:minutes)
+administrator.dashboard.form.label.number-minimum-workloads = Minimum task workloads (hours:minutes)
+administrator.dashboard.form.label.number-maximum-workloads = Maximum task workloads (hours:minutes)
+
+# Workplan messages
+
+administrator.dashboard.form.label.number-public-workplans = Total number of public workplans
+administrator.dashboard.form.label.number-private-workplans = Total number of private workplans
+administrator.dashboard.form.label.number-finished-workplans = Total number of finished workplans
+administrator.dashboard.form.label.number-non-finished-workplans = Total number of non-finished workplans
+
+administrator.dashboard.form.label.number-average-workplan-execution-periods =  Average execution workplan periods (in days)
+administrator.dashboard.form.label.number-deviation-workplan-execution-periods = Deviation execution workplan periods (in days)
+administrator.dashboard.form.label.number-minimum-workplan-execution-periods = Minimum execution workplan periods (in days)
+administrator.dashboard.form.label.number-maximum-workplan-execution-periods = Maximum execution workplan periods (in days)
+
+administrator.dashboard.form.label.number-average-workplan-workloads = Average workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-deviation-workplan-workloads = Deviation workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-minimum-workplan-workloads = Minimum workplan workloads (hours:minutes)
+administrator.dashboard.form.label.number-maximum-workplan-workloads = Maximum workplan workloads (hours:minutes)
+
+administrator.dashboard.form.title.application-statuses = Chart
+
+administrator.dashboard.form.title.total-workplan-number = Total number of work plans
+administrator.dashboard.form.title.public-workplan-number = Published work plans
+administrator.dashboard.form.title.private-workplan-number = Non-published work plans

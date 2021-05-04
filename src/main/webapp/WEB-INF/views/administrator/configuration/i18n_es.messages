@@ -1,0 +1,5 @@
+administrator.configuration.form.title.show = Configuración
+
+administrator.configuration.form.word-list =  Palabras consideradas Spam
+administrator.configuration.form.threshold =  Umbral
+administrator.configuration.form.button.create = Cambiar parámetros
