@@ -59,8 +59,6 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert model != null;
 
-		model.setAttribute("hasWorkplan", !this.repository.findWorkplansOfTask(entity.getId()).isEmpty());
-		
 		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed", "description", "link", "isPrivate");
 	}
 
