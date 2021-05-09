@@ -100,15 +100,23 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		if (this.repository.averageExecutionPeriods() != null) {
 			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());
+		} else {
+			result.setAverageExecutionPeriods((double) 0);
 		}
 		if (this.repository.deviationExecutionPeriods() != null) {
 			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods());
+		} else {
+			result.setDeviationExecutionPeriods((double) 0);
 		}
 		if (this.repository.minimumExecutionPeriods() != null) {
 			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods());
+		} else {
+			result.setMinimumExecutionPeriods(0);
 		}
 		if (this.repository.maximumExecutionPeriods() != null) {
 			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods());
+		} else {
+			result.setMaximumExecutionPeriods(0);
 		}
 
 		return result;
