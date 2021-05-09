@@ -8,7 +8,7 @@
 		"war": [
 			{
 				"file": "target/Acme-Planner-21.2.war",
-				"context": "/",
+				"context": "/Acme-Planner",
 				"port": 443
 			}
 		]
