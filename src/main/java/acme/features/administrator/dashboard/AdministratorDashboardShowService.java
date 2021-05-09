@@ -12,16 +12,9 @@
 
 package acme.features.administrator.dashboard;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.tasks.Task;
-import acme.entities.workPlans.WorkPlan;
-import acme.features.anonymous.workPlan.AnonymousWorkPlanRepository;
 import acme.forms.Dashboard;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -34,10 +27,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	protected AdministratorDashboardRepository	repository;
-
-	@Autowired
-	protected AnonymousWorkPlanRepository		workPlanRepository;
+	protected AdministratorDashboardRepository repository;
 
 	// AbstractShowService<Administrator, Dashboard> interface ----------------
 
@@ -56,91 +46,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert model != null;
 
 		request.unbind(entity, model, "countNotFinishedTasks", "countFinishedTasks", "countPublicTasks", "countPrivateTasks", "averageWorkloadsHours", "deviationWorkloadsHours", "minimumWorkloadsHours", "maximumWorkloadsHours", "averageWorkloadsMinutes",
-			"deviationWorkloadsMinutes", "minimumWorkloadsMinutes", "maximumWorkloadsMinutes", "averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods", "countNotFinishedWorkplan",
-			"countFinishedWorkplan", "countPublicWorkplan", "countPrivateWorkplan", "averageWorkplanExecutionPeriods", "deviationWorkplanExecutionPeriods", "minimumWorkplanExecutionPeriods", "maximumWorkplanExecutionPeriods",
-			"minimumWorkplanWorkloadsHours", "averageWorkplanWorkloadsHours", "deviationWorkplanWorkloadsHours", "minimumWorkplanWorkloadsHours", "maximumWorkplanWorkloadsHours", "averageWorkplanWorkloadsMinutes", "deviationWorkplanWorkloadsMinutes",
-			"minimumWorkplanWorkloadsMinutes", "maximumWorkplanWorkloadsMinutes");
+			"deviationWorkloadsMinutes", "minimumWorkloadsMinutes", "maximumWorkloadsMinutes", "averageExecutionPeriods", "deviationExecutionPeriods", "minimumExecutionPeriods", "maximumExecutionPeriods");
 
-	}
-
-	public final Integer getMinimumWorkplanWorkloads(final Request<Dashboard> request) {
-		Integer res = Integer.MAX_VALUE;
-		final Set<WorkPlan> workPlans = this.repository.findAllWorkPlans();
-
-		for (final WorkPlan workPlan : workPlans) {
-			Integer resH = 0;
-			for (final Task task : workPlan.getTasks()) {
-				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
-			}
-			if (resH < res)
-				res = resH;
-		}
-		return res;
-	}
-
-	public final Integer getMaximumWorkplanWorkloads(final Request<Dashboard> request) {
-		Integer res = 0;
-		final Set<WorkPlan> workPlans = this.repository.findAllWorkPlans();
-
-		for (final WorkPlan workPlan : workPlans) {
-			Integer resH = 0;
-			for (final Task task : workPlan.getTasks()) {
-				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
-			}
-			if (resH > res)
-				res = resH;
-		}
-		return res;
-	}
-
-	public final Integer getAverageWorkplanWorkloads(final Request<Dashboard> request) {
-		Integer res = 0;
-		final Set<WorkPlan> workPlans = this.repository.findAllWorkPlans();
-		Integer resH = 0;
-		for (final WorkPlan workPlan : workPlans) {
-			for (final Task task : workPlan.getTasks()) {
-				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
-			}
-			res = resH;
-		}
-		if(workPlans.size() != 0) {
-			res = res / workPlans.size();
-		}
-		
-		return res;
-	}
-
-	public final Integer getStdDevWorkplanWorkloads(final Request<Dashboard> request) {
-		Integer res = 0;
-		final Set<WorkPlan> workPlans = this.repository.findAllWorkPlans();
-		final List<Double> numArray = new ArrayList<>();
-		for (final WorkPlan workPlan : workPlans) {
-			Integer resH = 0;
-			for (final Task task : workPlan.getTasks()) {
-				resH += task.getWorkloadHours() * 60 + task.getWorkloadMinutes();
-			}
-			numArray.add(resH * 1.);
-		}
-		res = AdministratorDashboardShowService.calculateSD(numArray);
-		return res;
-	}
-
-	public static Integer calculateSD(final List<Double> numArray) {
-		Double sum = 0.;
-		Double standardDeviation = 0.;
-		final int length = numArray.size();
-
-		for (final Double num : numArray) {
-			sum += num;
-		}
-
-		final Double mean = sum / length;
-
-		for (final Double num : numArray) {
-			standardDeviation += Math.pow(num - mean, 2);
-		}
-
-		return (int) Math.sqrt(standardDeviation / length);
 	}
 
 	@Override
@@ -149,81 +56,68 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 
 		// Task information
 		final Dashboard result = new Dashboard();
-		
-		if(this.repository.averageWorkloads() != null) {
+
+		if (this.repository.averageWorkloads() != null) {
 			final Long averageWorkloads = Math.round(this.repository.averageWorkloads());
 			result.setAverageWorkloadsHours(Long.toString(averageWorkloads / 60));
 			result.setAverageWorkloadsMinutes(String.format("%02d", (averageWorkloads % 60)));
+		} else {
+			result.setAverageWorkloadsHours(Long.toString(0));
+			result.setAverageWorkloadsMinutes(String.format("%02d", (0)));
 		}
-		if(this.repository.deviationWorkloads() != null) {
+
+		if (this.repository.deviationWorkloads() != null) {
 			final Long deviationWorkloads = Math.round(this.repository.deviationWorkloads());
 			result.setDeviationWorkloadsHours(Long.toString(deviationWorkloads / 60));
 			result.setDeviationWorkloadsMinutes(String.format("%02d", (deviationWorkloads % 60)));
+		} else {
+			result.setDeviationWorkloadsHours(Long.toString(0));
+			result.setDeviationWorkloadsMinutes(String.format("%02d", (0)));
 		}
-		
-		if(this.repository.minimumWorkloads() != null) {
+
+		if (this.repository.minimumWorkloads() != null) {
 			final Long minimumWorkloads = Math.round(this.repository.minimumWorkloads());
 			result.setMinimumWorkloadsHours(Long.toString(minimumWorkloads / 60));
 			result.setMinimumWorkloadsMinutes(String.format("%02d", (minimumWorkloads % 60)));
+		} else {
+			result.setMinimumWorkloadsHours(Long.toString(0));
+			result.setMinimumWorkloadsMinutes(String.format("%02d", (0)));
 		}
-		
-		if(this.repository.maximumWorkloads() != null) {
+
+		if (this.repository.maximumWorkloads() != null) {
 			final Long maximumWorkloads = Math.round(this.repository.maximumWorkloads());
 			result.setMaximumWorkloadsHours(Long.toString(maximumWorkloads / 60));
 			result.setMaximumWorkloadsMinutes(String.format("%02d", (maximumWorkloads % 60)));
+		} else {
+			result.setMaximumWorkloadsHours(Long.toString(0));
+			result.setMaximumWorkloadsMinutes(String.format("%02d", (0)));
 		}
-		
-		
 
 		result.setCountFinishedTasks(this.repository.countNotFinishedTasks());
 		result.setCountNotFinishedTasks(this.repository.countFinishedTasks());
 		result.setCountPrivateTasks(this.repository.countPublicTasks());
 		result.setCountPublicTasks(this.repository.countPrivateTasks());
 
-		if(this.repository.averageExecutionPeriods() != null) {
+		if (this.repository.averageExecutionPeriods() != null) {
 			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());
+		} else {
+			result.setAverageExecutionPeriods((double) 0);
 		}
-		if(this.repository.deviationExecutionPeriods() != null) {
+		if (this.repository.deviationExecutionPeriods() != null) {
 			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods());
+		} else {
+			result.setDeviationExecutionPeriods((double) 0);
 		}
-		if(this.repository.minimumExecutionPeriods() != null) {
+		if (this.repository.minimumExecutionPeriods() != null) {
 			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods());
+		} else {
+			result.setMinimumExecutionPeriods(0);
 		}
-		if(this.repository.maximumExecutionPeriods() != null) {
+		if (this.repository.maximumExecutionPeriods() != null) {
 			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods());
+		} else {
+			result.setMaximumExecutionPeriods(0);
 		}
-		
-
-		// WorkPlan Information
-
-		result.setCountFinishedWorkplan(this.repository.countNotFinishedWorkplans());
-		result.setCountNotFinishedWorkplan(this.repository.countFinishedWorkplans());
-		result.setCountPrivateWorkplan(this.repository.countPrivateWorkplans());
-		result.setCountPublicWorkplan(this.repository.countPublicWorkplans());
-		
-		if(this.getAverageWorkplanWorkloads(request) != null) {
-			result.setAverageWorkplanWorkloadsHours(Long.toString(this.getAverageWorkplanWorkloads(request) / 60));
-			result.setAverageWorkplanWorkloadsMinutes(String.format("%02d", (this.getAverageWorkplanWorkloads(request) % 60)));
-		}
-
-		if(this.getStdDevWorkplanWorkloads(request) != null) {
-			result.setDeviationWorkplanWorkloadsHours(Integer.toString(this.getStdDevWorkplanWorkloads(request) / 60));
-			result.setDeviationWorkplanWorkloadsMinutes(String.format("%02d", (this.getStdDevWorkplanWorkloads(request) % 60)));
-		}
-		if(this.getMinimumWorkplanWorkloads(request) != null) {
-			result.setMinimumWorkplanWorkloadsHours(Long.toString(this.getMinimumWorkplanWorkloads(request) / 60));
-			result.setMinimumWorkplanWorkloadsMinutes(String.format("%02d", (this.getMinimumWorkplanWorkloads(request) % 60)));
-		}
-		if(this.getMaximumWorkplanWorkloads(request) != null) {
-			result.setMaximumWorkplanWorkloadsHours(Long.toString(this.getMaximumWorkplanWorkloads(request) / 60));
-			result.setMaximumWorkplanWorkloadsMinutes(String.format("%02d", (this.getMaximumWorkplanWorkloads(request) % 60)));
-		}
-		
-
-		result.setAverageWorkplanExecutionPeriods(this.repository.averageWorkplanExecutionPeriods());
-		result.setDeviationWorkplanExecutionPeriods(this.repository.deviationWorkplanExecutionPeriods());
-		result.setMinimumWorkplanExecutionPeriods(this.repository.minimumWorkplanExecutionPeriods());
-		result.setMaximumWorkplanExecutionPeriods(this.repository.maximumWorkplanExecutionPeriods());
 
 		return result;
 	}
