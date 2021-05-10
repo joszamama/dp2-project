@@ -135,7 +135,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
-		if (isSpam == false) {
+		if (!isSpam) {
 			this.repository.save(entity);
 		} else {
 			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription());

@@ -20,7 +20,8 @@ public class SpamFilterService {
 
 
 	public String regexCompilator(final String wordList) {
-		String regex = "(";
+		final StringBuilder builder = new StringBuilder();
+		builder.append("(");
 		final String[] spamWords = wordList.split(",");
 
 		for (int i = 0; i < spamWords.length; i++) {
@@ -29,27 +30,27 @@ public class SpamFilterService {
 				final String word = spamWords[i].trim();
 				for (int j = 0; j < word.length(); j++) {
 					if (word.charAt(j) == ' ') {
-						regex += word.charAt(j);
+						builder.append(word.charAt(j));
 					} else {
-						regex += word.charAt(j) + "+";
+						builder.append(word.charAt(j) + "+");
 					}
 				}
-				regex += "|";
+				builder.append("|");
 			} else { //si es la última palabra, no se pone un |
 				final String word = spamWords[i].trim();
 				for (int j = 0; j < word.length(); j++) {
 					if (word.charAt(j) == ' ') {
-						regex += word.charAt(j);
+						builder.append(word.charAt(j));
 					} else {
-						regex += word.charAt(j) + "+";
+						builder.append(word.charAt(j) + "+");
 					}
 				}
 			}
 		}
-		regex += ")";
-		System.out.println("Regex: " + regex);
+		builder.append(")");
+		System.out.println("Regex: " + builder.toString());
 
-		return regex.trim();
+		return builder.toString().trim();
 	}
 
 	public boolean isSpam(final String... messages) {
@@ -57,7 +58,7 @@ public class SpamFilterService {
 		boolean res = false;
 		String fullMessage = String.join(" ", messages).toLowerCase();
 		fullMessage = fullMessage.replaceAll("( )+", " "); //normalize spaces
-		
+
 		final String wordList = configuration.getWordList().toLowerCase();
 		final Pattern p = Pattern.compile(this.regexCompilator(wordList));
 		final Matcher m = p.matcher(fullMessage);

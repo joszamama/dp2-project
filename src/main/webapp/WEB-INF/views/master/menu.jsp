@@ -23,6 +23,8 @@
 		<acme:menu-option code="master.menu.anonymous" access="isAnonymous()">
 			<acme:menu-suboption code="master.menu.anonymous.shout.list"
 				action="/anonymous/shout/list" />
+			<acme:menu-suboption code="master.menu.anonymous.shout.create"
+				action="/anonymous/shout/create" />
 			<acme:menu-suboption code="master.menu.anonymous.task.list"
 				action="/anonymous/task/list" />
 
