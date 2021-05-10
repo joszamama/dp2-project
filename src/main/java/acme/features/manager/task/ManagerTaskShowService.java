@@ -1,3 +1,4 @@
+
 package acme.features.manager.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,12 @@ import acme.framework.entities.Principal;
 import acme.framework.services.AbstractShowService;
 
 @Service
-public class ManagerTaskShowService implements AbstractShowService<Manager,Task>{
+public class ManagerTaskShowService implements AbstractShowService<Manager, Task> {
 
 	@Autowired
 	protected ManagerTaskRepository repository;
-	
+
+
 	@Override
 	public boolean authorise(final Request<Task> request) {
 		assert request != null;
@@ -42,7 +44,7 @@ public class ManagerTaskShowService implements AbstractShowService<Manager,Task>
 		assert model != null;
 
 		request.unbind(entity, model, "title", "executionStart", "executionEnd", "workloadHours", "workloadMinutes", "workloadParsed");
-		request.unbind(entity, model, "owner","description","link","isPrivate");		
+		request.unbind(entity, model, "owner", "description", "link", "isPrivate");
 	}
 
 	@Override

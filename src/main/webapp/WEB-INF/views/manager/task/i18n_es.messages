@@ -17,6 +17,8 @@ manager.task.form.error.end = No se puede crear tarea con esta fecha de fin
 manager.task.form.error.tooMuchWorkload = No se puede crear tarea con una carga de trabajo mayor que el tiempo entre los tiempos de ejecución
 manager.task.form.error.spamDetected = No se puede crear tarea con spam
 
+manager.task.form.cannotDeleteBecauseWorkplan = Esta tarea no se puede eliminar ya que forma parte de un workplan
+
 manager.task.list.label.title = Título
 manager.task.list.label.executionStart = Comienzo de ejecución
 manager.task.list.label.executionEnd = Fin de ejecución

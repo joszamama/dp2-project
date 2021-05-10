@@ -21,6 +21,7 @@
 </h2>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-public-tasks" /></th>
@@ -45,6 +46,7 @@
 </table>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-average-execution-periods" />
@@ -72,6 +74,7 @@
 </table>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-average-workloads" />
@@ -99,149 +102,5 @@
 		</th>
 		<td><acme:print value="${maximumWorkloadsHours}" />:<acme:print
 				value="${maximumWorkloadsMinutes}" /></td>
-	</tr>
-</table>
-
-
-
-<table class="table table-sm">
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-public-workplans" /></th>
-		<td><acme:print value="${countPublicWorkplan}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-private-workplans" /></th>
-		<td><acme:print value="${countPrivateWorkplan}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-finished-workplans" /></th>
-		<td><acme:print value="${countFinishedWorkplan}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-non-finished-workplans" />
-		</th>
-		<td><acme:print value="${countNotFinishedWorkplan}" /></td>
-	</tr>
-</table>
-
-<table class="table table-sm">
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-average-workplan-execution-periods" /></th>
-		<td><acme:print value="${averageWorkplanExecutionPeriods}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-deviation-workplan-execution-periods" /></th>
-		<td><acme:print value="${deviationWorkplanExecutionPeriods}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-minimum-workplan-execution-periods" /></th>
-		<td><acme:print value="${minimumWorkplanExecutionPeriods}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-maximum-workplan-execution-periods" />
-		</th>
-		<td><acme:print value="${maximumWorkplanExecutionPeriods}" /></td>
-	</tr>
-</table>
-
-<table class="table table-sm">
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-average-workplan-workloads" /></th>
-		<td><acme:print value="${averageWorkplanWorkloadsHours}" />:<acme:print
-				value="${averageWorkplanWorkloadsMinutes}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-deviation-workplan-workloads" /></th>
-		<td><acme:print value="${deviationWorkplanWorkloadsHours}" />:<acme:print
-				value="${deviationWorkplanWorkloadsMinutes}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-minimum-workplan-workloads" /></th>
-		<td><acme:print value="${minimumWorkplanWorkloadsHours}" />:<acme:print
-				value="${minimumWorkplanWorkloadsMinutes}" /></td>
-	</tr>
-	<tr>
-		<th scope="row"><acme:message
-				code="administrator.dashboard.form.label.number-maximum-workplan-workloads" />
-		</th>
-		<td><acme:print value="${maximumWorkplanWorkloadsHours}" />:<acme:print
-				value="${maximumWorkplanWorkloadsMinutes}" /></td>
-	</tr>
-</table>
-
-<h2>
-	<acme:message
-		code="administrator.dashboard.form.title.application-statuses" />
-</h2>
-
-<div>
-	<canvas id="canvas"></canvas>
-</div>
-
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-				var data = {
-					labels : [
-							"", "", ""
-					],
-					datasets : [
-						{
-							data : [
-									<jstl:out value="${countPublicWorkplan + countPrivateWorkplan}"/>, <jstl:out value="${countPublicWorkplan}"/>,
-									<jstl:out value="${countPrivateWorkplan}"/>,
-							]
-						}
-					]
-				};
-				var options = {
-					scales : {
-						yAxes : [
-							{
-								ticks : {
-									suggestedMin : 0.0,
-									suggestedMax : 1.0
-								}
-							}
-						]
-					},
-					legend : {
-						display : false
-					}
-				};
-
-				var canvas, context;
-
-				canvas = document.getElementById("canvas");
-				context = canvas.getContext("2d");
-				new Chart(context, {
-					type : "bar",
-					data : data,
-					options : options
-				});
-			});
-</script>
-<table class="table table-sm">
-	<tr>
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.total-workplan-number" />
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.public-workplan-number" />
-		<acme:print value="         " />
-		<acme:message
-			code="administrator.dashboard.form.title.private-workplan-number" />
 	</tr>
 </table>
