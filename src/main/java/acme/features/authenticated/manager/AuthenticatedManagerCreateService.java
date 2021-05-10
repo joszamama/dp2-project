@@ -30,7 +30,7 @@ public class AuthenticatedManagerCreateService implements AbstractCreateService<
 	public boolean authorise(final Request<Manager> request) {
 		assert request != null;
 
-		return true;
+		return this.repository.findOneManagerByUserAccountId(request.getPrincipal().getAccountId()) == null;
 	}
 
 	@Override

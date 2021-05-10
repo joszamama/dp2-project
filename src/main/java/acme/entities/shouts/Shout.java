@@ -38,12 +38,13 @@ public class Shout extends DomainEntity {
 	protected String			author;
 
 	@NotBlank
-	@Length(max = 100)
+	@Length(min = 1, max = 100)
 	protected String			text;
 
 	@URL
 	// This attribute is optional!
 	protected String			info;
+
 
 	// Derived attributes -----------------------------------------------------
 	public void setAuthor(final String author) {
