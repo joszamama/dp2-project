@@ -91,4 +91,14 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		super.clickOnSubmitButton("Sign up");
 		super.checkSimplePath("/master/welcome");
 	}
+	
+	public void click(final By locator) {
+		assert locator != null;
+
+		WebElement element;
+
+		element = this.locateOne(locator);
+		element.click();
+		this.shortSleep();
+	}
 }
