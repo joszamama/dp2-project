@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-public class ListFinishedPublicTasksTest extends AcmePlannerTest {
+public class AuthenticatedTest extends AcmePlannerTest {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/tasks/authenticated/list-finished-public.csv", encoding = "utf-8", numLinesToSkip = 1)
