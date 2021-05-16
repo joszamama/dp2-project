@@ -72,7 +72,6 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		assert elements.isEmpty();
 	}
 
-}
 
 	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
 		assert !StringHelper.isBlank(username);
