@@ -73,3 +73,23 @@ public abstract class AcmePlannerTest extends AcmeTest {
 	}
 
 }
+
+	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
+		assert !StringHelper.isBlank(username);
+		assert !StringHelper.isBlank(password);
+		assert !StringHelper.isBlank(name);
+		assert !StringHelper.isBlank(surname);
+		assert !StringHelper.isBlank(email);
+		
+		super.navigateHome();
+		super.fillInputBoxIn("username", username);
+		super.fillInputBoxIn("password", password);
+		super.fillInputBoxIn("confirmation", password);
+		super.fillInputBoxIn("identity.name", name);
+		super.fillInputBoxIn("identity.email", email);
+		super.fillInputBoxIn("identity.surname", surname);
+		super.fillInputBoxIn("accept", "true");
+		super.clickOnSubmitButton("Sign up");
+		super.checkSimplePath("/master/welcome");
+	}
+}
