@@ -1,23 +1,12 @@
 package acme.testing;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
 
-public class AdministratorTest extends AcmePlannerTest {
-
-	// Internal state ---------------------------------------------------------
-
-	// Lifecycle management ---------------------------------------------------
-
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-	}
+public class AdministratorConfigurationTest extends AcmePlannerTest {
 
 	// Test cases -------------------------------------------------------------
 
@@ -38,24 +27,6 @@ public class AdministratorTest extends AcmePlannerTest {
 	public void negativeSetCustomizationParameters() {
 		//this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
-		super.checkErrorsExist();
-		//this.signOut();
-	}
-
-	// Test cases -------------------------------------------------------------
-
-	@Test
-	public void positiveDashboard() {
-		this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
-		super.checkNotErrorsExist();
-		this.signOut();
-	}
-
-	@Test
-	public void negativeDashboard() {
-		//this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
 		super.checkErrorsExist();
 		//this.signOut();
 	}
