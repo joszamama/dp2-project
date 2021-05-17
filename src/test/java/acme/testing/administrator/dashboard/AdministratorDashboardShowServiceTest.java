@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import acme.testing.AcmePlannerTest;
 
 /**
- * These tests achieve a 94.5% coverage.
+ * These tests achieve a 94.5% coverage in the AdministratorDashboardShowService.
  * The only reason they don't achieve a 100% is the assert statements that
  * assert that the framework is working properly.
  * 
@@ -22,7 +22,7 @@ import acme.testing.AcmePlannerTest;
  * appears
  *
  */
-public class DisplayDashboardTest extends AcmePlannerTest {
+public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 
 	// Test cases -------------------------------------------------------------
 
