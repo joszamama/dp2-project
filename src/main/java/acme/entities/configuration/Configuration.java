@@ -2,6 +2,8 @@
 package acme.entities.configuration;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import acme.framework.entities.DomainEntity;
@@ -22,6 +24,8 @@ public class Configuration extends DomainEntity {
 	protected String			wordList;
 
 	@NotNull
+	@Min(0)
+	@Max(1)
 	protected Double			threshold;
 
 }
