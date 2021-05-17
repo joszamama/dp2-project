@@ -1,11 +1,9 @@
-
-package acme.testing.anonymous;
+package acme.testing.anonymous.shout;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -15,18 +13,8 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
-	@Override
-	@BeforeAll
-	public void beforeAll() {
-		super.beforeAll();
-		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(true);
-		//		super.click(By.linkText("Anonymous"));
-		//		super.submit(By.linkText("Create shout"));
-	}
-
 	@ParameterizedTest
-	@CsvFileSource(resources = "/anonymous/shout.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/anonymous/shout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positiveCreateShout(final String author, final String text, final String info) {
 		this.createShout(author, text, info);
@@ -48,6 +36,14 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 		//			DateTimeFormatter formato;
 		//		formato = DateTimeFormatter.ofPattern("dd/MM/yy");
 		//		LocalDate fecha = LocalDate.parse(19/07/63, formato);
+	}
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/anonymous/shout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(1)
+	public void negativeSpamCreateShout(final String author, final String text, final String info) {
+		this.createShout(author, text, info);
+		super.checkErrorsExist();
 	}
 
 	protected void createShout(final String author, final String text, final String info) {
