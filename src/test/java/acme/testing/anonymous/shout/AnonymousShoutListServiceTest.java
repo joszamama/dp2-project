@@ -17,12 +17,4 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 		Assertions.assertTrue(super.exists(By.cssSelector(".control.sorting_1")) || super.exists(By.className("dataTables_empty")));
 	}
 
-	@Test
-	public void negativeShoutListing() {
-		super.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/anonymous/shout/list");
-		Assertions.assertEquals("Unexpected error", super.driver.findElement(By.xpath("/html/body/div[2]/div/h1")).getText());
-		this.signOut();
-	}
-
 }
