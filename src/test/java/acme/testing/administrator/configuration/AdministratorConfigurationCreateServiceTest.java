@@ -9,9 +9,14 @@ import org.openqa.selenium.By;
 import acme.testing.AcmePlannerTest;
 
 /**
- * These tests achieve a ??.?% coverage in the AdministratorConfigurationCreateService.
- * The only reason they don't achieve a 100% is the assert statements that
- * assert that the framework is working properly.
+ * These tests achieve a 45.3% coverage in the AdministratorConfigurationCreateService.
+ * The reasons it doesn't achieve a 100% is because the assert
+ * statements that assert that the framework is working properly and
+ * also because of the unbind() method which isn't used when executing
+ * any of the actions and thus can't be covered by the tests, bringing
+ * coverage down. A solution would be to remove the method, but since it's
+ * an abstract method and thus an implementation must be provided, we've
+ * decided to leave the implementation in.
  * 
  * Test 1:
  * Log in as administrator, access the configuration and update it with
@@ -31,7 +36,7 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	 * In this test, we check that we can update the configuration as a logged in administrator and that the changes are persisted.
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/administrator/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/administrator/configuration/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void positive(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
@@ -50,7 +55,7 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	 * In this test, we check that we can't update the configuration with invalid threshold values.
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/administrator/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/administrator/configuration/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void negative(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
