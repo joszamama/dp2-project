@@ -1,4 +1,4 @@
-package acme.testing.administrator;
+package acme.testing.administrator.configuration;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -16,15 +16,20 @@ import acme.testing.AcmePlannerTest;
  * called during the execution of any of the actions.
  * 
  * Test 1:
- * Log in as administrator, access the configuration and update it,
- * enter the configuration again and check that the changes are persisted.
+ * Log in as administrator, access the configuration and update it with
+ * legal values, enter the configuration page again and check that the
+ * changes are persisted.
  * 
- * Test 2
+ * Test 1:
+ * Log in as administrator, access the configuration and update it with
+ * illegal values and check that an error is thrown.
+ * 
+ * Test 3
  * Don't log in as administrator, access the configuration, check that an error
  * appears
  *
  */
-public class AdministratorConfigurationTest extends AcmePlannerTest {
+public class ManageConfigurationTest extends AcmePlannerTest {
 
 	// Test cases -------------------------------------------------------------
 
@@ -34,12 +39,13 @@ public class AdministratorConfigurationTest extends AcmePlannerTest {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveSetCustomizationParameters(final String wordList, final String threshold) {
+	public void positive(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
 		super.fill(By.id("wordList"), wordList);
 		super.fill(By.id("threshold"), threshold);
 		super.clickOnSubmitButton("Change parameters");
+		super.checkNotErrorsExist();
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
 		super.checkInputBoxHasValue("wordList", wordList);
 		super.checkInputBoxHasValue("threshold", threshold);
@@ -47,10 +53,26 @@ public class AdministratorConfigurationTest extends AcmePlannerTest {
 	}
 
 	/**
+	 * In this test, we check that we can't update the configuration with invalid threshold values.
+	 */
+	@ParameterizedTest
+	@CsvFileSource(resources = "/administrator/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void negativeInvalidThreshold(final String wordList, final String threshold) {
+		this.signIn("administrator", "administrator");
+		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
+		super.fill(By.id("wordList"), wordList);
+		super.fill(By.id("threshold"), threshold);
+		super.clickOnSubmitButton("Change parameters");
+		super.checkErrorsExist();
+		this.signOut();
+	}
+
+	/**
 	 * In this test, we check that an error appears when accessing the configuration when we aren't logged in as an administrator.
 	 */
 	@Test
-	public void negativeSetCustomizationParameters() {
+	public void negativeUnauthorised() {
 		//this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
 		super.checkErrorsExist();

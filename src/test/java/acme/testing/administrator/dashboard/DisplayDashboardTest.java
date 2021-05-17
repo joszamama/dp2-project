@@ -1,5 +1,5 @@
 
-package acme.testing.administrator;
+package acme.testing.administrator.dashboard;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import acme.testing.AcmePlannerTest;
  * appears
  *
  */
-public class AdministratorDashboardTest extends AcmePlannerTest {
+public class DisplayDashboardTest extends AcmePlannerTest {
 
 	// Test cases -------------------------------------------------------------
 
@@ -30,7 +30,7 @@ public class AdministratorDashboardTest extends AcmePlannerTest {
 	 * In this test, we check that no errors appear when accessing a dashboard full of data as a logged administrator.
 	 */
 	@Test
-	public void positiveDashboard() {
+	public void positive() {
 		this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
 		super.checkNotErrorsExist();
@@ -43,7 +43,7 @@ public class AdministratorDashboardTest extends AcmePlannerTest {
 	 * We do this by populating the database with only the initial data.
 	 */
 	@Test
-	public void positiveDashboardWithoutData() {
+	public void negativeNoData() {
 		this.signIn("administrator", "administrator");
 		super.clickOnMenu("Administrator", "Populate DB (initial)");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
@@ -55,7 +55,7 @@ public class AdministratorDashboardTest extends AcmePlannerTest {
 	 * In this test, we check that an error appears when accessing a dashboard when we aren't logged in as an administrator.
 	 */
 	@Test
-	public void negativeDashboard() {
+	public void negativeUnauthorised() {
 		//this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
 		super.checkErrorsExist();
