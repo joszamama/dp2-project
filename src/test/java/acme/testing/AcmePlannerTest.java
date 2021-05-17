@@ -1,3 +1,4 @@
+
 package acme.testing;
 
 import java.util.List;
@@ -34,7 +35,7 @@ public abstract class AcmePlannerTest extends AcmeTest {
 	protected void signIn(final String username, final String password) {
 		assert !StringHelper.isBlank(username);
 		assert !StringHelper.isBlank(password);
-		
+
 		super.navigateHome();
 		super.clickOnMenu("Sign in", null);
 		super.fillInputBoxIn("username", username);
@@ -48,6 +49,25 @@ public abstract class AcmePlannerTest extends AcmeTest {
 	protected void signOut() {
 		super.navigateHome();
 		super.clickOnMenu("Sign out", null);
+		super.checkSimplePath("/master/welcome");
+	}
+
+	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
+		assert !StringHelper.isBlank(username);
+		assert !StringHelper.isBlank(password);
+		assert !StringHelper.isBlank(name);
+		assert !StringHelper.isBlank(surname);
+		assert !StringHelper.isBlank(email);
+
+		super.navigateHome();
+		super.fillInputBoxIn("username", username);
+		super.fillInputBoxIn("password", password);
+		super.fillInputBoxIn("confirmation", password);
+		super.fillInputBoxIn("identity.name", name);
+		super.fillInputBoxIn("identity.email", email);
+		super.fillInputBoxIn("identity.surname", surname);
+		super.fillInputBoxIn("accept", "true");
+		super.clickOnSubmitButton("Sign up");
 		super.checkSimplePath("/master/welcome");
 	}
 
@@ -72,23 +92,15 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		assert elements.isEmpty();
 	}
 
+	////////////////////////////////////////////////////////////////////////////////
+	// Other methods
 
-	protected void signUp(final String username, final String password, final String name, final String surname, final String email) {
-		assert !StringHelper.isBlank(username);
-		assert !StringHelper.isBlank(password);
-		assert !StringHelper.isBlank(name);
-		assert !StringHelper.isBlank(surname);
-		assert !StringHelper.isBlank(email);
-		
-		super.navigateHome();
-		super.fillInputBoxIn("username", username);
-		super.fillInputBoxIn("password", password);
-		super.fillInputBoxIn("confirmation", password);
-		super.fillInputBoxIn("identity.name", name);
-		super.fillInputBoxIn("identity.email", email);
-		super.fillInputBoxIn("identity.surname", surname);
-		super.fillInputBoxIn("accept", "true");
-		super.clickOnSubmitButton("Sign up");
-		super.checkSimplePath("/master/welcome");
+	public void click(final By locator) {
+		assert locator != null;
+		WebElement element;
+		element = this.locateOne(locator);
+		element.click();
+		this.shortSleep();
 	}
+
 }
