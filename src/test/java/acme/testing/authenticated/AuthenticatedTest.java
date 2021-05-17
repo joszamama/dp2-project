@@ -1,9 +1,11 @@
 
-package acme.testing;
+package acme.testing.authenticated;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
+
+import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedTest extends AcmePlannerTest {
 

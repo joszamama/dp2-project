@@ -1,4 +1,4 @@
-package acme.testing;
+package acme.testing.anonymous;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;

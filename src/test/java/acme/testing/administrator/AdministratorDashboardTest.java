@@ -1,7 +1,9 @@
 
-package acme.testing;
+package acme.testing.administrator;
 
 import org.junit.jupiter.api.Test;
+
+import acme.testing.AcmePlannerTest;
 
 /**
  * These tests achieve a 94.5% coverage.

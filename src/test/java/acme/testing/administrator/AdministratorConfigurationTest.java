@@ -1,10 +1,12 @@
-package acme.testing;
+package acme.testing.administrator;
 
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.By;
+
+import acme.testing.AcmePlannerTest;
 
 /**
  * These tests achieve a 56.4% coverage.
