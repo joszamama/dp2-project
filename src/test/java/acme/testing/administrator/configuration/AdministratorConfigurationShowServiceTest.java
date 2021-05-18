@@ -11,11 +11,12 @@ import acme.testing.AcmePlannerTest;
  * assert that the framework is working properly.
  * 
  * Test 1:
- * Log in as administrator, access the configuration, check that no errors appear
+ * Log in as administrator, access the configuration, check that no errors
+ * appear.
  * 
  * Test 2:
  * Don't log in as administrator, access the configuration, check that an error
- * appears
+ * appears.
  *
  */
 public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
@@ -23,7 +24,8 @@ public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
 	// Test cases -------------------------------------------------------------
 
 	/**
-	 * In this test, we check that no errors appear when accessing the configuration as a logged administrator.
+	 * Log in as administrator, access the configuration, check that no errors
+	 * appear.
 	 */
 	@Test
 	public void positive() {
@@ -34,7 +36,8 @@ public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * In this test, we check that an error appears when accessing the configuration when we aren't logged in as an administrator.
+	 * Don't log in as administrator, access the configuration, check that an error
+	 * appears.
 	 */
 	@Test
 	public void negative() {

@@ -26,6 +26,9 @@ import acme.testing.AcmePlannerTest;
  * Test 2:
  * Log in as administrator, access the configuration and update it with
  * illegal values and check that an error is thrown.
+ * This violates the constraint that threshold values must be between 0
+ * (including) and 1 (including) by sending values under 0 and values
+ * over 1.
  * 
  */
 public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest {
@@ -33,7 +36,9 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	// Test cases -------------------------------------------------------------
 
 	/**
-	 * In this test, we check that we can update the configuration as a logged in administrator and that the changes are persisted.
+	 * Log in as administrator, access the configuration and update it with
+	 * legal values, enter the configuration page again and check that the
+	 * changes are persisted.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/configuration/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
@@ -52,7 +57,11 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	}
 
 	/**
-	 * In this test, we check that we can't update the configuration with invalid threshold values.
+	 * Log in as administrator, access the configuration and update it with
+	 * illegal values and check that an error is thrown.
+	 * This violates the constraint that threshold values must be between 0
+	 * (including) and 1 (including) by sending values under 0 and values
+	 * over 1.
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/configuration/negative.csv", encoding = "utf-8", numLinesToSkip = 1)

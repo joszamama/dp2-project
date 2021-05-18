@@ -11,11 +11,13 @@ import acme.testing.AcmePlannerTest;
  * assert that the framework is working properly.
  * 
  * Test 1:
- * Log in as administrator, access the dashboard, check that no errors appear
+ * Log in as administrator, access the dashboard, check that no errors
+ * appear.
  * 
  * Test 2:
  * Log in as administrator, click "Populate DB (initial)" so that there's no
  * data for the dashboard, access the dashboard, check that no errors appear
+ * even when there isn't data for the dashboard.
  * 
  * Test 3:
  * Don't log in as administrator, access the dashboard, check that an error
@@ -27,7 +29,8 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	// Test cases -------------------------------------------------------------
 
 	/**
-	 * In this test, we check that no errors appear when accessing a dashboard full of data as a logged administrator.
+	 * Log in as administrator, access the dashboard, check that no errors
+	 * appear.
 	 */
 	@Test
 	public void positive() {
@@ -38,9 +41,9 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * In this test, we check that no errors appear when accessing a dashboard without data as a logged administrator.
-	 * 
-	 * We do this by populating the database with only the initial data.
+	 * Log in as administrator, click "Populate DB (initial)" so that there's no
+	 * data for the dashboard, access the dashboard, check that no errors appear
+	 * even when there isn't data for the dashboard.
 	 */
 	@Test
 	public void negativeNoData() {
@@ -52,7 +55,8 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * In this test, we check that an error appears when accessing a dashboard when we aren't logged in as an administrator.
+	 * Don't log in as administrator, access the dashboard, check that an error
+	 * appears
 	 */
 	@Test
 	public void negativeUnauthorised() {
