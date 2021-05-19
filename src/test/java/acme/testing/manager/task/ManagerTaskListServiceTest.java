@@ -11,7 +11,7 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest{
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/list-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void listAndShowTasks(final int recordIndex, final String title, final String executionStart, final String executionEnd, final String workload) {
+	public void listTasks(final int recordIndex, final String title, final String executionStart, final String executionEnd, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "List my tasks");
 		

@@ -12,7 +12,7 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-tasks-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void CreatePositive(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
+	public void createPositive(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "Create a task");
 
@@ -27,7 +27,7 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 
 		super.clickOnMenu("Manager", "List my tasks");
 
-		super.clickOnListingRecord(recordIndex);
+		super.clickOnListingRecord(12+recordIndex);
 
 		super.checkInputBoxHasValue("title", title);
 		super.checkInputBoxHasValue("description", description);
@@ -40,7 +40,7 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-tasks-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void CreateNegative(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
+	public void createNegative(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "Create a task");
 
