@@ -9,7 +9,7 @@ import acme.testing.AcmePlannerTest;
 public class ManagerTaskListServiceTest extends AcmePlannerTest{
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/tasks/manager/list-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/manager/task/list-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void listAndShowTasks(final int recordIndex, final String title, final String executionStart, final String executionEnd, final String workload) {
 		super.signIn("manager1", "manager1");
