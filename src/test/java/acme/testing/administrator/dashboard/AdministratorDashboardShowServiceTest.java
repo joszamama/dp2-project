@@ -60,10 +60,8 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	 */
 	@Test
 	public void negativeUnauthorised() {
-		//this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
 		super.checkErrorsExist();
-		//this.signOut();
 	}
 
 }

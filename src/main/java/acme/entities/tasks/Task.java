@@ -73,10 +73,9 @@ public class Task extends DomainEntity {
 
 
 	public String getWorkloadParsed() {
-		if(this.workloadParsed != null) {
-			if(this.workloadParsed.length() > 0) {
-				return this.workloadParsed;
-			}
+		if (this.workloadParsed != null && this.workloadParsed.length() > 0) {
+			return this.workloadParsed;
+
 		}
 		String res = "";
 		if (this.getWorkloadMinutes() != null) {
@@ -94,7 +93,7 @@ public class Task extends DomainEntity {
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
-		if(workload.matches("^\\d+:\\d{2}$")) {
+		if (workload.matches("^\\d+:\\d{2}$")) {
 			final String[] work = workload.split(":");
 			this.setWorkloadHours(Integer.valueOf(work[0]));
 			this.setWorkloadMinutes(Integer.valueOf(work[1]));

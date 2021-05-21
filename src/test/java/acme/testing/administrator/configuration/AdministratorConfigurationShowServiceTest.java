@@ -41,10 +41,8 @@ public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
 	 */
 	@Test
 	public void negative() {
-		//this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
 		super.checkErrorsExist();
-		//this.signOut();
 	}
 
 }

@@ -14,7 +14,6 @@ public class ManagerTaskDeleteServiceTest extends AcmePlannerTest{
 	public void deleteTasks(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "List my tasks");
-		
 		super.clickOnListingRecord(recordIndex);
 		super.clickOnSubmitButton("Delete");
 		super.clickOnMenu("Manager", "List my tasks");
