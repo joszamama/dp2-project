@@ -55,7 +55,7 @@ public class Task extends DomainEntity {
 	@Max(60)
 	protected Integer			workloadMinutes;
 
-	//@Pattern(regexp = "^\\d+:\\d{2}$")
+	//@Pattern(regexp = "^\\d+:[0-5][0-9]$")
 	@Transient
 	protected String			workloadParsed;
 
@@ -93,7 +93,7 @@ public class Task extends DomainEntity {
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
-		if (workload.matches("^\\d+:\\d{2}$")) {
+		if (workload.matches("^\\d+:[0-5][0-9]$")) {
 			final String[] work = workload.split(":");
 			this.setWorkloadHours(Integer.valueOf(work[0]));
 			this.setWorkloadMinutes(Integer.valueOf(work[1]));

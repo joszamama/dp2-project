@@ -81,7 +81,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
-		errors.state(request, entity.getWorkloadParsed().matches("^\\d+:\\d{2}$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
+		errors.state(request, entity.getWorkloadParsed().matches("^\\d+:[0-5][0-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
 		
 		if (!errors.hasErrors("executionStart")) {
 			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
