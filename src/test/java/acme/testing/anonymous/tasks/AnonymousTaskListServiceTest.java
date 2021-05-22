@@ -8,6 +8,15 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousTaskListServiceTest extends AcmePlannerTest{
 	
+	/**
+	 * This test achieves a 75.0% coverage in the AnonymousShoutListService.
+	 * 
+	 * Test 1:
+	 * As in the anonymous shout listing test, in this one we check there is a list of the tasks, that can be
+	 * empty or filled.
+	 *
+	 */
+	
 	
 	/**
 	 * As in the anonymous shout listing test, in this one we check there is a list of the tasks, that can be

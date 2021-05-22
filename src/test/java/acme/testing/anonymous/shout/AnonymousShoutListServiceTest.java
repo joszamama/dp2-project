@@ -10,6 +10,15 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
 	/**
+	 * This test achieves a 75.0% coverage in the AnonymousShoutListService.
+	 * 
+	 * Test 1:
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
+	 *
+	 */
+	
+	
+	/**
 	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
 	 * 
 	 */
