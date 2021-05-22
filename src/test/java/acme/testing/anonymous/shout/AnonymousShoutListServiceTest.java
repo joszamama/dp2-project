@@ -9,6 +9,10 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
+	/**
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
+	 * 
+	 */
 	@Test
 	public void positiveShoutListing() {
 		super.navigateHome();

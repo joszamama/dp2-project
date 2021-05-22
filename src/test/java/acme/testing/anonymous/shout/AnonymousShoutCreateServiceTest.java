@@ -16,6 +16,16 @@ import acme.testing.AcmePlannerTest;
 
 public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
+	
+	/**
+	 * Access the create shout function, create a new positive case of a shout and check that the moment of the
+	 * creation of the shout is less than 3 minutes before now. That means it is the same shout that we have
+	 * created.
+	 * @param author
+	 * @param text
+	 * @param info
+	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(2)
@@ -39,6 +49,13 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 		assert timeDifference.toMinutes() < 3;
 	}
 
+	/**
+	 * In this case, we create a shout with some "spam" words in the text and we check that we aren´t 
+	 * allowed to create it because the spam error appeared.
+	 * @param author
+	 * @param text
+	 * @param info
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(1)
@@ -48,6 +65,12 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 		super.checkErrorsExist();
 	}
 
+	/**
+	 * This is an auxiliar function to create the shout.
+	 * @param author
+	 * @param text
+	 * @param info
+	 */
 	protected void createShout(final String author, final String text, final String info) {
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
 		super.click(By.linkText("Anonymous"));
