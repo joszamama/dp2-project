@@ -73,7 +73,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
+	
 		errors.state(request, entity.getWorkloadParsed().matches("^\\d+:[0-5][0-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
 		
 		if (!errors.hasErrors("executionStart")) {
