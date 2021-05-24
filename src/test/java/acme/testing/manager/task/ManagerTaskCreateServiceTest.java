@@ -35,6 +35,8 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("executionStart", executionStart);
 		super.checkInputBoxHasValue("executionEnd", executionEnd);
 		super.checkInputBoxHasValue("workloadParsed", workload);
+		
+		super.checkNotErrorsExist();
 	}
 
 	@ParameterizedTest

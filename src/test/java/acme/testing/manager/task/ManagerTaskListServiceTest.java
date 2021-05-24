@@ -1,6 +1,7 @@
 package acme.testing.manager.task;
 
 import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -11,7 +12,7 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest{
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/list-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void listTasks(final int recordIndex, final String title, final String executionStart, final String executionEnd, final String workload) {
+	public void positiveList(final int recordIndex, final String title, final String executionStart, final String executionEnd, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "List my tasks");
 	
@@ -19,5 +20,12 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest{
 		super.checkColumnHasValue(recordIndex, 1, executionStart);
 		super.checkColumnHasValue(recordIndex, 2, executionEnd);
 		super.checkColumnHasValue(recordIndex, 3, workload);
+	}
+	
+	@Test
+	@Order(20)
+	public void negativeList() {
+		this.driver.get("http://localhost:8080/Acme-Planner/manager/task/list");
+		super.checkPanicExists();
 	}
 }

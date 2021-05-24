@@ -24,6 +24,7 @@ public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 		super.fillInputBoxIn("workloadParsed", workload);
 
 		super.clickOnSubmitButton("Update");
+		super.checkNotErrorsExist();
 	}
 
 	@ParameterizedTest
