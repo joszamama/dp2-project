@@ -118,7 +118,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 				// workload can't exceed the time between execution start and execution end
 				final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
 				final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-				errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+				errors.state(request, !tooMuchWorkload, "workloadParsed", "manager.task.form.error.tooMuchWorkload");
 			} else {
 				if (entity.getExecutionStart() == null) {
 					errors.state(request, true, "executionStart", "manager.task.form.error.start");
