@@ -63,7 +63,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 		result = new Task();
 		result.setOwner(manager);
-		result.setWorkloadParsed("01:00");
+		result.setWorkloadParsed("HH:mm");
 
 		return result;
 	}
