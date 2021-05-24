@@ -55,7 +55,7 @@ public class Task extends DomainEntity {
 	@Max(60)
 	protected Integer			workloadMinutes;
 
-	//@Pattern(regexp = "^\\d+:[0-5][0-9]$")
+	//@Pattern(regexp = "^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$")
 	@Transient
 	protected String			workloadParsed;
 
@@ -75,31 +75,32 @@ public class Task extends DomainEntity {
 	public String getWorkloadParsed() {
 		if (this.workloadParsed != null && this.workloadParsed.length() > 0) {
 			return this.workloadParsed;
-
 		}
-		String res = "";
-		if (this.getWorkloadMinutes() != null) {
-			if (this.getWorkloadMinutes() > 9) {
-				res = this.getWorkloadHours() + ":" + this.getWorkloadMinutes();
+		if (this.getWorkloadHours() != null) {
+			String res = "";
+			if (this.getWorkloadMinutes() != null) {
+				if (this.getWorkloadMinutes() > 9) {
+					res = this.getWorkloadHours() + ":" + this.getWorkloadMinutes();
+				} else {
+					res = this.getWorkloadHours() + ":0" + this.getWorkloadMinutes();
+				}
 			} else {
-				res = this.getWorkloadHours() + ":0" + this.getWorkloadMinutes();
+				res = this.getWorkloadHours() + ":00";
 			}
-
+			return res;
 		} else {
-			res = this.getWorkloadHours() + ":00";
+			return "";
 		}
-		return res;
 	}
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
-		if (workload.matches("^\\d+:[0-5][0-9]$")) {
+		if (workload.matches("^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$")) {
 			final String[] work = workload.split(":");
 			this.setWorkloadHours(Integer.valueOf(work[0]));
 			this.setWorkloadMinutes(Integer.valueOf(work[1]));
-		} else {
-			this.workloadParsed = workload;
 		}
+		this.workloadParsed = workload;
 	}
 
 }

@@ -63,7 +63,6 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		manager = this.managerRepo.findOne(request.getPrincipal().getActiveRoleId());
 		result = new Task();
 		result.setOwner(manager);
-		result.setWorkloadParsed("HH:mm");
 
 		return result;
 	}
@@ -74,7 +73,7 @@ public class ManagerTaskCreateService implements AbstractCreateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 	
-		errors.state(request, entity.getWorkloadParsed().matches("^\\d+:[0-5][0-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
+		errors.state(request, entity.getWorkloadParsed().matches("^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
 		
 		if (!errors.hasErrors("executionStart")) {
 			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
