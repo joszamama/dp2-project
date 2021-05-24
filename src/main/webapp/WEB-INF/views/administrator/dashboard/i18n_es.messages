@@ -16,10 +16,10 @@ administrator.dashboard.form.label.number-private-tasks =  Número total de tare
 administrator.dashboard.form.label.number-finished-tasks = Número total de tareas terminadas
 administrator.dashboard.form.label.number-non-finished-tasks = Número total de tareas no terminadas
 
-administrator.dashboard.form.label.number-average-execution-periods = Período promedio de ejecución de tareas (días)
-administrator.dashboard.form.label.number-deviation-execution-periods = Desviación del período de ejecución de tareas (días)
-administrator.dashboard.form.label.number-minimum-execution-periods = Período mínimo de ejecución de tareas (días)
-administrator.dashboard.form.label.number-maximum-execution-periods = Período máximo de ejecución de tareas (días)
+administrator.dashboard.form.label.number-average-execution-periods = Período promedio de ejecución de tareas (Días.Fracción)
+administrator.dashboard.form.label.number-deviation-execution-periods = Desviación del período de ejecución de tareas (Días.Fracción)
+administrator.dashboard.form.label.number-minimum-execution-periods = Período mínimo de ejecución de tareas (Días.Fracción)
+administrator.dashboard.form.label.number-maximum-execution-periods = Período máximo de ejecución de tareas (Días.Fracción)
 
 administrator.dashboard.form.label.number-average-workloads = Promedio de las cargas de trabajo de las tareas (horas:minutos)
 administrator.dashboard.form.label.number-deviation-workloads = Desviación de las cargas de trabajo de las tareas (horas:minutos)

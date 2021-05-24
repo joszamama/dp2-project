@@ -473,7 +473,9 @@ manages v</panel_attributes>
       <w>222</w>
       <h>36</h>
     </coordinates>
-    <panel_attributes>executionStart will alwas go before executionEnd
+    <panel_attributes>executionStart will always go before executionEnd 
+and they must be in the future taking into account 
+the moment when the task is created
 </panel_attributes>
     <additional_attributes/>
   </element>
