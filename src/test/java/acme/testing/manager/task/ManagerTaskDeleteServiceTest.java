@@ -22,7 +22,7 @@ public class ManagerTaskDeleteServiceTest extends AcmePlannerTest{
 	}
 	
 	@Test
-	@Order(10)
+	@Order(20)
 	public void deleteNegative() {
 		super.signIn("manager2", "manager2");
 		super.clickOnMenu("Manager", "List my tasks");

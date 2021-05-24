@@ -11,7 +11,7 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/tasks/authenticated/list-finished-public.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(1)
+	@Order(10)
 	public void listFinishedPublic(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.signIn("administrator", "administrator");
 		super.clickOnMenu("Authenticated", "List finished public tasks");

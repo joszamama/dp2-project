@@ -42,7 +42,7 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(1)
+	@Order(10)
 	public void positiveCreateShout(final String author, final String text, final String info) {
 
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
@@ -72,7 +72,7 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(2)
+	@Order(20)
 	public void negativeSpamCreateShout(final String author, final String text, final String info) {
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
 		this.createShout(author, text, info);

@@ -65,7 +65,7 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/administrator/configuration/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
+	@Order(20)
 	public void negative(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
 		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");

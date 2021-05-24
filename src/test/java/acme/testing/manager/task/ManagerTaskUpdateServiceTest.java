@@ -28,7 +28,7 @@ public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-tasks-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
+	@Order(20)
 	public void updateNegative(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "List my tasks");
