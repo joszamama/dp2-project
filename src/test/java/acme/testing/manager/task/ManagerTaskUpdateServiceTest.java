@@ -1,12 +1,40 @@
+
 package acme.testing.manager.task;
+
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
+/**
+ * These tests achieve a 70.1% coverage in the ManagerTaskUpdateService.
+ * 
+ * Test 1:
+ * First of all, we login as a manager. Then, we access the list task function and
+ * click on a row to show the task information. We update the values of the attributes with valid data and we click on "Update" button.
+ * No errors should appear in the form.
+ * 
+ * Test 2:
+ * First of all, we login as a manager. Then, we access the list task function and
+ * click on a row to show the task information. We update the values of the attributes with data that vialote some constraints.
+ * Next we click on "Update" button and should appear error messages in the form.
+ *
+ */
 public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 
+	/**
+	 * * First of all, we login as a manager. Then, we access the list task function and
+	 * click on a row to show the task information. We update the values of the attributes with valid data and we click on "Update" button.
+	 * No errors should appear in the form.
+	 * 
+	 * @param title
+	 * @param description
+	 * @param link
+	 * @param executionStart
+	 * @param executionEnd
+	 * @param workload
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-tasks-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -27,6 +55,18 @@ public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 		super.checkNotErrorsExist();
 	}
 
+	/**
+	 * First of all, we login as a manager. Then, we access the list task function and
+	 * click on a row to show the task information. We update the values of the attributes with data that vialote some constraints.
+	 * Next we click on "Update" button and should appear error messages in the form.
+	 * 
+	 * @param title
+	 * @param description
+	 * @param link
+	 * @param executionStart
+	 * @param executionEnd
+	 * @param workload
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/update-tasks-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)

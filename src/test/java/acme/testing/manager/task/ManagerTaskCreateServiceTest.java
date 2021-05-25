@@ -7,8 +7,31 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
+/**
+ * These tests achieve a 74.6% coverage in the ManagerTaskCreateService.
+ * 
+ * Test 1:
+ * First of all, we login as a manager. Then, access the create task function, create a new positive case of a task and
+ * check that there is no error in the form.
+ * 
+ * Test 2:
+ * First of all, we login as a manager. Then, we create a task trying to violate different constraints in the form and we check that we aren´t
+ * allowed to create it because the errors appeared.
+ *
+ */
 public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 
+	/**
+	 * First of all, we login as a manager. Then, access the create task function, create a new positive case of a task and
+	 * check that there is no error in the form.
+	 * 
+	 * @param title
+	 * @param description
+	 * @param link
+	 * @param executionStart
+	 * @param executionEnd
+	 * @param workload
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-tasks-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -27,6 +50,17 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 		super.checkNotErrorsExist();
 	}
 
+	/**
+	 * First of all, we login as a manager. Then, we create a task trying to violate different constraints in the form and we check that we aren´t
+	 * allowed to create it because the errors appeared.
+	 * 
+	 * @param title
+	 * @param description
+	 * @param link
+	 * @param executionStart
+	 * @param executionEnd
+	 * @param workload
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/manager/task/create-tasks-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
