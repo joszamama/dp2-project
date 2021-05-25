@@ -26,7 +26,7 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	 * 
 	 * Test 2:
 	 * In this case, we create a shout with some "spam" words in the text and we check that we aren´t 
-	 * allowed to create it because the spam error appeared.
+	 * allowed to create it because the spam error appeared. We also check bad url's, authors with less than 5 letters.
 	 *
 	 */
 	
@@ -42,7 +42,7 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/positive.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
+	@Order(20)
 	public void positiveCreateShout(final String author, final String text, final String info) {
 
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
@@ -65,14 +65,14 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
 	/**
 	 * In this case, we create a shout with some "spam" words in the text and we check that we aren´t 
-	 * allowed to create it because the spam error appeared.
+	 * allowed to create it because the spam error appeared. We also check bad url's, authors with less than 5 letters.
 	 * @param author
 	 * @param text
 	 * @param info
 	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(20)
+	@Order(10)
 	public void negativeSpamCreateShout(final String author, final String text, final String info) {
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
 		this.createShout(author, text, info);

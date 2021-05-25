@@ -9,18 +9,12 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 92.6% coverage in the AnonymousShoutListService.
+	 * This test achieves a 100.0% coverage in the AnonymousTaskShowService.
 	 * 
 	 * Test 1:
 	 * In this test we check that the selected task is the same that it shows when we click it in our service.
 	 * 
 	 * 
-	 * Test 2:
-	 * As in the anonymous shout listing test, in this one we check there is a list of the tasks, that can be
-	 * empty or filled.
-	 *
-	 * Test 3:
-	 * We check that we can't list tasks login as an administrator.
 	 */
 
 	/**
