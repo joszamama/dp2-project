@@ -24,9 +24,15 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	
 	/**
 	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
-	 * We also check that the value in the csv is the same as the list of shouts
+	 * We also check that the value in the csv is the same as the list of shouts.
 	 * 
+	 * @param recordIndex
+	 * @param moment
+	 * @param author
+	 * @param text
+	 * @param info
 	 */
+	
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/list-shouts.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -49,7 +55,7 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	
 
 	/**
-	 * We check that we can't list shouts login as an administrator.
+	 * We check that we can't list shouts logged as an administrator.
 	 * 
 	 */
 	@Test
