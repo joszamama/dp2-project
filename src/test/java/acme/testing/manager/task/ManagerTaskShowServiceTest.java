@@ -54,6 +54,7 @@ public class ManagerTaskShowServiceTest extends AcmePlannerTest {
 	/**
 	 * First, we login as manager1 and access the list task function. Then, we click on the first row and get the current URL.
 	 * Secondly, we logout. To finish, we try to access to the URL that we get before and a panich should appear.
+	 * The constraint that is violated is that an Anonymous cannot show a task of a Manager.
 	 */
 	@Test
 	@Order(20)
