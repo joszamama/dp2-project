@@ -11,7 +11,7 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	
 	/**
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
-	 * 
+	 * We are testing the feature to list finished public tasks as an Authenticated principal
 	 * 
 	 * @param title
 	 * @param description
@@ -38,7 +38,7 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	/**
 	 * 
 	 * We check that we can't list finished and public tasks as an anonymous user.
-	 * 
+	 * We are violating the constraint of authorization.
 	 */
 
 	@Test
