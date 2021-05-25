@@ -9,7 +9,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 79.0% coverage in the AnonymousTaskShowService.
+	 * This test achieves a 100.0% coverage in the AnonymousTaskShowService.
 	 * 
 	 * Test 1:
 	 * In this test we check that the selected task is the same that it shows when we click it in our service.
@@ -21,7 +21,11 @@ public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
 	 * 
-	 * In this test we check that the selected task is the same that it shows when we click it in our service.
+	 * In this test we check that the selected task is 
+	 * the same that it shows when we click it in our service.
+	 * 
+	 * We check that the variables title, start date, end date and workload 
+	 * are the same in both the list and show pages.
 	 * 
 	 */
 
@@ -48,6 +52,8 @@ public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 	/**
 	 * 
 	 * We check that we can't show tasks logged as an administrator.
+	 * Once logged in as administrator, the first thing to do is to check that the anonymous section does not exist. Then we try to access by url
+	 * to the list of tasks, and check that the result is an error page, as it is not authorised.
 	 * 
 	 */
 

@@ -11,7 +11,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 81.5% coverage in the AnonymousShoutListService.
+	 * This test achieves a 100.0% coverage in the AnonymousShoutListService.
 	 * 
 	 * Test 1:
 	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
@@ -31,6 +31,11 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	 * @param author
 	 * @param text
 	 * @param info
+	 * 
+	 * This test access the drop-down menu of anonymous and enters the listing
+	 * shouts. You should check that the list displays the same as our input csv file, in which we enter the 
+	 * sample data records that should be displayed.
+	 * 
 	 */
 	
 	@ParameterizedTest
@@ -56,6 +61,9 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
 	/**
 	 * We check that we can't list shouts logged as an administrator.
+	 * 
+	 *  Once logged in as administrator, the first thing to do is to check that the anonymous section does not exist. Then we try to access by url
+	 *	to the list of shouts", and check that the result is an error page, as it is not authorised.
 	 * 
 	 */
 	@Test

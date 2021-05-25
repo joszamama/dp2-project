@@ -15,7 +15,8 @@ public class AuthenticatedTaskShowServiceTest extends AcmePlannerTest {
 	 * 79.0% 
 	 * 
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
-	 * and then we click on each tasks checking that the value is correct
+	 * and then we click on each tasks checking that the value is correct.
+	 * We are testing the feature that shows the detais of a finished public task by an Authenticated principal.
 	 * 
 	 * @param title
 	 * @param description
@@ -51,7 +52,7 @@ public class AuthenticatedTaskShowServiceTest extends AcmePlannerTest {
 	/**
 	 * 
 	 * We check that we can't access a task if not signed in as an auth user.
-	 * 
+	 * We are violating the constraint of authorization.
 	 */
 
 	@Test

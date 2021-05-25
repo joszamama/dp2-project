@@ -17,7 +17,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
 	/**
-	 * These tests achieve a 72.9% coverage in the AnonymousShoutCreateService.
+	 * These tests achieve a 96.1% coverage in the AnonymousShoutCreateService.
 	 * 
 	 * Test 1:
 	 * Access the create shout function, create a new positive case of a shout and check that the moment of the
@@ -38,6 +38,8 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	 * @param author
 	 * @param text
 	 * @param info
+	 * 
+	 * 
 	 */
 	
 	@ParameterizedTest
@@ -65,7 +67,8 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
 	/**
 	 * In this case, we create a shout with some "spam" words in the text and we check that we aren´t 
-	 * allowed to create it because the spam error appeared. We also check bad url's, authors with less than 5 letters.
+	 * allowed to create it because the spam error appeared. 
+	 * We also check bad url's, authors with less than 5 letters.
 	 * @param author
 	 * @param text
 	 * @param info
@@ -73,7 +76,7 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void negativeSpamCreateShout(final String author, final String text, final String info) {
+	public void negativeCreateShout(final String author, final String text, final String info) {
 		super.driver.get("http://localhost:8080/Acme-Planner/master/welcome?language=en&debug=true");
 		this.createShout(author, text, info);
 		super.checkErrorsExist();

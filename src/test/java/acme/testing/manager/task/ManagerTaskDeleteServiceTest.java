@@ -45,6 +45,7 @@ public class ManagerTaskDeleteServiceTest extends AcmePlannerTest {
 	/**
 	 * First of all, we login as a manager1. Then, access the list task function, click on a row to show the information of a task
 	 * and then click on the button "Delete". Next, we access the list task function again and there shouldn't exist any panic.
+	 * The constraint that is trying to violated is that manager1 cannot delete tasks created by manager2.
 	 */
 	@Test
 	@Order(20)
