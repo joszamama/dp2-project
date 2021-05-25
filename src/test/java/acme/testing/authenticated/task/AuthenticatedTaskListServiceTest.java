@@ -45,6 +45,5 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	public void negativeTaskListing() {
 		super.driver.get("http://localhost:8080/Acme-Planner/authenticated/task/list");
 		this.checkPanicExists();
-		this.signOut();
 	}
 }
