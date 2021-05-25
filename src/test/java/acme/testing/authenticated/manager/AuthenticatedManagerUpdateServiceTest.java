@@ -11,6 +11,9 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 
 	/**
+	 * 
+	 * 66.3%
+	 * 
 	 * Sign up and become manager
 	 */
 	@Override

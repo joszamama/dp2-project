@@ -10,6 +10,9 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	
 	/**
+	 * 
+	 * 75.6%
+	 * 
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
 	 * 
 	 * 

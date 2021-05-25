@@ -9,7 +9,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 100.0% coverage in the AnonymousTaskShowService.
+	 * This test achieves a 79.0% coverage in the AnonymousTaskShowService.
 	 * 
 	 * Test 1:
 	 * In this test we check that the selected task is the same that it shows when we click it in our service.
