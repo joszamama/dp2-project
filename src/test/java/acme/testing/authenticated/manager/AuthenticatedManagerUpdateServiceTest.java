@@ -10,6 +10,9 @@ import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 
+	/**
+	 * Sign up and become manager
+	 */
 	@Override
 	@BeforeAll
 	public void beforeAll() {
@@ -24,6 +27,13 @@ public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 		super.signOut();
 	}
 	
+	/**
+	 * Try to change data for manager profile
+	 * 
+	 * @param recordIndex
+	 * @param company
+	 * @param department
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/manager/update-manager-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -41,6 +51,13 @@ public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 		super.signOut();
 	}
 
+	/**
+	 * Try to change data for manager profile (data is faulty)
+	 * 
+	 * @param recordIndex
+	 * @param company
+	 * @param department
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/manager/update-manager-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)

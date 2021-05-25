@@ -9,7 +9,13 @@ import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 
-	
+	/**
+	 * Sign up as user, use different user for each test. Try to become manager
+	 * 
+	 * @param recordIndex
+	 * @param company
+	 * @param department
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/manager/create-manager-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
@@ -28,6 +34,13 @@ public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("sector", department);
 	}
 
+	/**
+	 * Sign up and input faulty data for each try to become manager
+	 * 
+	 * @param recordIndex
+	 * @param company
+	 * @param department
+	 */
 	@ParameterizedTest
 	@CsvFileSource(resources = "/authenticated/manager/create-manager-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
