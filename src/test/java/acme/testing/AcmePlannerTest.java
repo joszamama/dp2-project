@@ -60,6 +60,7 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		assert !StringHelper.isBlank(email);
 
 		super.navigateHome();
+		super.clickOnMenu("Sign up",null);
 		super.fillInputBoxIn("username", username);
 		super.fillInputBoxIn("password", password);
 		super.fillInputBoxIn("confirmation", password);
