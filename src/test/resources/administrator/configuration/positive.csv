@@ -1,0 +1,10 @@
+wordList,threshold
+"sex","0.10"
+"","0.10"
+"sex, sex","0.10"
+"viagra,cialis,ibuprofeno","0.10"
+"un millón de dólares","0.10"
+"aaa", "0.00"
+"aaa", "0.01"
+"aaa", "0.99"
+"aaa", "1.00"

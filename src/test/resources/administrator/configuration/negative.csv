@@ -1,0 +1,5 @@
+wordList,threshold
+"aaa", "-0.01"
+"aaa", "1.01"
+"aaa", "-999.00"
+"aaa", "999.00"

@@ -81,6 +81,8 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
+		errors.state(request, entity.getWorkloadParsed().matches("^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
+		
 		if (!errors.hasErrors("executionStart")) {
 			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
 				// executionStart must be in the future
@@ -116,7 +118,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 				// workload can't exceed the time between execution start and execution end
 				final long minutes = Math.abs(entity.getExecutionStart().getTime() - entity.getExecutionEnd().getTime()) / (60 * 1000);
 				final boolean tooMuchWorkload = minutes < (entity.getWorkloadHours() * 60 + (entity.getWorkloadMinutes() == null ? 0 : entity.getWorkloadMinutes()));
-				errors.state(request, !tooMuchWorkload, "*", "manager.task.form.error.tooMuchWorkload");
+				errors.state(request, !tooMuchWorkload, "workloadParsed", "manager.task.form.error.tooMuchWorkload");
 			} else {
 				if (entity.getExecutionStart() == null) {
 					errors.state(request, true, "executionStart", "manager.task.form.error.start");
@@ -135,7 +137,7 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 
 		final boolean isSpam = this.spamFilterService.isSpam(entity.getTitle(), entity.getDescription());
-		if (isSpam == false) {
+		if (!isSpam) {
 			this.repository.save(entity);
 		} else {
 			System.out.println("SPAM: " + entity.getTitle() + " " + entity.getDescription());

@@ -37,13 +37,6 @@ public class AdministratorConfigurationCreateService implements AbstractCreateSe
 	public boolean authorise(final Request<Configuration> request) {
 		assert request != null;
 
-		boolean result;
-		Configuration configuration;
-		final int configurationId;
-
-		configuration = this.repository.findConfiguration().iterator().next();
-		result = configuration != null;
-
 		return true;
 	}
 
@@ -70,9 +63,8 @@ public class AdministratorConfigurationCreateService implements AbstractCreateSe
 	public Configuration instantiate(final Request<Configuration> request) {
 		assert request != null;
 
-		final Configuration result = this.repository.findConfiguration().iterator().next();
+		return this.repository.findConfiguration().iterator().next();
 
-		return result;
 	}
 
 	@Override

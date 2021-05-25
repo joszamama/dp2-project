@@ -3,6 +3,7 @@ package acme.entities.tasks;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -55,10 +56,12 @@ public class Task extends DomainEntity {
 	@Max(60)
 	protected Integer			workloadMinutes;
 
+	//@Pattern(regexp = "^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$")
 	@Transient
 	protected String			workloadParsed;
 
 	@NotBlank
+	@Column(length = 512)
 	@Length(min = 1, max = 500)
 	protected String			description;
 
@@ -72,25 +75,37 @@ public class Task extends DomainEntity {
 
 
 	public String getWorkloadParsed() {
-		String res = "";
-		if (this.getWorkloadMinutes() != null) {
-			if (this.getWorkloadMinutes() > 9) {
-				res = this.getWorkloadHours() + ":" + this.getWorkloadMinutes();
-			} else {
-				res = this.getWorkloadHours() + ":0" + this.getWorkloadMinutes();
-			}
-
-		} else {
-			res = this.getWorkloadHours() + ":00";
+		if (this.workloadParsed != null && this.workloadParsed.length() > 0) {
+			return this.workloadParsed;
 		}
-		return res;
+		if (this.getWorkloadHours() != null) {
+			String res = "";
+			if (this.getWorkloadMinutes() != null) {
+				if (this.getWorkloadMinutes() > 9) {
+					res = this.getWorkloadHours() + ":" + this.getWorkloadMinutes();
+				} else {
+					res = this.getWorkloadHours() + ":0" + this.getWorkloadMinutes();
+				}
+			} else {
+				res = this.getWorkloadHours() + ":00";
+			}
+			return res;
+		} else {
+			return "";
+		}
 	}
 
 	public void setWorkloadParsed(String workload) {
 		workload = workload.trim();
-		final String[] work = workload.split(":");
-		this.setWorkloadHours(Integer.valueOf(work[0]));
-		this.setWorkloadMinutes(Integer.valueOf(work[1]));
+		if (workload.matches("^[0-9]*[1-9][0-9]*$")) {
+			this.setWorkloadHours(Integer.valueOf(workload));
+			this.setWorkloadMinutes(null);
+		} else if (workload.matches("^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$")) {
+			final String[] work = workload.split(":");
+			this.setWorkloadHours(Integer.valueOf(work[0]));
+			this.setWorkloadMinutes(Integer.valueOf(work[1]));
+		}
+		this.workloadParsed = workload;
 	}
 
 }

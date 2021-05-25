@@ -16,6 +16,7 @@ manager.task.form.error.start = No se puede crear tarea con esta fecha de inicio
 manager.task.form.error.end = No se puede crear tarea con esta fecha de fin
 manager.task.form.error.tooMuchWorkload = No se puede crear tarea con una carga de trabajo mayor que el tiempo entre los tiempos de ejecución
 manager.task.form.error.spamDetected = No se puede crear tarea con spam
+manager.task.form.error.workloadParsedFormat = La carga de trabajo debe empezar con un número de horas y opcionalmente seguir con dos puntos y terminar con un número de minutos de dos dígitos (00-59). La cantidad total no debe ser cero.
 
 manager.task.form.cannotDeleteBecauseWorkplan = Esta tarea no se puede eliminar ya que forma parte de un workplan
 
@@ -25,4 +26,4 @@ manager.task.list.label.executionEnd = Fin de ejecución
 manager.task.list.label.workloadHours = Carga de trabajo (horas)
 manager.task.list.label.workloadMinutes = Carga de trabajo (minutos)
 manager.task.list.label.workloadParsed = Carga de trabajo (HH:mm)
-manager.task.form.label.workloadParsed = Carga de trabajo (HH:mm)
+manager.task.form.label.workloadParsed = Carga de trabajo (HH:mm or HH)

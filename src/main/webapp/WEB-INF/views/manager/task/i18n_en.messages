@@ -16,6 +16,7 @@ manager.task.form.error.start = Cannot create task with this start date
 manager.task.form.error.end = Cannot create task with this end date
 manager.task.form.error.tooMuchWorkload = Cannot create task with a bigger workload than the time between execution times
 manager.task.form.error.spamDetected = Cannot create task with spam
+manager.task.form.error.workloadParsedFormat = Workload must start with a number hours and optionally continue with a colon and a number of minutes of two digits (00-59). The total amount must be nonzero.
 
 manager.task.form.cannotDeleteBecauseWorkplan = This task cannot be deleted as it is part of a workplan
 
@@ -25,5 +26,5 @@ manager.task.list.label.executionEnd = End of execution
 manager.task.list.label.workloadHours = Workload (hours)
 manager.task.list.label.workloadMinutes = Workload (minutes)
 manager.task.list.label.workloadParsed = Workload (HH:mm)
-manager.task.form.label.workloadParsed = Workload (HH:mm)
+manager.task.form.label.workloadParsed = Workload (HH:mm or HH)
 

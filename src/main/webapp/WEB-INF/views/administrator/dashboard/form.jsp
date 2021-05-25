@@ -21,6 +21,7 @@
 </h2>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-public-tasks" /></th>
@@ -45,6 +46,7 @@
 </table>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-average-execution-periods" />
@@ -72,6 +74,7 @@
 </table>
 
 <table class="table table-sm">
+	<caption></caption>
 	<tr>
 		<th scope="row"><acme:message
 				code="administrator.dashboard.form.label.number-average-workloads" />

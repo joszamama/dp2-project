@@ -25,13 +25,3 @@
 	<acme:list-column code="anonymous.shout.list.label.info" path="info"
 		width="20%" />
 </acme:list>
-
-<table class="table-buttons">
-	<tr>
-		<td>
-			<form action="anonymous/shout/create">
-				<input type="submit" value="<acme:message code="anonymous.shout.form.button.create"/>">
-			</form>
-		</td>
-	</tr>
-</table>
