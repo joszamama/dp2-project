@@ -17,4 +17,4 @@ As requested in the course, the publication has been made in CleverCloud. Both u
 We think that some of these problems may be due to using /manager/ as address, since TomCat servers use that range as reserved address. In the code requested in the requirements everything works without any problem.
 
 The link to our GitHub repository is: https://github.com/joszamama/dp2-project
-The link to our GitHub release is: https://github.com/joszamama/dp2-project/releases/tag/2.1.2
+The link to our last GitHub release is: https://github.com/joszamama/dp2-project/releases/tag/3.1.0
