@@ -10,7 +10,6 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 
 	@ParameterizedTest
-	@CsvFileSource(resources = "/tasks/authenticated/list-finished-public.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void becomeManagerPositive() {
 		super.signUp("testusername", "testtest", "testname", "testsurname", "testemail@acme.com");
@@ -27,5 +26,19 @@ public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("sector", "testing department");
 	}
 
-	// Falta el caso negativo de convertirse en manager
+	@ParameterizedTest
+	@CsvFileSource(resources = "/authenticated/manager/create-manager-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void becomeManagerNegative(final String company, final String department) {
+		super.signUp("testusername", "testtest", "testname", "testsurname", "testemail@acme.com");
+		super.signIn("testusername", "testtest");
+		super.clickOnMenu("Account", "Become a manager");
+
+		super.fillInputBoxIn("company", company);
+		super.fillInputBoxIn("sector", department);
+		super.clickOnSubmitButton("Register");
+
+		super.checkErrorsExist();
+	}
+
 }
