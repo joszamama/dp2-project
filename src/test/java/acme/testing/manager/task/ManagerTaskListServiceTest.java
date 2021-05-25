@@ -46,7 +46,8 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * We try to access to the list task function of a Manager without being authenticated. Hence a panic should appear.
+	 * We try to access to the list task function of a Manager without being authenticated. Hence a panic should appear. The constraint that is
+	 * violated is that an Anonymous cannot list the tasks of a Manager
 	 */
 	@Test
 	@Order(20)

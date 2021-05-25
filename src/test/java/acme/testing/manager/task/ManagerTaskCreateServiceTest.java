@@ -52,7 +52,17 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 
 	/**
 	 * First of all, we login as a manager. Then, we create a task trying to violate different constraints in the form and we check that we aren´t
-	 * allowed to create it because the errors appeared.
+	 * allowed to create it because the errors appeared. The constraint that are violated are the followings:
+	 * The length of the title must be between 1 and 80 and cannot be blank
+	 * The executionStart and the executionEnd cannot be null
+	 * The executionStart and the executionEnd must be future dates
+	 * The executionStart must be before executionEnd
+	 * The workload cannot be null and follow the pattern HH:mm
+	 * Workload minutes cannot be higher than 59 and lower than 00
+	 * Workload have to be in consonance with the executionStart and the executionEnd
+	 * The description cannot be null and the length of the description must be between 1 and 500
+	 * The link must be a valid URL
+	 * 
 	 * 
 	 * @param title
 	 * @param description

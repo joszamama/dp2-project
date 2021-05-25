@@ -11,8 +11,6 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 
 	/**
-	 * Sign up and become manager
-	 */
 	@Override
 	@BeforeAll
 	public void beforeAll() {
