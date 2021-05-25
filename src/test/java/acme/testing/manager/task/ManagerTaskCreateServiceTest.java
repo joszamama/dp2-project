@@ -24,18 +24,6 @@ public class ManagerTaskCreateServiceTest extends AcmePlannerTest {
 		super.fillInputBoxIn("workloadParsed", workload);
 
 		super.clickOnSubmitButton("Create");
-
-		super.clickOnMenu("Manager", "List my tasks");
-
-		super.clickOnListingRecord(12+recordIndex);
-
-		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("description", description);
-		super.checkInputBoxHasValue("link", link);
-		super.checkInputBoxHasValue("executionStart", executionStart);
-		super.checkInputBoxHasValue("executionEnd", executionEnd);
-		super.checkInputBoxHasValue("workloadParsed", workload);
-		
 		super.checkNotErrorsExist();
 	}
 
