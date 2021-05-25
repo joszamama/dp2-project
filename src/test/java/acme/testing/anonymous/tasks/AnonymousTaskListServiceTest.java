@@ -22,6 +22,7 @@ public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 	 * 
 	 */
 
+	
 	/**
 	 * As in the anonymous shout listing test, in this one we check there is a list of the tasks, that can be
 	 * empty or filled. And must be the same than in the csv file
@@ -34,6 +35,8 @@ public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 	 * @param link
 	 * @param workload
 	 * 
+	 * We first check that the list exists with Assertions.assert(.control.sorting) and then
+	 * check that all the values match the ones we need.
 	 */
 	
 	@ParameterizedTest
@@ -60,6 +63,9 @@ public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 	/**
 	 * 
 	 * We check that we can't list tasks logged as an administrator.
+	 * 
+	 * Once logged in as administrator, the first thing to do is to check that the anonymous section does not exist. Then we try to access by url
+	 * to the list of tasks", and check that the result is an error page, as it is not authorised.
 	 * 
 	 */
 
