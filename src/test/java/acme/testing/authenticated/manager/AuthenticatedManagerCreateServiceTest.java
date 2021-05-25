@@ -10,7 +10,7 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 
 	/**
-	 * Sign up as user, use different user for each test. Try to become manager
+	 * Sign up as user, use different user for each test. Try to become manager with data provided
 	 * 
 	 * @param recordIndex
 	 * @param company
@@ -35,7 +35,8 @@ public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * Sign up and input faulty data for each try to become manager
+	 * Sign up, sign in and input faulty data for each test to try to become manager
+	 * Try to set company and department values to blank and null
 	 * 
 	 * @param recordIndex
 	 * @param company

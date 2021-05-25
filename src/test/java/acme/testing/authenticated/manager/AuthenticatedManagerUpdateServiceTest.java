@@ -28,7 +28,8 @@ public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 	}
 	
 	/**
-	 * Try to change data for manager profile
+	 * Sign in with a manager account and try to change data for manager profile
+	 * with values from the file provided
 	 * 
 	 * @param recordIndex
 	 * @param company
@@ -52,7 +53,8 @@ public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 	}
 
 	/**
-	 * Try to change data for manager profile (data is faulty)
+	 * Sign in with a manager account and try to change data for manager profile
+	 * Try to set company and department values to blank and null
 	 * 
 	 * @param recordIndex
 	 * @param company
