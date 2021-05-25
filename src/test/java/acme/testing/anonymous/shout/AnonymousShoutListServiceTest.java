@@ -1,23 +1,21 @@
 
 package acme.testing.anonymous.shout;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.openqa.selenium.By;
 
 import acme.testing.AcmePlannerTest;
 
 public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 82.9% coverage in the AnonymousShoutListService.
+	 * This test achieves a 100.0% coverage in the AnonymousShoutListService.
 	 * 
 	 * Test 1:
-	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
+	 * We also check that the value in the csv is the same as the list of shouts
 	 *
 	 * Test 2:
 	 * We check that we can't list shouts login as an administrator.
@@ -25,7 +23,8 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	
 	
 	/**
-	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
+	 * We also check that the value in the csv is the same as the list of shouts
 	 * 
 	 */
 	@ParameterizedTest
@@ -37,30 +36,16 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 		// Assertions.assertTrue(super.exists(By.cssSelector(".control.sorting_1")) || super.exists(By.className("dataTables_empty")));
 		// super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
 
-		super.clickOnMenu("Anonymous", "List shouts");
-		super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
-		if (LocalDate.now().isBefore(LocalDate.of(2021, 6, 30))&& LocalDate.now().isAfter(LocalDate.of(2021, 4, 30))) {
+		//super.clickOnMenu("Anonymous", "List shouts");
+		//super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
 			
 			super.clickOnMenu("Anonymous", "List shouts");
 			
 			super.checkColumnHasValue(recordIndex, 0, moment);
 			super.checkColumnHasValue(recordIndex, 1, author);
 			super.checkColumnHasValue(recordIndex, 2, text);
-			}
-//			if (LocalDate.now().isBefore(LocalDate.of(2021, 6, 30))&& LocalDate.now().isAfter(LocalDate.of(2021, 4, 30))) {
-//			
-//			super.clickOnMenu("Anonymous", "List of shouts");
-//			super.click(By.xpath("//*[@id=\"list_length\"]/label/select"));			
-//			super.click(By.xpath("//*[@id=\"list_length\"]/label/select/option[2]"));
-//			super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
-//			for(int i = 0; i<=9; i++) {			
-//			super.checkColumnHasValue(recordIndex, 0, moment);
-//			super.checkColumnHasValue(recordIndex, 1, author);
-//			super.checkColumnHasValue(recordIndex, 2, text);
-			// super.checkColumnHasValue(recordIndex, 3, info);
-			//}
-		//}
-			}
+	}
+			
 	
 
 	/**

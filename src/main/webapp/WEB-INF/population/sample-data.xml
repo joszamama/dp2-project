@@ -163,7 +163,7 @@
 	</bean> 
 	-->
 
-	<bean id="shout02" class="acme.entities.shouts.Shout">
+<!-- 	<bean id="shout02" class="acme.entities.shouts.Shout">
 		<property name="author" value="Brazilian tapir" />	  
 	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
 	  <property name="moment" value="2021/05/08 19:39" />	  
@@ -222,8 +222,68 @@
 	  <property name="author" value="Jaguar" />
 	  <property name="text" value="lectus in quam fringilla rhoncus mauris enim leo rhoncus" />
 	  <property name="info" value="http://wp.com" />
-	</bean>
+	</bean> -->
 
+<bean id="shout02" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout03" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout04" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout05" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout06" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout07" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout08" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout09" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout10" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
+	<bean id="shout11" class="acme.entities.shouts.Shout">
+		<property name="author" value="Brazilian tapir" />	  
+	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
+	  <property name="moment" value="2021/05/08 19:39" />	  
+	  <property name="info" value="http://elegantthemes.com" />
+	</bean>
 	<!-- Tasks -->
 
 	<bean id="task01PublicUnfinished" class="acme.entities.tasks.Task">
