@@ -24,6 +24,7 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.PageLoadStrategy;
@@ -33,12 +34,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import acme.framework.helpers.PerformanceFileHelper;
 import acme.framework.helpers.StringHelper;
 import lombok.Getter;
 import lombok.Setter;
 
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
+@ExtendWith(PerformanceExtension.class)
 public abstract class AbstractTest {
 
 	// Properties -------------------------------------------------------------
@@ -325,16 +328,25 @@ public abstract class AbstractTest {
 	protected void navigate(final Runnable navigator) {
 		assert navigator != null;
 
-		By htmlLocator;
-		WebElement oldHtml;
-		WebDriverWait wait;
+		By locator;
+		WebElement html;
+		long startTime, endTime, duration;
+		String simplePath;
 
-		htmlLocator = By.tagName("html");
-		oldHtml = this.driver.findElement(htmlLocator);
-		assert oldHtml != null;
+		locator = By.tagName("html");
+		html = this.driver.findElement(locator);
+		assert html != null;
+
+		startTime = System.currentTimeMillis();
 		navigator.run();
-		wait = new WebDriverWait(this.driver, this.defaultTimeout);
-		wait.until(WaitConditions.stalenessOf(oldHtml, htmlLocator));
+		this.waitStalenessOf(html);
+		endTime = System.currentTimeMillis();
+		duration = endTime - startTime;
+		simplePath = this.getSimplePath();
+				 
+		PerformanceFileHelper.writeRequestRecord(simplePath, duration);
+
+		this.longSleep();
 	}
 
 	// Click methods ----------------------------------------------------------
@@ -353,8 +365,8 @@ public abstract class AbstractTest {
 
 		// INFO: WebElement::click is a nightmare.  Don't use it!
 		this.executor.executeScript("arguments[0].click();", element);
-		this.waitUntilComplete();
 		this.shortSleep();
+		this.waitUntilComplete();
 	}
 
 	protected void clickAndWait(final By locator) {
@@ -369,8 +381,7 @@ public abstract class AbstractTest {
 	protected void clickAndWait(final WebElement element) {
 		assert element != null;
 
-		this.navigate(() -> this.clickAndGo(element));
-		this.longSleep();
+		this.navigate(() -> this.executor.executeScript("arguments[0].click();", element));
 	}
 
 	// Ancillary methods ------------------------------------------------------
@@ -408,6 +419,21 @@ public abstract class AbstractTest {
 		return result;
 	}
 
+	protected void waitStalenessOf(final WebElement html) {
+		assert html != null;
+
+		By locator;
+		WebDriverWait wait;
+
+		try {
+			locator = By.tagName("html");
+			wait = new WebDriverWait(this.driver, this.defaultTimeout);
+			wait.until(WaitConditions.stalenessOf(html, locator));
+		} catch (final Throwable oops) {
+			assert false : "Timeout waiting for action to complete";
+		}
+	}
+
 	protected void waitUntilComplete() {
 		WebDriverWait wait;
 
@@ -415,7 +441,7 @@ public abstract class AbstractTest {
 			wait = new WebDriverWait(this.driver, this.defaultTimeout);
 			wait.until(WaitConditions.documentComplete());
 		} catch (final Throwable oops) {
-			assert false : "Browser action didn't complete";
+			assert false : "Timeout waiting for action to complete";
 		}
 	}
 
