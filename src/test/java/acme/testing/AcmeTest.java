@@ -80,7 +80,7 @@ public abstract class AcmeTest extends AbstractTest {
 		String xpath;
 		By locator;
 
-		xpath = String.format("//div[@class='form-group'][input[@id='%s'] and div[@class='text-danger']]", name);
+		xpath = String.format("//div[@class='form-group'][.//*[@id='%s'] and .//div[@class='text-danger']]", name);
 		locator = By.xpath(xpath);
 		assert super.exists(locator) : String.format("No errors found in input box '%s'", name);
 	}
@@ -100,7 +100,7 @@ public abstract class AcmeTest extends AbstractTest {
 		String xpath;
 		By inputGroupLocator;
 
-		xpath = String.format("//div[@class='form-group'][input[@id='%s'] and div[@class='text-danger']]", name);
+		xpath = String.format("//div[@class='form-group'][.//*[@id='%s'] and .//div[@class='text-danger']]", name);
 		inputGroupLocator = By.xpath(xpath);
 		assert !super.exists(inputGroupLocator) : String.format("Unexpected errors in input box '%s'", name);
 	}
@@ -148,7 +148,7 @@ public abstract class AcmeTest extends AbstractTest {
 		contents = (contents == null ? "" : contents.trim());
 		value = (expectedValue != null ? expectedValue.trim() : "");
 
-		assert contents.equals(value) : String.format("Expected value '%s' in input box '%s', but '%s' was found", expectedValue, name, value);
+		assert contents.equals(value) : String.format("Expected value '%s' in input box '%s', but '%s' was found", value, name, contents);
 	}
 
 	protected void checkColumnHasValue(final int recordIndex, final int attributeIndex, final String expectedValue) {
@@ -175,7 +175,7 @@ public abstract class AcmeTest extends AbstractTest {
 		contents = (contents == null ? "" : contents.trim());
 		value = (expectedValue != null ? expectedValue.trim() : "");
 
-		assert contents.equals(value) : String.format("Expected value '%s' in attribute %d of record %d, but found '%s'", expectedValue, attributeIndex, recordIndex, value);
+		assert contents.equals(value) : String.format("Expected value '%s' in attribute %d of record %d, but found '%s'", value, attributeIndex, recordIndex, contents);
 	}
 
 	// Form-filling methods ---------------------------------------------------
