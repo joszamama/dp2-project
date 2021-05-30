@@ -17,11 +17,11 @@ public abstract class AcmePlannerTest extends AcmeTest {
 	@Override
 	@BeforeAll
 	public void beforeAll() {
+		super.setAutoPausing(false);
+		super.setHeadless(true);
 		super.beforeAll();
 
 		super.setBaseCamp("http", "localhost", "8080", "/Acme-Planner", "/master/welcome", "?language=en&debug=true");
-		super.setAutoPausing(false);
-		super.setHeadless(true);
 
 		this.navigateHome();
 		this.signIn("administrator", "administrator");
@@ -61,7 +61,7 @@ public abstract class AcmePlannerTest extends AcmeTest {
 		assert !StringHelper.isBlank(email);
 
 		super.navigateHome();
-		super.clickOnMenu("Sign up",null);
+		super.clickOnMenu("Sign up", null);
 		super.fillInputBoxIn("username", username);
 		super.fillInputBoxIn("password", password);
 		super.fillInputBoxIn("confirmation", password);
