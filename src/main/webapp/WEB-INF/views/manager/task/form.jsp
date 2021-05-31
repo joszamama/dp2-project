@@ -13,7 +13,7 @@
 	<acme:form-moment code="manager.task.form.label.executionEnd"
 		path="executionEnd" />
 	<acme:form-double code="manager.task.form.label.workloadParsed"
-		path="workloadParsed" placeholder="HH(:mm)"/>
+		path="workloadParsed" placeholder="H(:mm)"/>
 	<acme:form-checkbox code="manager.task.form.label.isPrivate"
 		path="isPrivate" />
 
