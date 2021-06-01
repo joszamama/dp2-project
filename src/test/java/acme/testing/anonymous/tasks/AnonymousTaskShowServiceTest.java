@@ -1,8 +1,10 @@
 
 package acme.testing.anonymous.tasks;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import acme.testing.AcmePlannerTest;
 
@@ -21,34 +23,37 @@ public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
 	 * 
-	 * In this test we check that the selected task is 
+	 * In this test we check that the selected task is
 	 * the same that it shows when we click it in our service.
 	 * 
-	 * We check that the variables title, start date, end date and workload 
+	 * We check that the variables title, start date, end date and workload
 	 * are the same in both the list and show pages.
 	 * 
 	 */
 
-	@Test
-	public void anonymousTaskShow() {
-
+	@ParameterizedTest
+	@CsvFileSource(resources = "/anonymous/task/show-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@Order(10)
+	public void anonymousTaskShow(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
 		super.navigateHome();
 		super.clickOnMenu("Anonymous", "List unfinished public tasks");
 
-		final String title = super.locateOne(By.xpath("//*[@id=\"list\"]/tbody/tr[1]/td[2]")).getText();
-		final String startDate = super.locateOne(By.xpath("//*[@id=\"list\"]/tbody/tr[1]/td[3]")).getText();
-		final String endDate = super.locateOne(By.xpath("//*[@id=\"list\"]/tbody/tr[1]/td[4]")).getText();
-		final String workLoad = super.locateOne(By.xpath("//*[@id=\"list\"]/tbody/tr[1]/td[5]")).getText();
+		super.checkColumnHasValue(recordIndex, 0, title);
+		super.checkColumnHasValue(recordIndex, 1, executionStart);
+		super.checkColumnHasValue(recordIndex, 2, executionEnd);
+		super.checkColumnHasValue(recordIndex, 3, workload);
 
-		super.click((By.xpath("//*[@id=\"list\"]/tbody/tr[1]/td[2]")));
+		super.clickOnListingRecord(recordIndex);
 
 		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("executionStart", startDate);
-		super.checkInputBoxHasValue("executionEnd", endDate);
-		super.checkInputBoxHasValue("workloadParsed", workLoad);
+		super.checkInputBoxHasValue("description", description);
+		super.checkInputBoxHasValue("link", link);
+		super.checkInputBoxHasValue("executionStart", executionStart);
+		super.checkInputBoxHasValue("executionEnd", executionEnd);
+		super.checkInputBoxHasValue("workloadParsed", workload);
 
 	}
-	
+
 	/**
 	 * 
 	 * We check that we can't show tasks logged as an administrator.
@@ -58,6 +63,7 @@ public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 	 */
 
 	@Test
+	@Order(20)
 	public void negativeTaskShowing() {
 
 		super.signIn("administrator", "administrator");

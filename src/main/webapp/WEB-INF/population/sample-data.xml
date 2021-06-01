@@ -81,208 +81,156 @@
 		<property name="userAccount" ref="managerUserAccount2" />
 	</bean>
 
-	<!-- Shouts
+	<!-- Shouts <bean id="shout01" class="acme.entities.shouts.Shout"> <property 
+		name="moment" value="2021/04/08 19:39" /> <property name="author" value="John 
+		Doe" /> <property name="text" value="I'm happy!" /> <property name="info"> 
+		<null /> </property> </bean> <bean id="shout02" class="acme.entities.shouts.Shout"> 
+		<property name="moment" value="2021/04/02 15:55" /> <property name="author" 
+		value="Jane Doe" /> <property name="text" value="I'm the master of my room!" 
+		/> <property name="info" value="http://www.example.org" /> </bean> <bean 
+		id="shout03" class="acme.entities.shouts.Shout"> <property name="moment" 
+		value="2021/04/02 00:00" /> <property name="author" value="Foo Bar" /> <property 
+		name="text" value="Just turning 50!" /> <property name="info" value="http://happybirthday.com" 
+		/> </bean> <bean id="shout04" class="acme.entities.shouts.Shout"> <property 
+		name="author" value="The manager" /> <property name="text" value="Leslies 
+		should be erradicated" /> <property name="moment" value="2021/04/02 12:30" 
+		/> <property name="info" value="http://www.sample-app.com" /> </bean> <bean 
+		id="shout05" class="acme.entities.shouts.Shout"> <property name="author" 
+		value="A leslie hater" /> <property name="text" value="This app is not cool!!! 
+		:(" /> <property name="moment" value="2021/04/18 11:30" /> <property name="info" 
+		value="http://www.sample-app.com" /> </bean> <bean id="shout06" class="acme.entities.shouts.Shout"> 
+		<property name="author" value="Leslie Design-Testing" /> <property name="text" 
+		value="In fact, its quite cool!" /> <property name="moment" value="2021/04/20 
+		12:30" /> <property name="info" value="http://www.sample-app.com" /> </bean> 
+		<bean id="shout07" class="acme.entities.shouts.Shout"> <property name="author" 
+		value="Leslie Secondary Account" /> <property name="text" value="Just kidding, 
+		it isnt." /> <property name="moment" value="2021/04/02 12:30" /> <property 
+		name="info" value="http://www.sample-app.com" /> </bean> <bean id="shout08" 
+		class="acme.entities.shouts.Shout"> <property name="author" value="The analist" 
+		/> <property name="text" value="Making analist things!" /> <property name="moment" 
+		value="2021/04/02 00:30" /> <property name="info" value="http://www.sample-app.com" 
+		/> </bean> <bean id="shout09" class="acme.entities.shouts.Shout"> <property 
+		name="author" value="The tester" /> <property name="text" value="The manager 
+		watches us, but who whatches the manager?" /> <property name="moment" value="2021/04/25 
+		21:00" /> <property name="info" value="http://www.sample-app.com" /> </bean> 
+		<bean id="shout10" class="acme.entities.shouts.Shout"> <property name="author" 
+		value="LSI author" /> <property name="text" value="This is the 10 shout!" 
+		/> <property name="moment" value="2021/04/19 12:30" /> <property name="info" 
+		value="http://www.sample-app.com" /> </bean> <bean id="shout11" class="acme.entities.shouts.Shout"> 
+		<property name="author" value="Sampler guy" /> <property name="text" value="Final 
+		sampling!" /> <property name="moment" value="2021/04/25 12:30" /> <property 
+		name="info" value="http://www.sample-app.com" /> </bean> -->
 
-	<bean id="shout01" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/04/08 19:39" />
-		<property name="author" value="John Doe" />
-		<property name="text" value="I'm happy!" />
-		<property name="info">
-			<null />
-		</property>
-	</bean>
+	<!-- <bean id="shout02" class="acme.entities.shouts.Shout"> <property name="author" 
+		value="Brazilian tapir" /> <property name="text" value="leo odio condimentum 
+		id luctus nec molestie sed justo" /> <property name="moment" value="2021/05/08 
+		19:39" /> <property name="info" value="http://elegantthemes.com" /> </bean> 
+		<bean id="shout03" class="acme.entities.shouts.Shout"> <property name="moment" 
+		value="2021/05/08 19:40" /> <property name="author" value="Heron, gray" /> 
+		<property name="text" value="et eros vestibulum ac est lacinia nisi venenatis 
+		tristique" /> <property name="info" value="http://tripod.com" /> </bean> 
+		<bean id="shout04" class="acme.entities.shouts.Shout"> <property name="moment" 
+		value="2021/05/08 19:41" /> <property name="author" value="California sea 
+		lion" /> <property name="text" value="dolor vel est donec odio justo sollicitudin 
+		ut suscipit" /> <property name="info" value="http://networksolutions.com" 
+		/> </bean> <bean id="shout05" class="acme.entities.shouts.Shout"> <property 
+		name="moment" value="2021/05/08 19:42" /> <property name="author" value="Monkey, 
+		vervet" /> <property name="text" value="vitae ipsum aliquam non mauris morbi" 
+		/> <property name="info" value="http://blinklist.com" /> </bean> <bean id="shout06" 
+		class="acme.entities.shouts.Shout"> <property name="moment" value="2021/05/08 
+		19:43" /> <property name="author" value="Dog, black-tailed prairie" /> <property 
+		name="text" value="luctus et ultrices posuere cubilia curae nulla dapibus 
+		dolor vel" /> <property name="info" value="http://studiopress.com" /> </bean> 
+		<bean id="shout07" class="acme.entities.shouts.Shout"> <property name="moment" 
+		value="2021/05/08 19:44" /> <property name="author" value="Cockatoo, red-tailed" 
+		/> <property name="text" value="odio curabitur convallis duis consequat dui 
+		nec nisi volutpat" /> <property name="info" value="https://reddit.com" /> 
+		</bean> <bean id="shout08" class="acme.entities.shouts.Shout"> <property 
+		name="moment" value="2021/05/08 19:45" /> <property name="author" value="Armadillo, 
+		seven-banded" /> <property name="text" value="ut at dolor quis odio consequat 
+		varius integer ac leo" /> <property name="info" value="http://newsvine.com" 
+		/> </bean> <bean id="shout09" class="acme.entities.shouts.Shout"> <property 
+		name="moment" value="2021/05/08 19:46" /> <property name="author" value="Black 
+		curlew" /> <property name="text" value="in felis donec semper sapien" /> 
+		<property name="info" value="http://geocities.com" /> </bean> <bean id="shout10" 
+		class="acme.entities.shouts.Shout"> <property name="moment" value="2021/05/08 
+		19:47" /> <property name="author" value="Groundhog" /> <property name="text" 
+		value="quisque porta volutpat erat quisque erat eros viverra eget congue" 
+		/> <property name="info" value="https://plala.or.jp" /> </bean> <bean id="shout11" 
+		class="acme.entities.shouts.Shout"> <property name="moment" value="2021/05/08 
+		19:48" /> <property name="author" value="Jaguar" /> <property name="text" 
+		value="lectus in quam fringilla rhoncus mauris enim leo rhoncus" /> <property 
+		name="info" value="http://wp.com" /> </bean> -->
 
 	<bean id="shout02" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/04/02 15:55" />
-		<property name="author" value="Jane Doe" />
-		<property name="text" value="I'm the master of my room!" />
-		<property name="info" value="http://www.example.org" />
-	</bean>
-
-	<bean id="shout03" class="acme.entities.shouts.Shout">
-		<property name="moment" value="2021/04/02 00:00" />
-		<property name="author" value="Foo Bar" />
-		<property name="text" value="Just turning 50!" />
-		<property name="info" value="http://happybirthday.com" />
-	</bean>
-
-	<bean id="shout04" class="acme.entities.shouts.Shout">
-		<property name="author" value="The manager" />
-		<property name="text" value="Leslies should be erradicated" />
-		<property name="moment" value="2021/04/02 12:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout05" class="acme.entities.shouts.Shout">
-		<property name="author" value="A leslie hater" />
-		<property name="text" value="This app is not cool!!! :(" />
-		<property name="moment" value="2021/04/18 11:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout06" class="acme.entities.shouts.Shout">
-		<property name="author" value="Leslie Design-Testing" />
-		<property name="text" value="In fact, its quite cool!" />
-		<property name="moment" value="2021/04/20 12:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout07" class="acme.entities.shouts.Shout">
-		<property name="author" value="Leslie Secondary Account" />
-		<property name="text" value="Just kidding, it isnt." />
-		<property name="moment" value="2021/04/02 12:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout08" class="acme.entities.shouts.Shout">
-		<property name="author" value="The analist" />
-		<property name="text" value="Making analist things!" />
-		<property name="moment" value="2021/04/02 00:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-	<bean id="shout09" class="acme.entities.shouts.Shout">
-		<property name="author" value="The tester" />
+		<property name="author" value="Brazilian tapir" />
 		<property name="text"
-			value="The manager watches us, but who whatches the manager?" />
-		<property name="moment" value="2021/04/25 21:00" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout10" class="acme.entities.shouts.Shout">
-		<property name="author" value="LSI author" />
-		<property name="text" value="This is the 10 shout!" />
-		<property name="moment" value="2021/04/19 12:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean>
-
-	<bean id="shout11" class="acme.entities.shouts.Shout">
-		<property name="author" value="Sampler guy" />
-		<property name="text" value="Final sampling!" />
-		<property name="moment" value="2021/04/25 12:30" />
-		<property name="info" value="http://www.sample-app.com" />
-	</bean> 
-	-->
-
-<!-- 	<bean id="shout02" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout03" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:40" />
-	  <property name="author" value="Heron, gray" />
-	  <property name="text" value="et eros vestibulum ac est lacinia nisi venenatis tristique" />
-	  <property name="info" value="http://tripod.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout04" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:41" />
-	  <property name="author" value="California sea lion" />
-	  <property name="text" value="dolor vel est donec odio justo sollicitudin ut suscipit" />
-	  <property name="info" value="http://networksolutions.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout05" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:42" />
-	  <property name="author" value="Monkey, vervet" />
-	  <property name="text" value="vitae ipsum aliquam non mauris morbi" />
-	  <property name="info" value="http://blinklist.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout06" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:43" />
-	  <property name="author" value="Dog, black-tailed prairie" />
-	  <property name="text" value="luctus et ultrices posuere cubilia curae nulla dapibus dolor vel" />
-	  <property name="info" value="http://studiopress.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout07" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:44" />
-	  <property name="author" value="Cockatoo, red-tailed" />
-	  <property name="text" value="odio curabitur convallis duis consequat dui nec nisi volutpat" />
-	  <property name="info" value="https://reddit.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout08" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:45" />
-	  <property name="author" value="Armadillo, seven-banded" />
-	  <property name="text" value="ut at dolor quis odio consequat varius integer ac leo" />
-	  <property name="info" value="http://newsvine.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout09" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:46" />
-	  <property name="author" value="Black curlew" />
-	  <property name="text" value="in felis donec semper sapien" />
-	  <property name="info" value="http://geocities.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout10" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:47" />
-	  <property name="author" value="Groundhog" />
-	  <property name="text" value="quisque porta volutpat erat quisque erat eros viverra eget congue" />
-	  <property name="info" value="https://plala.or.jp" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<bean id="shout11" class="acme.entities.shouts.Shout">
-	  <property name="moment" value="2021/05/08 19:48" />
-	  <property name="author" value="Jaguar" />
-	  <property name="text" value="lectus in quam fringilla rhoncus mauris enim leo rhoncus" />
-	  <property name="info" value="http://wp.com" />
-	</bean> -->
-
-<bean id="shout02" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout03" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout04" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout05" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout06" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout07" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout08" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout09" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout10" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
-	</bean>
-	<bean id="shout11" class="acme.entities.shouts.Shout">
-		<property name="author" value="Brazilian tapir" />	  
-	  <property name="text" value="leo odio condimentum id luctus nec molestie sed justo" />
-	  <property name="moment" value="2021/05/08 19:39" />	  
-	  <property name="info" value="http://elegantthemes.com" />
+		<property name="author" value="Brazilian tapir" />
+		<property name="text"
+			value="leo odio condimentum id luctus nec molestie sed justo" />
+		<property name="moment" value="2021/05/08 19:39" />
+		<property name="info" value="http://elegantthemes.com" />
 	</bean>
 	<!-- Tasks -->
 
@@ -307,8 +255,6 @@
 			value="Public unfinished task number two" />
 		<property name="description"
 			value="A public unfinished task which is the second one" />
-		<property name="link"
-			value="http://second.task/public/unfinished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/20 11:00" />
 		<property name="executionEnd" value="2022/12/02 20:00" />
@@ -337,8 +283,7 @@
 			value="Public unfinished task number four" />
 		<property name="description"
 			value="A public unfinished task which is the fourth one" />
-		<property name="link"
-			value="http://fourth.task/public/unfinished" />
+
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
