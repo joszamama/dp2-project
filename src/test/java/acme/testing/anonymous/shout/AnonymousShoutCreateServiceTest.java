@@ -46,6 +46,10 @@ public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
 		super.clickOnSubmitButton("Shout!");
 		super.checkNotErrorsExist();
+		super.clickOnMenu("Anonymous", "List shouts");
+		super.checkColumnHasValue(0, 1, author);
+		super.checkColumnHasValue(0, 2, text);
+		super.checkColumnHasValue(0, 3, info);
 	}
 
 	/**

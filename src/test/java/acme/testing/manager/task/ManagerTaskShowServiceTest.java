@@ -34,23 +34,23 @@ public class ManagerTaskShowServiceTest extends AcmePlannerTest {
 	 * @param executionEnd
 	 * @param workload
 	 */
-	@ParameterizedTest
-	@CsvFileSource(resources = "/manager/task/show-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
-	@Order(10)
-	public void positiveShow(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
-		super.signIn("manager1", "manager1");
-		super.clickOnMenu("Manager", "List my tasks");
-
-		super.clickOnListingRecord(recordIndex);
-
-		super.checkInputBoxHasValue("title", title);
-		super.checkInputBoxHasValue("description", description);
-		super.checkInputBoxHasValue("link", link);
-		super.checkInputBoxHasValue("executionStart", executionStart);
-		super.checkInputBoxHasValue("executionEnd", executionEnd);
-		super.checkInputBoxHasValue("workloadParsed", workload);
-		super.signOut();
-	}
+		@ParameterizedTest
+		@CsvFileSource(resources = "/manager/task/show-tasks.csv", encoding = "utf-8", numLinesToSkip = 1)
+		@Order(10)
+		public void positiveShow(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
+			super.signIn("manager1", "manager1");
+			super.clickOnMenu("Manager", "List my tasks");
+	
+			super.clickOnListingRecord(recordIndex);
+	
+			super.checkInputBoxHasValue("title", title);
+			super.checkInputBoxHasValue("description", description);
+			super.checkInputBoxHasValue("link", link);
+			super.checkInputBoxHasValue("executionStart", executionStart);
+			super.checkInputBoxHasValue("executionEnd", executionEnd);
+			super.checkInputBoxHasValue("workloadParsed", workload);
+			super.signOut();
+		}
 
 	/**
 	 * First, we login as manager1 and access the list task function. Then, we click on the first row and get the current URL.
@@ -63,9 +63,10 @@ public class ManagerTaskShowServiceTest extends AcmePlannerTest {
 		super.signIn("manager1", "manager1");
 		super.clickOnMenu("Manager", "List my tasks");
 		super.clickOnListingRecord(0);
-		final String url = this.getCurrentUrl();
+		final String url = super.getCurrentUrl();
 		super.signOut();
-		super.navigate(url, url);
+		super.navigate(url, "");
+
 		super.checkPanicExists();
 	}
 }

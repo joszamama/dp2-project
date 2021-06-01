@@ -1,0 +1,8 @@
+timestamp,test-class,test-method,time,description,result
+2021-06-01 21:51:41.472,acme.testing.anonymous.shout.AnonymousShoutCreateServiceTest,positiveCreate,9534,"[1] author=Brazilian tapir, text=1, info=http://elegantthemes.com",TypeError: browsingContextFn().currentWindowGlobal is null
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'LAPTOP-K5OE6BP9', ip: '192.168.1.128', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_281'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 85.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20210118153634, moz:geckodriverVersion: 0.29.0, moz:headless: false, moz:processID: 15892, moz:profile: C:\Users\adria\AppData\Loca..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 620058c7-6503-4ed6-aa14-c8487b611383
+*** Element info: {Using=class name, value=text-danger}

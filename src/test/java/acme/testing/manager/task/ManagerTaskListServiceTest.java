@@ -55,7 +55,11 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest {
 	@Test
 	@Order(20)
 	public void negativeList() {
-		this.driver.get("http://localhost:8080/Acme-Planner/manager/task/list");
+		super.signIn("manager1", "manager1");
+		super.clickOnMenu("Manager", "List my tasks");
+		final String url = super.getCurrentUrl();
+		super.signOut();
+		super.navigate(url, "");
 		super.checkPanicExists();
 		
 	}
