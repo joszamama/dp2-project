@@ -12,9 +12,10 @@
 
 package acme.features.anonymous.shout;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,17 +57,17 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 	public Collection<Shout> findMany(final Request<Shout> request) {
 		assert request != null;
 
-		Collection<Shout> dbData;
+		final Collection<Shout> dbData = this.repository.findMany();
 		final Date dateNow = new Date(System.currentTimeMillis() - 1);
 
-		dbData = this.repository.findMany();
-		final Collection<Shout> result = new HashSet<Shout>();
+		final ArrayList<Shout> result = new ArrayList<Shout>();
 		for (final Shout s : dbData) {
 			if (((dateNow.getTime() - s.getMoment().getTime()) / (1000 * 60 * 60 * 24)) <= 30) {
 				result.add(s);
 			}
 		}
-
+		result.sort((d1, d2) -> d1.compareTo(d2));
+		Collections.reverse(result);
 		return result;
 	}
 

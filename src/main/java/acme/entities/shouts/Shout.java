@@ -51,5 +51,8 @@ public class Shout extends DomainEntity {
 		this.author = author.trim();
 	}
 
+	public int compareTo(final Shout s) {
+		return this.getMoment().compareTo(s.getMoment());
+	}
 	// Relationships ----------------------------------------------------------
 }

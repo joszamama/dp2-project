@@ -1,3 +1,0 @@
-timestamp,test-class,test-method,time,description,result
-2021-06-01 18:09:20.569,acme.testing.manager.task.ManagerTaskDeleteServiceTest,deletePositive,6170,"deletePositive()",OK
-2021-06-01 18:09:58.093,acme.testing.manager.task.ManagerTaskDeleteServiceTest,deleteNegative,37320,"deleteNegative()",Action didn't result in panic

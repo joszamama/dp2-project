@@ -1,4 +1,0 @@
-timestamp,test-class,test-method,time,description,result
-2021-06-01 18:48:25.617,acme.testing.anonymous.shout.AnonymousShoutCreateServiceTest,positiveCreate,63569,"[1] author=Brazilian tapir, text=1, info=http://elegantthemes.com",Timeout waiting for action to complete
-2021-06-01 18:49:38.156,acme.testing.anonymous.shout.AnonymousShoutCreateServiceTest,positiveCreate,72307,"[2] author=Heron, gray, text=cienciencienciencienciencienciencienciencienciencieciencienciencienciencienciencienciencienciencienc, info=null",Timeout waiting for action to complete
-2021-06-01 18:50:40.606,acme.testing.anonymous.shout.AnonymousShoutCreateServiceTest,positiveCreate,62200,"[3] author=cinco, text=dolor vel est donec odio justo sollicitudin ut suscipit, info=http://networksolutions.com",Timeout waiting for action to complete

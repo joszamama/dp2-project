@@ -57,7 +57,7 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	@Test
 	public void negativeShoutListing() {
 		super.signIn("administrator", "administrator");
-		super.navigate("anonymous/shout/list", "");
+		super.navigate("/anonymous/shout/list", "");
 		this.checkPanicExists();
 		this.signOut();
 
