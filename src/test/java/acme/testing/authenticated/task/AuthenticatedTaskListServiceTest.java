@@ -38,15 +38,15 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 
 		this.signOut();
 	}
+
 	/**
-	 * 
 	 * We check that we can't list finished and public tasks as an anonymous user.
 	 * We are violating the constraint of authorization.
 	 */
-
 	@Test
 	public void negativeTaskListing() {
-		super.driver.get("http://localhost:8080/Acme-Planner/authenticated/task/list");
+		super.navigate("/authenticated/task/list", "");
 		this.checkPanicExists();
 	}
+
 }

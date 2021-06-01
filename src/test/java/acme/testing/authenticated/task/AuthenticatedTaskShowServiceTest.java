@@ -49,15 +49,24 @@ public class AuthenticatedTaskShowServiceTest extends AcmePlannerTest {
 
 		this.signOut();
 	}
+
 	/**
-	 * 
 	 * We check that we can't access a task if not signed in as an auth user.
+	 * We check this by accessing a task as an authenticated user, 
+	 * getting the URL of that task, signing off and then
+	 * trying to access the URL of the task.
 	 * We are violating the constraint of authorization.
 	 */
-
 	@Test
 	public void negativeTaskShow() {
-		super.driver.get("http://localhost:8080/Acme-Planner/authenticated/task/show?id=2");
+		super.signIn("administrator", "administrator");
+		super.clickOnMenu("Authenticated", "List finished public tasks");
+		super.clickOnListingRecord(0);
+		final String URL = super.driver.getCurrentUrl();
+		super.signOut();
+		System.out.println("URL IS: " + URL);
+		super.driver.get(URL);
 		this.checkPanicExists();
 	}
+
 }
