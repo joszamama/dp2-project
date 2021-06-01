@@ -49,6 +49,7 @@ public class ManagerTaskShowServiceTest extends AcmePlannerTest {
 		super.checkInputBoxHasValue("executionStart", executionStart);
 		super.checkInputBoxHasValue("executionEnd", executionEnd);
 		super.checkInputBoxHasValue("workloadParsed", workload);
+		super.signOut();
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class ManagerTaskShowServiceTest extends AcmePlannerTest {
 		super.clickOnListingRecord(0);
 		final String url = this.getCurrentUrl();
 		super.signOut();
-		this.driver.get("http://localhost:8080/Acme-Planner" + url);
+		super.navigate(url, url);
 		super.checkPanicExists();
 	}
 }

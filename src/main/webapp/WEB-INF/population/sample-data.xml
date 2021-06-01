@@ -58,7 +58,7 @@
 			<bean class="acme.datatypes.UserIdentity">
 				<property name="name" value="manager2" />
 				<property name="surname" value="manager2" />
-				<property name="email" value="manager1@acme.com" />
+				<property name="email" value="manager2@acme.com" />
 			</bean>
 		</property>
 		<property name="roles">
@@ -79,6 +79,38 @@
 	<bean name="managerAuthenticated2"
 		class="acme.framework.entities.Authenticated">
 		<property name="userAccount" ref="managerUserAccount2" />
+	</bean>
+	
+	<bean name="managerUserAccount3"
+		class="acme.framework.entities.UserAccount">
+		<property name="username" value="manager3" />
+		<property name="password" value="manager3" />
+		<property name="enabled" value="true" />
+		<property name="identity">
+			<bean class="acme.datatypes.UserIdentity">
+				<property name="name" value="manager3" />
+				<property name="surname" value="manager3" />
+				<property name="email" value="manager3@acme.com" />
+			</bean>
+		</property>
+		<property name="roles">
+			<list>
+				<ref bean="managerManager3" />
+				<ref bean="managerAuthenticated3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean name="managerManager3"
+		class="acme.framework.entities.Manager">
+		<property name="userAccount" ref="managerUserAccount3" />
+		<property name="company" value="US" />
+		<property name="sector" value="Teaching" />
+	</bean>
+
+	<bean name="managerAuthenticated3"
+		class="acme.framework.entities.Authenticated">
+		<property name="userAccount" ref="managerUserAccount3" />
 	</bean>
 
 	<!-- Shouts <bean id="shout01" class="acme.entities.shouts.Shout"> <property 

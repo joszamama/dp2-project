@@ -43,6 +43,9 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest {
 		super.checkColumnHasValue(recordIndex, 1, executionStart);
 		super.checkColumnHasValue(recordIndex, 2, executionEnd);
 		super.checkColumnHasValue(recordIndex, 3, workload);
+		
+		super.signOut();
+
 	}
 
 	/**
@@ -54,5 +57,6 @@ public class ManagerTaskListServiceTest extends AcmePlannerTest {
 	public void negativeList() {
 		this.driver.get("http://localhost:8080/Acme-Planner/manager/task/list");
 		super.checkPanicExists();
+		
 	}
 }

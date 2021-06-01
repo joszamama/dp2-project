@@ -53,6 +53,18 @@ public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 
 		super.clickOnSubmitButton("Update");
 		super.checkNotErrorsExist();
+		
+		super.clickOnMenu("Manager", "List my tasks");
+
+		super.clickOnListingRecord(recordIndex);
+
+		super.checkInputBoxHasValue("title", title);
+		super.checkInputBoxHasValue("description", description);
+		super.checkInputBoxHasValue("link", link);
+		super.checkInputBoxHasValue("executionStart", executionStart);
+		super.checkInputBoxHasValue("executionEnd", executionEnd);
+		super.checkInputBoxHasValue("workloadParsed", workload);
+		super.signOut();
 	}
 
 	/**
@@ -95,5 +107,6 @@ public class ManagerTaskUpdateServiceTest extends AcmePlannerTest {
 
 		super.clickOnSubmitButton("Update");
 		super.checkErrorsExist();
+		super.signOut();
 	}
 }
