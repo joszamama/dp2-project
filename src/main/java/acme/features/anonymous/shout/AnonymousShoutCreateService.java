@@ -102,13 +102,7 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 
 		moment = new Date(System.currentTimeMillis() - 1);
 		entity.setMoment(moment);
-		final boolean isSpam = this.spamFilterService.isSpam(entity.getAuthor(), entity.getText());
-		if (!isSpam) {
-			this.repository.save(entity);
-		} else {
-			System.out.println("SPAM: " + entity.getText());
-			System.out.println("Mensaje borrado");
-		}
+		this.repository.save(entity);
 
 	}
 
