@@ -631,3 +631,5 @@ ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] Exception: acme.fra
 ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] HTTP GET /Acme-Planner/WEB-INF/views/framework/page.jsp HTTP/1.1
 ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] Status: 500
 ERROR [org.apache.jsp.WEB_002dINF.views.framework.panic_jsp] Exception: acme.framework.helpers.Assert.state(Assert.java:45): Access is not authorised
+INFO [acme.Launcher] Starting Launcher using Java 1.8.0_281 on DESKTOP-55PKQQQ with PID 14096 (C:\Users\José Antonio\Documents\Universidad de Sevilla\Asignaturas\DP2\Workspace\Projects\Acme-Planner\target\classes started by José Antonio in C:\Users\José Antonio\Documents\Universidad de Sevilla\Asignaturas\DP2\Workspace\Projects\Acme-Planner)
+INFO [acme.Launcher] The following profiles are active: development,populator

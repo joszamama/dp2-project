@@ -295,7 +295,7 @@ has v</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
 --
-+ title: String {NotBlank, Leght(1,80)}
++ title: String {NotBlank, Lenght(1,80)}
 + executionStart: Date {NotNull,Temporal(TIMESTAMP)}
 + executionEnd: Date {NotNull, Temporal(TIMESTAMP)} 
 + workloadHours: Integer {NotNull, Min(0)}
@@ -335,8 +335,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1254</x>
-      <y>612</y>
+      <x>1338</x>
+      <y>522</y>
       <w>222</w>
       <h>36</h>
     </coordinates>
@@ -350,11 +350,11 @@ of the task
     <coordinates>
       <x>1200</x>
       <y>534</y>
-      <w>162</w>
-      <h>90</h>
+      <w>150</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -367,7 +367,8 @@ of the task
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Manager
 --
-
++ company: String {NotBlank, Lenght(1,250)}
++ sector: String {NotBlank, Lenght(1,250)}
 
 </panel_attributes>
     <additional_attributes/>
@@ -387,7 +388,7 @@ Manager
     <id>UMLClass</id>
     <coordinates>
       <x>642</x>
-      <y>534</y>
+      <y>552</y>
       <w>228</w>
       <h>72</h>
     </coordinates>
@@ -403,8 +404,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>408</x>
-      <y>534</y>
+      <x>378</x>
+      <y>564</y>
       <w>222</w>
       <h>36</h>
     </coordinates>
@@ -416,13 +417,13 @@ considered Spam, separated by a "coma"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>564</y>
-      <w>54</w>
-      <h>42</h>
+      <x>588</x>
+      <y>504</y>
+      <w>66</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -489,5 +490,75 @@ the moment when the task is created
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;90.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1278</x>
+      <y>588</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>workLoad has to fit inside the execution time provided by
+executionStart and executionEnd, and at least has to be
+1 minute.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1200</x>
+      <y>582</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>372</x>
+      <y>492</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Derived method used to trim the author attribute
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>594</x>
+      <y>576</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>372</x>
+      <y>432</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Moment when the shout is created
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>450</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;30.0</additional_attributes>
   </element>
 </diagram>
