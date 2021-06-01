@@ -45,12 +45,12 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	@Order(10)
 	public void positive(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
+		super.navigate("/administrator/configuration/show", "");
 		super.fill(By.id("wordList"), wordList);
 		super.fill(By.id("threshold"), threshold);
 		super.clickOnSubmitButton("Change parameters");
 		super.checkNotErrorsExist();
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
+		super.navigate("/administrator/configuration/show", "");
 		super.checkInputBoxHasValue("wordList", wordList);
 		super.checkInputBoxHasValue("threshold", threshold);
 		this.signOut();
@@ -68,7 +68,7 @@ public class AdministratorConfigurationCreateServiceTest extends AcmePlannerTest
 	@Order(20)
 	public void negative(final String wordList, final String threshold) {
 		this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
+		super.navigate("/administrator/configuration/show", "");
 		super.fill(By.id("wordList"), wordList);
 		super.fill(By.id("threshold"), threshold);
 		super.clickOnSubmitButton("Change parameters");

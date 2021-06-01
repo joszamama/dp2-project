@@ -33,10 +33,10 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	 * appear.
 	 */
 	@Test
-	public void positive() {
+	public void positiveAuthorised() {
 		this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
-		super.checkNotErrorsExist();
+		super.navigate("/administrator/dashboard/show", "");
+		super.checkNotPanicExists();
 		this.signOut();
 	}
 
@@ -46,11 +46,12 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	 * even when there isn't data for the dashboard.
 	 */
 	@Test
-	public void negativeNoData() {
+	public void positiveNoData() {
 		this.signIn("administrator", "administrator");
 		super.clickOnMenu("Administrator", "Populate DB (initial)");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
-		super.checkNotErrorsExist();
+		super.navigate("/administrator/dashboard/show", "");
+		super.checkNotPanicExists();
+		super.clickOnMenu("Administrator", "Populate DB (samples)");
 		this.signOut();
 	}
 
@@ -60,8 +61,8 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 	 */
 	@Test
 	public void negativeUnauthorised() {
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/dashboard/show");
-		super.checkErrorsExist();
+		super.navigate("/administrator/dashboard/show", "");
+		super.checkPanicExists();
 	}
 
 }

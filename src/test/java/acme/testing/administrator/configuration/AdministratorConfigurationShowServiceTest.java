@@ -30,8 +30,8 @@ public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
 	@Test
 	public void positive() {
 		this.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
-		super.checkNotErrorsExist();
+		super.navigate("/administrator/configuration/show", "");
+		super.checkNotPanicExists();
 		this.signOut();
 	}
 
@@ -41,8 +41,8 @@ public class AdministratorConfigurationShowServiceTest extends AcmePlannerTest {
 	 */
 	@Test
 	public void negative() {
-		super.driver.get("http://localhost:8080/Acme-Planner/administrator/configuration/show");
-		super.checkErrorsExist();
+		super.navigate("/administrator/configuration/show", "");
+		super.checkPanicExists();
 	}
 
 }
