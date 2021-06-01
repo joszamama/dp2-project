@@ -15,6 +15,8 @@ package acme.framework.entities;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.Length;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,9 +32,11 @@ public class Manager extends UserRole {
 	// Attributes -------------------------------------------------------------
 
 	@NotBlank
+	@Length(min = 1, max = 250)
 	protected String			company;
 
 	@NotBlank
+	@Length(min = 1, max = 250)
 	protected String			sector;
 
 	// Derived attributes -----------------------------------------------------
