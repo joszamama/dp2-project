@@ -56,7 +56,6 @@ public class Task extends DomainEntity {
 	@Max(60)
 	protected Integer			workloadMinutes;
 
-	//@Pattern(regexp = "^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$")
 	@Transient
 	protected String			workloadParsed;
 

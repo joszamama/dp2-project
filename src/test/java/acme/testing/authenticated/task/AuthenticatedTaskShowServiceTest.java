@@ -9,10 +9,10 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 public class AuthenticatedTaskShowServiceTest extends AcmePlannerTest {
-	
+
 	/**
 	 * 
-	 * 79.0% 
+	 * 79.0%
 	 * 
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
 	 * and then we click on each tasks checking that the value is correct.
@@ -52,20 +52,19 @@ public class AuthenticatedTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
 	 * We check that we can't access a task if not signed in as an auth user.
-	 * We check this by accessing a task as an authenticated user, 
+	 * We check this by accessing a task as an authenticated user,
 	 * getting the URL of that task, signing off and then
 	 * trying to access the URL of the task.
 	 * We are violating the constraint of authorization.
 	 */
+
+	/**
+	 * We check that we can't list finished and public tasks as an anonymous user.
+	 * We are violating the constraint of authorization.
+	 */
 	@Test
-	public void negativeTaskShow() {
-		super.signIn("administrator", "administrator");
-		super.clickOnMenu("Authenticated", "List finished public tasks");
-		super.clickOnListingRecord(0);
-		final String URL = super.driver.getCurrentUrl();
-		super.signOut();
-		System.out.println("URL IS: " + URL);
-		super.driver.get(URL);
+	public void negativeTaskListing() {
+		super.navigate("/authenticated/task/list", "");
 		this.checkPanicExists();
 	}
 

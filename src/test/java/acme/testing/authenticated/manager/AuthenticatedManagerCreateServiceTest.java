@@ -17,7 +17,7 @@ public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 	 * @param department
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/authenticated/manager/create-manager-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-and-update-manager-positive.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
 	public void becomeManagerPositive(final int recordIndex, final String company, final String department) {
 		super.signUp("user_positive" + recordIndex, "testtest", "testname", "testsurname", "testemail@acme.com");
@@ -44,7 +44,7 @@ public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 	 * @param department
 	 */
 	@ParameterizedTest
-	@CsvFileSource(resources = "/authenticated/manager/create-manager-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
+	@CsvFileSource(resources = "/authenticated/manager/create-and-update-manager-negative.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(20)
 	public void becomeManagerNegative(final int recordIndex, final String company, final String department) {
 		super.signUp("user_negative" + recordIndex, "testtest", "testname", "testsurname", "testemail@acme.com");

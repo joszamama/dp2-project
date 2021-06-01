@@ -52,6 +52,7 @@ public class AdministratorDashboardShowServiceTest extends AcmePlannerTest {
 		super.navigate("/administrator/dashboard/show", "");
 		super.checkNotPanicExists();
 		super.clickOnMenu("Administrator", "Populate DB (samples)");
+		super.checkNotPanicExists();
 		this.signOut();
 	}
 

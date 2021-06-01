@@ -73,6 +73,7 @@
 		<property name="userAccount" ref="administratorUserAccount" />
 	</bean>
 
+
 	<!-- Configuration -->
 
 	<bean id="configuration" class="acme.entities.configuration.Configuration">

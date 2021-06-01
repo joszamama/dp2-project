@@ -307,6 +307,8 @@
 			value="Public unfinished task number two" />
 		<property name="description"
 			value="A public unfinished task which is the second one" />
+		<property name="link"
+			value="http://second.task/public/unfinished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/20 11:00" />
 		<property name="executionEnd" value="2022/12/02 20:00" />
@@ -335,6 +337,8 @@
 			value="Public unfinished task number four" />
 		<property name="description"
 			value="A public unfinished task which is the fourth one" />
+		<property name="link"
+			value="http://fourth.task/public/unfinished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
@@ -363,6 +367,8 @@
 			value="Public unfinished task number six" />
 		<property name="description"
 			value="A public unfinished task which is the sixth one" />
+		<property name="link"
+			value="http://sixth.task/public/unfinished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2022/07/07 10:00" />
 		<property name="executionEnd" value="2022/10/10 18:00" />
@@ -391,6 +397,8 @@
 			value="Public finished task number two" />
 		<property name="description"
 			value="A public finished task which is the second one" />
+		<property name="link"
+			value="http://second.task/public/finished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/20 11:00" />
 		<property name="executionEnd" value="2012/12/02 20:00" />
@@ -419,6 +427,8 @@
 			value="Public finished task number four" />
 		<property name="description"
 			value="A public finished task which is the fourth one" />
+		<property name="link"
+			value="http://fourth.task/public/finished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/04/09 10:00" />
 		<property name="executionEnd" value="2012/12/23 18:00" />
@@ -447,6 +457,8 @@
 			value="Public finished task number six" />
 		<property name="description"
 			value="A public finished task which is the sixth one" />
+		<property name="link"
+			value="http://sixth.task/public/finished" />
 		<property name="isPrivate" value="false" />
 		<property name="executionStart" value="2012/07/07 10:00" />
 		<property name="executionEnd" value="2012/10/10 18:00" />
@@ -477,6 +489,8 @@
 			value="Private unfinished task number two" />
 		<property name="description"
 			value="A private unfinished task which is the second one" />
+		<property name="link"
+			value="http://second.task/private/unfinished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/20 11:00" />
 		<property name="executionEnd" value="2022/12/02 20:00" />
@@ -507,6 +521,8 @@
 			value="Private unfinished task number four" />
 		<property name="description"
 			value="A private unfinished task which is the fourth one" />
+		<property name="link"
+			value="http://fourth.task/private/unfinished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/04/09 10:00" />
 		<property name="executionEnd" value="2022/12/23 18:00" />
@@ -537,6 +553,8 @@
 			value="Private unfinished task number six" />
 		<property name="description"
 			value="A private unfinished task which is the sixth one" />
+		<property name="link"
+			value="http://sixth.task/private/unfinished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2022/07/07 10:00" />
 		<property name="executionEnd" value="2022/10/10 18:00" />
@@ -565,6 +583,8 @@
 			value="Private finished task number two" />
 		<property name="description"
 			value="A private finished task which is the second one" />
+		<property name="link"
+			value="http://second.task/private/finished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2012/04/20 11:00" />
 		<property name="executionEnd" value="2012/12/02 20:00" />
@@ -593,6 +613,8 @@
 			value="Private finished task number four" />
 		<property name="description"
 			value="A private finished task which is the fourth one" />
+		<property name="link"
+			value="http://fourth.task/private/finished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2012/04/09 10:00" />
 		<property name="executionEnd" value="2012/12/23 18:00" />
@@ -621,6 +643,8 @@
 			value="Private finished task number six" />
 		<property name="description"
 			value="A private finished task which is the sixth one" />
+		<property name="link"
+			value="http://sixth.task/private/finished" />
 		<property name="isPrivate" value="true" />
 		<property name="executionStart" value="2012/07/07 10:00" />
 		<property name="executionEnd" value="2012/10/10 18:00" />
