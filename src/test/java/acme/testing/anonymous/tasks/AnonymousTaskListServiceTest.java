@@ -62,7 +62,7 @@ public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 	@Test
 	public void negativeTaskListing() {
 		super.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/anonymous/task/list");
+		super.navigate("/anonymous/task/list", "");
 		this.checkPanicExists();
 		this.signOut();
 	}
