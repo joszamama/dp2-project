@@ -1,9 +1,0 @@
-timestamp,test-class,test-method,time,description,result
-2021-06-01 21:47:01.924,acme.testing.manager.task.ManagerTaskShowServiceTest,positiveShow,5158,"[1] recordIndex=0, title=Public unfinished task number one, description=A public unfinished task which is the first one, executionStart=2022/02/01 14:00, executionEnd=2022/03/25 17:30, link=http://first.task/public/unfinished, workload=1:30",OK
-2021-06-01 21:47:05.013,acme.testing.manager.task.ManagerTaskShowServiceTest,positiveShow,2857,"[2] recordIndex=1, title=Public unfinished task number two, description=A public unfinished task which is the second one, executionStart=2022/04/20 11:00, executionEnd=2022/12/02 20:00, link=null, workload=8:15",Failed to decode response from marionette
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'LAPTOP-K5OE6BP9', ip: '192.168.1.128', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_281'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 85.0, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20210118153634, moz:geckodriverVersion: 0.29.0, moz:headless: false, moz:processID: 7484, moz:profile: C:\Users\adria\AppData\Loca..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: a79c465a-ddac-4c16-aa43-6d4fdb67400b
-*** Element info: {Using=xpath, value=//div[@id='mainMenu']/ul/li[a[normalize-space()='Manager']]/div[contains(@class, 'dropdown-menu')]/a[normalize-space()='List my tasks']}

@@ -1,2 +1,0 @@
-timestamp,test-class,test-method,time,description,result
-2021-06-01 22:50:25.351,acme.testing.manager.task.ManagerTaskListServiceTest,negativeList,208,"negativeList()",OK

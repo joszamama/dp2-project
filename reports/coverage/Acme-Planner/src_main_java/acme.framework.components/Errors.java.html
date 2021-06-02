@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Errors.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.components</a> &gt; <span class="el_source">Errors.java</span></div><h1>Errors.java</h1><pre class="source lang-java linenums">/*
+ * Errors.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.components;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import acme.framework.helpers.CollectionHelper;
+import acme.framework.helpers.MessageHelper;
+import acme.framework.helpers.StringHelper;
+
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">public class Errors implements Iterable&lt;Entry&lt;String, List&lt;String&gt;&gt;&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	protected Map&lt;String, List&lt;String&gt;&gt; map;
+
+	// Constructors -----------------------------------------------------------
+
+
+<span class="fc" id="L35">	public Errors() {</span>
+<span class="fc" id="L36">		this.map = new HashMap&lt;String, List&lt;String&gt;&gt;();</span>
+<span class="fc" id="L37">	}</span>
+
+	// Iterable interface -----------------------------------------------------
+
+	@Override
+	public Iterator&lt;Entry&lt;String, List&lt;String&gt;&gt;&gt; iterator() {
+		Iterator&lt;Entry&lt;String, List&lt;String&gt;&gt;&gt; result;
+
+<span class="fc" id="L45">		result = this.map.entrySet().iterator();</span>
+
+<span class="fc" id="L47">		return result;</span>
+	}
+
+	// Business methods -------------------------------------------------------
+
+	public void state(final Request&lt;?&gt; request, final boolean condition, final String attributeName, final String code, final Object... arguments) {
+<span class="pc bpc" id="L53" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(attributeName);</span>
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(code);</span>
+<span class="pc bpc" id="L56" title="2 of 4 branches missed.">		assert !CollectionHelper.someNull(arguments);</span>
+
+		String message;
+
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (!condition) {</span>
+<span class="fc" id="L61">			message = MessageHelper.getMessage(code, arguments, code, request.getLocale());</span>
+<span class="fc" id="L62">			this.add(attributeName, message);</span>
+		}
+<span class="fc" id="L64">	}</span>
+
+	public void add(final String attributeName, final String message) {
+<span class="pc bpc" id="L67" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(attributeName);</span>
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(message);</span>
+
+		List&lt;String&gt; currentErrors;
+
+<span class="fc bfc" id="L72" title="All 2 branches covered.">		if (this.map.containsKey(attributeName)) {</span>
+<span class="fc" id="L73">			currentErrors = this.map.get(attributeName);</span>
+<span class="fc" id="L74">		} else {</span>
+<span class="fc" id="L75">			currentErrors = new ArrayList&lt;String&gt;();</span>
+<span class="fc" id="L76">			this.map.put(attributeName, currentErrors);</span>
+		}
+
+<span class="fc" id="L79">		currentErrors.add(message);</span>
+<span class="fc" id="L80">	}</span>
+
+	public boolean hasErrors() {
+		boolean result;
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">		result = !this.map.isEmpty();</span>
+
+<span class="fc" id="L87">		return result;</span>
+	}
+
+	public boolean hasErrors(final String attributeName) {
+<span class="pc bpc" id="L91" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(attributeName);</span>
+
+		boolean result;
+
+<span class="fc" id="L95">		result = this.map.containsKey(attributeName);</span>
+
+<span class="fc" id="L97">		return result;</span>
+	}
+
+	public String getFirstError(final String attributeName) {
+<span class="nc bnc" id="L101" title="All 4 branches missed.">		assert !StringHelper.isBlank(attributeName);</span>
+<span class="nc bnc" id="L102" title="All 4 branches missed.">		assert this.hasErrors(attributeName);</span>
+
+		String result;
+
+<span class="nc" id="L106">		result = this.map.get(attributeName).get(0);</span>
+
+<span class="nc" id="L108">		return result;</span>
+	}
+
+	public List&lt;String&gt; getAllErrors(final String attributeName) {
+<span class="nc bnc" id="L112" title="All 4 branches missed.">		assert !StringHelper.isBlank(attributeName);</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">		assert this.hasErrors(attributeName);</span>
+
+		List&lt;String&gt; result;
+
+<span class="nc" id="L117">		result = this.map.get(attributeName);</span>
+
+<span class="nc" id="L119">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

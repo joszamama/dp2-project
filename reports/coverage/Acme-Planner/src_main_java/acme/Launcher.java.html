@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Launcher.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme</a> &gt; <span class="el_source">Launcher.java</span></div><h1>Launcher.java</h1><pre class="source lang-java linenums">/*
+ * Launcher.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme;
+
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.util.Assert;
+import org.springframework.web.context.WebApplicationContext;
+
+import acme.framework.helpers.FactoryHelper;
+import acme.framework.helpers.ProfileHelper;
+import acme.framework.helpers.ThrowableHelper;
+import acme.framework.utilities.DatabaseInquirer;
+import acme.framework.utilities.DatabasePopulator;
+import lombok.extern.java.Log;
+
+@SpringBootApplication(scanBasePackages = &quot;acme&quot;)
+<span class="fc" id="L45">@Log</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">public class Launcher extends SpringBootServletInitializer {</span>
+
+	// Command-line entry point -----------------------------------------------
+
+	public static void main(final String[] argv) {
+		Map&lt;String, String&gt; arguments;
+		ConfigurableApplicationContext context;
+
+<span class="fc" id="L54">		context = null;</span>
+		try {
+			// Launcher.printClassPath();
+<span class="fc" id="L57">			arguments = Launcher.analyseArguments(argv);</span>
+<span class="fc" id="L58">			Launcher.setProfile(arguments);</span>
+<span class="fc" id="L59">			context = SpringApplication.run(Launcher.class, argv);</span>
+<span class="fc" id="L60">			FactoryHelper.initialise(context);</span>
+<span class="fc" id="L61">			Launcher.doExtraWork(arguments, context);</span>
+<span class="pc" id="L62">		} catch (final Throwable oops) {</span>
+<span class="nc" id="L63">			ThrowableHelper.print(System.err, oops);</span>
+<span class="nc" id="L64">			Launcher.exit(context);</span>
+		}
+<span class="fc" id="L66">	}</span>
+
+	// SpringBootServletInitializer interface ---------------------------------
+
+	@Override
+	public void onStartup(final ServletContext servletContext) throws ServletException {
+		Object root;
+		ConfigurableApplicationContext context;
+
+		// Launcher.printClassPath();
+
+<span class="nc" id="L77">		ProfileHelper.setProfiles(&quot;production&quot;);</span>
+<span class="nc" id="L78">		super.onStartup(servletContext);</span>
+<span class="nc" id="L79">		root = servletContext.getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">		assert root instanceof ConfigurableApplicationContext;</span>
+<span class="nc" id="L81">		context = (ConfigurableApplicationContext) root;</span>
+<span class="nc" id="L82">		FactoryHelper.initialise(context);</span>
+
+<span class="nc" id="L84">		Launcher.log.info(&quot;Running application (servlet server)&quot;);</span>
+<span class="nc" id="L85">	}</span>
+
+	@Override
+	protected SpringApplicationBuilder configure(final SpringApplicationBuilder builder) {
+		SpringApplicationBuilder result;
+
+<span class="nc" id="L91">		result = builder.sources(Launcher.class);</span>
+
+<span class="nc" id="L93">		return result;</span>
+	}
+
+	// Ancillary methods ------------------------------------------------------
+
+	protected static Map&lt;String, String&gt; analyseArguments(final String[] argv) {
+		Map&lt;String, String&gt; result;
+		String[] validProfiles, validActions;
+		Options options;
+		CommandLineParser parser;
+		CommandLine commandLine;
+		String profile, action;
+
+<span class="fc" id="L106">		result = new HashMap&lt;String, String&gt;();</span>
+<span class="fc" id="L107">		result.put(&quot;profile&quot;, &quot;development&quot;);</span>
+<span class="fc" id="L108">		result.put(&quot;action&quot;, &quot;run&quot;);</span>
+
+<span class="fc" id="L110">		validProfiles = new String[] {</span>
+<span class="fc" id="L111">			&quot;development&quot;, &quot;production&quot;</span>
+		};
+<span class="fc" id="L113">		validActions = new String[] {</span>
+<span class="fc" id="L114">			&quot;run&quot;, &quot;populate-initial&quot;, &quot;populate-sample&quot;, &quot;inquire-database&quot;</span>
+		};
+
+<span class="fc" id="L117">		options = new Options();</span>
+<span class="fc" id="L118">		options.addOption(&quot;p&quot;, &quot;profile&quot;, true, &quot;sets the profile&quot;);</span>
+<span class="fc" id="L119">		options.addOption(&quot;a&quot;, &quot;action&quot;, true, &quot;performs an action&quot;);</span>
+
+		try {
+<span class="fc" id="L122">			parser = new DefaultParser();</span>
+<span class="fc" id="L123">			commandLine = parser.parse(options, argv);</span>
+<span class="fc" id="L124">			profile = (String) commandLine.getParsedOptionValue(&quot;p&quot;);</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">			if (profile != null) {</span>
+<span class="fc" id="L126">				Assert.state(ArrayUtils.contains(validProfiles, profile), &quot;Wrong profile&quot;);</span>
+<span class="fc" id="L127">				result.put(&quot;profile&quot;, profile);</span>
+			}
+<span class="fc" id="L129">			action = (String) commandLine.getParsedOptionValue(&quot;a&quot;);</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">			if (action != null) {</span>
+<span class="fc" id="L131">				Assert.state(ArrayUtils.contains(validActions, action), &quot;Wrong action&quot;);</span>
+<span class="fc" id="L132">				result.put(&quot;action&quot;, action);</span>
+			}
+<span class="pc" id="L134">		} catch (final Throwable oops) {</span>
+<span class="nc" id="L135">			Launcher.showUsage();</span>
+		}
+
+<span class="fc" id="L138">		return result;</span>
+	}
+
+	protected static void printClassPath() {
+		ClassLoader loader;
+		URL[] sources;
+
+<span class="nc" id="L145">		loader = ClassLoader.getSystemClassLoader();</span>
+<span class="nc" id="L146">		sources = ((URLClassLoader) loader).getURLs();</span>
+
+<span class="nc bnc" id="L148" title="All 2 branches missed.">		for (final URL url : sources) {</span>
+<span class="nc" id="L149">			Launcher.log.info(&quot;Class path = &quot; + url.getFile());</span>
+		}
+<span class="nc" id="L151">	}</span>
+
+	protected static void showUsage() {
+<span class="nc" id="L154">		System.err.println(&quot;&quot;);</span>
+<span class="nc" id="L155">		System.err.println(&quot;Usage: launcher (--profile value)? (--action value)?&quot;);</span>
+<span class="nc" id="L156">		System.err.println(&quot;&quot;);</span>
+<span class="nc" id="L157">		System.err.println(&quot;Profile values:&quot;);</span>
+<span class="nc" id="L158">		System.err.println(&quot;development     sets the development profile (default)&quot;);</span>
+<span class="nc" id="L159">		System.err.println(&quot;production      sets the production profile&quot;);</span>
+<span class="nc" id="L160">		System.err.println(&quot;&quot;);</span>
+<span class="nc" id="L161">		System.err.println(&quot;Action values:&quot;);</span>
+<span class="nc" id="L162">		System.err.println(&quot;run              runs the system (default)&quot;);</span>
+<span class="nc" id="L163">		System.err.println(&quot;populate-initial populates the database with initial data&quot;);</span>
+<span class="nc" id="L164">		System.err.println(&quot;populate-sample  populates the database with sample data&quot;);</span>
+<span class="nc" id="L165">		System.err.println(&quot;inquire-database opens a shell to query the database using JPQL&quot;);</span>
+<span class="nc" id="L166">		System.err.println(&quot;&quot;);</span>
+<span class="nc" id="L167">		System.err.println(&quot;Note that populating the database requires creating the create/drop SQL scripts,&quot;);</span>
+<span class="nc" id="L168">		System.err.println(&quot;which is performed automatically.  Note, too, that populating the database with&quot;);</span>
+<span class="nc" id="L169">		System.err.println(&quot;sample data requires populating it with the initial data, which is also performed&quot;);</span>
+<span class="nc" id="L170">		System.err.println(&quot;automatically.&quot;);</span>
+<span class="nc" id="L171">		System.err.println(&quot;&quot;);</span>
+<span class="nc" id="L172">		System.exit(1);</span>
+<span class="nc" id="L173">	}</span>
+
+	protected static void setProfile(final Map&lt;String, String&gt; arguments) {
+<span class="pc bpc" id="L176" title="2 of 4 branches missed.">		assert arguments != null;</span>
+
+		String action;
+		String baseProfile, actionProfile;
+
+<span class="fc" id="L181">		baseProfile = arguments.get(&quot;profile&quot;);</span>
+<span class="fc" id="L182">		actionProfile = &quot;default&quot;;</span>
+
+<span class="fc" id="L184">		action = arguments.get(&quot;action&quot;);</span>
+<span class="pc bpc" id="L185" title="3 of 4 branches missed.">		switch (action) {</span>
+		case &quot;run&quot;:
+<span class="fc" id="L187">			actionProfile = &quot;default&quot;;</span>
+<span class="fc" id="L188">			break;</span>
+		case &quot;populate-initial&quot;:
+		case &quot;populate-sample&quot;:
+<span class="nc" id="L191">			actionProfile = &quot;populator&quot;;</span>
+<span class="nc" id="L192">			break;</span>
+		case &quot;inquire-database&quot;:
+<span class="nc" id="L194">			actionProfile = &quot;inquirer&quot;;</span>
+<span class="nc" id="L195">			break;</span>
+		default:
+<span class="pc bnc" id="L197" title="All 2 branches missed.">			assert false;</span>
+		}
+<span class="fc" id="L199">		ProfileHelper.setProfiles(baseProfile, actionProfile);</span>
+<span class="fc" id="L200">	}</span>
+
+	protected static void doExtraWork(final Map&lt;String, String&gt; arguments, final ConfigurableApplicationContext context) {
+<span class="pc bpc" id="L203" title="2 of 4 branches missed.">		assert arguments != null;</span>
+<span class="pc bpc" id="L204" title="2 of 4 branches missed.">		assert context != null;</span>
+
+		String action;
+		DatabasePopulator databasePopulator;
+		DatabaseInquirer databaseInquirer;
+
+<span class="fc" id="L210">		action = arguments.get(&quot;action&quot;);</span>
+<span class="pc bpc" id="L211" title="4 of 5 branches missed.">		switch (action) {</span>
+		case &quot;run&quot;:
+<span class="fc" id="L213">			System.out.println(&quot;Running application (standalone)&quot;);</span>
+<span class="fc" id="L214">			break;</span>
+		case &quot;populate-initial&quot;:
+<span class="nc" id="L216">			System.out.println(&quot;Populating (initial data)&quot;);</span>
+<span class="nc" id="L217">			databasePopulator = FactoryHelper.getBean(DatabasePopulator.class);</span>
+<span class="nc" id="L218">			databasePopulator.populateInitial();</span>
+<span class="nc" id="L219">			Launcher.exit(context);</span>
+<span class="nc" id="L220">			break;</span>
+		case &quot;populate-sample&quot;:
+<span class="nc" id="L222">			System.out.println(&quot;Populating (sample data)&quot;);</span>
+<span class="nc" id="L223">			databasePopulator = FactoryHelper.getBean(DatabasePopulator.class);</span>
+<span class="nc" id="L224">			databasePopulator.populateSample();</span>
+<span class="nc" id="L225">			Launcher.exit(context);</span>
+<span class="nc" id="L226">			break;</span>
+		case &quot;inquire-database&quot;:
+<span class="nc" id="L228">			System.out.println(&quot;Inquiring database&quot;);</span>
+<span class="nc" id="L229">			databaseInquirer = FactoryHelper.getBean(DatabaseInquirer.class);</span>
+<span class="nc" id="L230">			databaseInquirer.run();</span>
+<span class="nc" id="L231">			Launcher.exit(context);</span>
+<span class="nc" id="L232">			break;</span>
+		default:
+<span class="nc" id="L234">			Launcher.showUsage();</span>
+		}
+<span class="fc" id="L236">	}</span>
+
+	protected static void exit(final ApplicationContext context) {
+		// context is nullable
+		
+		int status;
+		
+<span class="nc" id="L243">		try { Thread.sleep(1000); } catch (final Throwable oops) { }</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">		status = (context == null ? 1 : SpringApplication.exit(context));		</span>
+<span class="nc" id="L245">		System.exit(status);</span>
+<span class="nc" id="L246">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

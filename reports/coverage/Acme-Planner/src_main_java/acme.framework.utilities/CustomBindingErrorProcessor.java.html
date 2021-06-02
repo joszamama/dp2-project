@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CustomBindingErrorProcessor.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.utilities</a> &gt; <span class="el_source">CustomBindingErrorProcessor.java</span></div><h1>CustomBindingErrorProcessor.java</h1><pre class="source lang-java linenums">/*
+ * CustomBindingErrorProcessor.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.utilities;
+
+import org.springframework.beans.PropertyAccessException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.DefaultBindingErrorProcessor;
+import org.springframework.validation.FieldError;
+
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">public class CustomBindingErrorProcessor extends DefaultBindingErrorProcessor {</span>
+
+	// DefaultBindingErrorProcessor interface ---------------------------------
+
+	@Override
+	public void processPropertyAccessException(final PropertyAccessException oops, final BindingResult bindingResult) {
+<span class="pc bpc" id="L26" title="2 of 4 branches missed.">		assert oops != null;</span>
+<span class="pc bpc" id="L27" title="2 of 4 branches missed.">		assert bindingResult != null;</span>
+
+		String objectName, attributeName;
+		Object value;
+		String[] codes;
+		Object[] arguments;
+		FieldError error;
+
+<span class="fc" id="L35">		objectName = bindingResult.getObjectName();</span>
+<span class="fc" id="L36">		attributeName = oops.getPropertyName();</span>
+<span class="fc" id="L37">		value = oops.getValue();</span>
+<span class="fc" id="L38">		codes = new String[] {</span>
+<span class="fc" id="L39">			&quot;default.error.conversion&quot;</span>
+		};
+<span class="fc" id="L41">		arguments = new Object[] {</span>
+<span class="fc" id="L42">			attributeName, value</span>
+		};
+
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">		assert objectName != null;</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">		assert attributeName != null;</span>
+<span class="fc" id="L47">		error = new FieldError(objectName, attributeName, value, true, codes, arguments, &quot;Invalid value&quot;);</span>
+<span class="fc" id="L48">		bindingResult.addError(error);</span>
+<span class="fc" id="L49">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

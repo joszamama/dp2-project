@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdministratorUserAccountUpdateService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.features.administrator.userAccount</a> &gt; <span class="el_source">AdministratorUserAccountUpdateService.java</span></div><h1>AdministratorUserAccountUpdateService.java</h1><pre class="source lang-java linenums">/*
+ * AdministratorUserAccountUpdateService.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.features.administrator.userAccount;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.framework.components.Errors;
+import acme.framework.components.Model;
+import acme.framework.components.Request;
+import acme.framework.entities.Administrator;
+import acme.framework.entities.UserAccount;
+import acme.framework.entities.UserAccountStatus;
+import acme.framework.entities.UserRole;
+import acme.framework.services.AbstractUpdateService;
+
+@Service
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">public class AdministratorUserAccountUpdateService implements AbstractUpdateService&lt;Administrator, UserAccount&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	protected AdministratorUserAccountRepository repository;
+
+	// AbstractUpdateService&lt;Administrator, UserAccount&gt; interface -------------
+
+
+	@Override
+	public boolean authorise(final Request&lt;UserAccount&gt; request) {
+<span class="nc bnc" id="L42" title="All 4 branches missed.">		assert request != null;</span>
+
+<span class="nc" id="L44">		return true;</span>
+	}
+
+	@Override
+	public void bind(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Errors errors) {
+<span class="nc bnc" id="L49" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L50" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">		assert errors != null;</span>
+
+<span class="nc" id="L53">		request.bind(entity, errors);</span>
+<span class="nc" id="L54">	}</span>
+
+	@Override
+	public void unbind(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Model model) {
+<span class="nc bnc" id="L58" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L59" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L60" title="All 4 branches missed.">		assert model != null;</span>
+
+		StringBuilder buffer;
+		Collection&lt;UserRole&gt; roles;
+
+<span class="nc" id="L65">		request.unbind(entity, model, &quot;username&quot;, &quot;identity.name&quot;, &quot;identity.surname&quot;, &quot;identity.email&quot;);</span>
+
+<span class="nc" id="L67">		roles = entity.getRoles();</span>
+<span class="nc" id="L68">		buffer = new StringBuilder();</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		for (final UserRole role : roles) {</span>
+<span class="nc" id="L70">			buffer.append(role.getAuthorityName());</span>
+<span class="nc" id="L71">			buffer.append(&quot; &quot;);</span>
+		}
+
+<span class="nc" id="L74">		model.setAttribute(&quot;roleList&quot;, buffer.toString());</span>
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		if (entity.isEnabled()) {</span>
+<span class="nc" id="L77">			model.setAttribute(&quot;status&quot;, UserAccountStatus.ENABLED);</span>
+<span class="nc" id="L78">		} else {</span>
+<span class="nc" id="L79">			model.setAttribute(&quot;status&quot;, UserAccountStatus.DISABLED);</span>
+		}
+<span class="nc" id="L81">	}</span>
+
+	@Override
+	public UserAccount findOne(final Request&lt;UserAccount&gt; request) {
+<span class="nc bnc" id="L85" title="All 4 branches missed.">		assert request != null;</span>
+
+		UserAccount result;
+		int id;
+
+<span class="nc" id="L90">		id = request.getModel().getInteger(&quot;id&quot;);</span>
+<span class="nc" id="L91">		result = this.repository.findOneUserAccountById(id);</span>
+
+<span class="nc" id="L93">		return result;</span>
+	}
+
+	@Override
+	public void validate(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Errors errors) {
+<span class="nc bnc" id="L98" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L100" title="All 4 branches missed.">		assert errors != null;</span>
+<span class="nc" id="L101">	}</span>
+
+	@Override
+	public void update(final Request&lt;UserAccount&gt; request, final UserAccount entity) {
+<span class="nc bnc" id="L105" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">		assert entity != null;</span>
+
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		if (request.getModel().getString(&quot;newStatus&quot;).equals(&quot;ENABLED&quot;)) {</span>
+<span class="nc" id="L109">			entity.setEnabled(true);</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">		} else if (request.getModel().getString(&quot;newStatus&quot;).equals(&quot;DISABLED&quot;)) {</span>
+<span class="nc" id="L111">			entity.setEnabled(false);</span>
+		}
+
+<span class="nc" id="L114">		this.repository.save(entity);</span>
+<span class="nc" id="L115">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

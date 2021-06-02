@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AcmeTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">acme.testing</a> &gt; <span class="el_source">AcmeTest.java</span></div><h1>AcmeTest.java</h1><pre class="source lang-java linenums">/*
+ * AcmeTest.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.testing;
+
+import java.util.List;
+
+import org.hibernate.internal.util.StringHelper;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import acme.framework.testing.AbstractTest;
+
+<span class="nc bnc" id="L23" title="All 2 branches missed.">public abstract class AcmeTest extends AbstractTest {</span>
+
+	// Check methods ----------------------------------------------------------
+
+	protected void checkLinkExists(final String label) {
+<span class="nc bnc" id="L28" title="All 4 branches missed.">		assert !StringHelper.isBlank(label);</span>
+
+		By locator;
+
+<span class="nc" id="L32">		locator = By.xpath(String.format(&quot;//a[normalize-space()='%s']&quot;, label));</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">		assert super.exists(locator) : String.format(&quot;Cannot find link '%s'&quot;, label);</span>
+<span class="nc" id="L34">	}</span>
+
+	protected void checkButtonExists(final String label) {
+<span class="nc bnc" id="L37" title="All 4 branches missed.">		assert !StringHelper.isBlank(label);</span>
+
+		By locator;
+
+<span class="nc" id="L41">		locator = By.xpath(String.format(&quot;//button[@type='submit' and normalize-space()='%s']&quot;, label));</span>
+<span class="nc bnc" id="L42" title="All 4 branches missed.">		assert super.exists(locator) : String.format(&quot;Cannot find button '%s'&quot;, label);</span>
+<span class="nc" id="L43">	}</span>
+
+	protected void checkAlertExists(final boolean success) {
+		By locator;
+		String className;
+
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		className = success ? &quot;alert-success&quot; : &quot;alert-danger&quot;;</span>
+<span class="nc" id="L50">		locator = By.xpath(String.format(&quot;//div[contains(@class, '%s')]&quot;, className));</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">		assert super.exists(locator) : String.format(&quot;Cannot find alert '%s'&quot;, className);</span>
+<span class="nc" id="L52">	}</span>
+
+	protected void checkPanicExists() {
+		By locator;
+
+<span class="nc" id="L57">		locator = By.xpath(&quot;//h1[normalize-space() = 'Unexpected error']&quot;);</span>
+<span class="nc bnc" id="L58" title="All 4 branches missed.">		assert super.exists(locator) : &quot;Action didn't result in panic&quot;;		</span>
+<span class="nc" id="L59">	}</span>
+
+	protected void checkNotPanicExists() {
+		By locator;
+
+<span class="nc" id="L64">		locator = By.xpath(&quot;h1[normalize-space() = 'Unexpected error'&quot;);</span>
+<span class="nc bnc" id="L65" title="All 4 branches missed.">		assert !super.exists(locator) : &quot;Action resulted in panic&quot;;</span>
+<span class="nc" id="L66">	}</span>
+
+	protected void checkErrorsExist() {
+		By locator;
+		List&lt;WebElement&gt; errors;
+
+<span class="nc" id="L72">		locator = By.className(&quot;text-danger&quot;);</span>
+<span class="nc" id="L73">		errors = super.locateMany(locator);</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">		assert !errors.isEmpty() : &quot;Errors were expected in current form&quot;;</span>
+<span class="nc" id="L75">	}</span>
+
+	protected void checkErrorsExist(final String name) {
+<span class="nc bnc" id="L78" title="All 4 branches missed.">		assert !StringHelper.isBlank(name);</span>
+
+		String xpath;
+		By locator;
+
+<span class="nc" id="L83">		xpath = String.format(&quot;//div[@class='form-group'][.//*[@id='%s'] and .//div[@class='text-danger']]&quot;, name);</span>
+<span class="nc" id="L84">		locator = By.xpath(xpath);</span>
+<span class="nc bnc" id="L85" title="All 4 branches missed.">		assert super.exists(locator) : String.format(&quot;No errors found in input box '%s'&quot;, name);</span>
+<span class="nc" id="L86">	}</span>
+
+	protected void checkNotErrorsExist() {
+		By locator;
+		List&lt;WebElement&gt; errors;
+
+<span class="nc" id="L92">		locator = By.className(&quot;text-danger&quot;);</span>
+<span class="nc" id="L93">		errors = super.locateMany(locator);</span>
+<span class="nc bnc" id="L94" title="All 4 branches missed.">		assert errors.isEmpty() : &quot;No errors were expected in current form&quot;;</span>
+<span class="nc" id="L95">	}</span>
+
+	protected void checkNotErrorsExist(final String name) {
+<span class="nc bnc" id="L98" title="All 4 branches missed.">		assert !StringHelper.isBlank(name);</span>
+
+		String xpath;
+		By inputGroupLocator;
+
+<span class="nc" id="L103">		xpath = String.format(&quot;//div[@class='form-group'][.//*[@id='%s'] and .//div[@class='text-danger']]&quot;, name);</span>
+<span class="nc" id="L104">		inputGroupLocator = By.xpath(xpath);</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">		assert !super.exists(inputGroupLocator) : String.format(&quot;Unexpected errors in input box '%s'&quot;, name);</span>
+<span class="nc" id="L106">	}</span>
+
+	protected void checkInputBoxHasValue(final String name, final String expectedValue) {
+<span class="nc bnc" id="L109" title="All 4 branches missed.">		assert !StringHelper.isBlank(name);</span>
+		// expectedValue is nullable
+
+		By inputLocator, optionLocator;
+		String inputTag, inputType;
+		WebElement inputBox;
+		WebElement option;
+		String contents, value;
+
+<span class="nc" id="L118">		inputLocator = By.name(name);</span>
+<span class="nc" id="L119">		inputBox = super.locateOne(inputLocator);</span>
+<span class="nc" id="L120">		inputTag = inputBox.getTagName();</span>
+<span class="nc bnc" id="L121" title="All 4 branches missed.">		switch (inputTag) {</span>
+		case &quot;textarea&quot;:
+<span class="nc" id="L123">			contents = inputBox.getAttribute(&quot;value&quot;);</span>
+<span class="nc" id="L124">			break;</span>
+		case &quot;input&quot;:
+<span class="nc" id="L126">			inputType = inputBox.getAttribute(&quot;type&quot;);</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			switch (inputType) {</span>
+			case &quot;text&quot;:
+			case &quot;password&quot;:
+			case &quot;hidden&quot;:
+<span class="nc" id="L131">				contents = inputBox.getAttribute(&quot;value&quot;);</span>
+<span class="nc" id="L132">				break;</span>
+			default:
+<span class="nc" id="L134">				contents = null;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">				assert false : String.format(&quot;Cannot check an input box of type '%s/%s'&quot;, inputTag, inputType);</span>
+			}
+			break;
+		case &quot;select&quot;:
+<span class="nc" id="L139">			optionLocator = By.xpath(String.format(&quot;//select[@name='%s']/option[@selected]&quot;, name));</span>
+<span class="nc bnc" id="L140" title="All 4 branches missed.">			assert super.exists(optionLocator) : String.format(&quot;Cannot find selected option in input box '%s'&quot;, name);</span>
+<span class="nc" id="L141">			option = super.locateOne(optionLocator);</span>
+<span class="nc" id="L142">			contents = option.getText();</span>
+<span class="nc" id="L143">			break;</span>
+		default:
+<span class="nc" id="L145">			contents = null;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">			assert false : String.format(&quot;Cannot check an input box of type '%s'&quot;, inputTag);</span>
+		}
+<span class="nc bnc" id="L148" title="All 2 branches missed.">		contents = (contents == null ? &quot;&quot; : contents.trim());</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">		value = (expectedValue != null ? expectedValue.trim() : &quot;&quot;);</span>
+
+<span class="nc bnc" id="L151" title="All 4 branches missed.">		assert contents.equals(value) : String.format(&quot;Expected value '%s' in input box '%s', but '%s' was found&quot;, value, name, contents);</span>
+<span class="nc" id="L152">	}</span>
+
+	protected void checkColumnHasValue(final int recordIndex, final int attributeIndex, final String expectedValue) {
+<span class="nc bnc" id="L155" title="All 4 branches missed.">		assert recordIndex &gt;= 0;</span>
+<span class="nc bnc" id="L156" title="All 4 branches missed.">		assert attributeIndex &gt;= 0;</span>
+		// expectedValue is nullable
+
+		List&lt;WebElement&gt; row;
+		WebElement attribute, toggle;
+		String contents, value;
+
+<span class="nc" id="L163">		row = this.getListingRecord(recordIndex);</span>
+<span class="nc bnc" id="L164" title="All 4 branches missed.">		assert attributeIndex + 1 &lt; row.size() : String.format(&quot;Attribute %d in record %d is out of range&quot;, attributeIndex, recordIndex);</span>
+<span class="nc" id="L165">		attribute = row.get(attributeIndex + 1);</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">		if (attribute.isDisplayed())</span>
+<span class="nc" id="L167">			contents = attribute.getText();</span>
+		else {
+<span class="nc" id="L169">			toggle = row.get(0);</span>
+<span class="nc" id="L170">			toggle.click();</span>
+<span class="nc" id="L171">			contents = (String) super.executor.executeScript(&quot;return arguments[0].innerText;&quot;, attribute);</span>
+<span class="nc" id="L172">			toggle.click();</span>
+		}
+
+<span class="nc bnc" id="L175" title="All 2 branches missed.">		contents = (contents == null ? &quot;&quot; : contents.trim());</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">		value = (expectedValue != null ? expectedValue.trim() : &quot;&quot;);</span>
+
+<span class="nc bnc" id="L178" title="All 4 branches missed.">		assert contents.equals(value) : String.format(&quot;Expected value '%s' in attribute %d of record %d, but found '%s'&quot;, value, attributeIndex, recordIndex, contents);</span>
+<span class="nc" id="L179">	}</span>
+
+	// Form-filling methods ---------------------------------------------------
+
+	protected void fillInputBoxIn(final String name, final String value) {
+<span class="nc bnc" id="L184" title="All 4 branches missed.">		assert !StringHelper.isBlank(name);</span>
+		// value is nullable
+
+		By inputLocator, proxyLocator, optionLocator;
+		String inputTag, inputType, proxyXpath;
+		WebElement inputBox, inputProxy, option;
+
+<span class="nc" id="L191">		inputLocator = By.name(name);</span>
+<span class="nc" id="L192">		inputBox = super.locateOne(inputLocator);</span>
+<span class="nc" id="L193">		inputTag = inputBox.getTagName();</span>
+<span class="nc bnc" id="L194" title="All 4 branches missed.">		switch (inputTag) {</span>
+		case &quot;textarea&quot;:
+<span class="nc" id="L196">			super.fill(inputLocator, value);</span>
+<span class="nc" id="L197">			break;</span>
+		case &quot;input&quot;:
+<span class="nc" id="L199">			inputType = inputBox.getAttribute(&quot;type&quot;);</span>
+<span class="nc bnc" id="L200" title="All 3 branches missed.">			switch (inputType) {</span>
+			case &quot;text&quot;:
+			case &quot;password&quot;:
+<span class="nc" id="L203">				super.fill(inputLocator, value);</span>
+<span class="nc" id="L204">				break;</span>
+			case &quot;hidden&quot;:
+<span class="nc" id="L206">				proxyXpath = String.format(&quot;//input[@name='%s$proxy' and @type='checkbox']&quot;, name);</span>
+<span class="nc" id="L207">				proxyLocator = By.xpath(proxyXpath);</span>
+<span class="nc bnc" id="L208" title="All 8 branches missed.">				assert value == null || value.equals(&quot;true&quot;) || value.equals(&quot;false&quot;) : String.format(&quot;Input box '%s' cannot be set to '%s'&quot;, name, value);</span>
+<span class="nc bnc" id="L209" title="All 4 branches missed.">				assert super.exists(proxyLocator) : String.format(&quot;Cannot find proxy for input box '%s'&quot;, name);</span>
+<span class="nc" id="L210">				inputProxy = super.locateOne(proxyLocator);</span>
+<span class="nc bnc" id="L211" title="All 6 branches missed.">				if (inputProxy.getAttribute(&quot;checked&quot;) != null &amp;&amp; (value == null || value.equals(&quot;false&quot;)))</span>
+<span class="nc" id="L212">					inputProxy.click();</span>
+<span class="nc bnc" id="L213" title="All 4 branches missed.">				else if (inputProxy.getAttribute(&quot;checked&quot;) == null &amp;&amp; value.equals(&quot;true&quot;))</span>
+<span class="nc" id="L214">					inputProxy.click();</span>
+<span class="nc" id="L215">				break;</span>
+			default:
+<span class="nc bnc" id="L217" title="All 2 branches missed.">				assert false : String.format(&quot;Cannot fill input box '%s/%s' in&quot;, name, inputType);</span>
+			}
+			break;
+		case &quot;select&quot;:
+<span class="nc bnc" id="L221" title="All 2 branches missed.">			optionLocator = By.xpath(String.format(&quot;//select[@name='%s']/option[@value='%s']&quot;, name, value == null ? &quot;&quot; : value));</span>
+<span class="nc bnc" id="L222" title="All 4 branches missed.">			assert super.exists(optionLocator) : &quot;Cannot find option with requested value in select&quot;;</span>
+<span class="nc" id="L223">			option = super.locateOne(optionLocator);</span>
+<span class="nc" id="L224">			option.click();</span>
+<span class="nc" id="L225">			break;</span>
+		default:
+<span class="nc bnc" id="L227" title="All 2 branches missed.">			assert false : String.format(&quot;Cannot fill input box '%s' in&quot;, name);</span>
+		}
+<span class="nc" id="L229">	}</span>
+
+	// Click-related methods --------------------------------------------------
+
+	protected void clickOnMenu(final String header, final String option) {
+<span class="nc bnc" id="L234" title="All 4 branches missed.">		assert !StringHelper.isBlank(header);</span>
+<span class="nc bnc" id="L235" title="All 6 branches missed.">		assert option == null || !StringHelper.isBlank(option);</span>
+
+		By toggleLocator, headerLocator, optionLocator;
+		WebElement toggle;
+		String ariaExpanded;
+
+		try {
+<span class="nc" id="L242">			toggleLocator = By.xpath(&quot;//button[@class='navbar-toggler']&quot;);</span>
+<span class="nc" id="L243">			toggle = super.locateOne(toggleLocator);</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">			if (toggle.isDisplayed()) {</span>
+<span class="nc" id="L245">				ariaExpanded = toggle.getAttribute(&quot;aria-expanded&quot;);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">				if (ariaExpanded == null)</span>
+<span class="nc" id="L247">					super.clickAndGo(toggle);</span>
+			}
+<span class="nc" id="L249">		} catch (final Throwable oops) {</span>
+			// INFO: Can silently ignore the exception here.
+			// INFO+ Sometimes, the toggle gets stale unexpectedly.
+		}
+
+<span class="nc" id="L254">		headerLocator = By.xpath(String.format(&quot;//div[@id='mainMenu']/ul/li/a[normalize-space()='%s']&quot;, header));</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">		if (option == null)</span>
+<span class="nc" id="L256">			super.clickAndWait(headerLocator);</span>
+		else {
+			try {
+<span class="nc" id="L259">				super.clickAndGo(headerLocator);</span>
+<span class="nc" id="L260">			} catch (final Throwable oops) {</span>
+				// INFO: Can silently ignore the exception here.
+				// INFO+ Sometimes, the toggle gets stale unexpectedly
+				// INFO+ and that has an impact on the main menu.
+			} 
+<span class="nc" id="L265">			optionLocator = By.xpath(String.format(&quot;//div[@id='mainMenu']/ul/li[a[normalize-space()='%s']]/div[contains(@class, 'dropdown-menu')]/a[normalize-space()='%s']&quot;, header, option));</span>
+<span class="nc" id="L266">			super.clickAndWait(optionLocator);</span>
+		}
+<span class="nc" id="L268">	}</span>
+
+	protected void clickOnLink(final String label) {
+<span class="nc bnc" id="L271" title="All 4 branches missed.">		assert !StringHelper.isBlank(label);</span>
+
+		By locator;
+
+<span class="nc" id="L275">		locator = By.xpath(String.format(&quot;//a[normalize-space()='%s']&quot;, label));</span>
+<span class="nc" id="L276">		super.clickAndWait(locator);</span>
+<span class="nc" id="L277">	}</span>
+
+	protected void clickOnListingRecord(final int recordIndex) {
+<span class="nc bnc" id="L280" title="All 4 branches missed.">		assert recordIndex &gt;= 0;</span>
+
+		List&lt;WebElement&gt; record;
+		WebElement column;
+
+<span class="nc" id="L285">		record = this.getListingRecord(recordIndex);</span>
+<span class="nc" id="L286">		column = record.get(1);</span>
+<span class="nc" id="L287">		super.clickAndWait(column);</span>
+<span class="nc" id="L288">	}</span>
+
+	protected void clickOnSubmitButton(final String label) {
+<span class="nc bnc" id="L291" title="All 4 branches missed.">		assert !StringHelper.isBlank(label);</span>
+
+		By locator;
+
+<span class="nc" id="L295">		locator = By.xpath(String.format(&quot;//button[@type='submit' and normalize-space()='%s']&quot;, label));</span>
+<span class="nc" id="L296">		super.clickAndWait(locator);</span>
+<span class="nc" id="L297">	}</span>
+
+	protected void clickOnReturnButton(final String label) {
+<span class="nc bnc" id="L300" title="All 4 branches missed.">		assert !StringHelper.isBlank(label);</span>
+
+		By locator;
+
+<span class="nc" id="L304">		locator = By.xpath(String.format(&quot;//button[normalize-space()='%s']&quot;, label));</span>
+<span class="nc" id="L305">		super.clickAndWait(locator);</span>
+<span class="nc" id="L306">	}</span>
+
+	// Ancillary methods ------------------------------------------------------
+
+	protected List&lt;WebElement&gt; getListingRecord(final int recordIndex) {
+<span class="nc bnc" id="L311" title="All 4 branches missed.">		assert recordIndex &gt;= 0;</span>
+
+		List&lt;WebElement&gt; result;
+		int pageIndex, rowIndex;
+		By listLocator, lengthLocator, paginatorLocator, pageLinkLocator, rowLocator, columnLocator;
+		WebElement list, lengthOption, paginator, pageLink, row;
+		List&lt;WebElement&gt; pageLinks, rows;
+
+<span class="nc" id="L319">		pageIndex = recordIndex / 5;</span>
+<span class="nc" id="L320">		rowIndex = 1 + recordIndex % 5;</span>
+
+<span class="nc" id="L322">		listLocator = By.id(&quot;list&quot;);</span>
+<span class="nc" id="L323">		list = super.locateOne(listLocator);</span>
+<span class="nc" id="L324">		lengthLocator = By.xpath(&quot;//select[@name='list_length']/option[@value='5']&quot;);</span>
+<span class="nc" id="L325">		lengthOption = super.locateOne(lengthLocator);</span>
+<span class="nc" id="L326">		super.clickAndGo(lengthOption);</span>
+
+<span class="nc" id="L328">		paginatorLocator = By.className(&quot;pagination&quot;);</span>
+<span class="nc" id="L329">		paginator = super.locateOne(paginatorLocator);</span>
+<span class="nc" id="L330">		pageLinkLocator = By.className(&quot;page-link&quot;);</span>
+<span class="nc" id="L331">		pageLinks = paginator.findElements(pageLinkLocator);</span>
+<span class="nc bnc" id="L332" title="All 4 branches missed.">		assert pageIndex &lt; pageLinks.size() : String.format(&quot;Record index %d is out of range&quot;, recordIndex);</span>
+<span class="nc" id="L333">		pageLink = pageLinks.get(pageIndex);</span>
+<span class="nc" id="L334">		super.clickAndGo(pageLink);</span>
+
+<span class="nc" id="L336">		rowLocator = By.tagName(&quot;tr&quot;);</span>
+<span class="nc" id="L337">		rows = list.findElements(rowLocator);</span>
+<span class="nc bnc" id="L338" title="All 4 branches missed.">		assert rowIndex &lt; rows.size() : String.format(&quot;Record index %d is out of range&quot;, recordIndex);</span>
+<span class="nc" id="L339">		row = rows.get(rowIndex);</span>
+<span class="nc" id="L340">		columnLocator = By.tagName(&quot;td&quot;);</span>
+<span class="nc" id="L341">		result = row.findElements(columnLocator);</span>
+
+<span class="nc" id="L343">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

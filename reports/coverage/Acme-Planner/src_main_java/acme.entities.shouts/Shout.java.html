@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Shout.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.entities.shouts</a> &gt; <span class="el_source">Shout.java</span></div><h1>Shout.java</h1><pre class="source lang-java linenums">
+package acme.entities.shouts;
+
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
+
+import acme.framework.entities.DomainEntity;
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+<span class="fc" id="L21">@Getter</span>
+<span class="fc" id="L22">@Setter</span>
+<span class="fc" id="L23">public class Shout extends DomainEntity {</span>
+
+	// Serialisation identifier -----------------------------------------------
+
+	protected static final long	serialVersionUID	= 1L;
+
+	// Attributes -------------------------------------------------------------
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
+	@Past
+	protected Date				moment;
+
+	@NotBlank
+	@Length(min = 5, max = 25)
+	protected String			author;
+
+	@NotBlank
+	@Length(min = 1, max = 100)
+	protected String			text;
+
+	@URL
+	// This attribute is optional!
+	protected String			info;
+
+
+	// Derived attributes -----------------------------------------------------
+	public void setAuthor(final String author) {
+<span class="fc" id="L51">		this.author = author.trim();</span>
+<span class="fc" id="L52">	}</span>
+
+	public int compareTo(final Shout s) {
+<span class="fc" id="L55">		return this.getMoment().compareTo(s.getMoment());</span>
+	}
+	// Relationships ----------------------------------------------------------
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

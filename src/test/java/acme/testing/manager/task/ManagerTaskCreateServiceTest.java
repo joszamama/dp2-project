@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 /**
- * These tests achieve a 74.6% coverage in the ManagerTaskCreateService.
+ * These tests achieve a 78.0% coverage in the ManagerTaskCreateService.
  * 
  * Test 1:
  * First of all, we login as a manager. Then, access the create task function, create a new positive case of a task and

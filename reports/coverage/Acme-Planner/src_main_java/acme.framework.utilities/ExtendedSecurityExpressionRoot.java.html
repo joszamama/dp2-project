@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ExtendedSecurityExpressionRoot.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.utilities</a> &gt; <span class="el_source">ExtendedSecurityExpressionRoot.java</span></div><h1>ExtendedSecurityExpressionRoot.java</h1><pre class="source lang-java linenums">/*
+ * ExtendedSecurityExpressionRoot.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.utilities;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.security.access.expression.SecurityExpressionRoot;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.util.matcher.IpAddressMatcher;
+
+import acme.framework.entities.UserRole;
+import acme.framework.helpers.PrincipalHelper;
+import acme.framework.helpers.StringHelper;
+
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">public class ExtendedSecurityExpressionRoot extends SecurityExpressionRoot {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	protected HttpServletRequest request;
+
+	// Constructors -----------------------------------------------------------
+
+
+	public ExtendedSecurityExpressionRoot(final Authentication authentication) {
+<span class="nc" id="L36">		super(authentication);</span>
+
+<span class="nc bnc" id="L38" title="All 4 branches missed.">		assert authentication != null;</span>
+<span class="nc" id="L39">	}</span>
+
+	public ExtendedSecurityExpressionRoot(final Authentication authentication, final FilterInvocation filterInvocation) {
+<span class="fc" id="L42">		super(authentication);</span>
+
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">		assert authentication != null;</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">		assert filterInvocation != null;</span>
+
+<span class="fc" id="L47">		this.request = filterInvocation.getRequest();</span>
+<span class="fc" id="L48">	}</span>
+
+	public final boolean actingAs(final String role) {
+<span class="nc bnc" id="L51" title="All 4 branches missed.">		assert !StringHelper.isBlank(role);</span>
+
+		boolean result;
+		Class&lt;? extends UserRole&gt; activeRole;
+
+<span class="nc" id="L56">		activeRole = PrincipalHelper.get().getActiveRole();</span>
+<span class="nc bnc" id="L57" title="All 4 branches missed.">		result = activeRole != null &amp;&amp; activeRole.getName().equals(role);</span>
+
+<span class="nc" id="L59">		return result;</span>
+	}
+
+	public final boolean hasIpAddress(final String ipAddress) {
+<span class="nc bnc" id="L63" title="All 4 branches missed.">		assert !StringHelper.isBlank(ipAddress);</span>
+
+		boolean result;
+		IpAddressMatcher matcher;
+
+<span class="nc" id="L68">		matcher = new IpAddressMatcher(ipAddress);</span>
+<span class="nc" id="L69">		result = matcher.matches(this.request);</span>
+
+<span class="nc" id="L71">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

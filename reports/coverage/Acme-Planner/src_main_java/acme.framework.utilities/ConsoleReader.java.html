@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ConsoleReader.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.utilities</a> &gt; <span class="el_source">ConsoleReader.java</span></div><h1>ConsoleReader.java</h1><pre class="source lang-java linenums">/*
+ * ConsoleReader.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.utilities;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import org.apache.commons.lang3.StringUtils;
+
+public class ConsoleReader {
+
+	// Internal state ---------------------------------------------------------
+
+	protected final InputStreamReader	stream;
+	protected final BufferedReader		reader;
+
+	// Constructors -----------------------------------------------------------
+
+
+<span class="nc" id="L30">	public ConsoleReader() {</span>
+<span class="nc" id="L31">		this.stream = new InputStreamReader(System.in);</span>
+<span class="nc" id="L32">		this.reader = new BufferedReader(this.stream);</span>
+<span class="nc" id="L33">	}</span>
+
+	// Business methods -------------------------------------------------------
+
+	public String readCommand() throws Throwable {
+		String result;
+		StringBuilder buffer;
+		String line;
+		String prompt;
+		boolean done;
+
+		do {
+<span class="nc" id="L45">			prompt = &quot;&gt; &quot;;</span>
+<span class="nc" id="L46">			buffer = new StringBuilder();</span>
+<span class="nc" id="L47">			done = false;</span>
+			do {
+<span class="nc" id="L49">				System.out.printf(prompt);</span>
+<span class="nc" id="L50">				line = this.reader.readLine();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">				if (line == null)</span>
+<span class="nc" id="L52">					line = &quot;exit;&quot;;</span>
+<span class="nc" id="L53">				line = line.trim();</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">				if (line.endsWith(&quot;;&quot;)) {</span>
+<span class="nc" id="L55">					done = true;</span>
+<span class="nc" id="L56">					line = line.substring(0, line.length() - 1);</span>
+				}
+<span class="nc" id="L58">				buffer.append(line);</span>
+<span class="nc" id="L59">				buffer.append(' ');</span>
+<span class="nc" id="L60">				prompt = &quot;\t&gt; &quot;;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">			} while (!done);</span>
+<span class="nc" id="L62">			result = StringUtils.trim(buffer.toString());</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">		} while (result.isEmpty());</span>
+
+<span class="nc" id="L65">		return result;</span>
+	}
+
+	public String readLine() throws Throwable {
+		String result;
+
+		do {
+<span class="nc" id="L72">			System.out.printf(&quot;&gt; &quot;);</span>
+<span class="nc" id="L73">			result = this.reader.readLine();</span>
+<span class="nc" id="L74">			result = result.trim();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		} while (result.isEmpty());</span>
+
+<span class="nc" id="L77">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

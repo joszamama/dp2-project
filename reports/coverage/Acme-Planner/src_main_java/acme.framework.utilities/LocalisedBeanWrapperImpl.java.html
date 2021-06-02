@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>LocalisedBeanWrapperImpl.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.utilities</a> &gt; <span class="el_source">LocalisedBeanWrapperImpl.java</span></div><h1>LocalisedBeanWrapperImpl.java</h1><pre class="source lang-java linenums">/*
+ * LocalisedLocalisedBeanWrapperImpl.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.utilities;
+
+import java.beans.PropertyChangeEvent;
+
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.ConversionNotSupportedException;
+import org.springframework.beans.TypeMismatchException;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.TypeDescriptor;
+
+import acme.framework.helpers.StringHelper;
+
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">public class LocalisedBeanWrapperImpl extends BeanWrapperImpl {</span>
+
+	// Constructors -----------------------------------------------------------
+
+	public LocalisedBeanWrapperImpl() {
+<span class="nc" id="L30">		super(true);</span>
+<span class="nc" id="L31">	}</span>
+
+	public LocalisedBeanWrapperImpl(final boolean registerDefaultEditors) {
+<span class="nc" id="L34">		super(registerDefaultEditors);</span>
+<span class="nc" id="L35">	}</span>
+
+	public LocalisedBeanWrapperImpl(final Object target) {
+<span class="fc" id="L38">		super(target);</span>
+
+<span class="pc bpc" id="L40" title="2 of 4 branches missed.">		assert target != null;</span>
+<span class="fc" id="L41">	}</span>
+
+	public LocalisedBeanWrapperImpl(final Class&lt;?&gt; clazz) {
+<span class="nc" id="L44">		super(clazz);</span>
+
+<span class="nc bnc" id="L46" title="All 4 branches missed.">		assert clazz != null;</span>
+<span class="nc" id="L47">	}</span>
+
+	public LocalisedBeanWrapperImpl(final Object target, final String path, final Object root) {
+<span class="nc" id="L50">		super(target, path, root);</span>
+
+<span class="nc bnc" id="L52" title="All 4 branches missed.">		assert target != null;</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">		assert !StringHelper.isBlank(path);</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">		assert root != null;</span>
+<span class="nc" id="L55">	}</span>
+
+	// Overridden methods -----------------------------------------------------
+
+	@Override
+	protected Object convertForProperty(final String propertyName, final Object oldValue, final Object newValue, final TypeDescriptor type) throws TypeMismatchException {
+<span class="pc bpc" id="L61" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(propertyName);</span>
+		// assert oldValue is nullable
+		// assert newValue is nullable
+<span class="pc bpc" id="L64" title="2 of 4 branches missed.">		assert type != null;</span>
+
+		Object result;
+		ConversionService conversionService;
+
+<span class="fc" id="L69">		result = true;</span>
+		try {
+<span class="fc" id="L71">			conversionService = super.getConversionService();</span>
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">			assert conversionService != null;</span>
+<span class="fc" id="L73">			result = conversionService.convert(newValue, type.getType());</span>
+<span class="fc" id="L74">		} catch (final Throwable oops) {</span>
+			PropertyChangeEvent event;
+
+<span class="fc" id="L77">			event = new PropertyChangeEvent(this.getRootInstance(), this.getNestedPath() + propertyName, oldValue, newValue);</span>
+<span class="fc" id="L78">			throw new ConversionNotSupportedException(event, type.getType(), oops);</span>
+		}
+
+<span class="fc" id="L81">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

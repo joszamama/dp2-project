@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PrincipalHelper.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.helpers</a> &gt; <span class="el_source">PrincipalHelper.java</span></div><h1>PrincipalHelper.java</h1><pre class="source lang-java linenums">/*
+ * PrincipalHelper.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.helpers;
+
+import java.util.Collection;
+
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.TestingAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
+
+import acme.framework.entities.Principal;
+import acme.framework.services.AuthenticationService;
+
+@Component
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">public class PrincipalHelper {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	// HINT: note that this helper is a component because it requires the authentication service.
+	// HINT+ it's not difficult to include such service as a named bean in the 'FactoryHelper' class.
+
+	protected static AuthenticationService	authenticationService;
+
+<span class="fc" id="L44">	protected static String					STRONG_KEY	= &quot;$tr0ng-K3y!&quot;;</span>
+<span class="fc" id="L45">	protected static String					ANONYMOUS	= &quot;anonymous&quot;;</span>
+	
+	// Constructors -----------------------------------------------------------
+	
+	@Autowired
+<span class="fc" id="L50">	protected PrincipalHelper(final AuthenticationService	authenticationService) {</span>
+<span class="fc" id="L51">		PrincipalHelper.authenticationService = authenticationService;</span>
+<span class="fc" id="L52">	}</span>
+
+	// Business methods -------------------------------------------------------
+
+	@Transactional(TxType.SUPPORTS)
+	public static Principal get() {
+		Principal result;
+		Collection&lt;GrantedAuthority&gt; authorities;
+		Authentication authentication;
+		SecurityContext context;
+
+<span class="fc" id="L63">		context = SecurityContextHolder.getContext();</span>
+<span class="fc" id="L64">		authentication = context.getAuthentication();</span>
+<span class="pc bpc" id="L65" title="2 of 4 branches missed.">		assert authentication instanceof RememberMeAuthenticationToken || //</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">			authentication instanceof UsernamePasswordAuthenticationToken || //</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">			authentication instanceof TestingAuthenticationToken || //</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">			authentication instanceof AnonymousAuthenticationToken;</span>
+
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">		if (authentication instanceof RememberMeAuthenticationToken || //</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">			authentication instanceof UsernamePasswordAuthenticationToken || //</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">			authentication instanceof TestingAuthenticationToken) {</span>
+<span class="fc" id="L73">			result = (Principal) authentication.getPrincipal();</span>
+<span class="fc" id="L74">		} else {</span>
+<span class="fc" id="L75">			result = (Principal) PrincipalHelper.authenticationService.loadUserByUsername(PrincipalHelper.ANONYMOUS);</span>
+<span class="fc" id="L76">			authorities = result.getAuthorities();</span>
+<span class="fc" id="L77">			authentication = new AnonymousAuthenticationToken(PrincipalHelper.STRONG_KEY, result, authorities);</span>
+<span class="fc" id="L78">			context.setAuthentication(authentication);</span>
+		}
+
+<span class="fc" id="L81">		return result;</span>
+	}
+
+	@Transactional(TxType.SUPPORTS)
+	public static void handleUpdate() {
+<span class="pc bpc" id="L86" title="2 of 4 branches missed.">		assert PrincipalHelper.get().isAuthenticated();</span>
+
+		SecurityContext context;
+		Authentication currentAuthentication, newAuthentication;
+		Principal currentPrincipal, newPrincipal;
+		Collection&lt;GrantedAuthority&gt; newAuthorities;
+
+<span class="fc" id="L93">		context = SecurityContextHolder.getContext();</span>
+<span class="fc" id="L94">		currentAuthentication = context.getAuthentication();</span>
+<span class="pc bpc" id="L95" title="3 of 6 branches missed.">		assert currentAuthentication instanceof RememberMeAuthenticationToken || currentAuthentication instanceof UsernamePasswordAuthenticationToken;</span>
+<span class="fc" id="L96">		currentPrincipal = (Principal) currentAuthentication.getPrincipal();</span>
+<span class="fc" id="L97">		newPrincipal = (Principal) PrincipalHelper.authenticationService.loadUserByUsername(currentPrincipal.getUsername());</span>
+<span class="fc" id="L98">		newAuthorities = newPrincipal.getAuthorities();</span>
+
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (currentAuthentication instanceof RememberMeAuthenticationToken) {</span>
+<span class="nc" id="L101">			newAuthentication = new RememberMeAuthenticationToken(PrincipalHelper.STRONG_KEY, newPrincipal, newAuthorities);</span>
+<span class="nc" id="L102">		} else {</span>
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">			assert currentAuthentication instanceof UsernamePasswordAuthenticationToken;</span>
+<span class="fc" id="L104">			newAuthentication = new UsernamePasswordAuthenticationToken(newPrincipal, null, newAuthorities);</span>
+		}
+
+<span class="fc" id="L107">		context.setAuthentication(newAuthentication);</span>
+<span class="fc" id="L108">	}</span>
+
+	@Transactional(TxType.SUPPORTS)
+	public static void handleSignOut() {
+		Principal principal;
+		Collection&lt;GrantedAuthority&gt; authorities;
+		Authentication authentication;
+		SecurityContext context;
+
+<span class="fc" id="L117">		context = SecurityContextHolder.getContext();</span>
+<span class="fc" id="L118">		principal = (Principal) PrincipalHelper.authenticationService.loadUserByUsername(PrincipalHelper.ANONYMOUS);</span>
+<span class="fc" id="L119">		authorities = principal.getAuthorities();</span>
+<span class="fc" id="L120">		authentication = new AnonymousAuthenticationToken(PrincipalHelper.STRONG_KEY, principal, authorities);</span>
+<span class="fc" id="L121">		context.setAuthentication(authentication);</span>
+<span class="fc" id="L122">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

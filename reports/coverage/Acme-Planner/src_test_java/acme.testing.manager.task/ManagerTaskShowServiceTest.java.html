@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ManagerTaskShowServiceTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">acme.testing.manager.task</a> &gt; <span class="el_source">ManagerTaskShowServiceTest.java</span></div><h1>ManagerTaskShowServiceTest.java</h1><pre class="source lang-java linenums">
+package acme.testing.manager.task;
+
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
+import acme.testing.AcmePlannerTest;
+
+/**
+ * These tests achieve a 6.2% coverage in the ManagerTaskShowService.
+ * We are investigating why this is happening and have already reported it to the tutor.
+ * 
+ * Test 1:
+ * First of all, we login as a manager. Then, we access the list task function and
+ * click on a row to show the task information. Finally we check that every attribute has a proper value.
+ * 
+ * Test 2:
+ * First, we login as manager1 and access the list task function. Then, we click on the first row and get the current URL.
+ * Secondly, we logout. To finish, we try to access to the URL that we get before and a panich should appear.
+ *
+ */
+<span class="nc" id="L24">public class ManagerTaskShowServiceTest extends AcmePlannerTest {</span>
+
+	/**
+	 * First of all, we login as a manager. Then, we access the list task function and
+	 * click on a row to show the task information. Finally we check that every attribute has a proper value.
+	 * 
+	 * @param title
+	 * @param description
+	 * @param link
+	 * @param executionStart
+	 * @param executionEnd
+	 * @param workload
+	 */
+		@ParameterizedTest
+		@CsvFileSource(resources = &quot;/manager/task/show-tasks.csv&quot;, encoding = &quot;utf-8&quot;, numLinesToSkip = 1)
+		@Order(10)
+		public void positiveShow(final int recordIndex, final String title, final String description, final String executionStart, final String executionEnd, final String link, final String workload) {
+<span class="nc" id="L41">			super.signIn(&quot;manager1&quot;, &quot;manager1&quot;);</span>
+<span class="nc" id="L42">			super.clickOnMenu(&quot;Manager&quot;, &quot;List my tasks&quot;);</span>
+	
+<span class="nc" id="L44">			super.clickOnListingRecord(recordIndex);</span>
+	
+<span class="nc" id="L46">			super.checkInputBoxHasValue(&quot;title&quot;, title);</span>
+<span class="nc" id="L47">			super.checkInputBoxHasValue(&quot;description&quot;, description);</span>
+<span class="nc" id="L48">			super.checkInputBoxHasValue(&quot;link&quot;, link);</span>
+<span class="nc" id="L49">			super.checkInputBoxHasValue(&quot;executionStart&quot;, executionStart);</span>
+<span class="nc" id="L50">			super.checkInputBoxHasValue(&quot;executionEnd&quot;, executionEnd);</span>
+<span class="nc" id="L51">			super.checkInputBoxHasValue(&quot;workloadParsed&quot;, workload);</span>
+<span class="nc" id="L52">			super.signOut();</span>
+<span class="nc" id="L53">		}</span>
+
+	/**
+	 * First, we login as manager1 and access the list task function. Then, we click on the first row and get the current URL.
+	 * Secondly, we logout. To finish, we try to access to the URL that we get before and a panich should appear.
+	 * The constraint that is violated is that an Anonymous cannot show a task of a Manager.
+	 */
+	@Test
+	@Order(20)
+	public void negativeShow() {
+<span class="nc" id="L63">		super.signIn(&quot;manager1&quot;, &quot;manager1&quot;);</span>
+<span class="nc" id="L64">		super.clickOnMenu(&quot;Manager&quot;, &quot;List my tasks&quot;);</span>
+<span class="nc" id="L65">		super.clickOnListingRecord(0);</span>
+<span class="nc" id="L66">		final String url = super.getCurrentUrl();</span>
+<span class="nc" id="L67">		super.signOut();</span>
+<span class="nc" id="L68">		super.navigate(url, &quot;&quot;);</span>
+
+<span class="nc" id="L70">		super.checkPanicExists();</span>
+<span class="nc" id="L71">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

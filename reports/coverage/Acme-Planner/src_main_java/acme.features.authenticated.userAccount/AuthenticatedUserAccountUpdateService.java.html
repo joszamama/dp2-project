@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AuthenticatedUserAccountUpdateService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.features.authenticated.userAccount</a> &gt; <span class="el_source">AuthenticatedUserAccountUpdateService.java</span></div><h1>AuthenticatedUserAccountUpdateService.java</h1><pre class="source lang-java linenums">/*
+ * AuthenticatedUserAccountUpdateService.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.features.authenticated.userAccount;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
+import acme.framework.components.Model;
+import acme.framework.components.Request;
+import acme.framework.components.Response;
+import acme.framework.entities.Authenticated;
+import acme.framework.entities.Principal;
+import acme.framework.entities.UserAccount;
+import acme.framework.entities.UserRole;
+import acme.framework.helpers.PrincipalHelper;
+import acme.framework.services.AbstractUpdateService;
+
+@Service
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">public class AuthenticatedUserAccountUpdateService implements AbstractUpdateService&lt;Authenticated, UserAccount&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	protected AuthenticatedUserAccountRepository repository;
+
+	// AbstractUpdateService&lt;Authenticated, UserAccount&gt; interface ------------
+
+
+	@Override
+	public boolean authorise(final Request&lt;UserAccount&gt; request) {
+<span class="nc bnc" id="L43" title="All 4 branches missed.">		assert request != null;</span>
+
+<span class="nc" id="L45">		return true;</span>
+	}
+
+	@Override
+	public void bind(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Errors errors) {
+<span class="nc bnc" id="L50" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L51" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">		assert errors != null;</span>
+
+		String password;
+
+<span class="nc" id="L56">		request.bind(entity, errors, &quot;username&quot;, &quot;password&quot;);</span>
+<span class="nc" id="L57">		password = request.getModel().getString(&quot;password&quot;);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		if (!password.equals(&quot;[MASKED-PASWORD]&quot;)) {</span>
+<span class="nc" id="L59">			entity.setPassword(password);</span>
+		}
+<span class="nc" id="L61">	}</span>
+
+	@Override
+	public void unbind(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Model model) {
+<span class="nc bnc" id="L65" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L66" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L67" title="All 4 branches missed.">		assert model != null;</span>
+
+<span class="nc" id="L69">		request.unbind(entity, model, &quot;username&quot;, &quot;identity.name&quot;, &quot;identity.surname&quot;, &quot;identity.email&quot;);</span>
+
+<span class="nc bnc" id="L71" title="All 2 branches missed.">		if (request.isMethod(HttpMethod.POST)) {</span>
+<span class="nc" id="L72">			request.transfer(model, &quot;password&quot;);</span>
+<span class="nc" id="L73">			request.transfer(model, &quot;confirmation&quot;);</span>
+<span class="nc" id="L74">		} else {</span>
+<span class="nc" id="L75">			request.unbind(entity, model, &quot;password&quot;);</span>
+<span class="nc" id="L76">			model.setAttribute(&quot;password&quot;, &quot;[MASKED-PASWORD]&quot;);</span>
+<span class="nc" id="L77">			model.setAttribute(&quot;confirmation&quot;, &quot;[MASKED-PASWORD]&quot;);</span>
+		}
+<span class="nc" id="L79">	}</span>
+
+	@Override
+	public UserAccount findOne(final Request&lt;UserAccount&gt; request) {
+<span class="nc bnc" id="L83" title="All 4 branches missed.">		assert request != null;</span>
+
+		UserAccount result;
+		Principal principal;
+
+<span class="nc" id="L88">		principal = request.getPrincipal();</span>
+<span class="nc" id="L89">		result = this.repository.findOneUserAccountById(principal.getAccountId());</span>
+<span class="nc" id="L90">		result.getRoles().forEach(r -&gt; {;});</span>
+
+<span class="nc" id="L92">		return result;</span>
+	}
+
+	@Override
+	public void validate(final Request&lt;UserAccount&gt; request, final UserAccount entity, final Errors errors) {
+<span class="nc bnc" id="L97" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">		assert entity != null;</span>
+<span class="nc bnc" id="L99" title="All 4 branches missed.">		assert errors != null;</span>
+
+		int passwordLength;
+		String password, confirmation;
+		boolean isMatching;
+
+<span class="nc" id="L105">		passwordLength = request.getModel().getString(&quot;password&quot;).length();</span>
+<span class="nc bnc" id="L106" title="All 4 branches missed.">		errors.state(request, passwordLength &gt;= 5 &amp;&amp; passwordLength &lt;= 60, &quot;password&quot;, &quot;acme.validation.length&quot;, 6, 60);</span>
+
+<span class="nc" id="L108">		password = request.getModel().getString(&quot;password&quot;);</span>
+<span class="nc" id="L109">		confirmation = request.getModel().getString(&quot;confirmation&quot;);</span>
+<span class="nc" id="L110">		isMatching = password.equals(confirmation);</span>
+<span class="nc" id="L111">		errors.state(request, isMatching, &quot;confirmation&quot;, &quot;anonymous.user-account.error.confirmation-no-match&quot;);</span>
+<span class="nc" id="L112">	}</span>
+
+	@Override
+	public void update(final Request&lt;UserAccount&gt; request, final UserAccount entity) {
+<span class="nc bnc" id="L116" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">		assert entity != null;</span>
+
+<span class="nc" id="L119">		this.repository.save(entity);</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">		for (final UserRole role : entity.getRoles()) {</span>
+<span class="nc" id="L121">			this.repository.save(role);</span>
+		}
+<span class="nc" id="L123">	}</span>
+
+	@Override
+	public void onSuccess(final Request&lt;UserAccount&gt; request, final Response&lt;UserAccount&gt; response) {
+<span class="nc bnc" id="L127" title="All 4 branches missed.">		assert request != null;</span>
+<span class="nc bnc" id="L128" title="All 4 branches missed.">		assert response != null;</span>
+
+<span class="nc bnc" id="L130" title="All 2 branches missed.">		if (request.isMethod(HttpMethod.POST)) {</span>
+<span class="nc" id="L131">			PrincipalHelper.handleUpdate();</span>
+		}
+<span class="nc" id="L133">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

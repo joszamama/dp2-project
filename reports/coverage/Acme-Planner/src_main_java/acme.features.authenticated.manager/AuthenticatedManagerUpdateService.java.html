@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AuthenticatedManagerUpdateService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.features.authenticated.manager</a> &gt; <span class="el_source">AuthenticatedManagerUpdateService.java</span></div><h1>AuthenticatedManagerUpdateService.java</h1><pre class="source lang-java linenums">package acme.features.authenticated.manager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.framework.components.Errors;
+import acme.framework.components.HttpMethod;
+import acme.framework.components.Model;
+import acme.framework.components.Request;
+import acme.framework.components.Response;
+import acme.framework.entities.Authenticated;
+import acme.framework.entities.Manager;
+import acme.framework.entities.Principal;
+import acme.framework.helpers.PrincipalHelper;
+import acme.framework.services.AbstractUpdateService;
+
+@Service
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">public class AuthenticatedManagerUpdateService implements AbstractUpdateService&lt;Authenticated, Manager&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	protected AuthenticatedManagerRepository repository;
+
+	// AbstractUpdateService&lt;Authenticated, Manager&gt; interface -----------------
+
+
+	@Override
+	public boolean authorise(final Request&lt;Manager&gt; request) {
+<span class="pc bpc" id="L30" title="2 of 4 branches missed.">		assert request != null;</span>
+
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">		return this.repository.findOneManagerByUserAccountId(request.getPrincipal().getAccountId()) != null;</span>
+	}
+
+	@Override
+	public void validate(final Request&lt;Manager&gt; request, final Manager entity, final Errors errors) {
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">		assert entity != null;</span>
+<span class="pc bpc" id="L39" title="2 of 4 branches missed.">		assert errors != null;</span>
+<span class="fc" id="L40">	}</span>
+
+	@Override
+	public void bind(final Request&lt;Manager&gt; request, final Manager entity, final Errors errors) {
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">		assert entity != null;</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">		assert errors != null;</span>
+
+<span class="fc" id="L48">		request.bind(entity, errors);</span>
+<span class="fc" id="L49">	}</span>
+
+	@Override
+	public void unbind(final Request&lt;Manager&gt; request, final Manager entity, final Model model) {
+<span class="pc bpc" id="L53" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L54" title="2 of 4 branches missed.">		assert entity != null;</span>
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">		assert model != null;</span>
+
+<span class="fc" id="L57">		request.unbind(entity, model, &quot;company&quot;, &quot;sector&quot;);</span>
+<span class="fc" id="L58">	}</span>
+
+	@Override
+	public Manager findOne(final Request&lt;Manager&gt; request) {
+<span class="pc bpc" id="L62" title="2 of 4 branches missed.">		assert request != null;</span>
+
+		Manager result;
+		Principal principal;
+		int userAccountId;
+
+<span class="fc" id="L68">		principal = request.getPrincipal();</span>
+<span class="fc" id="L69">		userAccountId = principal.getAccountId();</span>
+
+<span class="fc" id="L71">		result = this.repository.findOneManagerByUserAccountId(userAccountId);</span>
+
+<span class="fc" id="L73">		return result;</span>
+	}
+
+	@Override
+	public void update(final Request&lt;Manager&gt; request, final Manager entity) {
+<span class="pc bpc" id="L78" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">		assert entity != null;</span>
+
+<span class="fc" id="L81">		this.repository.save(entity);</span>
+<span class="fc" id="L82">	}</span>
+
+	@Override
+	public void onSuccess(final Request&lt;Manager&gt; request, final Response&lt;Manager&gt; response) {
+<span class="pc bpc" id="L86" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L87" title="2 of 4 branches missed.">		assert response != null;</span>
+
+<span class="fc bfc" id="L89" title="All 2 branches covered.">		if (request.isMethod(HttpMethod.POST)) {</span>
+<span class="fc" id="L90">			PrincipalHelper.handleUpdate();</span>
+		}
+<span class="fc" id="L92">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

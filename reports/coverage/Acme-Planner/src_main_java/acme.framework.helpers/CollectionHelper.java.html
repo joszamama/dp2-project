@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>CollectionHelper.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.helpers</a> &gt; <span class="el_source">CollectionHelper.java</span></div><h1>CollectionHelper.java</h1><pre class="source lang-java linenums">/*
+ * CollectionHelper.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.helpers;
+
+import java.util.Iterator;
+
+public class CollectionHelper {
+	
+	// Constructors -----------------------------------------------------------
+
+<span class="nc" id="L21">	protected CollectionHelper() {</span>
+<span class="nc" id="L22">	}</span>
+
+	// Business methods -------------------------------------------------------
+
+	public static boolean someNull(final Object[] array) {
+		// array is nullable 
+
+		boolean result;
+
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">		result = array == null;</span>
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">		for (int index = 0; !result &amp;&amp; index &lt; array.length; index++) {</span>
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">			result = array[index] == null;</span>
+		}
+
+<span class="fc" id="L36">		return result;</span>
+	}
+
+	public static boolean someNull(final Iterable&lt;?&gt; collection) {
+		// collection is nullable
+
+		boolean result;
+		Iterator&lt;?&gt; iterator;
+
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">		result = collection == null;</span>
+<span class="fc" id="L46">		iterator = collection.iterator();</span>
+<span class="pc bpc" id="L47" title="1 of 4 branches missed.">		while (!result &amp;&amp; iterator.hasNext()) {</span>
+			Object object;
+<span class="fc" id="L49">			object = iterator.next();</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">			result = object == null;</span>
+		}
+
+<span class="fc" id="L53">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

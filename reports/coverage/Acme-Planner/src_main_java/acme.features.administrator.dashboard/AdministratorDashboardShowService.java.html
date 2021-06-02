@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>AdministratorDashboardShowService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.features.administrator.dashboard</a> &gt; <span class="el_source">AdministratorDashboardShowService.java</span></div><h1>AdministratorDashboardShowService.java</h1><pre class="source lang-java linenums">/*
+ * AdministratorDashboardShowService.java
+ *
+ * Copyright (c) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.features.administrator.dashboard;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import acme.forms.Dashboard;
+import acme.framework.components.Model;
+import acme.framework.components.Request;
+import acme.framework.entities.Administrator;
+import acme.framework.services.AbstractShowService;
+
+@Service
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">public class AdministratorDashboardShowService implements AbstractShowService&lt;Administrator, Dashboard&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	@Autowired
+	protected AdministratorDashboardRepository repository;
+
+	// AbstractShowService&lt;Administrator, Dashboard&gt; interface ----------------
+
+
+	@Override
+	public boolean authorise(final Request&lt;Dashboard&gt; request) {
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">		assert request != null;</span>
+
+<span class="fc" id="L39">		return true;</span>
+	}
+
+	@Override
+	public void unbind(final Request&lt;Dashboard&gt; request, final Dashboard entity, final Model model) {
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">		assert request != null;</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">		assert entity != null;</span>
+<span class="pc bpc" id="L46" title="2 of 4 branches missed.">		assert model != null;</span>
+
+<span class="fc" id="L48">		request.unbind(entity, model, &quot;countNotFinishedTasks&quot;, &quot;countFinishedTasks&quot;, &quot;countPublicTasks&quot;, &quot;countPrivateTasks&quot;, &quot;averageWorkloadsHours&quot;, &quot;deviationWorkloadsHours&quot;, &quot;minimumWorkloadsHours&quot;, &quot;maximumWorkloadsHours&quot;, &quot;averageWorkloadsMinutes&quot;,</span>
+<span class="fc" id="L49">			&quot;deviationWorkloadsMinutes&quot;, &quot;minimumWorkloadsMinutes&quot;, &quot;maximumWorkloadsMinutes&quot;, &quot;averageExecutionPeriods&quot;, &quot;deviationExecutionPeriods&quot;, &quot;minimumExecutionPeriods&quot;, &quot;maximumExecutionPeriods&quot;);</span>
+
+<span class="fc" id="L51">	}</span>
+
+	@Override
+	public Dashboard findOne(final Request&lt;Dashboard&gt; request) {
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">		assert request != null;</span>
+
+		// Task information
+<span class="fc" id="L58">		final Dashboard result = new Dashboard();</span>
+
+<span class="fc bfc" id="L60" title="All 2 branches covered.">		if (this.repository.averageWorkloads() != null) {</span>
+<span class="fc" id="L61">			final Long averageWorkloads = Math.round(this.repository.averageWorkloads());</span>
+<span class="fc" id="L62">			result.setAverageWorkloadsHours(Long.toString(averageWorkloads / 60));</span>
+<span class="fc" id="L63">			result.setAverageWorkloadsMinutes(String.format(&quot;%02d&quot;, (averageWorkloads % 60)));</span>
+<span class="fc" id="L64">		} else {</span>
+<span class="fc" id="L65">			result.setAverageWorkloadsHours(Long.toString(0));</span>
+<span class="fc" id="L66">			result.setAverageWorkloadsMinutes(String.format(&quot;%02d&quot;, (0)));</span>
+		}
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">		if (this.repository.deviationWorkloads() != null) {</span>
+<span class="fc" id="L70">			final Long deviationWorkloads = Math.round(this.repository.deviationWorkloads());</span>
+<span class="fc" id="L71">			result.setDeviationWorkloadsHours(Long.toString(deviationWorkloads / 60));</span>
+<span class="fc" id="L72">			result.setDeviationWorkloadsMinutes(String.format(&quot;%02d&quot;, (deviationWorkloads % 60)));</span>
+<span class="fc" id="L73">		} else {</span>
+<span class="fc" id="L74">			result.setDeviationWorkloadsHours(Long.toString(0));</span>
+<span class="fc" id="L75">			result.setDeviationWorkloadsMinutes(String.format(&quot;%02d&quot;, (0)));</span>
+		}
+
+<span class="fc bfc" id="L78" title="All 2 branches covered.">		if (this.repository.minimumWorkloads() != null) {</span>
+<span class="fc" id="L79">			final Long minimumWorkloads = Math.round(this.repository.minimumWorkloads());</span>
+<span class="fc" id="L80">			result.setMinimumWorkloadsHours(Long.toString(minimumWorkloads / 60));</span>
+<span class="fc" id="L81">			result.setMinimumWorkloadsMinutes(String.format(&quot;%02d&quot;, (minimumWorkloads % 60)));</span>
+<span class="fc" id="L82">		} else {</span>
+<span class="fc" id="L83">			result.setMinimumWorkloadsHours(Long.toString(0));</span>
+<span class="fc" id="L84">			result.setMinimumWorkloadsMinutes(String.format(&quot;%02d&quot;, (0)));</span>
+		}
+
+<span class="fc bfc" id="L87" title="All 2 branches covered.">		if (this.repository.maximumWorkloads() != null) {</span>
+<span class="fc" id="L88">			final Long maximumWorkloads = Math.round(this.repository.maximumWorkloads());</span>
+<span class="fc" id="L89">			result.setMaximumWorkloadsHours(Long.toString(maximumWorkloads / 60));</span>
+<span class="fc" id="L90">			result.setMaximumWorkloadsMinutes(String.format(&quot;%02d&quot;, (maximumWorkloads % 60)));</span>
+<span class="fc" id="L91">		} else {</span>
+<span class="fc" id="L92">			result.setMaximumWorkloadsHours(Long.toString(0));</span>
+<span class="fc" id="L93">			result.setMaximumWorkloadsMinutes(String.format(&quot;%02d&quot;, (0)));</span>
+		}
+
+<span class="fc" id="L96">		result.setCountFinishedTasks(this.repository.countNotFinishedTasks());</span>
+<span class="fc" id="L97">		result.setCountNotFinishedTasks(this.repository.countFinishedTasks());</span>
+<span class="fc" id="L98">		result.setCountPrivateTasks(this.repository.countPublicTasks());</span>
+<span class="fc" id="L99">		result.setCountPublicTasks(this.repository.countPrivateTasks());</span>
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">		if (this.repository.averageExecutionPeriods() != null) {</span>
+<span class="fc" id="L102">			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());</span>
+<span class="fc" id="L103">		} else {</span>
+<span class="fc" id="L104">			result.setAverageExecutionPeriods((double) 0);</span>
+		}
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		if (this.repository.deviationExecutionPeriods() != null) {</span>
+<span class="fc" id="L107">			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods());</span>
+<span class="fc" id="L108">		} else {</span>
+<span class="fc" id="L109">			result.setDeviationExecutionPeriods((double) 0);</span>
+		}
+<span class="fc bfc" id="L111" title="All 2 branches covered.">		if (this.repository.minimumExecutionPeriods() != null) {</span>
+<span class="fc" id="L112">			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods());</span>
+<span class="fc" id="L113">		} else {</span>
+<span class="fc" id="L114">			result.setMinimumExecutionPeriods(0);</span>
+		}
+<span class="fc bfc" id="L116" title="All 2 branches covered.">		if (this.repository.maximumExecutionPeriods() != null) {</span>
+<span class="fc" id="L117">			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods());</span>
+<span class="fc" id="L118">		} else {</span>
+<span class="fc" id="L119">			result.setMaximumExecutionPeriods(0);</span>
+		}
+
+<span class="fc" id="L122">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ThrowableHelper.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.helpers</a> &gt; <span class="el_source">ThrowableHelper.java</span></div><h1>ThrowableHelper.java</h1><pre class="source lang-java linenums">/*
+ * ThrowableHelper.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.helpers;
+
+import java.io.PrintStream;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+
+import acme.framework.entities.DomainEntity;
+
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">public class ThrowableHelper {</span>
+	
+	// Constructors -----------------------------------------------------------
+
+<span class="nc" id="L26">	protected ThrowableHelper() {</span>
+<span class="nc" id="L27">	}</span>
+
+	// Business methods -------------------------------------------------------
+
+	public static void print(final Throwable oops) {
+<span class="nc bnc" id="L32" title="All 4 branches missed.">		assert oops != null;</span>
+
+<span class="nc" id="L34">		ThrowableHelper.print(System.err, oops);</span>
+<span class="nc" id="L35">	}</span>
+
+	public static void print(final PrintStream writer, final Throwable oops) {
+<span class="nc bnc" id="L38" title="All 4 branches missed.">		assert writer != null;</span>
+<span class="nc bnc" id="L39" title="All 4 branches missed.">		assert oops != null;</span>
+
+		String text;
+
+<span class="nc" id="L43">		text = ThrowableHelper.toString(oops);</span>
+<span class="nc" id="L44">		writer.append(text);</span>
+<span class="nc" id="L45">	}</span>
+
+	public static String toString(final Throwable oops) {
+<span class="pc bpc" id="L48" title="2 of 4 branches missed.">		assert oops != null;</span>
+
+		StringBuilder result;
+		String title, description, paragraph;
+		Throwable iterator;
+
+<span class="fc" id="L54">		result = new StringBuilder();</span>
+<span class="fc" id="L55">		iterator = oops;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		while (iterator != null) {</span>
+<span class="fc" id="L57">			title = iterator.getStackTrace()[0].toString();</span>
+<span class="fc" id="L58">			description = iterator.getLocalizedMessage();</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">			if (description != null) {</span>
+<span class="fc" id="L60">				paragraph = ThrowableHelper.formatParagraph(title, description);</span>
+<span class="fc" id="L61">			} else {</span>
+<span class="fc" id="L62">				paragraph = iterator.getClass().getName();</span>
+			}
+<span class="fc" id="L64">			result.append(paragraph);</span>
+<span class="fc" id="L65">			iterator = iterator.getCause();</span>
+		}
+
+<span class="fc" id="L68">		return result.toString();</span>
+	}
+	
+	public static String toString(final String entityName, final Set&lt;ConstraintViolation&lt;DomainEntity&gt;&gt; violations) {
+<span class="nc bnc" id="L72" title="All 4 branches missed.">		assert !StringHelper.isBlank(entityName);</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">		assert !CollectionHelper.someNull(violations);</span>
+		
+		StringBuilder result;
+		String comma, property, message;
+		
+<span class="nc" id="L78">		result = new StringBuilder();</span>
+<span class="nc" id="L79">		result.append(String.format(&quot;Violated constraints on entity %s: &quot;, entityName));</span>
+<span class="nc" id="L80">		comma = &quot;&quot;;</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">		for (final ConstraintViolation&lt;DomainEntity&gt; violation : violations) {</span>
+<span class="nc" id="L82">			property = violation.getPropertyPath().toString();</span>
+<span class="nc" id="L83">			message = violation.getMessage();</span>
+<span class="nc" id="L84">			result.append(String.format(&quot;%s%s : %s%n&quot;, comma, property, message));</span>
+<span class="nc" id="L85">			comma = &quot;, &quot;;</span>
+		}
+		
+<span class="nc" id="L88">		return result.toString();</span>
+	}
+
+	public static String formatText(final String text) {
+<span class="pc bpc" id="L92" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(text);</span>
+
+		String result;
+
+<span class="fc" id="L96">		result = text.replace(&quot;Stacktrace:&quot;, &quot;&quot;);</span>
+<span class="fc" id="L97">		result = result.replaceAll(&quot;[\\s]+$&quot;, &quot;&quot;);</span>
+<span class="fc" id="L98">		result = result.replaceAll(&quot;^[\\s]+&quot;, &quot;&quot;);</span>
+<span class="fc" id="L99">		result = result.replaceAll(&quot;([\\n\\r][\\ \\t]*){2,100}&quot;, System.lineSeparator());</span>
+
+<span class="fc" id="L101">		return result;</span>
+	}
+
+	public static String formatParagraph(final String title, final String description) {
+<span class="pc bpc" id="L105" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(title);</span>
+<span class="pc bpc" id="L106" title="2 of 4 branches missed.">		assert !StringHelper.isBlank(description);</span>
+
+		StringBuilder result;
+		String titleText, descriptionText;
+
+<span class="fc" id="L111">		titleText = ThrowableHelper.formatText(title);</span>
+<span class="fc" id="L112">		descriptionText = ThrowableHelper.formatText(description);</span>
+
+<span class="fc" id="L114">		result = new StringBuilder();</span>
+<span class="fc" id="L115">		result.append(titleText);</span>
+<span class="fc" id="L116">		result.append(&quot;: &quot;);</span>
+<span class="fc" id="L117">		result.append(descriptionText);</span>
+<span class="fc" id="L118">		result.append(System.lineSeparator());</span>
+
+<span class="fc" id="L120">		return result.toString();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>

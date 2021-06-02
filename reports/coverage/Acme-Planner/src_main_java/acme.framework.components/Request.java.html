@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Request.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">Acme-Planner (Run) (2 Jun 2021 12:07:42)</a> &gt; <a href="../../index.html" class="el_group">Acme-Planner</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">acme.framework.components</a> &gt; <span class="el_source">Request.java</span></div><h1>Request.java</h1><pre class="source lang-java linenums">/*
+ * Request.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
+package acme.framework.components;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestParameterPropertyValues;
+import org.springframework.web.bind.WebDataBinder;
+
+import acme.framework.entities.DomainEntity;
+import acme.framework.entities.Principal;
+import acme.framework.helpers.CollectionHelper;
+import acme.framework.helpers.ErrorsHelper;
+import acme.framework.helpers.FactoryHelper;
+import acme.framework.helpers.PrincipalHelper;
+import acme.framework.helpers.StringHelper;
+import acme.framework.utilities.CustomBindingErrorProcessor;
+import acme.framework.utilities.LocalisedDataBinder;
+import lombok.Getter;
+import lombok.Setter;
+
+<span class="pc" id="L44">@Getter</span>
+<span class="nc" id="L45">@Setter</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">public class Request&lt;E&gt; {</span>
+
+	// Internal state ---------------------------------------------------------
+
+	protected HttpMethod			method;
+	protected Command				command;
+	protected BasicCommand			baseCommand;
+
+	protected Principal				principal;
+	protected Locale				locale;
+	protected Model					model;
+
+	protected HttpServletRequest	servletRequest;
+	protected HttpServletResponse	servletResponse;
+
+	// Constructors -----------------------------------------------------------
+
+
+<span class="fc" id="L64">	public Request( //</span>
+		final HttpMethod method, //
+		final Command command, //
+		final BasicCommand baseCommand, //
+		final Map&lt;String, Object&gt; model, //
+		final Locale locale, //
+		final HttpServletRequest servletRequest, //
+		final HttpServletResponse servletResponse) {
+
+<span class="pc bpc" id="L73" title="2 of 4 branches missed.">		assert method != null;</span>
+<span class="pc bpc" id="L74" title="2 of 4 branches missed.">		assert command != null;</span>
+<span class="pc bpc" id="L75" title="2 of 4 branches missed.">		assert baseCommand != null;</span>
+<span class="pc bpc" id="L76" title="2 of 4 branches missed.">		assert model != null;</span>
+<span class="pc bpc" id="L77" title="2 of 4 branches missed.">		assert locale != null;</span>
+<span class="pc bpc" id="L78" title="2 of 4 branches missed.">		assert servletRequest != null;</span>
+<span class="pc bpc" id="L79" title="2 of 4 branches missed.">		assert servletResponse != null;</span>
+
+<span class="fc" id="L81">		this.method = method;</span>
+<span class="fc" id="L82">		this.command = command;</span>
+<span class="fc" id="L83">		this.baseCommand = baseCommand;</span>
+
+<span class="fc" id="L85">		this.principal = PrincipalHelper.get();</span>
+<span class="fc" id="L86">		this.model = new Model();</span>
+<span class="fc" id="L87">		this.model.append(model);</span>
+<span class="fc" id="L88">		this.locale = locale;</span>
+
+<span class="fc" id="L90">		this.servletRequest = servletRequest;</span>
+<span class="fc" id="L91">		this.servletResponse = servletResponse;</span>
+<span class="fc" id="L92">	}</span>
+
+	// Business methods -------------------------------------------------------
+
+	public boolean isMethod(final HttpMethod method) {
+<span class="pc bpc" id="L97" title="2 of 4 branches missed.">		assert method != null;</span>
+
+		boolean result;
+
+<span class="fc bfc" id="L101" title="All 2 branches covered.">		result = this.method == method;</span>
+
+<span class="fc" id="L103">		return result;</span>
+	}
+
+	public boolean isCommand(final Command... commands) {
+<span class="nc bnc" id="L107" title="All 4 branches missed.">		assert !CollectionHelper.someNull(commands);</span>
+
+		boolean result;
+
+<span class="nc" id="L111">		result = false;</span>
+<span class="nc bnc" id="L112" title="All 4 branches missed.">		for (int index = 0; !result &amp;&amp; index &lt; commands.length; index++) {</span>
+<span class="nc bnc" id="L113" title="All 4 branches missed.">			result = this.command == commands[index] || this.baseCommand == commands[index];</span>
+		}
+
+<span class="nc" id="L116">		return result;</span>
+	}
+
+	public void bind(final Object object, final Errors errors, final String... excludedProperties) {
+<span class="pc bpc" id="L120" title="2 of 4 branches missed.">		assert object != null;</span>
+<span class="pc bpc" id="L121" title="2 of 4 branches missed.">		assert errors != null;</span>
+<span class="pc bpc" id="L122" title="2 of 4 branches missed.">		assert !StringHelper.someBlank(excludedProperties);</span>
+
+		WebDataBinder binder;
+		ServletRequest request;
+		ServletRequestParameterPropertyValues values;
+		ArrayList&lt;String&gt; exclusions;
+		BindingResult binding;
+
+<span class="fc" id="L130">		request = this.getServletRequest();</span>
+<span class="fc" id="L131">		values = new ServletRequestParameterPropertyValues(request);</span>
+
+<span class="fc" id="L133">		exclusions = new ArrayList&lt;String&gt;(Arrays.asList(excludedProperties));</span>
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">		if (object instanceof DomainEntity) {</span>
+<span class="fc" id="L135">			exclusions.remove(&quot;id&quot;);</span>
+<span class="fc" id="L136">			exclusions.remove(&quot;version&quot;);</span>
+		}
+
+<span class="fc" id="L139">		binder = this.createBinder(this, object, exclusions);</span>
+<span class="fc" id="L140">		binder.bind(values);</span>
+<span class="fc" id="L141">		binding = binder.getBindingResult();</span>
+
+<span class="fc" id="L143">		ErrorsHelper.transferErrors(this, binding, errors);</span>
+<span class="fc" id="L144">	}</span>
+
+	public void unbind(final Object object, final Model model, final String... includedProperties) {
+<span class="pc bpc" id="L147" title="2 of 4 branches missed.">		assert object != null;</span>
+<span class="pc bpc" id="L148" title="2 of 4 branches missed.">		assert model != null;</span>
+<span class="pc bpc" id="L149" title="2 of 4 branches missed.">		assert !StringHelper.someBlank(includedProperties);</span>
+
+		BeanWrapperImpl wrapper;
+		List&lt;String&gt; inclusions;
+		Object value;
+
+<span class="fc" id="L155">		wrapper = new BeanWrapperImpl(object);</span>
+<span class="fc" id="L156">		wrapper.setAutoGrowNestedPaths(true);</span>
+
+<span class="fc" id="L158">		inclusions = new ArrayList&lt;String&gt;(Arrays.asList(includedProperties));</span>
+<span class="fc bfc" id="L159" title="All 2 branches covered.">		if (object instanceof DomainEntity) {</span>
+<span class="fc" id="L160">			inclusions.add(&quot;id&quot;);</span>
+<span class="fc" id="L161">			inclusions.add(&quot;version&quot;);</span>
+		}
+
+<span class="fc bfc" id="L164" title="All 2 branches covered.">		for (final String property : inclusions) {</span>
+<span class="pc bpc" id="L165" title="2 of 4 branches missed.">			assert wrapper.isReadableProperty(property);</span>
+<span class="fc" id="L166">			value = wrapper.getPropertyValue(property);</span>
+<span class="fc" id="L167">			model.setAttribute(property, value);</span>
+		}
+<span class="fc" id="L169">	}</span>
+
+	public void transfer(final Model model, final String... includedProperties) {
+<span class="nc bnc" id="L172" title="All 4 branches missed.">		assert model != null;</span>
+<span class="nc bnc" id="L173" title="All 4 branches missed.">		assert !StringHelper.someBlank(includedProperties);</span>
+<span class="nc bnc" id="L174" title="All 4 branches missed.">		assert this.getModel().size() == 1;</span>
+
+		List&lt;String&gt; inclusions;
+		String key;
+		Object value;
+
+<span class="nc" id="L180">		inclusions = new ArrayList&lt;String&gt;(Arrays.asList(includedProperties));</span>
+<span class="nc" id="L181">		inclusions.add(&quot;id&quot;);</span>
+<span class="nc" id="L182">		inclusions.add(&quot;version&quot;);</span>
+
+<span class="nc bnc" id="L184" title="All 2 branches missed.">		for (final Entry&lt;String, Object&gt; entry : this.model.get(0).entrySet()) {</span>
+<span class="nc" id="L185">			key = entry.getKey();</span>
+<span class="nc" id="L186">			value = entry.getValue();</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">			if (inclusions.contains(key)) {</span>
+<span class="nc" id="L188">				model.setAttribute(key, value);</span>
+			}
+		}
+<span class="nc" id="L191">	}</span>
+
+	// Internal methods -------------------------------------------------------
+
+	protected WebDataBinder createBinder(final Request&lt;?&gt; request, final Object target, final List&lt;String&gt; exclusions) {
+		WebDataBinder result;
+		ConversionService conversionService;
+		CustomBindingErrorProcessor errorProcessor;
+
+<span class="fc" id="L200">		conversionService = FactoryHelper.getConversionService();</span>
+<span class="fc" id="L201">		errorProcessor = new CustomBindingErrorProcessor();</span>
+
+<span class="fc" id="L203">		result = new LocalisedDataBinder(target);</span>
+<span class="fc" id="L204">		result.setConversionService(conversionService);</span>
+<span class="fc" id="L205">		result.setBindingErrorProcessor(errorProcessor);</span>
+<span class="fc" id="L206">		result.setDisallowedFields(exclusions.toArray(new String[] {}));</span>
+<span class="fc" id="L207">		result.setAutoGrowNestedPaths(true);</span>
+
+<span class="fc" id="L209">		return result;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span>Acme-Planner (Run) (2 Jun 2021 12:07:42)</div></body></html>
