@@ -1,2 +1,0 @@
-timestamp,test-class,test-method,time,description,result
-2021-06-01 23:06:42.703,acme.testing.manager.task.ManagerTaskShowServiceTest,negativeShow,4876,"negativeShow()",null
