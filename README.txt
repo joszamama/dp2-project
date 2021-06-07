@@ -10,11 +10,5 @@
 
 This is Acme Planner, our D02 project in Design & Testing II. We are implementing several functionalities like Shouting and Task Management.
 
-BUGS:
-
-In the testing suite, super.navigate does not accept parameters in the URL, so it is impossible to 
-request the URL of any task. In this case, we have used super.driver, which is a low-level function.
-However, this is the only way to do it without changing the framework.
-
 The link to our GitHub repository is: https://github.com/joszamama/dp2-project
 The link to our last GitHub release is: https://github.com/joszamama/dp2-project/releases/tag/4.0.0
