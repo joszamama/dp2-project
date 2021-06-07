@@ -93,10 +93,10 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			result.setMaximumWorkloadsMinutes(String.format("%02d", (0)));
 		}
 
-		result.setCountFinishedTasks(this.repository.countNotFinishedTasks());
-		result.setCountNotFinishedTasks(this.repository.countFinishedTasks());
-		result.setCountPrivateTasks(this.repository.countPublicTasks());
-		result.setCountPublicTasks(this.repository.countPrivateTasks());
+		result.setCountFinishedTasks(this.repository.countFinishedTasks());
+		result.setCountNotFinishedTasks(this.repository.countNotFinishedTasks());
+		result.setCountPrivateTasks(this.repository.countPrivateTasks());
+		result.setCountPublicTasks(this.repository.countPublicTasks());
 
 		if (this.repository.averageExecutionPeriods() != null) {
 			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());
@@ -109,14 +109,14 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			result.setDeviationExecutionPeriods((double) 0);
 		}
 		if (this.repository.minimumExecutionPeriods() != null) {
-			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods());
+			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods()/1000000); //24 horas son 1000000 unidades que te devuelve la consulta
 		} else {
-			result.setMinimumExecutionPeriods(0);
+			result.setMinimumExecutionPeriods(0.0);
 		}
 		if (this.repository.maximumExecutionPeriods() != null) {
-			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods());
+			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods()/1000000);
 		} else {
-			result.setMaximumExecutionPeriods(0);
+			result.setMaximumExecutionPeriods(0.0);
 		}
 
 		return result;
