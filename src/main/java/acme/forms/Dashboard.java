@@ -35,8 +35,8 @@ public class Dashboard implements Serializable {
 
 	Double						averageExecutionPeriods;
 	Double						deviationExecutionPeriods;
-	Integer						minimumExecutionPeriods;
-	Integer						maximumExecutionPeriods;
+	Double						minimumExecutionPeriods;
+	Double						maximumExecutionPeriods;
 
 	String						averageWorkloadsHours;
 	String						deviationWorkloadsHours;
@@ -48,28 +48,6 @@ public class Dashboard implements Serializable {
 	String						minimumWorkloadsMinutes;
 	String						maximumWorkloadsMinutes;
 
-	// WorkPlan information
-	Integer						countNotFinishedWorkplan;
-	Integer						countFinishedWorkplan;
-	Integer						countPublicWorkplan;
-	Integer						countPrivateWorkplan;
-
-	Double						averageWorkplanExecutionPeriods;
-	Double						deviationWorkplanExecutionPeriods;
-	Integer						minimumWorkplanExecutionPeriods;
-	Integer						maximumWorkplanExecutionPeriods;
-	
-	
-
-	String						averageWorkplanWorkloadsHours;
-	String						deviationWorkplanWorkloadsHours;
-	String						minimumWorkplanWorkloadsHours;
-	String						maximumWorkplanWorkloadsHours;
-
-	String						averageWorkplanWorkloadsMinutes;
-	String						deviationWorkplanWorkloadsMinutes;
-	String						minimumWorkplanWorkloadsMinutes;
-	String						maximumWorkplanWorkloadsMinutes;
 
 	// Derived attributes -----------------------------------------------------
 

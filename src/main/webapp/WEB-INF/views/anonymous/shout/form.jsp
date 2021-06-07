@@ -16,9 +16,9 @@
 <%@taglib prefix="acme" tagdir="/WEB-INF/tags"%>
 
 <acme:form>
-	<acme:form-textbox code="anonymous.shout.form.label.author" path="author"/>
-	<acme:form-textarea code="anonymous.shout.form.label.text" path="text"/>
-	<acme:form-textbox code="anonymous.shout.form.label.info" path="info"/>
+	<acme:form-textbox code="anonymous.shout.form.label.author" placeholder="Jonny" path="author"/>
+	<acme:form-textarea code="anonymous.shout.form.label.text" placeholder="Eyyyyy" path="text"/>
+	<acme:form-textbox code="anonymous.shout.form.label.info" placeholder="https://yourlink.com" path="info"/>
 	
 	<acme:form-submit code="anonymous.shout.form.button.create" action="/anonymous/shout/create"/>
   	<acme:form-return code="anonymous.shout.form.button.return"/>

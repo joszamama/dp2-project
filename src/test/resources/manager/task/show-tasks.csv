@@ -1,7 +1,7 @@
 recordIndex,title,description,executionStart,executionEnd,link,workload
 0,Public unfinished task number one,A public unfinished task which is the first one,2022/02/01 14:00,2022/03/25 17:30,http://first.task/public/unfinished,1:30
-1,Public unfinished task number two,A public unfinished task which is the second one,2022/04/20 11:00,2022/12/02 20:00,http://second.task/public/unfinished,8:15
+1,Public unfinished task number two,A public unfinished task which is the second one,2022/04/20 11:00,2022/12/02 20:00,,8:15
 2,Public unfinished task number three,A public unfinished task which is the third one,2022/09/20 10:00,2022/11/02 12:00,http://third.task/public/unfinished,1:55
-3,Public finished task number one,A public finished task which is the first one,2012/02/01 14:00,2012/03/25 17:30,http://first.task/public/finished,1:30
-4,Public finished task number two,A public finished task which is the second one,2012/04/20 11:00,2012/12/02 20:00,http://second.task/public/finished,8:15
-5,Public finished task number three,A public finished task which is the third one,2012/09/20 10:00,2012/11/02 12:00,http://third.task/public/finished,1:55
+3,Public finished task number one,A public finished task which is the first one,2020/02/01 14:00,2020/03/25 17:30,http://first.task/public/finished,1:30
+4,Public finished task number two,A public finished task which is the second one,2020/04/20 11:00,2020/12/02 20:00,,8:15
+5,Public finished task number three,A public finished task which is the third one,2020/09/20 10:00,2020/11/02 12:00,http://third.task/public/finished,1:55

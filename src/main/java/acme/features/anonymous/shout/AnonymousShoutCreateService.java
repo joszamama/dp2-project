@@ -68,17 +68,8 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 	public Shout instantiate(final Request<Shout> request) {
 		assert request != null;
 
-		Shout result;
-		Date moment;
-
-		moment = new Date(System.currentTimeMillis() - 1);
-
-		result = new Shout();
-		result.setAuthor("John Doe");
-		result.setText("Lorem ipsum!");
-		result.setMoment(moment);
-		result.setInfo("http://example.org");
-
+		final Shout result = new Shout();
+		result.setMoment(new Date(System.currentTimeMillis() - 1));
 		return result;
 	}
 
@@ -98,17 +89,8 @@ public class AnonymousShoutCreateService implements AbstractCreateService<Anonym
 		assert request != null;
 		assert entity != null;
 
-		Date moment;
-
-		moment = new Date(System.currentTimeMillis() - 1);
-		entity.setMoment(moment);
-		final boolean isSpam = this.spamFilterService.isSpam(entity.getAuthor(), entity.getText());
-		if (!isSpam) {
-			this.repository.save(entity);
-		} else {
-			System.out.println("SPAM: " + entity.getText());
-			System.out.println("Mensaje borrado");
-		}
+		entity.setMoment(new Date(System.currentTimeMillis() - 1));
+		this.repository.save(entity);
 
 	}
 

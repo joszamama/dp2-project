@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>756</x>
+      <x>612</x>
       <y>246</y>
       <w>144</w>
       <h>36</h>
@@ -18,7 +18,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>822</x>
+      <x>678</x>
       <y>276</y>
       <w>18</w>
       <h>90</h>
@@ -29,7 +29,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
+      <x>0</x>
       <y>54</y>
       <w>132</w>
       <h>72</h>
@@ -49,7 +49,7 @@ bg=orange
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>144</x>
+      <x>0</x>
       <y>0</y>
       <w>144</w>
       <h>36</h>
@@ -62,7 +62,7 @@ surname, a comma, and the name.
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
+      <x>540</x>
       <y>276</y>
       <w>156</w>
       <h>90</h>
@@ -73,7 +73,7 @@ surname, a comma, and the name.
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
+      <x>822</x>
       <y>204</y>
       <w>60</w>
       <h>36</h>
@@ -88,7 +88,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
+      <x>822</x>
       <y>162</y>
       <w>60</w>
       <h>36</h>
@@ -103,7 +103,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>966</x>
+      <x>822</x>
       <y>246</y>
       <w>60</w>
       <h>36</h>
@@ -118,7 +118,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>894</x>
+      <x>750</x>
       <y>186</y>
       <w>84</w>
       <h>90</h>
@@ -129,7 +129,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>894</x>
+      <x>750</x>
       <y>210</y>
       <w>84</w>
       <h>66</h>
@@ -140,7 +140,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>894</x>
+      <x>750</x>
       <y>246</y>
       <w>84</w>
       <h>30</h>
@@ -151,7 +151,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>144</x>
+      <x>0</x>
       <y>138</y>
       <w>132</w>
       <h>42</h>
@@ -167,7 +167,7 @@ bg=orange</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>762</x>
+      <x>618</x>
       <y>354</y>
       <w>120</w>
       <h>54</h>
@@ -183,7 +183,7 @@ Administrator
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>624</x>
+      <x>480</x>
       <y>354</y>
       <w>120</w>
       <h>54</h>
@@ -197,61 +197,7 @@ Anonymous
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>54</y>
-      <w>132</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Datatype&gt;&gt; DELETE
-Money
---
-+ amount: double {Digits(10, 2)}
-+ currentcy: String {NotBlank}
-
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>6</x>
-      <y>114</y>
-      <w>126</w>
-      <h>78</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Enum&gt;&gt; DELETE
-BasicCommand
---
-+ LIST
-+ SHOW
-+ CREATE
-+ UPDATE
-+ DELETE
-
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>0</x>
-      <y>204</y>
-      <w>132</w>
-      <h>54</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Enum&gt;&gt; DELETE
-HttpMethod
---
-+ GET
-+ POST
-
-bg=red</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>720</x>
+      <x>576</x>
       <y>102</y>
       <w>204</w>
       <h>78</h>
@@ -273,7 +219,7 @@ UserAccount
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>822</x>
+      <x>678</x>
       <y>174</y>
       <w>42</w>
       <h>84</h>
@@ -287,7 +233,7 @@ has v</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>978</x>
+      <x>834</x>
       <y>474</y>
       <w>228</w>
       <h>150</h>
@@ -295,7 +241,7 @@ has v</panel_attributes>
     <panel_attributes>&lt;&lt;Entity&gt;&gt;
 Task
 --
-+ title: String {NotBlank, Leght(1,80)}
++ title: String {NotBlank, Lenght(1,80)}
 + executionStart: Date {NotNull,Temporal(TIMESTAMP)}
 + executionEnd: Date {NotNull, Temporal(TIMESTAMP)} 
 + workloadHours: Integer {NotNull, Min(0)}
@@ -314,7 +260,7 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
+      <x>498</x>
       <y>438</y>
       <w>228</w>
       <h>84</h>
@@ -335,8 +281,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1254</x>
-      <y>612</y>
+      <x>1194</x>
+      <y>522</y>
       <w>222</w>
       <h>36</h>
     </coordinates>
@@ -348,26 +294,27 @@ of the task
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1200</x>
+      <x>1056</x>
       <y>534</y>
-      <w>162</w>
-      <h>90</h>
+      <w>150</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;230.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>906</x>
+      <x>762</x>
       <y>354</y>
-      <w>120</w>
+      <w>186</w>
       <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
 Manager
 --
-
++ company: String {NotBlank, Lenght(1,250)}
++ sector: String {NotBlank, Lenght(1,250)}
 
 </panel_attributes>
     <additional_attributes/>
@@ -375,19 +322,19 @@ Manager
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>822</x>
+      <x>678</x>
       <y>276</y>
-      <w>156</w>
+      <w>162</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>642</x>
-      <y>534</y>
+      <x>498</x>
+      <y>552</y>
       <w>228</w>
       <h>72</h>
     </coordinates>
@@ -403,8 +350,8 @@ bg=yellow</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>408</x>
-      <y>534</y>
+      <x>234</x>
+      <y>564</y>
       <w>222</w>
       <h>36</h>
     </coordinates>
@@ -416,18 +363,18 @@ considered Spam, separated by a "coma"
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>564</y>
-      <w>54</w>
-      <h>42</h>
+      <x>444</x>
+      <y>504</y>
+      <w>66</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
+      <x>984</x>
       <y>354</y>
       <w>120</w>
       <h>54</h>
@@ -443,18 +390,18 @@ Authenticated
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
+      <x>684</x>
       <y>276</y>
-      <w>294</w>
+      <w>372</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;70.0;470.0;70.0;470.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;230.0;70.0;600.0;70.0;600.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>984</x>
+      <x>840</x>
       <y>402</y>
       <w>60</w>
       <h>84</h>
@@ -468,7 +415,7 @@ manages v</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1290</x>
+      <x>1146</x>
       <y>450</y>
       <w>222</w>
       <h>36</h>
@@ -482,12 +429,82 @@ the moment when the task is created
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1200</x>
+      <x>1056</x>
       <y>462</y>
       <w>102</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;90.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1134</x>
+      <y>588</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>workLoad has to fit inside the execution time provided by
+executionStart and executionEnd, and at least has to be
+1 minute.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>582</y>
+      <w>96</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>228</x>
+      <y>492</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Derived method used to trim the author attribute
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>576</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>228</x>
+      <y>432</y>
+      <w>222</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>Moment when the shout is created
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>444</x>
+      <y>450</y>
+      <w>60</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;30.0</additional_attributes>
   </element>
 </diagram>

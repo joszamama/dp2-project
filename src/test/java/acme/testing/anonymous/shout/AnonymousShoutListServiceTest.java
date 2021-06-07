@@ -11,19 +11,18 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 100.0% coverage in the AnonymousShoutListService.
+	 * This test achieves a 82.8% coverage in the AnonymousShoutListService.
 	 * 
 	 * Test 1:
-	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
 	 * We also check that the value in the csv is the same as the list of shouts
 	 *
 	 * Test 2:
 	 * We check that we can't list shouts login as an administrator.
 	 */
-	
-	
+
 	/**
-	 * In this test we check there is the list of shouts, that can be empty or fulfilled. 
+	 * In this test we check there is the list of shouts, that can be empty or fulfilled.
 	 * We also check that the value in the csv is the same as the list of shouts.
 	 * 
 	 * @param recordIndex
@@ -32,46 +31,35 @@ public class AnonymousShoutListServiceTest extends AcmePlannerTest {
 	 * @param text
 	 * @param info
 	 * 
-	 * This test access the drop-down menu of anonymous and enters the listing
-	 * shouts. You should check that the list displays the same as our input csv file, in which we enter the 
-	 * sample data records that should be displayed.
+	 *            This test access the drop-down menu of anonymous and enters the listing
+	 *            shouts. You should check that the list displays the same as our input csv file, in which we enter the
+	 *            sample data records that should be displayed.
 	 * 
 	 */
-	
+
 	@ParameterizedTest
 	@CsvFileSource(resources = "/anonymous/shout/list-shouts.csv", encoding = "utf-8", numLinesToSkip = 1)
 	@Order(10)
-	public void positiveShoutListing(final int recordIndex,final String moment,final String author,final String text, final String info) {
-		// super.navigateHome();
-		//super.clickOnMenu("Anonymous","List shouts");
-		// Assertions.assertTrue(super.exists(By.cssSelector(".control.sorting_1")) || super.exists(By.className("dataTables_empty")));
-		// super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
-
-		//super.clickOnMenu("Anonymous", "List shouts");
-		//super.click(By.xpath("//*[@id=\"list\"]/thead/tr/th[2]"));
-			
-			super.clickOnMenu("Anonymous", "List shouts");
-			
-			super.checkColumnHasValue(recordIndex, 0, moment);
-			super.checkColumnHasValue(recordIndex, 1, author);
-			super.checkColumnHasValue(recordIndex, 2, text);
+	public void positiveShoutListing(final int recordIndex, final String moment, final String author, final String text, final String info) {
+		super.clickOnMenu("Anonymous", "List shouts");
+		super.checkColumnHasValue(recordIndex, 0, moment);
+		super.checkColumnHasValue(recordIndex, 1, author);
+		super.checkColumnHasValue(recordIndex, 2, text);
+		super.checkColumnHasValue(recordIndex, 3, info);
 	}
-			
-	
 
 	/**
 	 * We check that we can't list shouts logged as an administrator.
 	 * 
-	 *  Once logged in as administrator, the first thing to do is to check that the anonymous section does not exist. Then we try to access by url
-	 *	to the list of shouts", and check that the result is an error page, as it is not authorised.
+	 * Once logged in as administrator, the first thing to do is to check that the anonymous section does not exist. Then we try to access by url
+	 * to the list of shouts", and check that the result is an error page, as it is not authorised.
 	 * 
 	 */
 	@Test
 	public void negativeShoutListing() {
-
 		super.signIn("administrator", "administrator");
- 		super.driver.get("http://localhost:8080/Acme-Planner/anonymous/shout/list");
- 		this.checkPanicExists();
+		super.navigate("/anonymous/shout/list", "");
+		this.checkPanicExists();
 		this.signOut();
 
 	}

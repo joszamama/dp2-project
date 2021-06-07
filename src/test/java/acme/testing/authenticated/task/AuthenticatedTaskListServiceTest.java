@@ -11,7 +11,7 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	
 	/**
 	 * 
-	 * 
+	 * Coverage: 75.6%
 	 * 
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
 	 * We are testing the feature to list finished public tasks as an Authenticated principal
@@ -38,15 +38,15 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 
 		this.signOut();
 	}
+
 	/**
-	 * 
 	 * We check that we can't list finished and public tasks as an anonymous user.
 	 * We are violating the constraint of authorization.
 	 */
-
 	@Test
 	public void negativeTaskListing() {
-		super.driver.get("http://localhost:8080/Acme-Planner/authenticated/task/list");
+		super.navigate("/authenticated/task/list", "");
 		this.checkPanicExists();
 	}
+
 }

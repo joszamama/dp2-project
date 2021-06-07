@@ -81,7 +81,23 @@ public class ManagerTaskUpdateService implements AbstractUpdateService<Manager, 
 		assert entity != null;
 		assert errors != null;
 
-		errors.state(request, entity.getWorkloadParsed().matches("^[0-9]*[1-9][0-9]*$|^[0-9]*[1-9][0-9]*:[0-5][0-9]$|^[0-9]*:[1-5][0-9]$|^[0-9]*:0[1-9]$"), "workloadParsed", "manager.task.form.error.workloadParsedFormat");
+		if(entity.getWorkloadParsed().matches("^\\d+(:\\d{2})?$")) {
+			if(entity.getWorkloadParsed().contains(":")) {
+				// workloadParsed of the form H:mm
+				final String[] hoursAndMinutes = entity.getWorkloadParsed().split(":");
+				final int hours = Integer.parseInt(hoursAndMinutes[0]);
+				final int minutes = Integer.parseInt(hoursAndMinutes[1]);
+				errors.state(request, !((hours == 0) && (minutes == 0)), "workloadParsed", "manager.task.form.error.workloadParsedNonZero");
+				errors.state(request, minutes < 60, "workloadParsed", "manager.task.form.error.workloadParsedMinutes");
+			} else {
+				// workloadParsed of the form H
+				if(Integer.parseInt(entity.getWorkloadParsed()) == 0) {
+					errors.state(request, false, "workloadParsed", "manager.task.form.error.workloadParsedNonZero");
+				}
+			}
+		} else {
+			errors.state(request, false, "workloadParsed", "manager.task.form.error.workloadParsedFormat");
+		}
 		
 		if (!errors.hasErrors("executionStart")) {
 			if (entity.getExecutionStart() != null && entity.getExecutionEnd() != null) {
