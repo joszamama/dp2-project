@@ -10,7 +10,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousShoutCreateServiceTest extends AcmePlannerTest {
 
 	/**
-	 * These tests achieve a 74.9% coverage in the AnonymousShoutCreateService.
+	 * These tests achieve a 96.1% coverage in the AnonymousShoutCreateService.
 	 * 
 	 * Test 1:
 	 * Access the create shout function, create a new positive case of a shout and check that the moment of the

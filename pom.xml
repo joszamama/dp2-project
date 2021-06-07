@@ -18,7 +18,7 @@
 	<description>This is Acme Planner for the Group June#02 of Design &amp; Testing. D02</description>
 
 	<artifactId>Acme-Planner</artifactId>
-	<version>21.6</version>
+	<version>21.5</version>
 	<packaging>war</packaging>
 
 	<parent>

@@ -8,7 +8,6 @@ import acme.testing.AcmePlannerTest;
 
 /**
  * These tests achieve a 40.2% coverage in the ManagerTaskDeleteService.
- * 
  * The reasons it doesn't achieve a 100% is because the assert
  * statements that assert that the framework is working properly and
  * also because of the unbind() and bind() methods which aren't used when executing

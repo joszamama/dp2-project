@@ -35,8 +35,8 @@ public class Dashboard implements Serializable {
 
 	Double						averageExecutionPeriods;
 	Double						deviationExecutionPeriods;
-	Integer						minimumExecutionPeriods;
-	Integer						maximumExecutionPeriods;
+	Double						minimumExecutionPeriods;
+	Double						maximumExecutionPeriods;
 
 	String						averageWorkloadsHours;
 	String						deviationWorkloadsHours;

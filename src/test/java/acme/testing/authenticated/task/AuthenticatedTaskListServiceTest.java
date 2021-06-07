@@ -11,7 +11,7 @@ public class AuthenticatedTaskListServiceTest extends AcmePlannerTest {
 	
 	/**
 	 * 
-	 * Coverage: 75.6%
+	 * 
 	 * 
 	 * First of all, we login as an administrator. Then, we access the authenticated list of tasks (finished and public)
 	 * We are testing the feature to list finished public tasks as an Authenticated principal

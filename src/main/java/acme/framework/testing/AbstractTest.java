@@ -306,17 +306,23 @@ public abstract class AbstractTest {
 	// Navigation methods -----------------------------------------------------
 
 	protected void navigateHome() {
-		this.navigate(() -> this.driver.get(this.homeUrl));
+		this.navigate(() -> {
+			this.driver.get(this.homeUrl);
+			this.longSleep();
+		});
 	}
 
 	protected void navigate(final String path, final String query) {
 		assert this.isSimplePath(path);
 		assert this.isSimpleQuery(query);
 
-		String url;
-		
-		url = String.format("%s%s%s%s", this.baseUrl, path, this.contextQuery, query);		
-		this.navigate(() -> this.driver.get(url));		
+		this.navigate(() -> {
+			String url;
+
+			url = String.format("%s%s%s%s", this.baseUrl, path, this.contextQuery, query);
+			this.driver.get(url);
+			this.longSleep();
+		});
 	}
 
 	protected void navigate(final Runnable navigator) {
@@ -358,9 +364,9 @@ public abstract class AbstractTest {
 		assert element != null;
 
 		// INFO: WebElement::click is a nightmare.  Don't use it!
-		this.executor.executeScript("arguments[0].click();", element);		
-		this.waitUntilComplete();
+		this.executor.executeScript("arguments[0].click();", element);
 		this.shortSleep();
+		this.waitUntilComplete();
 	}
 
 	protected void clickAndWait(final By locator) {
