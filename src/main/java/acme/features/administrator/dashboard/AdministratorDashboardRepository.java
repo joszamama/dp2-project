@@ -1,4 +1,3 @@
-
 package acme.features.administrator.dashboard;
 
 import org.springframework.data.jpa.repository.Query;
@@ -27,11 +26,11 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	@Query("select stddev(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
 	Double deviationExecutionPeriods();
 
-	@Query("select min(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Integer minimumExecutionPeriods();
+	@Query("select min(t.executionEnd-t.executionStart) from Task t") 
+	Double minimumExecutionPeriods();
 
-	@Query("select max(to_days(t.executionEnd)-to_days(t.executionStart)) from Task t")
-	Integer maximumExecutionPeriods();
+	@Query("select max(t.executionEnd-t.executionStart) from Task t")
+	Double maximumExecutionPeriods();
 
 	@Query("select avg(t.workloadHours * 60 + t.workloadMinutes) from Task t")
 	Double averageWorkloads();
