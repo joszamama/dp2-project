@@ -12,9 +12,9 @@
 
 package acme.features.anonymous.shout;
 
-import java.util.ArrayList;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,18 +57,9 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 	public Collection<Shout> findMany(final Request<Shout> request) {
 		assert request != null;
 
-		final Collection<Shout> dbData = this.repository.findMany();
-		final Date dateNow = new Date(System.currentTimeMillis() - 1);
-
-		final ArrayList<Shout> result = new ArrayList<Shout>();
-		for (final Shout s : dbData) {
-			if (((dateNow.getTime() - s.getMoment().getTime()) / (1000 * 60 * 60 * 24)) <= 30) {
-				result.add(s);
-			}
-		}
-		result.sort((d1, d2) -> d1.compareTo(d2));
-		Collections.reverse(result);
-		return result;
+		final Date date30DaysAgo = Date.from(Instant.now().minus(Duration.ofDays(30)));
+		System.out.println(date30DaysAgo);
+		return this.repository.findInTheLast30Days(date30DaysAgo);
 	}
 
 }
