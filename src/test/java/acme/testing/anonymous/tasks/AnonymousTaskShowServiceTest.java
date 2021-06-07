@@ -11,7 +11,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 
 	/**
-	 * This test achieves a 100.0% coverage in the AnonymousTaskShowService.
+	 * This test achieves a 79.0% coverage in the AnonymousTaskShowService.
 	 * 
 	 * Test 1:
 	 * In this test we check that the selected task is the same that it shows when we click it in our service.
@@ -65,10 +65,16 @@ public class AnonymousTaskShowServiceTest extends AcmePlannerTest {
 	@Test
 	@Order(20)
 	public void negativeTaskShowing() {
+		super.signIn("manager1", "manager1");
+		super.clickOnMenu("Manager", "List my tasks");
+		super.clickOnListingRecord(0);
+
+		final String url = this.getCurrentUrl();
+		super.signOut();
 
 		super.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/anonymous/task/show?id=23");
-		this.checkPanicExists();
+		super.navigate(url, "");
+		super.checkPanicExists();
 		this.signOut();
 	}
 

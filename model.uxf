@@ -361,7 +361,7 @@ of the task
     <coordinates>
       <x>906</x>
       <y>354</y>
-      <w>120</w>
+      <w>186</w>
       <h>54</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Role&gt;&gt;
@@ -378,11 +378,11 @@ Manager
     <coordinates>
       <x>822</x>
       <y>276</y>
-      <w>156</w>
+      <w>162</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;240.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;250.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -428,7 +428,7 @@ considered Spam, separated by a "coma"
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
+      <x>1128</x>
       <y>354</y>
       <w>120</w>
       <h>54</h>
@@ -446,11 +446,11 @@ Authenticated
     <coordinates>
       <x>828</x>
       <y>276</y>
-      <w>294</w>
+      <w>372</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;70.0;470.0;70.0;470.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;230.0;70.0;600.0;70.0;600.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>

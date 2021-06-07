@@ -1,3 +1,15 @@
+/*
+ * AnonymousShoutListService.java
+ *
+ * Copyright (C) 2012-2021 Rafael Corchuelo.
+ *
+ * In keeping with the traditional purpose of furthering education and research, it is
+ * the policy of the copyright owner to permit non-commercial use and redistribution of
+ * this software. It has been tested carefully, but it is not guaranteed for any particular
+ * purposes. The copyright owner does not offer any warranties or representations, nor do
+ * they accept any liabilities with respect to them.
+ */
+
 package acme.features.anonymous.shout;
 
 import java.time.Duration;
@@ -46,7 +58,6 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 		assert request != null;
 
 		final Date date30DaysAgo = Date.from(Instant.now().minus(Duration.ofDays(30)));
-		System.out.println(date30DaysAgo);
 		return this.repository.findInTheLast30Days(date30DaysAgo);
 	}
 

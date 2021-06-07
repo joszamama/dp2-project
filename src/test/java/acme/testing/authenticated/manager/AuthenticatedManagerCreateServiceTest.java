@@ -10,6 +10,9 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerCreateServiceTest extends AcmePlannerTest {
 
 	/**
+	 * 
+	 * Coverage: 67.5%
+	 * 
 	 * Sign up as user, use different user for each test. Try to become manager with data provided
 	 * 
 	 * @param recordIndex

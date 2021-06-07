@@ -93,30 +93,30 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 			result.setMaximumWorkloadsMinutes(String.format("%02d", (0)));
 		}
 
-		result.setCountFinishedTasks(this.repository.countFinishedTasks());
-		result.setCountNotFinishedTasks(this.repository.countNotFinishedTasks());
-		result.setCountPrivateTasks(this.repository.countPrivateTasks());
-		result.setCountPublicTasks(this.repository.countPublicTasks());
+		result.setCountFinishedTasks(this.repository.countNotFinishedTasks());
+		result.setCountNotFinishedTasks(this.repository.countFinishedTasks());
+		result.setCountPrivateTasks(this.repository.countPublicTasks());
+		result.setCountPublicTasks(this.repository.countPrivateTasks());
 
 		if (this.repository.averageExecutionPeriods() != null) {
-			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods()/(24*60*60));
+			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());
 		} else {
 			result.setAverageExecutionPeriods((double) 0);
 		}
 		if (this.repository.deviationExecutionPeriods() != null) {
-			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods()/(24*60*60));
+			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods());
 		} else {
 			result.setDeviationExecutionPeriods((double) 0);
 		}
 		if (this.repository.minimumExecutionPeriods() != null) {
-			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods()/(24*60*60));
+			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods());
 		} else {
-			result.setMinimumExecutionPeriods(0.0);
+			result.setMinimumExecutionPeriods(0);
 		}
 		if (this.repository.maximumExecutionPeriods() != null) {
-			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods()/(24*60*60));
+			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods());
 		} else {
-			result.setMaximumExecutionPeriods(0.0);
+			result.setMaximumExecutionPeriods(0);
 		}
 
 		return result;

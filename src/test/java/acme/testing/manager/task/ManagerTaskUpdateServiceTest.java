@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import acme.testing.AcmePlannerTest;
 
 /**
- * These tests achieve a 70.1% coverage in the ManagerTaskUpdateService.
+ * These tests achieve a 73.0% coverage in the ManagerTaskUpdateService.
  * 
  * Test 1:
  * First of all, we login as a manager. Then, we access the list task function and

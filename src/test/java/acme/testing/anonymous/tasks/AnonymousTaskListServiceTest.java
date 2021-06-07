@@ -11,7 +11,7 @@ import acme.testing.AcmePlannerTest;
 public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 
 	/**
-	 * In this tests, we have an 89.1% of coverage of Anonymous Task List.
+	 * In this tests, we have an 75.6% of coverage of Anonymous Task List.
 	 * 
 	 * Test 1: As in the anonymous shout listing test, in this one we check there is a list of the tasks, that can be
 	 * empty or filled. And must be the same than in the csv file
@@ -62,7 +62,7 @@ public class AnonymousTaskListServiceTest extends AcmePlannerTest {
 	@Test
 	public void negativeTaskListing() {
 		super.signIn("administrator", "administrator");
-		super.driver.get("http://localhost:8080/Acme-Planner/anonymous/task/list");
+		super.navigate("/anonymous/task/list", "");
 		this.checkPanicExists();
 		this.signOut();
 	}

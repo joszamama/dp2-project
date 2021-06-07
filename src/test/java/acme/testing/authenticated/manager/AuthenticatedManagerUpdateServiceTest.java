@@ -10,6 +10,9 @@ import acme.testing.AcmePlannerTest;
 public class AuthenticatedManagerUpdateServiceTest extends AcmePlannerTest {
 
 	/**
+	 * 
+	 * Coverage: 66.3%
+	 * 
 	 * Sign in with a manager account and try to change data for manager profile
 	 * with values from the file provided
 	 * 
