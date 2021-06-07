@@ -17,4 +17,4 @@ request the URL of any task. In this case, we have used super.driver, which is a
 However, this is the only way to do it without changing the framework.
 
 The link to our GitHub repository is: https://github.com/joszamama/dp2-project
-The link to our last GitHub release is: https://github.com/joszamama/dp2-project/releases/tag/3.1.1
+The link to our last GitHub release is: https://github.com/joszamama/dp2-project/releases/tag/4.0.0
