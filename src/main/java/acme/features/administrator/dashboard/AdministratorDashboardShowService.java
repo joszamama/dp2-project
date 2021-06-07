@@ -99,22 +99,22 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setCountPublicTasks(this.repository.countPublicTasks());
 
 		if (this.repository.averageExecutionPeriods() != null) {
-			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods());
+			result.setAverageExecutionPeriods(this.repository.averageExecutionPeriods()/(24*60*60));
 		} else {
 			result.setAverageExecutionPeriods((double) 0);
 		}
 		if (this.repository.deviationExecutionPeriods() != null) {
-			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods());
+			result.setDeviationExecutionPeriods(this.repository.deviationExecutionPeriods()/(24*60*60));
 		} else {
 			result.setDeviationExecutionPeriods((double) 0);
 		}
 		if (this.repository.minimumExecutionPeriods() != null) {
-			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods()/1000000); //24 horas son 1000000 unidades que te devuelve la consulta
+			result.setMinimumExecutionPeriods(this.repository.minimumExecutionPeriods()/(24*60*60));
 		} else {
 			result.setMinimumExecutionPeriods(0.0);
 		}
 		if (this.repository.maximumExecutionPeriods() != null) {
-			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods()/1000000);
+			result.setMaximumExecutionPeriods(this.repository.maximumExecutionPeriods()/(24*60*60));
 		} else {
 			result.setMaximumExecutionPeriods(0.0);
 		}
