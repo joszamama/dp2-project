@@ -58,7 +58,6 @@ public class AnonymousShoutListService implements AbstractListService<Anonymous,
 		assert request != null;
 
 		final Date date30DaysAgo = Date.from(Instant.now().minus(Duration.ofDays(30)));
-		System.out.println(date30DaysAgo);
 		return this.repository.findInTheLast30Days(date30DaysAgo);
 	}
 
